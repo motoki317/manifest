@@ -18,7 +18,7 @@ mariadb:
     lifeTime: 0
 
 es:
-  url: http://es.traq.svc.cluster.local:9200
+  url: http://traq-es.traq.svc.cluster.local:9200
 
 storage:
   type: local

@@ -1,0 +1,43 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traq
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: traq-tls
+  routes:
+    - kind: Rule
+      match: Host(`q.toki317.dev`) && PathPrefix(`/api`)
+      services:
+        - namespace: traq
+          kind: Service
+          name: traq
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+    - kind: Rule
+      match: Host(`q.toki317.dev`) && PathPrefix(`/widget`)
+      middlewares:
+        - name: widget-strip
+      services:
+        - namespace: traq
+          kind: Service
+          name: traq-widget
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+    - kind: Rule
+      match: Host(`q.toki317.dev`)
+      services:
+        - namespace: traq
+          kind: Service
+          name: traq-frontend
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

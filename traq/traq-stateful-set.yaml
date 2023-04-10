@@ -1,0 +1,53 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: traq
+
+spec:
+  serviceName: traq
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traq
+  template:
+    metadata:
+      labels:
+        app: traq
+    spec:
+      containers:
+        - name: traq
+          image: ghcr.io/traptitech/traq:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: TRAQ_MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: traq
+                  key: mariadb-password
+            - name: TRAQ_SKYWAY_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: traq
+                  key: skyway-secret
+          volumeMounts:
+            - mountPath: /app/config.yml
+              name: config
+              subPath: config.yml
+            - mountPath: /keys
+              name: keys
+            - mountPath: /storage
+              name: data
+      volumes:
+        - name: config
+          configMap:
+            name: traq-config
+        - name: keys
+          secret:
+            secretName: traq-keys
+        - name: data
+          hostPath:
+            path: /srv/traq/data/app
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

@@ -4,3 +4,4 @@ resources:
   - db.yaml
   - moto-bot.yaml
   - traefik.yaml
+  - traq.yaml

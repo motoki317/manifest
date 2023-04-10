@@ -1,0 +1,40 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: traq-es
+
+spec:
+  serviceName: traq-es
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traq-es
+  template:
+    metadata:
+      labels:
+        app: traq-es
+    spec:
+      containers:
+        - name: traq-es
+          image: ghcr.io/traptitech/es-with-sudachi:7.10.2-2.1.1-SNAPSHOT
+          ports:
+            - containerPort: 9200
+              name: http
+          env:
+            - name: discovery.type
+              value: single-node
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
+              name: config
+              subPath: es_jvm.options
+            - mountPath: /usr/share/elasticsearch/data
+              name: data
+      volumes:
+        - name: config
+          configMap:
+            name: es-config
+        - name: data
+          hostPath:
+            path: /srv/traq/data/es
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

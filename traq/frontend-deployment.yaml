@@ -1,0 +1,31 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: traq-frontend
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traq-frontend
+  template:
+    metadata:
+      labels:
+        app: traq-frontend
+    spec:
+      containers:
+        - name: traq-frontend
+          image: ghcr.io/traptitech/traq-ui:latest
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: THEME_COLOR
+              value: '#0D67EA' # default value
+          volumeMounts:
+            - mountPath: /app/override
+              name: override
+      volumes:
+        - name: override
+          configMap:
+            name: frontend-config

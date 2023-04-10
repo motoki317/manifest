@@ -1,0 +1,33 @@
+origin: https://q.toki317.dev
+port: 3000
+
+allowSignUp: true
+
+accessLog:
+  enabled: true
+
+mariadb:
+  host: mariadb.db.svc.cluster.local
+  port: 3306
+  username: traq
+  # password: specified in env
+  database: traq
+  connection:
+    maxOpen: 20
+    maxIdle: 2
+    lifeTime: 0
+
+es:
+  url: http://es.traq.svc.cluster.local:9200
+
+storage:
+  type: local
+  local:
+    dir: /storage
+
+firebase:
+  serviceAccount:
+    file: /keys/fcm-service-account.json
+
+# skyway:
+#   secretKey: specified in env

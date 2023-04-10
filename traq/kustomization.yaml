@@ -1,0 +1,23 @@
+resources:
+  - certificate.yaml
+  - es-service.yaml
+  - es-stateful-set.yaml
+  - frontend-deployment.yaml
+  - frontend-service.yaml
+  - ingress-route.yaml
+  - traq-service.yaml
+  - traq-stateful-set.yaml
+  - widget-deployment.yaml
+  - widget-service.yaml
+  - widget-strip-middleware.yaml
+
+configMapGenerator:
+  - name: traq-config
+    files:
+      - config/config.yml
+  - name: frontend-config
+    files:
+      - config/config.js
+  - name: es-config
+    files:
+      - config/es_jvm.options

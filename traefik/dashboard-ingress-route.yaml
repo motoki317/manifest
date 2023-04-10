@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: traefik-dashboard-tls
+  routes:
+    - kind: Rule
+      match: Host(`traefik-dashboard.toki317.dev`)
+      services:
+        - namespace: traefik
+          kind: Service
+          name: dashboard
+          port: dashboard
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

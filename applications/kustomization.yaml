@@ -1,0 +1,4 @@
+resources:
+  - argocd.yaml
+  - cert-manager.yaml
+  - traefik.yaml

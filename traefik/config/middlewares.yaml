@@ -1,0 +1,15 @@
+http:
+  middlewares:
+    nsapp_auth_soft:
+      headers:
+        customRequestHeaders:
+          X-NS-Auth-Type: soft
+    nsapp_auth_hard:
+      headers:
+        customRequestHeaders:
+          X-NS-Auth-Type: hard
+    nsapp_auth:
+      forwardAuth:
+        address: "http://ns-mc.ns-system.svc.cluster.local/"
+        authResponseHeaders:
+          - "X-Showcase-User"

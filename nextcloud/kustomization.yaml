@@ -1,0 +1,5 @@
+resources:
+  - certificate.yaml
+  - ingress-route.yaml
+  - service.yaml
+  - stateful-set.yaml

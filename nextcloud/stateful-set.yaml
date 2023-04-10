@@ -1,0 +1,49 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: nextcloud
+
+spec:
+  serviceName: nextcloud
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+    spec:
+      containers:
+        - name: nextcloud
+          image: nextcloud:latest
+          ports:
+            - containerPort: 80
+              name: http
+          env:
+            - name: MYSQL_HOST
+              value: mariadb.db.svc.cluster.local
+            - name: MYSQL_USER
+              value: nextcloud
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nextcloud
+                  key: mysql-password
+            - name: MYSQL_DATABASE
+              value: nextcloud
+            - name: PHP_MEMORY_LIMIT
+              value: 4G
+            - name: PHP_UPLOAD_LIMIT
+              value: 16G
+            - name: PHP_MAX_INPUT_TIME
+              value: "3600"
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: data
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/nextcloud/data
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

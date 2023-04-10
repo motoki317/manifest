@@ -3,5 +3,6 @@ resources:
   - cert-manager.yaml
   - db.yaml
   - moto-bot.yaml
+  - nextcloud.yaml
   - traefik.yaml
   - traq.yaml

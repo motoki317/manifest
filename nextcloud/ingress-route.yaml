@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nextcloud
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: nextcloud-tls
+  routes:
+    - kind: Rule
+      match: Host(`drive.toki317.dev`)
+      services:
+        - namespace: nextcloud
+          kind: Service
+          name: nextcloud
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

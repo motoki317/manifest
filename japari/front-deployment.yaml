@@ -23,7 +23,7 @@ spec:
               name: http
           volumeMounts:
             - mountPath: /etc/caddy/Caddyfile
-              name: front-config
+              name: config
               subPath: Caddyfile
       volumes:
         - name: config

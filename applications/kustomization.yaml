@@ -1,4 +1,6 @@
 resources:
   - argocd.yaml
   - cert-manager.yaml
+  - db.yaml
+  - moto-bot.yaml
   - traefik.yaml

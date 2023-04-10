@@ -1,0 +1,64 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: moto-bot
+
+spec:
+  serviceName: moto-bot
+  replicas: 1
+  selector:
+    matchLabels:
+      app: moto-bot
+  template:
+    metadata:
+      labels:
+        app: moto-bot
+    spec:
+      containers:
+        - name: moto-bot
+          image: ghcr.io/motoki317/moto-bot:master
+          env:
+            - name: LOGBACK_LEVEL
+              value: info
+            - name: LOGBACK_TIMEZONE
+              value: Asia/Tokyo
+            - name: MYSQL_HOST
+              value: mariadb.db.svc.cluster.local
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: moto-bot
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: moto-bot
+                  key: mysql-password
+            # /metrics port
+            - name: PORT
+              value: "8080"
+            - name: GUILD_BANNER_URL
+              value: https://wynn-guild-banner.toki317.dev/banners/
+            - name: DISCORD_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: moto-bot
+                  key: discord-access-token
+            - name: BOT_DISCORD_ID
+              value: "418413540857085972"
+            - name: PLAYER_TRACKER_CHANNEL
+              value: "427388265075834901"
+            - name: BOT_RESTART_CHANNEL
+              value: "431228089947914240"
+            - name: BOT_LOG_CHANNEL_0
+              value: "425854975206490122"
+            - name: BOT_LOG_CHANNEL_1
+              value: "424190971446820875"
+            - name: BOT_LOG_CHANNEL_2
+              value: "425802279292108800"
+            - name: BOT_LOG_CHANNEL_3
+              value: "425802295381458944"
+            - name: BOT_LOG_CHANNEL_4
+              value: "425802315107401728"
+          ports:
+            - containerPort: 8080
+              name: metrics

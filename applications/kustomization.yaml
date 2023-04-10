@@ -2,6 +2,7 @@ resources:
   - argocd.yaml
   - cert-manager.yaml
   - db.yaml
+  - gitea.yaml
   - growi.yaml
   - japari.yaml
   - moto-bot.yaml

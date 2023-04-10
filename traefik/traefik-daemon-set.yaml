@@ -30,6 +30,7 @@ spec:
             - --entrypoints.web.address=:80/tcp
             - --entrypoints.websecure.address=:443/tcp
             - --entrypoints.websecure.http.tls=true
+            - --entrypoints.gitea-ssh.address=:2200/tcp
             - --entrypoints.traefik.address=:8080/tcp
             - --entrypoints.metrics.address=:9100/tcp
             - --api.dashboard=true

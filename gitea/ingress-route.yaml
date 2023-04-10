@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gitea
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: gitea-tls
+  routes:
+    - kind: Rule
+      match: Host(`git.toki317.dev`)
+      services:
+        - namespace: gitea
+          kind: Service
+          name: gitea
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

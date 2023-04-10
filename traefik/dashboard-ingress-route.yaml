@@ -7,10 +7,10 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: traefik-dashboard-tls
+    secretName: dashboard-tls
   routes:
     - kind: Rule
-      match: Host(`traefik-dashboard.toki317.dev`)
+      match: Host(`traefik.toki317.dev`)
       services:
         - namespace: traefik
           kind: Service

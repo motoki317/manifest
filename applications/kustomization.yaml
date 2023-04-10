@@ -2,6 +2,7 @@ resources:
   - argocd.yaml
   - cert-manager.yaml
   - db.yaml
+  - japari.yaml
   - moto-bot.yaml
   - nextcloud.yaml
   - traefik.yaml

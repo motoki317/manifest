@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: japari
+
+spec:
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer
+  secretName: japari-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 360h0m0s # 15d
+  dnsNames:
+    - japari.toki317.dev

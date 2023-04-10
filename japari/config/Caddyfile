@@ -1,0 +1,7 @@
+:80 {
+    try_files /usr/share/caddy
+
+    handle * {
+        reverse_proxy game:80
+    }
+}

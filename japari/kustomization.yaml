@@ -1,0 +1,12 @@
+resources:
+  - certificate.yaml
+  - front-deployment.yaml
+  - front-service.yaml
+  - game-service.yaml
+  - game-stateful-set.yaml
+  - ingress-route.yaml
+
+configMapGenerator:
+  - name: front-config
+    files:
+      - config/Caddyfile

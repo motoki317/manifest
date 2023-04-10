@@ -1,0 +1,29 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: front
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: ghcr.io/japariproject/front:master
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - mountPath: /etc/caddy/Caddyfile
+              name: front-config
+              subPath: Caddyfile
+      volumes:
+        - name: config
+          configMap:
+            name: front-config

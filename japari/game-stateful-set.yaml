@@ -1,0 +1,38 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: game
+
+spec:
+  serviceName: game
+  replicas: 1
+  selector:
+    matchLabels:
+      app: game
+  template:
+    metadata:
+      labels:
+        app: game
+    spec:
+      containers:
+        - name: game
+          image: ghcr.io/japariproject/game:master
+          env:
+            - name: PORT
+              value: "3000"
+            - name: MYSQL_HOST
+              value: mariadb.db.svc.cluster.local
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_USER
+              value: japari
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: japari
+                  key: mysql-password
+            - name: MYSQL_DATABASE
+              value: japari
+          ports:
+            - containerPort: 3000
+              name: http

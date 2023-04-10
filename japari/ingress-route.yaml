@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: japari
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: japari-tls
+  routes:
+    - kind: Rule
+      match: Host(`japari.toki317.dev`)
+      services:
+        - namespace: japari
+          kind: Service
+          name: front
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

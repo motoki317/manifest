@@ -14,6 +14,8 @@ spec:
       labels:
         app: game
     spec:
+      imagePullSecrets:
+        - name: japari-image-pull-secret
       containers:
         - name: game
           image: ghcr.io/japariproject/game:master

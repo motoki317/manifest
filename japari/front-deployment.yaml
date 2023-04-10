@@ -13,6 +13,8 @@ spec:
       labels:
         app: front
     spec:
+      imagePullSecrets:
+        - name: japari-image-pull-secret
       containers:
         - name: front
           image: ghcr.io/japariproject/front:master

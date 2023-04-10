@@ -33,6 +33,8 @@ spec:
                 secretKeyRef:
                   name: moto-bot
                   key: mysql-password
+            - name: MYSQL_DATABASE
+              value: moto-bot
             # /metrics port
             - name: PORT
               value: "8080"

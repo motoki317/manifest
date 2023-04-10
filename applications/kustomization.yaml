@@ -8,3 +8,4 @@ resources:
   - nextcloud.yaml
   - traefik.yaml
   - traq.yaml
+  - vrc-tweets-fetcher.yaml

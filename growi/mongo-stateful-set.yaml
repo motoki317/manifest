@@ -1,0 +1,36 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mongo
+
+spec:
+  serviceName: mongo
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:4.4
+          ports:
+            - containerPort: 27017
+              name: mongo
+          volumeMounts:
+            - mountPath: /data/configdb
+              name: mongo-config
+            - mountPath: /data/db
+              name: data
+      volumes:
+        - name: mongo-config
+          hostPath:
+            path: /srv/growi/data/mongo_config
+        - name: data
+          hostPath:
+            path: /srv/growi/data/mongo
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

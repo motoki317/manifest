@@ -1,0 +1,51 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: app
+
+spec:
+  serviceName: app
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app
+          image: weseek/growi:6.0.4
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongo:27017/growi
+            # hard to build for arm64
+            # - name: ELASTICSEARCH_URI
+            #   value: http://es:9200/growi
+            - name: PASSWORD_SEED
+              valueFrom:
+                secretKeyRef:
+                  name: growi
+                  key: password-seed
+            - name: FILE_UPLOAD
+              value: local
+            - name: MATHJAX
+              value: "1"
+            - name: FORCE_WIKI_MODE
+              value: private
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: config
+          configMap:
+            name: front-config
+        - name: data
+          hostPath:
+            path: /srv/growi/data/growi
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

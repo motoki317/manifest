@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: growi
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: growi-tls
+  routes:
+    - kind: Rule
+      match: Host(`wiki.toki317.dev`)
+      services:
+        - namespace: growi
+          kind: Service
+          name: app
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

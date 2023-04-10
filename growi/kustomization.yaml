@@ -1,5 +1,7 @@
 resources:
   - app-service.yaml
   - app-stateful-set.yaml
+  - certificate.yaml
+  - ingress-route.yaml
   - mongo-service.yaml
   - mongo-stateful-set.yaml

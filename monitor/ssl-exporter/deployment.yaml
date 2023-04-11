@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssl-exporter
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssl-exporter
+  template:
+    metadata:
+      labels:
+        app: ssl-exporter
+    spec:
+      containers:
+        - name: ssl-exporter
+          image: ribbybibby/ssl-exporter:2.4.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 9219

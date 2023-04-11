@@ -1,0 +1,9 @@
+resources:
+  - blackbox-exporter
+  - domain-exporter
+  - grafana
+  - node-exporter
+  - prometheus
+  - pushgateway
+  - ssl-exporter
+  - switchbot-exporter

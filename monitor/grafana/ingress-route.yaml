@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: grafana-tls
+  routes:
+    - kind: Rule
+      match: Host(`monitor.toki317.dev`)
+      services:
+        - namespace: monitor
+          kind: Service
+          name: grafana
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

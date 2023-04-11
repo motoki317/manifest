@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: switchbot-exporter
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: switchbot-exporter
+  template:
+    metadata:
+      labels:
+        app: switchbot-exporter
+    spec:
+      containers:
+        - name: switchbot-exporter
+          image: ghcr.io/motoki317/switchbot_exporter:master
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 9257
+          args:
+            - -port=9257
+            - -token=$(TOKEN)
+          env:
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: switchbot-exporter
+                  key: token

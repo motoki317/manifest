@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: moto-bot
+  name: node-exporter
   annotations:
     prometheus.io/scrape: "true"
 
@@ -9,7 +9,7 @@ spec:
   type: ClusterIP
   ports:
     - port: 80
-      name: metrics
-      targetPort: metrics
+      targetPort: http
+      name: http
   selector:
-    app: moto-bot
+    app: node-exporter

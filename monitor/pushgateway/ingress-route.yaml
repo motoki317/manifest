@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: pushgateway
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: pushgateway-tls
+  routes:
+    - kind: Rule
+      match: Host(`q.toki317.dev`)
+      services:
+        - namespace: monitor
+          kind: Service
+          name: pushgateway
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

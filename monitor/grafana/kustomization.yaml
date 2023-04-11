@@ -1,0 +1,7 @@
+resources:
+  - deployment.yaml
+
+configMapGenerator:
+  - name: grafana
+    files:
+      - config/grafana.ini

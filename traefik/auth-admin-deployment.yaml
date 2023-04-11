@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-admin
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-admin
+  template:
+    metadata:
+      labels:
+        app: auth-admin
+    spec:
+      containers:
+        - name: auth-admin
+          image: ghcr.io/jordemort/traefik-forward-auth:latest
+          args:
+            - --config=/config.ini
+          ports:
+            - containerPort: 4181
+              name: http
+          volumeMounts:
+            - name: ns-config
+              mountPath: /config.ini
+              subPath: ini-admin
+      volumes:
+        - name: ns-config
+          secret:
+            secretName: forward-auth

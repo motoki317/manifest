@@ -11,6 +11,8 @@ spec:
   routes:
     - kind: Rule
       match: Host(`traefik.toki317.dev`)
+      middlewares:
+        - name: auth-admin
       services:
         - namespace: traefik
           kind: Service

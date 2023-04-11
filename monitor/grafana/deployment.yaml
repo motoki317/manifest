@@ -13,6 +13,9 @@ spec:
       labels:
         app: grafana
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 472
       containers:
         - name: grafana
           image: grafana/grafana:9.4.7

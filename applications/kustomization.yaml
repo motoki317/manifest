@@ -5,7 +5,7 @@ resources:
   - gitea.yaml
   - growi.yaml
   - japari.yaml
-  - k8s-dashboard.yaml
+  - kubernetes-dashboard.yaml
   - moto-bot.yaml
   - nextcloud.yaml
   - traefik.yaml

@@ -2,6 +2,7 @@ resources:
   - blackbox-exporter
   - domain-exporter
   - grafana
+  - loki
   - node-exporter
   - prometheus
   - pushgateway

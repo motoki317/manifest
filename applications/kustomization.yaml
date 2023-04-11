@@ -8,7 +8,6 @@ resources:
   - growi.yaml
   - japari.yaml
   - kubernetes-dashboard.yaml
-  - loki.yaml
   - monitor.yaml
   - moto-bot.yaml
   - nextcloud.yaml

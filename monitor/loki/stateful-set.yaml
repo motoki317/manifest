@@ -68,10 +68,10 @@ spec:
           emptyDir: {}
         - name: config
           configMap:
-            name: config
+            name: loki-config
         - name: runtime-config
           configMap:
-            name: runtime-config
+            name: loki-runtime-config
         - name: storage
           hostPath:
             path: /srv/loki/data

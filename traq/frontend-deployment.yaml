@@ -23,9 +23,12 @@ spec:
             - name: THEME_COLOR
               value: '#0D67EA' # default value
           volumeMounts:
-            - mountPath: /app/override
-              name: override
+            # traq-ui /startup.sh runs 'cp -r /app/override/* /usr/share/caddy', so '..data' symlinks are not copied
+            # needs '-L' option: https://github.com/traPtitech/traQ_S-UI/pull/3888
+            - mountPath: /app/override/config.js
+              name: config
+              subPath: config.js
       volumes:
-        - name: override
+        - name: config
           configMap:
             name: frontend-config

@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argo-workflow
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: argo-workflow-tls
+  routes:
+    - kind: Rule
+      match: Host(`workflow.toki317.dev`)
+      middlewares:
+        - name: auth-admin
+          namespace: traefik
+      services:
+        - kind: Service
+          namespace: argo
+          name: argo-server
+          port: 2746
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

@@ -1,4 +1,5 @@
 resources:
+  - argo-workflow.yaml
   - argocd.yaml
   - cert-manager.yaml
   - db.yaml

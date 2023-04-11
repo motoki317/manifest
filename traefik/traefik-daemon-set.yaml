@@ -23,6 +23,7 @@ spec:
           args:
             - --api.insecure
             - --providers.kubernetescrd
+            - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress
             - --providers.file
             - --providers.file.directory=/opt/traefik/conf

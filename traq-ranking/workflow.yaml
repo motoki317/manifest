@@ -1,0 +1,41 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: traq-ranking
+  generateName: traq-ranking-
+
+spec:
+  entrypoint: run
+  templates:
+    - name: run
+      inputs:
+        parameters:
+          - name: configmap
+          - name: secret
+      container:
+        name: traq-ranking
+        image: ghcr.io/motoki317/traq-ranking:master
+        imagePullPolicy: Always
+        env:
+          - name: BASE_PATH
+            valueFrom:
+              configMapKeyRef:
+                key: MariaDBHost
+                name: "{{inputs.parameters.configmap}}"
+          - name: TARGET_CHANNEL_ID
+            valueFrom:
+              configMapKeyRef:
+                key: MariaDBPort
+                name: "{{inputs.parameters.configmap}}"
+          - name: ACCESS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: MariaDBUser
+                name: "{{inputs.parameters.secret}}"
+          - name: DAILY_RANKING_SAVE_FILE
+            valueFrom:
+              configMapKeyRef:
+                key: MariaDBPassword
+                name: "{{inputs.parameters.configmap}}"
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

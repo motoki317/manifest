@@ -11,4 +11,5 @@ resources:
   - nextcloud.yaml
   - traefik.yaml
   - traq.yaml
+  - traq-ranking.yaml
   - vrc-tweets-fetcher.yaml

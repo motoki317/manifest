@@ -1,0 +1,5 @@
+resources:
+  - cron-workflow.yaml
+  - traq-ranking-cm.yaml
+  - traq-ranking-toki317-dev-cm.yaml
+  - workflow.yaml

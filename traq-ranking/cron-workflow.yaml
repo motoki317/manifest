@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: traq-ranking-cron
+
+spec:
+  # in UTC 15:30 every day
+  # in JST 00:30 every day
+  schedule: "30 15 * * *"
+  concurrencyPolicy: "Replace"
+  startingDeadlineSeconds: 0
+  workflowSpec:
+    workflowTemplateRef:
+      name: traq-ranking
+    entrypoint: run
+    arguments:
+      parameters:
+        - name: configmap
+          value: traq-ranking
+        - name: secret
+          value: traq-ranking

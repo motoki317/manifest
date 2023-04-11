@@ -20,22 +20,22 @@ spec:
           - name: BASE_PATH
             valueFrom:
               configMapKeyRef:
-                key: MariaDBHost
                 name: "{{inputs.parameters.configmap}}"
+                key: base-path
           - name: TARGET_CHANNEL_ID
             valueFrom:
               configMapKeyRef:
-                key: MariaDBPort
                 name: "{{inputs.parameters.configmap}}"
+                key: target-channel
           - name: ACCESS_TOKEN
             valueFrom:
               secretKeyRef:
-                key: MariaDBUser
                 name: "{{inputs.parameters.secret}}"
+                key: access-token
           - name: DAILY_RANKING_SAVE_FILE
             valueFrom:
               configMapKeyRef:
-                key: MariaDBPassword
                 name: "{{inputs.parameters.configmap}}"
+                key: save-file
       nodeSelector:
         kubernetes.io/hostname: moto-a1-3

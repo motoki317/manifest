@@ -16,6 +16,8 @@ spec:
         name: traq-ranking
         image: ghcr.io/motoki317/traq-ranking:master
         imagePullPolicy: Always
+        args:
+          - daily-ranking
         env:
           - name: BASE_PATH
             valueFrom:

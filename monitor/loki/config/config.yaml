@@ -54,4 +54,4 @@ storage_config:
 
 table_manager:
   retention_deletes_enabled: true
-  retention_period: 672h # 28 days
+  retention_period: 168h # 7 days

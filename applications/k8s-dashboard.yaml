@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-dashboard
+  namespace: argocd
+
+spec:
+  destination:
+    namespace: k8s-dashboard
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/motoki317/manifest
+    path: k8s-dashboard
+    targetRevision: master
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

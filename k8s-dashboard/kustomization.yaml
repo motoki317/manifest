@@ -1,0 +1,6 @@
+resources:
+  - https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/alternative.yaml
+  - certificate.yaml
+  - dashboard-ingress-route.yaml
+  - role-binding.yaml
+  - service-account.yaml

@@ -4,6 +4,7 @@ resources:
   - cert-manager.yaml
   - db.yaml
   - gitea.yaml
+  - grafana-agent-operator.yaml
   - growi.yaml
   - japari.yaml
   - kubernetes-dashboard.yaml

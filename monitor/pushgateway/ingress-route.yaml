@@ -10,7 +10,7 @@ spec:
     secretName: pushgateway-tls
   routes:
     - kind: Rule
-      match: Host(`q.toki317.dev`)
+      match: Host(`pushgateway.toki317.dev`)
       services:
         - namespace: monitor
           kind: Service

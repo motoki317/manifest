@@ -38,6 +38,17 @@ spec:
             - --ping=true
             - --metrics.prometheus=true
             - --metrics.prometheus.entrypoint=metrics
+          ports:
+            - name: web
+              containerPort: 80
+            - name: web-secure
+              containerPort: 443
+            - name: gitea-ssh
+              containerPort: 2200
+            - name: dashboard
+              containerPort: 8080
+            - name: metrics
+              containerPort: 9100
           volumeMounts:
             - mountPath: /opt/traefik/conf
               name: traefik-config

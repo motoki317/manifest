@@ -39,5 +39,12 @@ spec:
               configMapKeyRef:
                 name: "{{inputs.parameters.configmap}}"
                 key: save-file
+        volumeMounts:
+          - mountPath: /srv/traq-ranking
+            name: srv
+      volumes:
+        - name: srv
+          hostPath:
+            path: /srv/traq-ranking
       nodeSelector:
         kubernetes.io/hostname: moto-a1-3

@@ -12,6 +12,7 @@ resources:
   - monitor.yaml
   - moto-bot.yaml
   - nextcloud.yaml
+  - registry.yaml
   - traefik.yaml
   - traq.yaml
   - traq-ranking.yaml

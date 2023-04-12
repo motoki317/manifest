@@ -1,0 +1,23 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: registry
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: registry-tls
+  routes:
+    - kind: Rule
+      match: Host(`registry.toki317.dev`)
+      middlewares:
+        - name: registry-auth
+      services:
+        - namespace: registry
+          kind: Service
+          name: registry
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

@@ -11,8 +11,7 @@ spec:
       container:
         name: migrate
         image: ghcr.io/traptitech/ns-migrate:main
-        # "Always" in prod
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         env:
           - name: DB_HOST
             value: mariadb.db.svc.cluster.local

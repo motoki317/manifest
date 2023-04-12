@@ -19,7 +19,7 @@ spec:
           env:
             - name: SINGLE_REGISTRY
               value: "true"
-            - name: REGISTRY_URL
+            - name: NGINX_PROXY_PASS_URL
               value: http://registry.registry.svc.cluster.local
             - name: SHOW_CONTENT_DIGEST
               value: "true"

@@ -25,6 +25,8 @@ spec:
               value: http://registry.registry.svc.cluster.local
             - name: SHOW_CONTENT_DIGEST
               value: "true"
+            - name: DELETE_IMAGES
+              value: "true"
           ports:
             - containerPort: 80
               name: http

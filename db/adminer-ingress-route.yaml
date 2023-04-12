@@ -15,7 +15,7 @@ spec:
         - name: auth-admin
           namespace: traefik
       services:
-        - namespace: ns-system
+        - namespace: db
           kind: Service
           name: adminer
           port: 80

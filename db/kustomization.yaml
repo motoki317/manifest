@@ -1,3 +1,5 @@
 resources:
   - mariadb-service.yaml
   - mariadb-stateful-set.yaml
+  - mongo-service.yaml
+  - mongo-stateful-set.yaml

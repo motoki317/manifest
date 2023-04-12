@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: adminer
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: adminer-tls
+  routes:
+    - kind: Rule
+      match: Host(`adminer.toki317.dev`)
+      middlewares:
+        - name: auth-admin
+          namespace: traefik
+      services:
+        - namespace: ns-system
+          kind: Service
+          name: adminer
+          port: 80
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

@@ -24,3 +24,9 @@ rules:
       - middlewares
     verbs:
       - "*"
+  - apiGroups:
+      - cert-manager.io
+    resources:
+      - certificates
+    verbs:
+      - "*"

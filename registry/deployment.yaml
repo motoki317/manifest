@@ -39,4 +39,4 @@ spec:
             defaultMode: 0755
         - name: config
           secret:
-            secretName: config
+            secretName: registry

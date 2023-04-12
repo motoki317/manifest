@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ns
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: ns-tls
+  routes:
+    - kind: Rule
+      match: Host(`ns.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.ApplicationService`)
+      middlewares:
+        - name: auth-all
+          namespace: traefik
+      services:
+        - namespace: ns-system
+          kind: Service
+          name: ns
+          port: grpc
+          scheme: h2c
+          strategy: RoundRobin
+          weight: 1

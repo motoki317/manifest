@@ -1,0 +1,24 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ns-dashboard
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: ns-tls
+  routes:
+    - kind: Rule
+      match: Host(`ns.local.trapti.tech`)
+      middlewares:
+        - name: auth-all
+          namespace: traefik
+      services:
+        - namespace: ns-system
+          kind: Service
+          name: ns-dashboard
+          port: 80
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

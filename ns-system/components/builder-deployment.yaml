@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-builder
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-builder
+  template:
+    metadata:
+      labels:
+        app: ns-builder
+    spec:
+      containers:
+        - name: buildkitd
+          image: moby/buildkit:latest
+          imagePullPolicy: Always
+          args:
+            - --addr
+            - unix:///run/buildkit/buildkitd.sock
+          env:
+            - name: DOCKER_CONFIG
+              value: /.docker
+          readinessProbe:
+            exec:
+              command:
+                - buildctl
+                - debug
+                - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          livenessProbe:
+            exec:
+              command:
+                - buildctl
+                - debug
+                - workers
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /run/buildkit
+              name: socket
+            - mountPath: /.docker/config.json
+              name: docker
+              subPath: config.json
+
+        - name: builder
+          image: ghcr.io/traptitech/ns-builder:main
+          imagePullPolicy: Always
+          args:
+            - run
+            - --loglevel=debug
+            - --config=/opt/config/ns-builder.yaml
+          volumeMounts:
+            - mountPath: /run/buildkit
+              name: socket
+            - mountPath: /opt/config/ns-builder.yaml
+              name: config
+              subPath: ns-builder.yaml
+            - mountPath: /keys
+              name: keys
+      volumes:
+        - name: socket
+          emptyDir: {}
+        - name: config
+          secret:
+            secretName: ns
+        - name: keys
+          secret:
+            secretName: ns-keys
+        - name: docker
+          secret:
+            secretName: ns-docker

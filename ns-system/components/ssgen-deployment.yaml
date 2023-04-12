@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-ssgen
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-ssgen
+  template:
+    metadata:
+      labels:
+        app: ns-ssgen
+    spec:
+      containers:
+        - name: ns-ssgen
+          image: ghcr.io/traptitech/ns-ssgen:main
+          imagePullPolicy: Always
+          args:
+            - run
+            - --loglevel=debug
+            - --config=/opt/config/ns-ssgen.yaml
+          volumeMounts:
+            - mountPath: /artifacts
+              name: artifacts
+            - mountPath: /opt/config/ns-ssgen.yaml
+              name: config
+              subPath: ns-ssgen.yaml
+            - mountPath: /keys
+              name: keys
+          ports:
+            - containerPort: 80
+              name: http
+      volumes:
+        - name: artifacts
+          emptyDir: {}
+        - name: config
+          secret:
+            secretName: ns
+        - name: keys
+          secret:
+            secretName: ns-keys

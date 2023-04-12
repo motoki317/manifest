@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ns
+
+spec:
+  replicas: 1
+  serviceName: ns
+  selector:
+    matchLabels:
+      app: ns
+  template:
+    metadata:
+      labels:
+        app: ns
+    spec:
+      serviceAccountName: ns
+      containers:
+        - name: ns
+          image: ghcr.io/traptitech/ns:main
+          imagePullPolicy: Always
+          args:
+            - run
+            - --loglevel=debug
+            - --config=/opt/config/ns.yaml
+          ports:
+            - containerPort: 5000
+              name: grpc
+            - containerPort: 10000
+              name: component
+          volumeMounts:
+            - mountPath: /opt/config/ns.yaml
+              name: config
+              subPath: ns.yaml
+            - mountPath: /keys
+              name: keys
+      volumes:
+        - name: config
+          secret:
+            secretName: ns
+        - name: keys
+          secret:
+            secretName: ns-keys

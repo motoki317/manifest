@@ -15,12 +15,14 @@ spec:
     spec:
       containers:
         - name: registry-frontend
-          image: konradkleine/docker-registry-frontend:v2
+          image: joxit/docker-registry-ui:2
           env:
-            - name: ENV_DOCKER_REGISTRY_HOST
-              value: registry.registry.svc.cluster.local
-            - name: ENV_DOCKER_REGISTRY_PORT
-              value: "80"
+            - name: SINGLE_REGISTRY
+              value: "true"
+            - name: REGISTRY_URL
+              value: http://registry.registry.svc.cluster.local
+            - name: SHOW_CONTENT_DIGEST
+              value: "true"
           ports:
             - containerPort: 80
               name: http

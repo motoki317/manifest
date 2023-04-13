@@ -14,6 +14,7 @@ resources:
   - components/ns-stateful-set.yaml
   - components/ssgen-deployment.yaml
   - components/ssgen-service.yaml
+  - app-namespace.yaml
   - mariadb-migration-workflow-template.yaml
 
 configurations:

@@ -15,7 +15,6 @@ resources:
   - components/ssgen-deployment.yaml
   - components/ssgen-service.yaml
   - mariadb-migration-workflow-template.yaml
-  - app-namespace.yaml
 
 configurations:
   - kustomize-config.yaml

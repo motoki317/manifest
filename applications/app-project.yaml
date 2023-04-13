@@ -1,0 +1,9 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+
+spec:
+  # enable orphaned resource monitoring
+  orphanedResources:
+    warn: false

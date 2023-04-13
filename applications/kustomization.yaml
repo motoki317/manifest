@@ -1,4 +1,5 @@
 resources:
+  - app-project.yaml
   - argo-workflow.yaml
   - argocd.yaml
   - cert-manager.yaml
@@ -12,6 +13,7 @@ resources:
   - monitor.yaml
   - moto-bot.yaml
   - nextcloud.yaml
+  - ns-apps.yaml
   - ns-system.yaml
   - registry.yaml
   - system-upgrade.yaml

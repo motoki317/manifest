@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: dummy
-  labels:
-    app.kubernetes.io/instance: ns-apps

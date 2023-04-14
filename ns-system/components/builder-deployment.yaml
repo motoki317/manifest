@@ -20,9 +20,6 @@ spec:
           args:
             - --addr
             - unix:///run/buildkit/buildkitd.sock
-          env:
-            - name: DOCKER_CONFIG
-              value: /.docker
           readinessProbe:
             exec:
               command:
@@ -44,9 +41,6 @@ spec:
           volumeMounts:
             - mountPath: /run/buildkit
               name: socket
-            - mountPath: /.docker/config.json
-              name: docker
-              subPath: config.json
 
         - name: builder
           image: ghcr.io/traptitech/ns-builder:main
@@ -72,7 +66,3 @@ spec:
         - name: keys
           secret:
             secretName: ns-keys
-        - name: docker
-          secret:
-            secretName: ns-docker
-            defaultMode: 0400

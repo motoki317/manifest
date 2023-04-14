@@ -75,3 +75,4 @@ spec:
         - name: docker
           secret:
             secretName: ns-docker
+            defaultMode: 0400

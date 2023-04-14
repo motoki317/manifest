@@ -19,6 +19,8 @@ spec:
           env:
             - name: REGISTRY_HTTP_ADDR
               value: ":80"
+            - name: REGISTRY_STORAGE_DELETE_ENABLED
+              value: "true"
           ports:
             - containerPort: 80
               name: http

@@ -1,1 +1,2 @@
-# only for resource monitoring
+resources:
+  - network-policy.yaml

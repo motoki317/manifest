@@ -33,8 +33,10 @@ spec:
               subPath: grafana.ini
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: grafana-storage
+          hostPath:
+            path: /srv/grafana/data
         - name: config
           configMap:
             name: grafana
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

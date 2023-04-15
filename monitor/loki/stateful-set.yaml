@@ -57,12 +57,16 @@ spec:
           volumeMounts:
             - name: tmp
               mountPath: /tmp
+            - name: storage
+              mountPath: /var/loki
             - name: config
               mountPath: /etc/loki/config
             - name: runtime-config
               mountPath: /etc/loki/runtime-config
       volumes:
         - name: tmp
+          emptyDir: {}
+        - name: storage
           emptyDir: {}
         - name: config
           secret:

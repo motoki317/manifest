@@ -12,9 +12,9 @@ spec:
   sources:
     - repoURL: https://github.com/yandex-cloud/k8s-csi-s3
       path: deploy/helm
-      chart: csi-s3
       targetRevision: "0.35.1"
       helm:
+        releaseName: csi-s3
         valueFiles:
           - $values/csi-s3/values.yaml
     - repoURL: https://github.com/motoki317/manifest

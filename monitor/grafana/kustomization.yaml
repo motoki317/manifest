@@ -2,6 +2,7 @@ resources:
   - certificate.yaml
   - deployment.yaml
   - ingress-route.yaml
+  - pvc.yaml
   - service.yaml
 
 configMapGenerator:

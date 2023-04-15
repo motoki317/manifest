@@ -61,19 +61,12 @@ spec:
               mountPath: /etc/loki/config
             - name: runtime-config
               mountPath: /etc/loki/runtime-config
-            - name: storage
-              mountPath: /var/loki
       volumes:
         - name: tmp
           emptyDir: {}
         - name: config
-          configMap:
-            name: loki-config
+          secret:
+            secretName: loki-config
         - name: runtime-config
           configMap:
             name: loki-runtime-config
-        - name: storage
-          hostPath:
-            path: /srv/loki/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

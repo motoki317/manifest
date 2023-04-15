@@ -10,8 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   sources:
-    - repoURL: https://github.com/yandex-cloud/k8s-csi-s3
-      path: deploy/helm
+    - repoURL: https://github.com/yandex-cloud/k8s-csi-s3/deploy/helm
       chart: csi-s3
       targetRevision: "0.35.1"
       helm:

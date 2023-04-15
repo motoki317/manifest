@@ -2,6 +2,7 @@ resources:
   - argo-workflow.yaml
   - argocd.yaml
   - cert-manager.yaml
+  - csi-s3.yaml
   - db.yaml
   - gitea.yaml
   - grafana-agent.yaml

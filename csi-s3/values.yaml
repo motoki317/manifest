@@ -1,0 +1,26 @@
+storageClass:
+  # Specifies whether the storage class should be created
+  create: true
+  # Name
+  name: csi-s3
+  # Use a single bucket for all dynamically provisioned persistent volumes
+  # singleBucket: ""
+  # GeeseFS mount options
+  mountOptions: "--memory-limit 100 --dir-mode 0777 --file-mode 0666"
+  # Volume reclaim policy
+  reclaimPolicy: Delete
+  # Annotations for the storage class
+  # Example:
+  # annotations:
+  #   storageclass.kubernetes.io/is-default-class: "true"
+  annotations: {}
+
+secret:
+  # Specifies whether the secret should be created
+  create: false
+  name: csi-s3-secret
+
+tolerations:
+  all: false
+  node: []
+  controller: []

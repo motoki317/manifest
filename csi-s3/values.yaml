@@ -3,7 +3,7 @@ images:
   registrar: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.6.3
   provisioner: registry.k8s.io/sig-storage/csi-provisioner:v3.4.1
   # Main image
-  csi: ghcr.io/motoki317/k8s-csi-s3:0.35.1-p3
+  csi: ghcr.io/motoki317/k8s-csi-s3:0.35.1-p4
 
 storageClass:
   # Specifies whether the storage class should be created

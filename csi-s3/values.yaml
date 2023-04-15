@@ -13,7 +13,7 @@ storageClass:
   # Use a single bucket for all dynamically provisioned persistent volumes
   # singleBucket: ""
   # GeeseFS mount options
-  mountOptions: "--memory-limit 100 --dir-mode 0777 --file-mode 0666"
+  mountOptions: "--memory-limit 100 --dir-mode 0777 --file-mode 0666 --no-systemd"
   # Volume reclaim policy
   reclaimPolicy: Delete
   # Annotations for the storage class

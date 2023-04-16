@@ -365,3 +365,8 @@ scrape_configs:
       - target_label: __address__
         replacement: domain-exporter.monitor.svc.cluster.local
     scrape_interval: 5m
+
+  - job_name: s3
+    metrics_path: /probe
+    http_sd_configs:
+      - url: http://s3-exporter.monitor.svc.cluster.local/discovery

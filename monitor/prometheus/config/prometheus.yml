@@ -63,7 +63,7 @@ scrape_configs:
       ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
       insecure_skip_verify: true
 
-  # Scrape service endpoints with service label prometheus.io/scrape: "true"
+  # Scrape service endpoints with service annotation prometheus.io/scrape: "true"
   - job_name: kubernetes-service-endpoints
     honor_labels: true
     kubernetes_sd_configs:
@@ -112,7 +112,7 @@ scrape_configs:
           - __meta_kubernetes_pod_node_name
         target_label: node
 
-  # Scrape service endpoints with service label prometheus.io/scrape-slow: "true"
+  # Scrape service endpoints with service annotation prometheus.io/scrape-slow: "true"
   - job_name: kubernetes-service-endpoints-slow
     honor_labels: true
     kubernetes_sd_configs:
@@ -159,7 +159,7 @@ scrape_configs:
     scrape_interval: 5m
     scrape_timeout: 30s
 
-  # Probe service with label prometheus.io/probe: "true"
+  # Probe service with annotation prometheus.io/probe: "true"
   - job_name: kubernetes-services
     honor_labels: true
     kubernetes_sd_configs:
@@ -190,7 +190,7 @@ scrape_configs:
           - __meta_kubernetes_service_name
         target_label: service
 
-  # Scrape pod with label prometheus.io/scrape: "true"
+  # Scrape pod with annotation prometheus.io/scrape: "true"
   - job_name: kubernetes-pods
     honor_labels: true
     kubernetes_sd_configs:
@@ -246,7 +246,7 @@ scrape_configs:
         source_labels:
           - __meta_kubernetes_pod_phase
 
-  # Scrape pod with label prometheus.io/scrape-slow: "true"
+  # Scrape pod with annotation prometheus.io/scrape-slow: "true"
   - job_name: kubernetes-pods-slow
     honor_labels: true
     kubernetes_sd_configs:
@@ -300,7 +300,6 @@ scrape_configs:
     scrape_interval: 5m
     scrape_timeout: 30s
 
-  # Scrape service with label prometheus.io/probe: pushgateway
   - job_name: pushgateway
     honor_labels: true
     static_configs:

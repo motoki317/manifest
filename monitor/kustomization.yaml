@@ -6,5 +6,6 @@ resources:
   - node-exporter
   - prometheus
   - pushgateway
+  - s3-exporter
   - ssl-exporter
   - switchbot-exporter

@@ -22,7 +22,7 @@ spec:
           args:
             - run
             - --loglevel=debug
-            - --config=/opt/config/ns.yaml
+            - --config=/opt/config/ns-controller.yaml
           ports:
             - containerPort: 10000
               name: grpc

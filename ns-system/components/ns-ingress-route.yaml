@@ -10,7 +10,7 @@ spec:
     secretName: ns-tls
   routes:
     - kind: Rule
-      match: Host(`ns.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.ApplicationService`)
+      match: Host(`ns.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
       middlewares:
         - name: auth-all
           namespace: traefik

@@ -13,7 +13,6 @@ spec:
       labels:
         app: ns-gateway
     spec:
-      serviceAccountName: ns-gateway
       containers:
         - name: ns-gateway
           image: ghcr.io/traptitech/ns-gateway:main

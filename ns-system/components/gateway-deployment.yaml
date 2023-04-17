@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ns-gateway
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ns-gateway
+  template:
+    metadata:
+      labels:
+        app: ns-gateway
+    spec:
+      serviceAccountName: ns-gateway
+      containers:
+        - name: ns-gateway
+          image: ghcr.io/traptitech/ns-gateway:main
+          imagePullPolicy: Always
+          args:
+            - run
+            - --loglevel=debug
+            - --config=/opt/config/ns-gateway.yaml
+          ports:
+            - containerPort: 10000
+              name: grpc
+          volumeMounts:
+            - mountPath: /opt/config/ns-gateway.yaml
+              name: config
+              subPath: ns-gateway.yaml
+            - mountPath: /keys
+              name: keys
+      volumes:
+        - name: config
+          secret:
+            secretName: ns
+        - name: keys
+          secret:
+            secretName: ns-keys

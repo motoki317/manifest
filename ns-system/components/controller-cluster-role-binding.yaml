@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: ns
+  name: ns-controller
 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: ns
+  name: ns-controller
 subjects:
   - kind: ServiceAccount
     namespace: ns-system
-    name: ns
+    name: ns-controller

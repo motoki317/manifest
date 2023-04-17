@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ns
+  name: ns-controller
 
 spec:
   type: ClusterIP
   selector:
-    app: ns
+    app: ns-controller
   ports:
-    - port: 5000
+    - port: 10000
       targetPort: grpc
       name: grpc
-    - port: 10000
-      targetPort: component
-      name: component

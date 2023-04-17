@@ -1,17 +1,19 @@
 resources:
+  # ls components/*.yaml | sed -e 's/^/ - /g'
   - components/builder-deployment.yaml
   - components/certificate.yaml
+  - components/controller-cluster-role-binding.yaml
+  - components/controller-cluster-role.yaml
+  - components/controller-service-account.yaml
+  - components/controller-service.yaml
+  - components/controller-stateful-set.yaml
   - components/dashboard-deployment.yaml
-  - components/dashboard-ingress-route.yaml
   - components/dashboard-service.yaml
+  - components/gateway-deployment.yaml
+  - components/gateway-service.yaml
+  - components/ingress-route.yaml
   - components/mc-deployment.yaml
   - components/mc-service.yaml
-  - components/ns-cluster-role-binding.yaml
-  - components/ns-cluster-role.yaml
-  - components/ns-ingress-route.yaml
-  - components/ns-service-account.yaml
-  - components/ns-service.yaml
-  - components/ns-stateful-set.yaml
   - components/ssgen-deployment.yaml
   - components/ssgen-service.yaml
   - app-namespace.yaml

@@ -22,8 +22,8 @@ spec:
             - --loglevel=debug
             - --config=/opt/config/ns-gateway.yaml
           ports:
-            - containerPort: 10000
-              name: grpc
+            - containerPort: 8080
+              name: http
           volumeMounts:
             - mountPath: /opt/config/ns-gateway.yaml
               name: config

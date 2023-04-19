@@ -25,8 +25,6 @@ spec:
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress
-            - --providers.file
-            - --providers.file.directory=/opt/traefik/conf
             - --providers.file.watch=true
             - --entrypoints.web.address=:80/tcp
             - --entrypoints.websecure.address=:443/tcp
@@ -50,10 +48,3 @@ spec:
               containerPort: 8080
             - name: metrics
               containerPort: 9100
-          volumeMounts:
-            - mountPath: /opt/traefik/conf
-              name: traefik-config
-      volumes:
-        - name: traefik-config
-          configMap:
-            name: traefik-config

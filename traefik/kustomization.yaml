@@ -17,8 +17,3 @@ resources:
   - traefik-cluster-role-binding.yaml
   - traefik-daemon-set.yaml
   - traefik-service-account.yaml
-
-configMapGenerator:
-  - name: traefik-config
-    files:
-      - config/middlewares.yaml

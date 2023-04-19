@@ -19,5 +19,13 @@ resources:
   - app-namespace.yaml
   - mariadb-migration-workflow-template.yaml
 
+configMapGenerator:
+  - name: ns-config
+    files:
+      - config/ns-builder.yaml
+      - config/ns-controller.yaml
+      - config/ns-gateway.yaml
+      - config/ns-ssgen.yaml
+
 configurations:
   - kustomize-config.yaml

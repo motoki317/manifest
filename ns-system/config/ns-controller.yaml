@@ -1,0 +1,57 @@
+port: 10000
+debug: false
+mode: k8s
+
+db:
+  host: mariadb.db.svc.cluster.local
+  port: 3306
+  username: root
+  # password: <env secret>
+  database: neoshowcase
+
+storage:
+  type: s3
+  s3:
+    bucket: neoshowcase
+    # accessKey: <env secret>
+    # accessSecret: <env secret>
+    region: ap-osaka-1
+    endpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
+
+k8s:
+  middlewares:
+    authSoft:
+      - nsapp-auth-soft
+      - nsapp-auth
+    authHard:
+      - nsapp-auth-hard
+      - nsapp-auth
+  ss:
+    namespace: ns-system
+    kind: Service
+    name: ns-ssgen
+    port: 80
+  namespace: ns-apps
+  labels:
+    "app.kubernetes.io/instance": ns-apps
+  tls:
+    type: cert-manager
+    certManager:
+      issuer:
+        kind: ClusterIssuer
+        name: cluster-issuer
+      wildcard:
+        domains:
+          - "*.toki317.dev"
+  imagePullSecret: ns-image-pull-secret
+
+repository:
+  privateKeyFile: /keys/id_ed25519
+
+image:
+  registry:
+    scheme: https
+    addr: registry.toki317.dev
+    username: registry
+    # password: <env secret>
+    namePrefix: ns-apps/

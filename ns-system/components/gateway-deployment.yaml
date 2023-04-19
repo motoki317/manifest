@@ -30,12 +30,12 @@ spec:
                 secretKeyRef:
                   name: ns
                   key: db-password
-            - name: NS_MARIADB_PASSWORD
+            - name: NS_MARIADB_ADMINPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ns
                   key: mariadb-password
-            - name: NS_MONGODB_PASSWORD
+            - name: NS_MONGODB_ADMINPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ns

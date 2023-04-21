@@ -20,12 +20,14 @@ storage:
 
 k8s:
   middlewares:
-    authSoft:
-      - nsapp-auth-soft
-      - nsapp-auth
-    authHard:
-      - nsapp-auth-hard
-      - nsapp-auth
+    auth:
+      - domain: "*.toki317.dev"
+        soft:
+          - nsapp-auth-soft
+          - nsapp-auth
+        hard:
+          - nsapp-auth-hard
+          - nsapp-auth
   ss:
     namespace: ns-system
     kind: Service
@@ -33,7 +35,8 @@ k8s:
     port: 80
   namespace: ns-apps
   labels:
-    "app.kubernetes.io/instance": ns-apps
+    - key: app.kubernetes.io/instance
+      value: ns-apps
   tls:
     type: cert-manager
     certManager:

@@ -1,15 +1,11 @@
 resources:
   - https://raw.githubusercontent.com/traefik/traefik/v2.9/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
-  - auth-admin-certificate.yaml
-  - auth-admin-deployment.yaml
-  - auth-admin-ingress-route.yaml
   - auth-admin-middleware.yaml
-  - auth-admin-service.yaml
-  - auth-all-certificate.yaml
-  - auth-all-deployment.yaml
-  - auth-all-ingress-route.yaml
-  - auth-all-middleware.yaml
-  - auth-all-service.yaml
+  - auth-certificate.yaml
+  - auth-deployment.yaml
+  - auth-ingress-route.yaml
+  - auth-middleware.yaml
+  - auth-service.yaml
   - dashboard-certificate.yaml
   - dashboard-ingress-route.yaml
   - dashboard-service.yaml
@@ -17,3 +13,8 @@ resources:
   - traefik-cluster-role-binding.yaml
   - traefik-daemon-set.yaml
   - traefik-service-account.yaml
+
+configMapGenerator:
+  - name: auth
+    files:
+      - config/auth.ini

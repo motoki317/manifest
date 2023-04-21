@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: auth
+          image: ghcr.io/jordemort/traefik-forward-auth:latest
+          args:
+            - --config=/auth.ini
+          ports:
+            - containerPort: 4181
+              name: http
+          env:
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: forward-auth
+                  key: secret
+            - name: PROVIDERS_GENERIC_OAUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: forward-auth
+                  key: oauth-client-secret
+          volumeMounts:
+            - name: config
+              mountPath: /auth.ini
+              subPath: auth.ini
+      volumes:
+        - name: config
+          configMap:
+            name: auth

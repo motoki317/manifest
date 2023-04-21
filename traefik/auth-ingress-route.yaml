@@ -1,20 +1,20 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: auth-all
+  name: auth
 
 spec:
   entryPoints:
     - websecure
   tls:
-    secretName: auth-all-tls
+    secretName: auth-tls
   routes:
     - kind: Rule
       match: Host(`auth.toki317.dev`)
       services:
         - namespace: traefik
           kind: Service
-          name: auth-all
+          name: auth
           port: http
           scheme: http
           strategy: RoundRobin

@@ -13,6 +13,9 @@ spec:
       match: Host(`traefik.toki317.dev`)
       middlewares:
         - name: auth-admin
+          namespace: traefik
+        - name: auth
+          namespace: traefik
       services:
         - namespace: traefik
           kind: Service

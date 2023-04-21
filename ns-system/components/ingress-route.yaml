@@ -12,7 +12,7 @@ spec:
     - kind: Rule
       match: Host(`ns.toki317.dev`)
       middlewares:
-        - name: auth-all
+        - name: auth
           namespace: traefik
       services:
         - namespace: ns-system
@@ -25,7 +25,7 @@ spec:
     - kind: Rule
       match: Host(`ns.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
       middlewares:
-        - name: auth-all
+        - name: auth
           namespace: traefik
       services:
         - namespace: ns-system

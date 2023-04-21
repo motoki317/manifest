@@ -4,7 +4,6 @@ metadata:
   name: auth-admin
 
 spec:
-  forwardAuth:
-    address: http://auth-admin.traefik.svc.cluster.local/
-    authResponseHeaders:
-      - X-Forwarded-User
+  headers:
+    customRequestHeaders:
+      X-Forward-Auth-Type: admin

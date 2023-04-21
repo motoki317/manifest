@@ -370,3 +370,4 @@ scrape_configs:
     metrics_path: /probe
     http_sd_configs:
       - url: http://s3-exporter.monitor.svc.cluster.local/discovery
+    scrape_interval: 1h

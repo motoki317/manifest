@@ -19,3 +19,18 @@ spec:
           scheme: http
           strategy: RoundRobin
           weight: 1
+    - kind: Rule
+      match: Host(`monitor.toki317.dev`) && PathPrefix(`/login`)
+      middlewares:
+        - name: auth-admin
+          namespace: traefik
+        - name: auth
+          namespace: traefik
+      services:
+        - namespace: monitor
+          kind: Service
+          name: grafana
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

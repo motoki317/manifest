@@ -57,4 +57,4 @@ image:
     addr: registry.toki317.dev
     username: registry
     # password: <env secret>
-    namePrefix: ns-apps/
+  namePrefix: ns-apps/

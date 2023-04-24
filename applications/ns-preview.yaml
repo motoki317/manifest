@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ns-preview
+  namespace: argocd
+
+spec:
+  destination:
+    namespace: ns-preview
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: https://github.com/motoki317/manifest
+    path: ns-preview
+    targetRevision: master
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

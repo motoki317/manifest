@@ -1,0 +1,29 @@
+resources:
+  - dashboard-deployment.yaml
+  - dashboard-service.yaml
+  - ingress-route.yaml
+
+replacements:
+  - source:
+      kind: IngressRoute
+      name: ns-preview
+      fieldPath: metadata.annotations.app/param-host
+    targets:
+      - select:
+          kind: IngressRoute
+          name: ns-preview
+        fieldPaths:
+          - spec.routes.0.match
+  - source:
+      kind: IngressRoute
+      name: ns-preview
+      fieldPath: metadata.annotations.app/param-host-backend
+    targets:
+      - select:
+          kind: IngressRoute
+          name: ns-preview
+        fieldPaths:
+          - spec.routes.1.match
+
+configurations:
+  - kustomization-config.yaml

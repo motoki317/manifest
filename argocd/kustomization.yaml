@@ -3,6 +3,8 @@ resources:
   - app-project.yaml
   - certificate.yaml
   - ingress-route.yaml
+  - ns-preview-app-project.yaml
+  - ns-preview-application-set.yaml
 
 patchesStrategicMerge:
   - argocd-cm.yaml

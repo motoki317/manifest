@@ -1,0 +1,40 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ns-preview
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: ns-preview-tls
+  routes:
+    - kind: Rule
+      # referenced in kustomize replacements
+      match: Host(`ns-preview.toki317.dev`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+      services:
+        - namespace: ns-preview
+          kind: Service
+          # referenced in kustomize nameReference
+          name: ns-dashboard
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+    - kind: Rule
+      # referenced in kustomize replacements
+      match: Host(`ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
+      middlewares:
+        - name: auth
+          namespace: traefik
+      services:
+        - namespace: ns-system
+          kind: Service
+          name: ns-gateway
+          port: http
+          scheme: h2c
+          strategy: RoundRobin
+          weight: 1

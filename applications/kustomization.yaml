@@ -14,6 +14,7 @@ resources:
   - moto-bot.yaml
   - nextcloud.yaml
   - ns-apps.yaml
+  - ns-preview.yaml
   - ns-system.yaml
   - registry.yaml
   - system-upgrade.yaml

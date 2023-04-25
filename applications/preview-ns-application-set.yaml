@@ -22,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/motoki317/manifest
         targetRevision: master
-        path: ns-preview-template
+        path: preview-ns-template
         kustomize:
           nameSuffix: -preview-{{number}}
           commonAnnotations:

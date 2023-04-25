@@ -11,6 +11,7 @@ spec:
         repoURL: https://github.com/motoki317/manifest
         revision: master
         directories:
+          - path: argo
           - path: gitea
   template:
     metadata:

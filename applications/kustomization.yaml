@@ -5,7 +5,6 @@ resources:
   - preview-ns.yaml
   - preview-ns-application-set.yaml
 
-  - argo.yaml
   - argocd.yaml
   - cert-manager.yaml
   - csi-s3.yaml

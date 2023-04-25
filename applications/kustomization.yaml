@@ -1,5 +1,4 @@
 resources:
-  - app-project.yaml
   - application-set.yaml
   - preview-app-project.yaml
   - preview-ns.yaml

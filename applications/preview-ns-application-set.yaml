@@ -30,7 +30,7 @@ spec:
             app/param-host-backend: Host(`{{number}}.ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
           images:
             - ghcr.io/traptitech/ns-dashboard:preview-{{number}}-{{head_sha}}
-      project: ns-preview
+      project: preview
       destination:
         server: https://kubernetes.default.svc
         namespace: preview-ns

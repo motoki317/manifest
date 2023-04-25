@@ -33,6 +33,22 @@ rules:
       - update
   - apiGroups:
       - traefik.io
+    resources:
+      - middlewares
+      - middlewaretcps
+      - ingressroutes
+      - traefikservices
+      - ingressroutetcps
+      - ingressrouteudps
+      - tlsoptions
+      - tlsstores
+      - serverstransports
+      - serverstransporttcps
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
       - traefik.containo.us
     resources:
       - middlewares

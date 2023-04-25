@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gitea
+  name: argo
   namespace: argocd
 
 spec:
   destination:
-    namespace: gitea
+    namespace: argo
     server: https://kubernetes.default.svc
   project: default
   source:
     repoURL: https://github.com/motoki317/manifest
-    path: gitea
+    path: argo
     targetRevision: master
   syncPolicy:
     syncOptions:

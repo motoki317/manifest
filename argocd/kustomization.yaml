@@ -1,10 +1,7 @@
 resources:
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.7/manifests/install.yaml
   - app-project.yaml
   - certificate.yaml
   - ingress-route.yaml
-  - ns-preview-app-project.yaml
-  - ns-preview-application-set.yaml
 
 patchesStrategicMerge:
   - argocd-cm.yaml

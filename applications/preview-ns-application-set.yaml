@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ns-preview
+  name: preview-ns
 
 # https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Pull-Request/
 spec:
@@ -32,7 +32,7 @@ spec:
       project: ns-preview
       destination:
         server: https://kubernetes.default.svc
-        namespace: ns-preview
+        namespace: preview-ns
       syncPolicy:
         automated:
           prune: true

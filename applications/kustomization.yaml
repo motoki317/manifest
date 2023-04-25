@@ -1,10 +1,15 @@
 resources:
+  - app-project.yaml
+  - application-set.yaml
+  - preview-app-project.yaml
+  - preview-ns.yaml
+  - preview-ns-application-set.yaml
+
   - argo-workflow.yaml
   - argocd.yaml
   - cert-manager.yaml
   - csi-s3.yaml
   - db.yaml
-  - gitea.yaml
   - grafana-agent.yaml
   - grafana-agent-operator.yaml
   - growi.yaml
@@ -14,7 +19,6 @@ resources:
   - moto-bot.yaml
   - nextcloud.yaml
   - ns-apps.yaml
-  - ns-preview.yaml
   - ns-system.yaml
   - registry.yaml
   - system-upgrade.yaml

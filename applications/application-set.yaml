@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: application-set
+
+# https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Pull-Request/
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/motoki317/manifest
+        revision: master
+        directories:
+          - path: gitea
+  template:
+    metadata:
+      name: {{path.basename}}
+    spec:
+      destination:
+        namespace: {{path.basename}}
+        server: https://kubernetes.default.svc
+      project: default
+      source:
+        repoURL: https://github.com/motoki317/manifest
+        path: {{path.basename}}
+        targetRevision: master
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true

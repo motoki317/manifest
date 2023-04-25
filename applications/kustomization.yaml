@@ -6,7 +6,6 @@ resources:
   - preview-ns-application-set.yaml
 
   - csi-s3.yaml
-  - db.yaml
   - grafana-agent.yaml
   - grafana-agent-operator.yaml
   - growi.yaml

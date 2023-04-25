@@ -12,6 +12,7 @@ spec:
         revision: master
         directories:
           - path: argo
+          - path: argocd
           - path: gitea
   template:
     metadata:

@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: preview-ns
+  namespace: argocd
 
 # https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Generators-Pull-Request/
 spec:

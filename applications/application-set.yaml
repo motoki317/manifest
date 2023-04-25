@@ -13,15 +13,15 @@ spec:
           - path: gitea
   template:
     metadata:
-      name: {{path.basename}}
+      name: '{{path.basename}}'
     spec:
       destination:
-        namespace: {{path.basename}}
+        namespace: '{{path.basename}}'
         server: https://kubernetes.default.svc
       project: default
       source:
         repoURL: https://github.com/motoki317/manifest
-        path: {{path.basename}}
+        path: '{{path.basename}}'
         targetRevision: master
       syncPolicy:
         syncOptions:

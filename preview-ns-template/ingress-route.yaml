@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: ns-preview-tls
+    secretName: preview-ns-tls
   routes:
     - kind: Rule
       # referenced in kustomize replacements
@@ -16,7 +16,7 @@ spec:
         - name: auth
           namespace: traefik
       services:
-        - namespace: ns-preview
+        - namespace: preview-ns
           kind: Service
           # referenced in kustomize nameReference
           name: ns-dashboard

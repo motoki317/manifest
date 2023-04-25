@@ -16,6 +16,22 @@ spec:
           - path: cert-manager
           - path: db
           - path: gitea
+          - path: grafana-agent
+          - path: growi
+          - path: japari
+          - path: kubernetes-dashboard
+          - path: monitor
+          - path: moto-bot
+          - path: nextcloud
+          - path: ns-apps
+          - path: ns-system
+          - path: preview-ns
+          - path: registry
+          - path: system-upgrade
+          - path: traefik
+          - path: traq
+          - path: traq-ranking
+          - path: vrc-tweets-fetcher
   template:
     metadata:
       name: '{{path.basename}}'

@@ -1,24 +1,7 @@
 resources:
   - app-project.yaml
   - application-set.yaml
-  - preview-app-project.yaml
-  - preview-ns.yaml
-  - preview-ns-application-set.yaml
-
   - csi-s3.yaml
-  - grafana-agent.yaml
   - grafana-agent-operator.yaml
-  - growi.yaml
-  - japari.yaml
-  - kubernetes-dashboard.yaml
-  - monitor.yaml
-  - moto-bot.yaml
-  - nextcloud.yaml
-  - ns-apps.yaml
-  - ns-system.yaml
-  - registry.yaml
-  - system-upgrade.yaml
-  - traefik.yaml
-  - traq.yaml
-  - traq-ranking.yaml
-  - vrc-tweets-fetcher.yaml
+  - preview-app-project.yaml
+  - preview-ns-application-set.yaml

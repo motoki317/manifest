@@ -20,14 +20,14 @@ spec:
         requeueAfterSeconds: 1800
   template:
     metadata:
-      name: preview-{{number}}
+      name: preview-ns-{{number}}
     spec:
       source:
         repoURL: https://github.com/motoki317/manifest
         targetRevision: master
         path: preview-ns-template
         kustomize:
-          nameSuffix: -preview-{{number}}
+          nameSuffix: -{{number}}
           commonAnnotations:
             app/param-host: Host(`{{number}}.ns-preview.toki317.dev`)
             app/param-host-backend: Host(`{{number}}.ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)

@@ -79,9 +79,6 @@ spec:
 
       volumes:
         - name: data
-          hostPath:
-            path: /srv/refsearch/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3
+          emptyDir: {}
       imagePullSecrets:
         - name: image-pull-secret

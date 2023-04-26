@@ -18,7 +18,7 @@ mariadb:
   # adminPassword: <env secret>
 
 mongodb:
-  host: mariadb.db.svc.cluster.local
+  host: mongo.db.svc.cluster.local
   port: 27017
   adminUser: root
   # adminPassword: <env secret>

@@ -6,13 +6,13 @@ resources:
   - auth-ingress-route.yaml
   - auth-middleware.yaml
   - auth-service.yaml
+  - cluster-role.yaml
+  - cluster-role-binding.yaml
+  - daemon-set.yaml
   - dashboard-certificate.yaml
   - dashboard-ingress-route.yaml
   - dashboard-service.yaml
-  - traefik-cluster-role.yaml
-  - traefik-cluster-role-binding.yaml
-  - traefik-daemon-set.yaml
-  - traefik-service-account.yaml
+  - service-account.yaml
 
 configMapGenerator:
   - name: auth

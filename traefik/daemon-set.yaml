@@ -14,8 +14,6 @@ spec:
       labels:
         app: traefik
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       serviceAccountName: traefik
       containers:
         - name: traefik
@@ -30,7 +28,6 @@ spec:
             - --entrypoints.websecure.address=:443/tcp
             - --entrypoints.websecure.http.tls=true
             - --entrypoints.gitea-ssh.address=:2200/tcp
-            # TODO: dashboard, metrics is publicly accessible (without firewall)
             - --entrypoints.traefik.address=:8080/tcp
             - --entrypoints.metrics.address=:9100/tcp
             - --api.dashboard=true
@@ -40,10 +37,16 @@ spec:
           ports:
             - name: web
               containerPort: 80
+              hostIP: 0.0.0.0
+              hostPort: 80
             - name: web-secure
               containerPort: 443
+              hostIP: 0.0.0.0
+              hostPort: 443
             - name: gitea-ssh
               containerPort: 2200
+              hostIP: 0.0.0.0
+              hostPort: 2200
             - name: dashboard
               containerPort: 8080
             - name: metrics

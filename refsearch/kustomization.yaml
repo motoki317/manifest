@@ -1,0 +1,9 @@
+resources:
+  - backend-deployment.yaml
+  - backend-service.yaml
+  - certificate.yaml
+  - frontend-deployment.yaml
+  - frontend-service.yaml
+  - ingress-route.yaml
+  - runner-service.yaml
+  - runner-stateful-set.yaml

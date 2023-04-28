@@ -13,7 +13,18 @@ spec:
       labels:
         app: ns-builder
     spec:
+      serviceAccountName: ns-builder
       containers:
+        - name: buildpack
+          image: dashaun/builder-arm:tiny
+          imagePullPolicy: Always
+          command:
+            - sleep
+            - infinity
+          volumeMounts:
+            - mountPath: /workspace
+              name: buildpack
+
         - name: buildkitd
           image: moby/buildkit:latest
           imagePullPolicy: Always
@@ -50,6 +61,10 @@ spec:
             - --loglevel=debug
             - --config=/opt/config/ns-builder.yaml
           env:
+            - name: NS_BUILDPACK_K8S_PODNAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: NS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -71,6 +86,8 @@ spec:
                   name: ns
                   key: registry-password
           volumeMounts:
+            - mountPath: /neoshowcase/buildpack
+              name: buildpack
             - mountPath: /run/buildkit
               name: socket
             - mountPath: /opt/config/ns-builder.yaml
@@ -79,6 +96,8 @@ spec:
             - mountPath: /keys
               name: keys
       volumes:
+        - name: buildpack
+          emptyDir: {}
         - name: socket
           emptyDir: {}
         - name: config

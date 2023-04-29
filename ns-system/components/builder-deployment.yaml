@@ -54,7 +54,7 @@ spec:
               name: socket
 
         - name: builder
-          image: ghcr.io/traptitech/ns-builder:buildpack-debug
+          image: ghcr.io/traptitech/ns-builder:main
           imagePullPolicy: Always
           args:
             - run
@@ -85,8 +85,6 @@ spec:
                 secretKeyRef:
                   name: ns
                   key: registry-password
-            - name: NS_BUILDPACK_K8S_DEBUG
-              value: "true"
           volumeMounts:
             - mountPath: /neoshowcase/buildpack
               name: buildpack

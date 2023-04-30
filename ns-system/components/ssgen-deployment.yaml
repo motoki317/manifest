@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ns-ssgen
-          image: ghcr.io/traptitech/ns-ssgen:main
+          image: ns-ssgen
           imagePullPolicy: Always
           args:
             - run

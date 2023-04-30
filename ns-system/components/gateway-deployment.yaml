@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ns-gateway
-          image: ghcr.io/traptitech/ns-gateway:main
+          image: ns-gateway
           imagePullPolicy: Always
           args:
             - run

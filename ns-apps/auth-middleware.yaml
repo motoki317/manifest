@@ -5,6 +5,6 @@ metadata:
 
 spec:
   forwardAuth:
-    address: http://ns-mc.ns-system.svc.cluster.local/
+    address: http://auth.traefik.svc.cluster.local/
     authResponseHeaders:
       - X-Showcase-User

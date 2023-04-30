@@ -17,7 +17,7 @@ spec:
       serviceAccountName: ns-controller
       containers:
         - name: ns-controller
-          image: ghcr.io/traptitech/ns-controller:main
+          image: ns-controller
           imagePullPolicy: Always
           args:
             - run

@@ -6,7 +6,7 @@ metadata:
 data:
   subscriptions: |
     - recipients:
-        - webhook.traq
+        - traq
       triggers:
         - on-created
         - on-deleted

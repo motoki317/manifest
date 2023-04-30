@@ -54,7 +54,7 @@ spec:
               name: socket
 
         - name: builder
-          image: ghcr.io/traptitech/ns-builder:main
+          image: ns-builder
           imagePullPolicy: Always
           args:
             - run

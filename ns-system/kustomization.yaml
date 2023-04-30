@@ -30,5 +30,10 @@ configMapGenerator:
       - config/ns-gateway.yaml
       - config/ns-ssgen.yaml
 
+images:
+  - name: ns-builder
+    newName: ghcr.io/traptitech/ns-builder
+    newTag: main
+
 configurations:
   - kustomize-config.yaml

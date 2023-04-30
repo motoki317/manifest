@@ -4,6 +4,8 @@ metadata:
   name: argocd-notifications-cm
 
 data:
+  context: |
+    argocdUrl: https://cd.toki317.dev
   subscriptions: |
     - recipients:
         - traq

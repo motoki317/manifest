@@ -25,43 +25,43 @@ data:
       traq:
         method: POST 
         body: |
-          :new: Application {{.app.metadata.name}} created :new:
+          ### :new: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Created :new:
   template.app-deleted: |
     webhook:
       traq:
         method: POST 
         body: |
-          :ayase_null: Application {{.app.metadata.name}} deleted :ayase_null:
+          ### :ayase_null: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deleted :ayase_null:
   template.app-deployed: |
     webhook:
       traq:
         method: POST 
         body: |
-          :leftparrot: Application {{.app.metadata.name}} deployed :rightparrot:
+          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
   template.app-health-degraded: |
     webhook:
       traq:
         method: POST 
         body: |
-          :alert: Application {{.app.metadata.name}} degraded :alert:
+          ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
   template.app-sync-failed: |
     webhook:
       traq:
         method: POST 
         body: |
-          :exclamation: Application {{.app.metadata.name}} sync failed :exclamation:
+          ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
   template.app-sync-running: |
     webhook:
       traq:
         method: POST 
         body: |
-          :spinner: Application {{.app.metadata.name}} syncing :spinner:
+          ### :spinner: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Syncing :spinner:
   template.app-sync-status-unknown: |
     webhook:
       traq:
         method: POST 
         body: |
-          :question: Application {{.app.metadata.name}} sync status unknown :question:
+          ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
 
   # default triggers from: https://raw.githubusercontent.com/argoproj-labs/argocd-notifications/release-1.0/catalog/install.yaml
   trigger.on-deployed: |

@@ -26,6 +26,7 @@ k8s:
           - nsapp-auth-soft
           - nsapp-auth
         hard:
+          - nsapp-auth-hard
           - nsapp-auth
   ss:
     namespace: ns-system

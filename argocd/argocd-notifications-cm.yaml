@@ -30,77 +30,77 @@ data:
   template.app-created: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :new: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Created :new:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :new: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Created :new:
   template.app-deleted: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :ayase_null: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deleted :ayase_null:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :ayase_null: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deleted :ayase_null:
   template.app-deployed: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
+  template.app-preview-deployed: |
+    webhook:
+      ns-preview:
+        method: POST
+        body: |
+          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
+    
+          https://{{ call .strings.ReplaceAll .app.metadata.name "preview-ns-" "" }}.ns-preview.toki317.dev/
   template.app-health-degraded: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
   template.app-sync-failed: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
   template.app-sync-running: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :spinner: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Syncing :spinner:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :spinner: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Syncing :spinner:
   template.app-sync-status-unknown: |
     webhook:
       traq:
-        method: POST 
+        method: POST
         body: |
           ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
       ns-preview:
-        method: POST 
+        method: POST
         body: |
           ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
-  template.app-sync-succeeded: |
-    webhook:
-      ns-preview:
-        method: POST 
-        body: |
-          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
-    
-          https://{{ call .strings.ReplaceAll .app.metadata.name "preview-ns-" "" }}.ns-preview.toki317.dev/
 
   # default triggers from: https://github.com/argoproj/argo-cd/blob/master/notifications_catalog/install.yaml
   trigger.on-created: |
@@ -120,6 +120,13 @@ data:
       oncePer: app.status.operationState.syncResult.revision
       send:
       - app-deployed
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
+        == 'Healthy'
+  trigger.on-preview-deployed: |
+    - description: Application is synced and healthy. Triggered once per commit.
+      oncePer: app.spec.source.kustomize.commonAnnotations.app/head-sha
+      send:
+      - app-preview-deployed
       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
         == 'Healthy'
   trigger.on-health-degraded: |

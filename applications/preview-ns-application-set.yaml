@@ -24,11 +24,11 @@ spec:
       annotations:
         notifications.argoproj.io/subscribe.on-created.ns-preview: ""
         notifications.argoproj.io/subscribe.on-deleted.ns-preview: ""
-        notifications.argoproj.io/subscribe.on-deployed.ns-preview: ""
         notifications.argoproj.io/subscribe.on-health-degraded.ns-preview: ""
         notifications.argoproj.io/subscribe.on-sync-failed.ns-preview: ""
         notifications.argoproj.io/subscribe.on-sync-running.ns-preview: ""
         notifications.argoproj.io/subscribe.on-sync-status-unknown.ns-preview: ""
+        notifications.argoproj.io/subscribe.on-sync-succeeded.ns-preview: ""
     spec:
       source:
         repoURL: https://github.com/motoki317/manifest

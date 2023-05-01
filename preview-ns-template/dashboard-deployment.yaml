@@ -7,10 +7,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
+      # referenced in kustomize replacements
       app: ns-dashboard
   template:
     metadata:
       labels:
+        # referenced in kustomize replacements
         app: ns-dashboard
     spec:
       containers:

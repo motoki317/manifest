@@ -5,6 +5,22 @@ resources:
 
 replacements:
   - source:
+      kind: Deployment
+      name: ns-dashboard
+      fieldPath: metadata.name
+    targets:
+      - select:
+          kind: Deployment
+          name: ns-dashboard
+        fieldPaths:
+          - spec.selector.matchLabels.app
+          - spec.template.metadata.labels.app
+      - select:
+          kind: Service
+          name: ns-dashboard
+        fieldPaths:
+          - spec.selector.app
+  - source:
       kind: IngressRoute
       name: ns-preview
       fieldPath: metadata.annotations.app/param-host

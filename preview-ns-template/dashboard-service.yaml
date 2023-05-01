@@ -6,6 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
+    # referenced in kustomize replacements
     app: ns-dashboard
   ports:
     - port: 80

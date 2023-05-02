@@ -17,6 +17,7 @@ resources:
   - components/ingress-route.yaml
   - components/ssgen-deployment.yaml
   - components/ssgen-service.yaml
+  - components/ssh-ingress-route.yaml
   - app-namespace.yaml
   - mariadb-migration-workflow-template.yaml
 

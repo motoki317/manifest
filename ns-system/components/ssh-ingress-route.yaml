@@ -10,6 +10,6 @@ spec:
     - match: HostSNI(`*`)
       services:
         - namespace: ns-system
-          name: ns-gateway
+          name: ns-controller
           port: ssh
           weight: 1

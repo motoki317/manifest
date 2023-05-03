@@ -12,11 +12,11 @@ data:
       triggers:
         - on-created
         - on-deleted
+        - on-deployed
         - on-health-degraded
         - on-sync-failed
         - on-sync-running
         - on-sync-status-unknown
-        - on-sync-succeeded
   service.webhook.traq: |
     url: https://q.toki317.dev/api/v3/webhooks/$traq-webhook-id
     headers:
@@ -47,6 +47,12 @@ data:
         method: POST
         body: |
           ### :ayase_null: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deleted :ayase_null:
+  template.app-deployed: |
+    webhook:
+      traq:
+        method: POST
+        body: |
+          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
   template.app-preview-deployed: |
     webhook:
       ns-preview:
@@ -95,12 +101,6 @@ data:
         method: POST
         body: |
           ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
-  template.app-sync-succeeded: |
-    webhook:
-      traq:
-        method: POST
-        body: |
-          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
 
   # default triggers from: https://github.com/argoproj/argo-cd/blob/master/notifications_catalog/install.yaml
   trigger.on-created: |

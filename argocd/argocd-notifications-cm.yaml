@@ -15,7 +15,7 @@ data:
         - on-deployed
         - on-health-degraded
         - on-sync-failed
-        - on-sync-running
+        - on-non-preview-sync-running
         - on-sync-status-unknown
   service.webhook.traq: |
     url: https://q.toki317.dev/api/v3/webhooks/$traq-webhook-id
@@ -144,6 +144,11 @@ data:
       send:
       - app-sync-running
       when: app.status.operationState.phase in ['Running']
+  trigger.on-non-preview-sync-running: |
+    - description: Application is being synced
+      send:
+      - app-sync-running
+      when: app.spec.project != 'preview' and app.status.operationState.phase in ['Running']
   trigger.on-sync-status-unknown: |
     - description: Application status is 'Unknown'
       send:

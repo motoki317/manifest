@@ -24,7 +24,7 @@ spec:
       annotations:
         notifications.argoproj.io/subscribe.on-created.ns-preview: ""
         notifications.argoproj.io/subscribe.on-deleted.ns-preview: ""
-        notifications.argoproj.io/subscribe.on-deployed.ns-preview: ""
+        notifications.argoproj.io/subscribe.on-preview-deployed.ns-preview: ""
         notifications.argoproj.io/subscribe.on-health-degraded.ns-preview: ""
         notifications.argoproj.io/subscribe.on-sync-failed.ns-preview: ""
         notifications.argoproj.io/subscribe.on-sync-running.ns-preview: ""

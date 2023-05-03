@@ -9,4 +9,4 @@ patchesStrategicMerge:
   - argocd-rbac-cm.yaml
   - argocd-server.yaml
   - argocd-ssh-known-hosts-cm.yaml
-  - delete-argocd-notifications-secret.yaml # defined in manifest-secret repo
+  - delete-argocd-notifications-secret.yaml # new argocd-notifications-secret defined in manifest-secret repo

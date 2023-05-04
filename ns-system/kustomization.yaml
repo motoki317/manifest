@@ -32,19 +32,19 @@ configMapGenerator:
 images:
 - name: ns-builder
   newName: ghcr.io/traptitech/ns-builder
-  newTag: main
+  newTag: 0.1.0
 - name: ns-controller
   newName: ghcr.io/traptitech/ns-controller
-  newTag: main
+  newTag: 0.1.0
 - name: ns-dashboard
   newName: ghcr.io/traptitech/ns-dashboard
-  newTag: main
+  newTag: 0.1.0
 - name: ns-gateway
   newName: ghcr.io/traptitech/ns-gateway
-  newTag: main
+  newTag: 0.1.0
 - name: ns-ssgen
   newName: ghcr.io/traptitech/ns-ssgen
-  newTag: main
+  newTag: 0.1.0
 
 configurations:
 - kustomize-config.yaml

@@ -1,0 +1,102 @@
+traqOrigin: "wss://q.toki317.dev"
+channelID: "a978e6a0-43ab-48b7-9224-70de36c3b183"
+
+stamps:
+  accept: "0c542f3c-4704-4a4a-930d-9f7101dc0c6c"
+  badCommand: "21ebf09e-a576-430b-8f37-aee402110e48"
+  forbid: "5e7fe89f-a120-4ee6-88c5-a4befe96a862"
+  success: "1f399400-aa12-4e62-8264-b3a61135ff74"
+  failure: "e08e7d4c-108b-42d7-8ed7-cc1a60341825"
+  running: "6680190b-fbd8-44e2-ae59-53bf249bd7ff"
+
+commands:
+  deploy:
+    templates:
+      - name: deploy
+        command: |
+          #!/bin/sh
+          
+          set -eux
+          
+          if [ "$#" -ne 4 ]; then
+            echo "Usage: $0 DIRECTORY IMAGE NAME TAG" >&2
+            exit 1
+          fi
+          
+          DIRECTORY=$1
+          IMAGE=$2
+          NAME=$3
+          TAG=$4
+          
+          TMP_DIR=$(mktemp -d)
+          trap 'rm -r "$TMP_DIR"' EXIT
+          cd "$TMP_DIR"
+          git clone git@github.com:motoki317/manifest.git --depth 1
+          cd manifest
+          
+          cd "$DIRECTORY"
+          kustomize edit set image "$IMAGE"="$NAME":"$TAG"
+          cd ..
+          
+          if git diff --exit-code --quiet; then
+            echo "Nothing to commit, exiting"
+            exit 0
+          fi
+          
+          git config --global user.name dev-ops-bot
+          git config --global user.email dev-ops-bot@toki317.dev
+          
+          git add -A
+          git commit -m "Update $IMAGE image to $TAG in $DIRECTORY"
+          git push
+      - name: deploy-ns
+        command: |
+          #!/bin/sh
+          
+          set -eux
+          
+          if [ "$#" -ne 1 ]; then
+            echo "Usage: $0 TAG" >&2
+            exit 1
+          fi
+          
+          TAG=$1
+          
+          TMP_DIR=$(mktemp -d)
+          trap 'rm -r "$TMP_DIR"' EXIT
+          cd "$TMP_DIR"
+          git clone git@github.com:motoki317/manifest.git --depth 1
+          cd manifest
+          
+          cd ns-system
+          kustomize edit set image ns-builder=ghcr.io/traptitech/ns-builder:"$TAG"
+          kustomize edit set image ns-controller=ghcr.io/traptitech/ns-controller:"$TAG"
+          kustomize edit set image ns-dashboard=ghcr.io/traptitech/ns-dashboard:"$TAG"
+          kustomize edit set image ns-gateway=ghcr.io/traptitech/ns-gateway:"$TAG"
+          kustomize edit set image ns-ssgen=ghcr.io/traptitech/ns-ssgen:"$TAG"
+          cd ..
+          
+          if git diff --exit-code --quiet; then
+            echo "Nothing to commit, exiting"
+            exit 0
+          fi
+          
+          git config --global user.name dev-ops-bot
+          git config --global user.email dev-ops-bot@toki317.dev
+          
+          git add -A
+          git commit -m "Update ns-system image to $TAG"
+          git push
+    commands:
+      - name: dev-ops-bot
+        templateRef: deploy
+        argsPrefix:
+          - dev-ops-bot
+          - dev-ops-bot
+          - ghcr.io/traptitech/dev-ops-bot
+        operators:
+          - toki
+      - name: ns
+        templateRef: deploy-ns
+        operators:
+          - toki

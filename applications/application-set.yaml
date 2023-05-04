@@ -15,6 +15,7 @@ spec:
           - path: argocd
           - path: cert-manager
           - path: db
+          - path: dev-ops-bot
           - path: gitea
           - path: grafana-agent
           - path: growi

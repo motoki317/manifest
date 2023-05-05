@@ -73,6 +73,7 @@ commands:
           kustomize edit set image ns-controller=ghcr.io/traptitech/ns-controller:"$TAG"
           kustomize edit set image ns-dashboard=ghcr.io/traptitech/ns-dashboard:"$TAG"
           kustomize edit set image ns-gateway=ghcr.io/traptitech/ns-gateway:"$TAG"
+          kustomize edit set image ns-migrate=ghcr.io/traptitech/ns-migrate:"$TAG"
           kustomize edit set image ns-ssgen=ghcr.io/traptitech/ns-ssgen:"$TAG"
           cd ..
           
@@ -100,6 +101,12 @@ commands:
         templateRef: deploy-ns
         operators:
           - toki
+      - name: ns-migrate
+        templateRef: deploy
+        argsPrefix:
+          - ns-system
+          - ns-migrate
+          - ghcr.io/traptitech/ns-migrate
       - name: traq
         templateRef: deploy
         argsPrefix:

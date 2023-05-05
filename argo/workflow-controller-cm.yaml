@@ -10,6 +10,8 @@ data:
       onExit: exit-handler
       templates:
         - name: exit-handler
-          templateRef:
-            name: traq-webhook
-            template: run
+          steps:
+            - - name: notify
+                templateRef:
+                  name: traq-webhook
+                  template: run

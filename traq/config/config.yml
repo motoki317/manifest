@@ -21,9 +21,14 @@ es:
   url: http://traq-es.traq.svc.cluster.local:9200
 
 storage:
-  type: local
-  local:
-    dir: /storage
+  type: s3
+  s3:
+    bucket: traq
+    region: ap-osaka-1
+    endpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
+    # accessKey: <env secret>
+    # secretKey: <env secret>
+    cacheDir: /storage
 
 firebase:
   serviceAccount:

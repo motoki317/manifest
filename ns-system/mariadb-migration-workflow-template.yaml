@@ -10,7 +10,7 @@ spec:
     - name: run
       container:
         name: migrate
-        image: ghcr.io/traptitech/ns-migrate:main
+        image: ns-migrate
         imagePullPolicy: Always
         env:
           - name: DB_HOST

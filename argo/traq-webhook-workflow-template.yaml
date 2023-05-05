@@ -12,13 +12,13 @@ spec:
           - name: webhook-url
           - name: webhook-secret
       container:
-        image: ubuntu:latest
+        image: alpine:latest
         command:
-          - bash
+          - sh
           - -c
         args:
           - |
-            #!/bin/bash
+            #!/bin/sh
 
             set -eux
 

@@ -23,7 +23,7 @@ images:
   newTag: 3.17.1
 - name: traq-widget
   newName: ghcr.io/traptitech/traq-widget
-  newTag: latest
+  newTag: 0.3.6
 
 configMapGenerator:
 - files:

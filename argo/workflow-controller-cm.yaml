@@ -14,8 +14,10 @@ data:
             - - name: notify
                 arguments:
                   parameters:
-                    - name: secret-name
-                      value: traq-webhook
+                    - name: webhook-url
+                      value: "https://q.toki317.dev/api/v3/webhooks/132f9c23-50af-41bd-9a19-91b382f17c5b"
+                    - name: webhook-secret
+                      value: "LcTBCemU6UuClBRKlvcagnTBlve7AKes"
                 templateRef:
                   clusterScope: true
                   name: traq-webhook

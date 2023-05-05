@@ -9,18 +9,36 @@ spec:
     - name: run
       inputs:
         parameters:
-          - name: secret-name
-      volumes:
-        - name: scripts
-          configMap:
-            name: traq-webhook-script
+          - name: webhook-url
+          - name: webhook-secret
       container:
         image: alpine:latest
         command:
-          - /scripts/traq-webhook.sh
-        volumeMounts:
-          - name: scripts
-            mountPath: /scripts
+          - bash
+          - -c
+        args:
+          - |
+            #!/bin/bash
+
+            set -eux
+
+            apk add --no-cache curl openssl
+
+            WORKFLOW_URL="$WORKFLOW_BASE_URL/workflows/$WORKFLOW_NAMESPACE/$WORKFLOW_NAME"
+            if [ "$STATUS" = "Succeeded" ]; then
+              MESSAGE="### :white_check_mark: Workflow $WORKFLOW_NAME succeeded in $WORKFLOW_DURATION."
+              MESSAGE="$MESSAGE\n"
+              MESSAGE="$MESSAGE\n$WORKFLOW_URL"
+            else
+              MESSAGE="### :alert: Workflow $WORKFLOW_NAME failed after $WORKFLOW_DURATION. :alert:"
+              MESSAGE="$MESSAGE\nFailed steps: $WORKFLOW_FAILURES"
+              MESSAGE="$MESSAGE\n"
+              MESSAGE="$MESSAGE\n$WORKFLOW_URL"
+            fi
+
+            set +x # disable logging
+            SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$SECRET")
+            curl -X POST -H "Content-Type: text/plain; charset=utf-8" -H "X-TRAQ-Signature: $SIGNATURE" -d "$MESSAGE" "$URL"
         env:
           - name: WORKFLOW_BASE_URL
             value: "https://workflow.toki317.dev"
@@ -35,12 +53,6 @@ spec:
           - name: WORKFLOW_FAILURES
             value: "{{workflow.failures}}"
           - name: WEBHOOK_URL
-            valueFrom:
-              secretKeyRef:
-                name: "{{inputs.parameters.secret-name}}"
-                key: webhook-url
+            value: "{{inputs.parameters.webhook-url}}"
           - name: WEBHOOK_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: "{{inputs.parameters.secret-name}}"
-                key: webhook-secret
+            value: "{{inputs.parameters.webhook-secret}}"

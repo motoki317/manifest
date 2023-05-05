@@ -7,11 +7,3 @@ resources:
 patchesStrategicMerge:
   - argo-server.yaml
   - workflow-controller-cm.yaml
-
-configMapGenerator:
-  - name: traq-webhook-script
-    files:
-      - config/traq-webhook.sh
-
-configurations:
-  - kustomization-config.yaml

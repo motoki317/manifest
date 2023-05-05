@@ -10,7 +10,6 @@ spec:
       inputs:
         parameters:
           - name: secret-name
-          - name: message
       volumes:
         - name: scripts
           configMap:

@@ -12,6 +12,10 @@ data:
         - name: exit-handler
           steps:
             - - name: notify
+                arguments:
+                  parameters:
+                    - name: secret-name
+                      value: traq-webhook
                 templateRef:
                   name: traq-webhook
                   template: run

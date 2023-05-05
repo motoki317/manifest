@@ -10,6 +10,16 @@ spec:
     secretName: argocd-server-tls
   routes:
     - kind: Rule
+      match: Host(`cd.toki317.dev`) && PathPrefix(`/api/webhook`)
+      services:
+        - kind: Service
+          namespace: argocd
+          name: argocd-server
+          port: 80
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+    - kind: Rule
       match: Host(`cd.toki317.dev`)
       middlewares:
         - name: auth

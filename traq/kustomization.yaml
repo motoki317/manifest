@@ -11,6 +11,20 @@ resources:
   - widget-service.yaml
   - widget-strip-middleware.yaml
 
+images:
+  - name: traq
+    newName: ghcr.io/traptitech/traq
+    newTag: latest
+  - name: traq-ui
+    newName: ghcr.io/traptitech/traq-ui
+    newTag: latest
+  - name: traq-widget
+    newName: ghcr.io/traptitech/traq-widget
+    newTag: latest
+  - name: traq-es
+    newName: ghcr.io/traptitech/es-with-sudachi
+    newTag: 7.10.2-2.1.1-SNAPSHOT
+
 configMapGenerator:
   - name: traq-config
     files:

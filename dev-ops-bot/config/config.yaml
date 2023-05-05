@@ -100,3 +100,35 @@ commands:
         templateRef: deploy-ns
         operators:
           - toki
+      - name: traq
+        templateRef: deploy
+        argsPrefix:
+          - traq
+          - traq
+          - ghcr.io/traptitech/traq
+        operators:
+          - toki
+      - name: traq-ui
+        templateRef: deploy
+        argsPrefix:
+          - traq
+          - traq-ui
+          - ghcr.io/traptitech/traq-ui
+        operators:
+          - toki
+      - name: traq-widget
+        templateRef: deploy
+        argsPrefix:
+          - traq
+          - traq-widget
+          - ghcr.io/traptitech/traq-widget
+        operators:
+          - toki
+      - name: traq-es
+        templateRef: deploy
+        argsPrefix:
+          - traq
+          - traq-es
+          - ghcr.io/traptitech/es-with-sudachi
+        operators:
+          - toki

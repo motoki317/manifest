@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: traq-es
-          image: ghcr.io/traptitech/es-with-sudachi:7.10.2-2.1.1-SNAPSHOT
+          image: traq-es
           ports:
             - containerPort: 9200
               name: http

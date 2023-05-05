@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: traq-frontend
-          image: ghcr.io/traptitech/traq-widget:latest
+          image: traq-widget
           ports:
             - containerPort: 80
               name: http

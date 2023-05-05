@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: traq
-          image: ghcr.io/traptitech/traq:latest
+          image: traq
           ports:
             - containerPort: 3000
               name: http

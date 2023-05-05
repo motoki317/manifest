@@ -1,0 +1,13 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: fail-test
+  generateName: fail-test-
+
+spec:
+  templates:
+    - name: intentional-fail
+      container:
+        image: alpine:latest
+        command: [sh, -c]
+        args: ["echo intentional failure; exit 1"]

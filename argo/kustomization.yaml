@@ -1,6 +1,7 @@
 resources:
   - https://github.com/argoproj/argo-workflows/releases/download/v3.4.6/install.yaml
   - certificate.yaml
+  - fail-test-workflow-template.yaml
   - ingress-route.yaml
   - traq-webhook-workflow-template.yaml
 

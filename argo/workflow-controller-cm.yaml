@@ -17,5 +17,6 @@ data:
                     - name: secret-name
                       value: traq-webhook
                 templateRef:
+                  clusterScope: true
                   name: traq-webhook
                   template: run

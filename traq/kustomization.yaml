@@ -1,37 +1,39 @@
 resources:
-  - certificate.yaml
-  - es-service.yaml
-  - es-stateful-set.yaml
-  - frontend-deployment.yaml
-  - frontend-service.yaml
-  - ingress-route.yaml
-  - traq-service.yaml
-  - traq-stateful-set.yaml
-  - widget-deployment.yaml
-  - widget-service.yaml
-  - widget-strip-middleware.yaml
+- certificate.yaml
+- es-service.yaml
+- es-stateful-set.yaml
+- frontend-deployment.yaml
+- frontend-service.yaml
+- ingress-route.yaml
+- traq-service.yaml
+- traq-stateful-set.yaml
+- widget-deployment.yaml
+- widget-service.yaml
+- widget-strip-middleware.yaml
 
 images:
-  - name: traq
-    newName: ghcr.io/traptitech/traq
-    newTag: latest
-  - name: traq-ui
-    newName: ghcr.io/traptitech/traq-ui
-    newTag: latest
-  - name: traq-widget
-    newName: ghcr.io/traptitech/traq-widget
-    newTag: latest
-  - name: traq-es
-    newName: ghcr.io/traptitech/es-with-sudachi
-    newTag: 7.10.2-2.1.1-SNAPSHOT
+- name: traq
+  newName: ghcr.io/traptitech/traq
+  newTag: 3.12.4-alpha1
+- name: traq-es
+  newName: ghcr.io/traptitech/es-with-sudachi
+  newTag: 7.10.2-2.1.1-SNAPSHOT
+- name: traq-ui
+  newName: ghcr.io/traptitech/traq-ui
+  newTag: latest
+- name: traq-widget
+  newName: ghcr.io/traptitech/traq-widget
+  newTag: latest
 
 configMapGenerator:
-  - name: traq-config
-    files:
-      - config/config.yml
-  - name: frontend-config
-    files:
-      - config/config.js
-  - name: es-config
-    files:
-      - config/es_jvm.options
+- files:
+  - config/config.yml
+  name: traq-config
+- files:
+  - config/config.js
+  name: frontend-config
+- files:
+  - config/es_jvm.options
+  name: es-config
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

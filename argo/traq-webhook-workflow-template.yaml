@@ -36,7 +36,6 @@ spec:
               MESSAGE="$MESSAGE\n$WORKFLOW_URL"
             fi
 
-            set +x # disable logging
             SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$WEBHOOK_SECRET")
             curl -X POST -H "Content-Type: text/plain; charset=utf-8" -H "X-TRAQ-Signature: $SIGNATURE" -d "$MESSAGE" "$WEBHOOK_URL"
         env:

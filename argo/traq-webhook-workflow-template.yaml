@@ -25,7 +25,7 @@ spec:
             apk add --no-cache curl openssl
 
             WORKFLOW_URL="$WORKFLOW_BASE_URL/workflows/$WORKFLOW_NAMESPACE/$WORKFLOW_NAME"
-            if [ "$STATUS" = "Succeeded" ]; then
+            if [ "$WORKFLOW_STATUS" = "Succeeded" ]; then
               MESSAGE="### :white_check_mark: Workflow $WORKFLOW_NAME succeeded in $WORKFLOW_DURATION."
               MESSAGE="$MESSAGE\n"
               MESSAGE="$MESSAGE\n$WORKFLOW_URL"

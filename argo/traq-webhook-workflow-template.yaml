@@ -12,7 +12,7 @@ spec:
           - name: webhook-url
           - name: webhook-secret
       container:
-        image: alpine:latest
+        image: ubuntu:latest
         command:
           - bash
           - -c

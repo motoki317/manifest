@@ -28,6 +28,7 @@ storage:
     endpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
     # accessKey: <env secret>
     # secretKey: <env secret>
+    forcePathStyle: true
     cacheDir: /storage
 
 firebase:

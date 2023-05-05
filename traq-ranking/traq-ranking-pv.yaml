@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: traq-ranking
+
+spec:
+  storageClassName: csi-s3
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    name: traq-ranking
+  csi:
+    driver: ru.yandex.s3.csi
+    controllerPublishSecretRef:
+      name: csi-s3-secret
+      namespace: csi-s3
+    nodePublishSecretRef:
+      name: csi-s3-secret
+      namespace: csi-s3
+    nodeStageSecretRef:
+      name: csi-s3-secret
+      namespace: csi-s3
+    volumeAttributes:
+      capacity: 1Gi
+      mounter: geesefs
+    volumeHandle: traq-ranking

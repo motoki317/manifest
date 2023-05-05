@@ -12,12 +12,19 @@ spec:
         parameters:
           - name: configmap
           - name: secret
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: traq-ranking
       container:
         name: traq-ranking
         image: ghcr.io/motoki317/traq-ranking:master
         imagePullPolicy: Always
         args:
           - daily-ranking
+        volumeMounts:
+          - mountPath: /data
+            name: data
         env:
           - name: BASE_PATH
             valueFrom:
@@ -39,12 +46,3 @@ spec:
               configMapKeyRef:
                 name: "{{inputs.parameters.configmap}}"
                 key: save-file
-        volumeMounts:
-          - mountPath: /srv/traq-ranking
-            name: srv
-      volumes:
-        - name: srv
-          hostPath:
-            path: /srv/traq-ranking
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

@@ -6,4 +6,4 @@ metadata:
 data:
   base-path: "https://q.toki317.dev/api/v3"
   target-channel: "87e711ee-7481-4f03-8ed5-9e43e062baa9"
-  save-file: "/srv/traq-ranking/ranking.q.toki317.dev.json"
+  save-file: "/data/ranking.q.toki317.dev.json"

@@ -1,3 +1,7 @@
+images:
+  - kind: WorkflowTemplate
+    path: spec/templates/container/image
+
 nameReference:
   - kind: ConfigMap
     fieldSpecs:

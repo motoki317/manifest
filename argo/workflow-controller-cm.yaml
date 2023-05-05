@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+
+data:
+  workflowDefaults: |
+    spec:
+      onExit: exit-handler
+      templates:
+        - name: exit-handler
+          templateRef:
+            name: traq-webhook
+            template: run

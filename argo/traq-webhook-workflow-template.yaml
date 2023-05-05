@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: traq-webhook
+  generateName: traq-webhook-
+
+spec:
+  templates:
+    - name: run
+      inputs:
+        parameters:
+          - name: secret-name
+          - name: message
+      volumes:
+        - name: scripts
+          configMap:
+            name: traq-webhook-script
+      container:
+        image: alpine:latest
+        command:
+          - /scripts/traq-webhook.sh
+        volumeMounts:
+          - name: scripts
+            mountPath: /scripts
+        env:
+          - name: WORKFLOW_BASE_URL
+            value: "https://workflow.toki317.dev"
+          - name: WORKFLOW_NAMESPACE
+            value: "{{workflow.namespace}}"
+          - name: WORKFLOW_NAME
+            value: "{{workflow.name}}"
+          - name: WORKFLOW_STATUS
+            value: "{{workflow.status}}"
+          - name: WORKFLOW_DURATION
+            value: "{{workflow.duration}}"
+          - name: WORKFLOW_FAILURES
+            value: "{{workflow.failures}}"
+          - name: WEBHOOK_URL
+            valueFrom:
+              secretKeyRef:
+                name: "{{inputs.parameters.secret-name}}"
+                key: webhook-url
+          - name: WEBHOOK_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: "{{inputs.parameters.secret-name}}"
+                key: webhook-secret

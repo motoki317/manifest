@@ -10,6 +10,7 @@ spec:
   accessModes:
     - ReadWriteMany
   claimRef:
+    namespace: traq-ranking
     name: traq-ranking
   csi:
     driver: ru.yandex.s3.csi

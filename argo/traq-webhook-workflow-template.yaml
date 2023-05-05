@@ -37,8 +37,8 @@ spec:
             fi
 
             set +x # disable logging
-            SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$SECRET")
-            curl -X POST -H "Content-Type: text/plain; charset=utf-8" -H "X-TRAQ-Signature: $SIGNATURE" -d "$MESSAGE" "$URL"
+            SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$WEBHOOK_SECRET")
+            curl -X POST -H "Content-Type: text/plain; charset=utf-8" -H "X-TRAQ-Signature: $SIGNATURE" -d "$MESSAGE" "$WEBHOOK_URL"
         env:
           - name: WORKFLOW_BASE_URL
             value: "https://workflow.toki317.dev"

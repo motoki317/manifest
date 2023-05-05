@@ -1,10 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: fail-test
-  generateName: fail-test-
+  name: test-fail
+  generateName: test-fail-
 
 spec:
+  entrypoint: intentional-fail
   templates:
     - name: intentional-fail
       container:

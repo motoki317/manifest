@@ -3,4 +3,4 @@ nameReference:
     version: v1
     fieldSpecs:
       - path: spec/templates/volumes/configMap/name
-        kind: WorkflowTemplate
+        kind: ClusterWorkflowTemplate

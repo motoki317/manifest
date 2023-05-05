@@ -26,17 +26,17 @@ spec:
 
             WORKFLOW_URL="$WORKFLOW_BASE_URL/workflows/$WORKFLOW_NAMESPACE/$WORKFLOW_NAME"
             if [ "$WORKFLOW_STATUS" = "Succeeded" ]; then
-              MESSAGE="### :white_check_mark: Workflow $WORKFLOW_NAME succeeded in $WORKFLOW_DURATION."
+              MESSAGE="### :white_check_mark: Workflow $WORKFLOW_NAME succeeded in $WORKFLOW_DURATION seconds."
               MESSAGE="$MESSAGE\n"
               MESSAGE="$MESSAGE\n$WORKFLOW_URL"
             else
-              MESSAGE="### :alert: Workflow $WORKFLOW_NAME failed after $WORKFLOW_DURATION. :alert:"
+              MESSAGE="### :alert: Workflow $WORKFLOW_NAME failed after $WORKFLOW_DURATION seconds. :alert:"
               MESSAGE="$MESSAGE\nFailed steps: $WORKFLOW_FAILURES"
               MESSAGE="$MESSAGE\n"
               MESSAGE="$MESSAGE\n$WORKFLOW_URL"
             fi
 
-            SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$WEBHOOK_SECRET")
+            SIGNATURE=$(echo -n "$MESSAGE" | openssl sha1 -hmac "$WEBHOOK_SECRET" -binary | xxd -p)
             curl -X POST -H "Content-Type: text/plain; charset=utf-8" -H "X-TRAQ-Signature: $SIGNATURE" -d "$MESSAGE" "$WEBHOOK_URL"
         env:
           - name: WORKFLOW_BASE_URL

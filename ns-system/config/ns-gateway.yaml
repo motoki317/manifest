@@ -37,7 +37,7 @@ log:
   type: loki
   loki:
     endpoint: http://loki.monitor.svc.cluster.local:3100
-    appIDLabel: neoshowcase_trap_jp_appID
+    appIDLabel: neoshowcase_trap_jp_appId
 
 repository:
   privateKeyFile: /keys/id_ed25519

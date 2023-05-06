@@ -25,17 +25,24 @@ spec:
       - argo
       - argocd
       - cert-manager
+      - csi-s3
       - db
+      - dev-ops-bot
       - gitea
       - grafana-agent
       - grafana-agent-operator
       - growi
       - japari
       - kubernetes-dashboard
-      - loki
       - monitor
       - moto-bot
       - nextcloud
+      - ns-apps
+      - ns-system
+      - preview-ns
+      - refsearch
+      - registry
+      - system-upgrade
       - traefik
       - traq
       - traq-ranking

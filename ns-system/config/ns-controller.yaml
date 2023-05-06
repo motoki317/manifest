@@ -37,6 +37,10 @@ k8s:
 ssh:
   port: 2201
 
+webhook:
+  basePath: /api/webhook
+  port: 8080
+
 db:
   host: mariadb.db.svc.cluster.local
   port: 3306

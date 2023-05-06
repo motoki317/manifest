@@ -19,6 +19,26 @@ spec:
         - __meta_kubernetes_pod_container_name
       targetLabel: container
 
-  namespaceSelector: {}
+  namespaceSelector:
+    matchNames:
+      - default
+      - argo
+      - argocd
+      - cert-manager
+      - db
+      - gitea
+      - grafana-agent
+      - grafana-agent-operator
+      - growi
+      - japari
+      - kubernetes-dashboard
+      - loki
+      - monitor
+      - moto-bot
+      - nextcloud
+      - traefik
+      - traq
+      - traq-ranking
+      - vrc-tweets-fetcher
   selector:
     matchLabels: {}

@@ -107,6 +107,8 @@ commands:
           - ns-system
           - ns-migrate
           - ghcr.io/traptitech/ns-migrate
+        operators:
+          - toki
       - name: traq
         templateRef: deploy
         argsPrefix:

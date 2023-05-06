@@ -20,32 +20,6 @@ spec:
       targetLabel: container
 
   namespaceSelector:
-    matchNames:
-      - default
-      - argo
-      - argocd
-      - cert-manager
-      - csi-s3
-      - db
-      - dev-ops-bot
-      - gitea
-      - grafana-agent
-      - grafana-agent-operator
-      - growi
-      - japari
-      - kubernetes-dashboard
-      - monitor
-      - moto-bot
-      - nextcloud
-      - ns-apps
-      - ns-system
-      - preview-ns
-      - refsearch
-      - registry
-      - system-upgrade
-      - traefik
-      - traq
-      - traq-ranking
-      - vrc-tweets-fetcher
+    any: true
   selector:
     matchLabels: {}

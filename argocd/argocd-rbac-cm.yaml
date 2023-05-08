@@ -6,4 +6,4 @@ metadata:
 data:
   policy.default: "role:readonly"
   policy.csv: |
-    p, role:readonly, logs, get, *, deny
+    p, role:readonly, logs, get, */*, deny

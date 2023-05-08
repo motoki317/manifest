@@ -1,5 +1,12 @@
 resources:
-  - certificate.yaml
-  - ingress-route.yaml
-  - service.yaml
-  - stateful-set.yaml
+- certificate.yaml
+- ingress-route.yaml
+- service.yaml
+- stateful-set.yaml
+
+images:
+- name: nextcloud
+  newName: nextcloud
+  newTag: latest
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

@@ -97,6 +97,14 @@ commands:
           - ghcr.io/traptitech/dev-ops-bot
         operators:
           - toki
+      - name: nextcloud
+        templateRef: deploy
+        argsPrefix:
+          - nextcloud
+          - nextcloud
+          - nextcloud
+        operators:
+          - toki
       - name: ns
         templateRef: deploy-ns
         operators:

@@ -4,6 +4,14 @@ metadata:
   name: argocd-rbac-cm
 
 data:
-  policy.default: "role:readonly"
+  policy.default: "role:public-read"
   policy.csv: |
-    p, role:readonly, logs, get, */*, deny
+    # https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
+    p, role:public-read, applications, get, */*, allow
+    p, role:public-read, certificates, get, *, allow
+    p, role:public-read, clusters, get, *, allow
+    p, role:public-read, repositories, get, *, allow
+    p, role:public-read, projects, get, *, allow
+    p, role:public-read, accounts, get, *, allow
+    p, role:public-read, gpgkeys, get, *, allow
+    # p, role:public-read, logs, get, */*, allow

@@ -10,9 +10,3 @@ patchesStrategicMerge:
   - argocd-server.yaml
   - argocd-ssh-known-hosts-cm.yaml
   - delete-argocd-notifications-secret.yaml # new argocd-notifications-secret defined in manifest-secret repo
-
-patchesJson6902:
-  - target:
-      kind: ConfigMap
-      name: argocd-ssh-known-hosts-cm
-      version:

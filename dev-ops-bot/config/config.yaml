@@ -18,15 +18,14 @@ commands:
           
           set -eux
           
-          if [ "$#" -ne 4 ]; then
-            echo "Usage: $0 DIRECTORY IMAGE NAME TAG" >&2
+          if [ "$#" -ne 3 ]; then
+            echo "Usage: $0 DIRECTORY IMAGE TAG" >&2
             exit 1
           fi
           
           DIRECTORY=$1
           IMAGE=$2
-          NAME=$3
-          TAG=$4
+          TAG=$3
           
           TMP_DIR=$(mktemp -d)
           trap 'rm -r "$TMP_DIR"' EXIT
@@ -35,7 +34,7 @@ commands:
           cd manifest
           
           cd "$DIRECTORY"
-          kustomize edit set image "$IMAGE"="$NAME":"$TAG"
+          kustomize edit set image "$IMAGE"='*':"$TAG"
           cd ..
           
           if git diff --exit-code --quiet; then
@@ -69,12 +68,12 @@ commands:
           cd manifest
           
           cd ns-system
-          kustomize edit set image ns-builder=ghcr.io/traptitech/ns-builder:"$TAG"
-          kustomize edit set image ns-controller=ghcr.io/traptitech/ns-controller:"$TAG"
-          kustomize edit set image ns-dashboard=ghcr.io/traptitech/ns-dashboard:"$TAG"
-          kustomize edit set image ns-gateway=ghcr.io/traptitech/ns-gateway:"$TAG"
-          kustomize edit set image ns-migrate=ghcr.io/traptitech/ns-migrate:"$TAG"
-          kustomize edit set image ns-ssgen=ghcr.io/traptitech/ns-ssgen:"$TAG"
+          kustomize edit set image ns-builder='*':"$TAG"
+          kustomize edit set image ns-controller='*':"$TAG"
+          kustomize edit set image ns-dashboard='*':"$TAG"
+          kustomize edit set image ns-gateway='*':"$TAG"
+          kustomize edit set image ns-migrate='*':"$TAG"
+          kustomize edit set image ns-ssgen='*':"$TAG"
           cd ..
           
           if git diff --exit-code --quiet; then
@@ -94,13 +93,11 @@ commands:
         argsPrefix:
           - dev-ops-bot
           - dev-ops-bot
-          - ghcr.io/traptitech/dev-ops-bot
         operators:
           - toki
       - name: nextcloud
         templateRef: deploy
         argsPrefix:
-          - nextcloud
           - nextcloud
           - nextcloud
         operators:
@@ -114,13 +111,11 @@ commands:
         argsPrefix:
           - ns-system
           - ns-migrate
-          - ghcr.io/traptitech/ns-migrate
         operators:
           - toki
       - name: traefik
         templateRef: deploy
         argsPrefix:
-          - traefik
           - traefik
           - traefik
         operators:
@@ -130,7 +125,6 @@ commands:
         argsPrefix:
           - traq
           - traq
-          - ghcr.io/traptitech/traq
         operators:
           - toki
       - name: traq-ui
@@ -138,7 +132,6 @@ commands:
         argsPrefix:
           - traq
           - traq-ui
-          - ghcr.io/traptitech/traq-ui
         operators:
           - toki
       - name: traq-widget
@@ -146,7 +139,6 @@ commands:
         argsPrefix:
           - traq
           - traq-widget
-          - ghcr.io/traptitech/traq-widget
         operators:
           - toki
       - name: traq-es
@@ -154,6 +146,5 @@ commands:
         argsPrefix:
           - traq
           - traq-es
-          - ghcr.io/traptitech/es-with-sudachi
         operators:
           - toki

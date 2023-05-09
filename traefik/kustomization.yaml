@@ -1,27 +1,29 @@
 resources:
-  - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
-  - auth-admin-middleware.yaml
-  - auth-certificate.yaml
-  - auth-deployment.yaml
-  - auth-ingress-route.yaml
-  - auth-middleware.yaml
-  - auth-service.yaml
-  - cluster-role.yaml
-  - cluster-role-binding.yaml
-  - daemon-set.yaml
-  - dashboard-certificate.yaml
-  - dashboard-ingress-route.yaml
-  - dashboard-service.yaml
-  - metrics-service.yaml
-  - service.yaml
-  - service-account.yaml
+- https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+- auth-admin-middleware.yaml
+- auth-certificate.yaml
+- auth-deployment.yaml
+- auth-ingress-route.yaml
+- auth-middleware.yaml
+- auth-service.yaml
+- cluster-role.yaml
+- cluster-role-binding.yaml
+- daemon-set.yaml
+- dashboard-certificate.yaml
+- dashboard-ingress-route.yaml
+- dashboard-service.yaml
+- metrics-service.yaml
+- service.yaml
+- service-account.yaml
 
 configMapGenerator:
-  - name: auth
-    files:
-      - config/auth.ini
+- files:
+  - config/auth.ini
+  name: auth
 
 images:
-  - name: traefik
-    newName: traefik
-    newTag: 2.10
+- name: traefik
+  newName: traefik
+  newTag: latest
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

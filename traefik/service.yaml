@@ -6,6 +6,8 @@ metadata:
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
+  externalIPs:
+    - 0.0.0.0
   ports:
     - targetPort: web
       name: web

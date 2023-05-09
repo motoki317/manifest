@@ -33,6 +33,7 @@ spec:
             - --entrypoints.metrics.address=:9100/tcp
             - --api.dashboard=true
             - --ping=true
+            - --ping.entrypoint=traefik
             - --metrics.prometheus=true
             - --metrics.prometheus.entrypoint=metrics
           ports:
@@ -48,3 +49,20 @@ spec:
               containerPort: 8080
             - name: metrics
               containerPort: 9100
+          readinessProbe:
+            httpGet:
+              port: dashboard
+              path: /ping
+            periodSeconds: 1
+            failureThreshold: 60
+          startupProbe:
+            httpGet:
+              port: dashboard
+              path: /ping
+            periodSeconds: 1
+            failureThreshold: 60
+          livenessProbe:
+            httpGet:
+              port: dashboard
+              path: /ping
+            periodSeconds: 10

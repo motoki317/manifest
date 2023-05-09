@@ -117,6 +117,14 @@ commands:
           - ghcr.io/traptitech/ns-migrate
         operators:
           - toki
+      - name: traefik
+        templateRef: deploy
+        argsPrefix:
+          - traefik
+          - traefik
+          - traefik
+        operators:
+          - toki
       - name: traq
         templateRef: deploy
         argsPrefix:

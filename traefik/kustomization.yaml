@@ -20,3 +20,8 @@ configMapGenerator:
   - name: auth
     files:
       - config/auth.ini
+
+images:
+  - name: traefik
+    newName: traefik
+    newTag: 2.10

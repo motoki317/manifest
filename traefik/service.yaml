@@ -4,20 +4,24 @@ metadata:
   name: traefik
 
 spec:
-  type: LoadBalancer
+  type: NodePort
   externalTrafficPolicy: Local
   ports:
     - targetPort: web
       name: web
       port: 80
+      nodePort: 80
     - targetPort: web-secure
       name: web-secure
       port: 443
+      nodePort: 443
     - targetPort: gitea-ssh
       name: gitea-ssh
       port: 2200
+      nodePort: 2200
     - targetPort: ns-ssh
       name: ns-ssh
       port: 2201
+      nodePort: 2201
   selector:
     app: traefik

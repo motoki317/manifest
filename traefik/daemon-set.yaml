@@ -44,12 +44,20 @@ spec:
           ports:
             - name: web
               containerPort: 80
+              hostIP: 0.0.0.0
+              hostPort: 80
             - name: web-secure
               containerPort: 443
+              hostIP: 0.0.0.0
+              hostPort: 443
             - name: gitea-ssh
               containerPort: 2200
+              hostIP: 0.0.0.0
+              hostPort: 2200
             - name: ns-ssh
               containerPort: 2201
+              hostIP: 0.0.0.0
+              hostPort: 2201
             - name: dashboard
               containerPort: 8080
             - name: metrics

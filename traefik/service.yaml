@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: traefik
 
+# NOTE: not referenced in kustomization.yaml
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local

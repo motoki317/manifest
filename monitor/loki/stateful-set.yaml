@@ -31,6 +31,7 @@ spec:
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/loki/config/config.yaml
+            - -config.expand-env=true
             - -target=all
           ports:
             - name: http-metrics
@@ -54,6 +55,17 @@ spec:
               port: http-metrics
             initialDelaySeconds: 0
             timeoutSeconds: 1
+          env:
+            - name: S3_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: loki
+                  key: s3-access-key-id
+            - name: S3_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: loki
+                  key: s3-secret-access-key
           volumeMounts:
             - name: tmp
               mountPath: /tmp
@@ -69,8 +81,8 @@ spec:
         - name: storage
           emptyDir: {}
         - name: config
-          secret:
-            secretName: loki-config
+          configMap:
+            name: loki-config
         - name: runtime-config
           configMap:
             name: loki-runtime-config

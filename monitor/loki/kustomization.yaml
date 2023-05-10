@@ -4,6 +4,9 @@ resources:
   - stateful-set.yaml
 
 configMapGenerator:
+  - name: loki-config
+    files:
+      - config/config.yaml
   - name: loki-runtime-config
     files:
       - config/runtime-config.yaml

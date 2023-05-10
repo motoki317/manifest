@@ -17,10 +17,16 @@ spec:
         - name: registry
           image: registry:2
           env:
-            - name: REGISTRY_HTTP_ADDR
-              value: ":80"
-            - name: REGISTRY_STORAGE_DELETE_ENABLED
-              value: "true"
+            - name: REGISTRY_STORAGE_S3_ACCESSKEY
+              valueFrom:
+                secretKeyRef:
+                  name: registry
+                  key: s3-access-key
+            - name: REGISTRY_STORAGE_S3_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: registry
+                  key: s3-secret-key
           ports:
             - containerPort: 80
               name: http
@@ -40,5 +46,5 @@ spec:
             name: cmd
             defaultMode: 0755
         - name: config
-          secret:
-            secretName: registry
+          configMap:
+            name: config

@@ -14,3 +14,6 @@ configMapGenerator:
     files:
       - config/entrypoint.sh
       - config/gc.sh
+  - name: config
+    files:
+      - config/config.yml

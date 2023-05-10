@@ -53,8 +53,8 @@ spec:
             httpGet:
               path: /ready
               port: http-metrics
-            initialDelaySeconds: 0
-            timeoutSeconds: 1
+            periodSeconds: 1
+            failureThreshold: 60
           env:
             - name: S3_ACCESS_KEY_ID
               valueFrom:

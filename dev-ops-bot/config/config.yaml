@@ -118,6 +118,13 @@ commands:
           - dev-ops-bot
         operators:
           - toki
+      - name: gitea
+        templateRef: deploy
+        argsPrefix:
+          - gitea
+          - gitea
+        operators:
+          - toki
       - name: monitor-blackbox-exporter
         templateRef: deploy
         argsPrefix:

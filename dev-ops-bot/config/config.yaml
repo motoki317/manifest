@@ -12,6 +12,27 @@ stamps:
 commands:
   deploy:
     templates:
+      - name: check
+        command: |
+          #!/bin/sh
+          
+          set -eux
+          
+          if [ "$#" -ne 1 ]; then
+            echo "Usage: $0 DIRECTORY" >&2
+            exit 1
+          fi
+          
+          DIRECTORY=$1
+          
+          TMP_DIR=$(mktemp -d)
+          trap 'rm -r "$TMP_DIR"' EXIT
+          cd "$TMP_DIR"
+          git clone git@github.com:motoki317/manifest.git --depth 1
+          cd manifest
+          
+          cd "$DIRECTORY"
+          yq '.images' kustomization.yaml
       - name: deploy
         command: |
           #!/bin/sh
@@ -88,6 +109,8 @@ commands:
           git commit -m "Update ns-system image to $TAG"
           git push
     commands:
+      - name: check
+        templateRef: check
       - name: dev-ops-bot
         templateRef: deploy
         argsPrefix:

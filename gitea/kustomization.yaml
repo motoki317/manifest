@@ -8,6 +8,6 @@ resources:
 images:
 - name: gitea
   newName: gitea/gitea
-  newTag: 1.18.5
+  newTag: 1.19.3
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

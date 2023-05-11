@@ -17,7 +17,7 @@ images:
   newTag: 3.12.4-alpha1
 - name: traq-es
   newName: ghcr.io/traptitech/es-with-sudachi
-  newTag: 7.10.2-2.1.1-SNAPSHOT
+  newTag: 7.17.9-3.0.1
 - name: traq-ui
   newName: ghcr.io/traptitech/traq-ui
   newTag: 3.17.1

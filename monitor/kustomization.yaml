@@ -1,11 +1,45 @@
 resources:
-  - blackbox-exporter
-  - domain-exporter
-  - grafana
-  - loki
-  - node-exporter
-  - prometheus
-  - pushgateway
-  - s3-exporter
-  - ssl-exporter
-  - switchbot-exporter
+- blackbox-exporter
+- domain-exporter
+- grafana
+- loki
+- node-exporter
+- prometheus
+- pushgateway
+- s3-exporter
+- ssl-exporter
+- switchbot-exporter
+
+images:
+- name: blackbox-exporter
+  newName: prom/blackbox-exporter
+  newTag: v0.22.0
+- name: domain-exporter
+  newName: caarlos0/domain_exporter
+  newTag: v1.17.1
+- name: grafana
+  newName: grafana/grafana
+  newTag: 9.4.7
+- name: loki
+  newName: grafana/loki
+  newTag: 2.8.0
+- name: node-exporter
+  newName: quay.io/prometheus/node-exporter
+  newTag: v1.5.0
+- name: prometheus
+  newName: prom/prometheus
+  newTag: v2.43.0
+- name: pushgateway
+  newName: prom/pushgateway
+  newTag: v1.5.1
+- name: s3-exporter
+  newName: ghcr.io/motoki317/s3_exporter
+  newTag: 0.5.1
+- name: ssl-exporter
+  newName: ribbybibby/ssl-exporter
+  newTag: 2.4.2
+- name: switchbot-exporter
+  newName: ghcr.io/motoki317/switchbot_exporter
+  newTag: master
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

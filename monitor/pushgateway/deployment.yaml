@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pushgateway
-          image: "prom/pushgateway:v1.5.1"
+          image: pushgateway
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -23,7 +23,7 @@ spec:
         runAsUser: 65534
       containers:
         - name: prometheus
-          image: prom/prometheus:v2.43.0
+          image: prometheus
           imagePullPolicy: IfNotPresent
           args:
             - --config.file=/etc/config/prometheus.yml

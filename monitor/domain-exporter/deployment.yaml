@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: domain-exporter
-          image: caarlos0/domain_exporter:v1.17.1
+          image: domain-exporter
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: s3-exporter
-          image: ghcr.io/motoki317/s3_exporter:0.5.1
+          image: s3-exporter
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

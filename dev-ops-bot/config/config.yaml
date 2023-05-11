@@ -118,6 +118,76 @@ commands:
           - dev-ops-bot
         operators:
           - toki
+      - name: monitor-blackbox-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - blackbox-exporter
+        operators:
+          - toki
+      - name: monitor-domain-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - domain-exporter
+        operators:
+          - toki
+      - name: monitor-grafana
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - grafana
+        operators:
+          - toki
+      - name: monitor-loki
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - loki
+        operators:
+          - toki
+      - name: monitor-node-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - node-exporter
+        operators:
+          - toki
+      - name: monitor-prometheus
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - prometheus
+        operators:
+          - toki
+      - name: monitor-pushgateway
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - pushgateway
+        operators:
+          - toki
+      - name: monitor-s3-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - s3-exporter
+        operators:
+          - toki
+      - name: monitor-ssl-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - ssl-exporter
+        operators:
+          - toki
+      - name: monitor-switchbot-exporter
+        templateRef: deploy
+        argsPrefix:
+          - monitor
+          - switchbot-exporter
+        operators:
+          - toki
       - name: nextcloud
         templateRef: deploy
         argsPrefix:

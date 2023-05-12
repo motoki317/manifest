@@ -47,8 +47,6 @@ spec:
               hostPort: 443
             - name: gitea-ssh
               containerPort: 2200
-              hostIP: 0.0.0.0
-              hostPort: 2200
             - name: ns-ssh
               containerPort: 2201
             - name: dashboard

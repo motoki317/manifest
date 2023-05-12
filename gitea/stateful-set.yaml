@@ -17,10 +17,6 @@ spec:
       containers:
         - name: gitea
           image: gitea
-          args:
-            - gitea
-            - web
-            - --config /etc/gitea/config/app.ini
           ports:
             - containerPort: 3000
               name: http
@@ -44,16 +40,18 @@ spec:
                 secretKeyRef:
                   name: gitea
                   key: database-password
+            - name: GITEA__server_SSH_PORT
+              value: "2200"
+            - name: GITEA__service__ENABLE_REVERSE_PROXY_AUTHENTICATION
+              value: "true"
+            - name: GITEA__service__REVERSE_PROXY_AUTHENTICATION_USER
+              value: X-Forwarded-User
+            - name: GITEA__service__ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
+              value: "true"
           volumeMounts:
-            - mountPath: /etc/gitea/config/app.ini
-              name: config
-              subPath: app.ini
             - mountPath: /data
               name: data
       volumes:
-        - name: config
-          configMap:
-            name: config
         - name: data
           hostPath:
             path: /srv/gitea/data

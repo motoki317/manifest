@@ -17,6 +17,9 @@ spec:
       containers:
         - name: gitea
           image: gitea
+          args:
+            - gitea
+            - --config /etc/gitea/config/app.ini
           ports:
             - containerPort: 3000
               name: http

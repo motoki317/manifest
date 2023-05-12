@@ -5,6 +5,11 @@ resources:
 - ssh-ingress-route.yaml
 - stateful-set.yaml
 
+configMapGenerator:
+- files:
+  - config/app.ini
+  name: config
+
 images:
 - name: gitea
   newName: gitea/gitea

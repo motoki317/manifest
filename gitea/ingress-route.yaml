@@ -11,6 +11,24 @@ spec:
   routes:
     - kind: Rule
       match: Host(`git.toki317.dev`)
+      middlewares:
+        - name: auth-soft
+          namespace: traefik
+        - name: auth
+          namespace: traefik
+      services:
+        - namespace: gitea
+          kind: Service
+          name: gitea
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+    - kind: Rule
+      match: Host(`git.toki317.dev`) && PathPrefix(`/user/login`)
+      middlewares:
+        - name: auth
+          namespace: traefik
       services:
         - namespace: gitea
           kind: Service

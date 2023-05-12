@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: ghcr.io/traptitech/traefik-forward-auth:2.5.0
+          image: traefik-forward-auth
           args:
             - --config=/auth.ini
           ports:

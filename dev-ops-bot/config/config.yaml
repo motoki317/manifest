@@ -220,6 +220,13 @@ commands:
           - traefik
         operators:
           - toki
+      - name: traefik-forward-auth
+        templateRef: deploy
+        argsPrefix:
+          - traefik
+          - traefik-forward-auth
+        operators:
+          - toki
       - name: traq
         templateRef: deploy
         argsPrefix:

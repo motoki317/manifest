@@ -34,13 +34,14 @@ sudo systemctl enable k3s
    - In case of k3s, do not forget to disable default traefik installation, otherwise traefik pod will not be able to bind to port 80, 443
 2. Install ArgoCD
    - `kubectl create ns argocd`
-   - `kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.7/manifests/install.yaml`
+   - `kubectl apply -n argocd -f {{ latest version install.yaml URL referred to in ./argocd }}`
      - refer to `./argocd/kustomization.yaml` for the current version
-   - `kubectl port-forward svc/argocd-server -n argocd 8080:443`
-3. Access localhost:8080
+   - `kubectl port-forward svc/argocd-server -n argocd 8124:443`
+3. Access localhost:8124
    - Get admin password from ` kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
 4. Add initial `applications` application
    - Add known hosts and connect repository
    - Add application (path: `applications`)
    - Sync applications
 5. Access `cd.toki317.dev` and more
+   - If for some reason accessing fails, port-forward with `kubectl port-forward svc/argocd-server -n argocd 8124:80`

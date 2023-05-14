@@ -17,7 +17,7 @@ spec:
       serviceAccountName: ns-builder
       containers:
         - name: buildpack
-          image: dashaun/builder-arm:tiny
+          image: ghcr.io/motoki317/builder-arm:latest
           imagePullPolicy: Always
           command:
             - sleep

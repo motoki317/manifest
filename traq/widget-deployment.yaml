@@ -13,6 +13,7 @@ spec:
       labels:
         app: traq-widget
     spec:
+      enableServiceLinks: false
       containers:
         - name: traq-frontend
           image: traq-widget

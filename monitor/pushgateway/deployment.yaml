@@ -13,6 +13,7 @@ spec:
       labels:
         app: pushgateway
     spec:
+      enableServiceLinks: false
       containers:
         - name: pushgateway
           image: pushgateway

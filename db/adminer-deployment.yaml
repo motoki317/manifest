@@ -12,6 +12,7 @@ spec:
       labels:
         app: adminer
     spec:
+      enableServiceLinks: false
       containers:
         - name: adminer
           image: adminer:4

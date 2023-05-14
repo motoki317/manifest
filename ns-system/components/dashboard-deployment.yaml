@@ -13,6 +13,7 @@ spec:
       labels:
         app: ns-dashboard
     spec:
+      enableServiceLinks: false
       containers:
         - name: ns-dashboard
           image: ns-dashboard

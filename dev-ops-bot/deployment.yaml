@@ -13,6 +13,7 @@ spec:
       labels:
         app: dev-ops-bot
     spec:
+      enableServiceLinks: false
       containers:
         - name: dev-ops-bot
           image: dev-ops-bot

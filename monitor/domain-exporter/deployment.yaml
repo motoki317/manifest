@@ -13,6 +13,7 @@ spec:
       labels:
         app: domain-exporter
     spec:
+      enableServiceLinks: false
       containers:
         - name: domain-exporter
           image: domain-exporter

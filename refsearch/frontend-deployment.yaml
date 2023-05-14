@@ -13,6 +13,7 @@ spec:
       labels:
         app: frontend
     spec:
+      enableServiceLinks: false
       containers:
         - name: frontend
           image: ghcr.io/salab/refsearch-frontend:master

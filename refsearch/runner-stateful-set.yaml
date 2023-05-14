@@ -14,6 +14,7 @@ spec:
       labels:
         app: runner
     spec:
+      enableServiceLinks: false
       containers:
         - name: runner
           image: ghcr.io/salab/refsearch-runner:master

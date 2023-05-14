@@ -13,6 +13,7 @@ spec:
       labels:
         app: switchbot-exporter
     spec:
+      enableServiceLinks: false
       containers:
         - name: switchbot-exporter
           image: switchbot-exporter

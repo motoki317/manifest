@@ -13,6 +13,7 @@ spec:
       labels:
         app: grafana
     spec:
+      enableServiceLinks: false
       securityContext:
         fsGroup: 472
         runAsGroup: 472

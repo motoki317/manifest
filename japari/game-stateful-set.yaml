@@ -14,6 +14,7 @@ spec:
       labels:
         app: game
     spec:
+      enableServiceLinks: false
       imagePullSecrets:
         - name: japari-image-pull-secret
       containers:

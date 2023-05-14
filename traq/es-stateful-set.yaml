@@ -14,6 +14,7 @@ spec:
       labels:
         app: traq-es
     spec:
+      enableServiceLinks: false
       containers:
         - name: traq-es
           image: traq-es

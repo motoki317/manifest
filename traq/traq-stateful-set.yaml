@@ -14,6 +14,7 @@ spec:
       labels:
         app: traq
     spec:
+      enableServiceLinks: false
       containers:
         - name: traq
           image: traq
@@ -21,8 +22,6 @@ spec:
             - containerPort: 3000
               name: http
           env:
-            - name: TRAQ_PORT
-              value: "3000"
             - name: TRAQ_MARIADB_PASSWORD
               valueFrom:
                 secretKeyRef:

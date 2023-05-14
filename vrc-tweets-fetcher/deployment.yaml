@@ -13,6 +13,7 @@ spec:
       labels:
         app: vrc-tweets-fetcher
     spec:
+      enableServiceLinks: false
       containers:
         - name: vrc-tweets-fetcher
           image: ghcr.io/motoki317/vrc-world-tweets-fetcher:master

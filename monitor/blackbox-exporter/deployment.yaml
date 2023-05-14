@@ -13,6 +13,7 @@ spec:
       labels:
         app: blackbox-exporter
     spec:
+      enableServiceLinks: false
       containers:
         - name: blackbox-exporter
           image: blackbox-exporter

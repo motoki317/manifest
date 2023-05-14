@@ -14,6 +14,7 @@ spec:
       labels:
         app: moto-bot
     spec:
+      enableServiceLinks: false
       containers:
         - name: moto-bot
           image: ghcr.io/motoki317/moto-bot:master

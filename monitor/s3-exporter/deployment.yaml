@@ -13,6 +13,7 @@ spec:
       labels:
         app: s3-exporter
     spec:
+      enableServiceLinks: false
       containers:
         - name: s3-exporter
           image: s3-exporter

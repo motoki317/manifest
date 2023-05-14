@@ -13,6 +13,7 @@ spec:
       labels:
         app: ns-builder
     spec:
+      enableServiceLinks: false
       serviceAccountName: ns-builder
       containers:
         - name: buildpack

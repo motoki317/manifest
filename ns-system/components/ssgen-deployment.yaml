@@ -13,6 +13,7 @@ spec:
       labels:
         app: ns-ssgen
     spec:
+      enableServiceLinks: false
       containers:
         - name: ns-ssgen
           image: ns-ssgen

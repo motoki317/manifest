@@ -13,6 +13,7 @@ spec:
       labels:
         app: ssl-exporter
     spec:
+      enableServiceLinks: false
       containers:
         - name: ssl-exporter
           image: ssl-exporter

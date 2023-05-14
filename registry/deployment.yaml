@@ -13,6 +13,7 @@ spec:
       labels:
         app: registry
     spec:
+      enableServiceLinks: false
       containers:
         - name: registry
           image: registry:2

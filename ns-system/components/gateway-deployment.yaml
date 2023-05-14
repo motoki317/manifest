@@ -13,6 +13,7 @@ spec:
       labels:
         app: ns-gateway
     spec:
+      enableServiceLinks: false
       containers:
         - name: ns-gateway
           image: ns-gateway

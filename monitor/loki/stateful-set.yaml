@@ -19,6 +19,7 @@ spec:
       labels:
         app: loki
     spec:
+      enableServiceLinks: false
       securityContext:
         fsGroup: 10001
         runAsGroup: 10001

@@ -2,7 +2,7 @@ resources:
 - certificate.yaml
 - ingress-route.yaml
 - service.yaml
-- ssh-ingress-route.yaml
+- ssh-service.yaml
 - stateful-set.yaml
 
 images:

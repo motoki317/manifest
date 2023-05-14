@@ -13,11 +13,5 @@ spec:
     - targetPort: web-secure
       name: web-secure
       port: 443
-    - targetPort: gitea-ssh
-      name: gitea-ssh
-      port: 2200
-    - targetPort: ns-ssh
-      name: ns-ssh
-      port: 2201
   selector:
     app: traefik

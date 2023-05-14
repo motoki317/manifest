@@ -4,10 +4,10 @@ metadata:
   name: gitea
 
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
-    - targetPort: http
-      name: http
-      port: 80
+    - targetPort: ssh
+      name: ssh
+      port: 2200
   selector:
     app: gitea

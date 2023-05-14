@@ -32,8 +32,6 @@ spec:
             - --entrypoints.web.address=:80/tcp
             - --entrypoints.websecure.address=:443/tcp
             - --entrypoints.websecure.http.tls=true
-            - --entrypoints.gitea-ssh.address=:2200/tcp
-            - --entrypoints.ns-ssh.address=:2201/tcp
             - --entrypoints.traefik.address=:8080/tcp
             - --entrypoints.metrics.address=:9100/tcp
             - --api.dashboard=true
@@ -46,10 +44,6 @@ spec:
               containerPort: 80
             - name: web-secure
               containerPort: 443
-            - name: gitea-ssh
-              containerPort: 2200
-            - name: ns-ssh
-              containerPort: 2201
             - name: dashboard
               containerPort: 8080
             - name: metrics

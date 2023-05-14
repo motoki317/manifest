@@ -8,9 +8,6 @@ spec:
   selector:
     app: ns-controller
   ports:
-    - port: 2201
-      targetPort: ssh
-      name: ssh
     - port: 8080
       targetPort: webhook
       name: webhook

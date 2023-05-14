@@ -9,6 +9,7 @@ resources:
 - components/controller-cluster-role.yaml
 - components/controller-service-account.yaml
 - components/controller-service.yaml
+- components/controller-ssh-service.yaml
 - components/controller-stateful-set.yaml
 - components/dashboard-deployment.yaml
 - components/dashboard-service.yaml
@@ -17,7 +18,6 @@ resources:
 - components/ingress-route.yaml
 - components/ssgen-deployment.yaml
 - components/ssgen-service.yaml
-- components/ssh-ingress-route.yaml
 - app-namespace.yaml
 - mariadb-migration-workflow-template.yaml
 

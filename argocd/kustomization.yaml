@@ -7,8 +7,8 @@ resources:
 
 patchesStrategicMerge:
   - argocd-cm.yaml
+  - argocd-cmd-params-cm.yaml
   - argocd-notifications-cm.yaml
   - argocd-rbac-cm.yaml
-  - argocd-server.yaml
   - argocd-ssh-known-hosts-cm.yaml
   - delete-argocd-notifications-secret.yaml # new argocd-notifications-secret defined in manifest-secret repo

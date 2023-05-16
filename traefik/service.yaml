@@ -9,9 +9,15 @@ spec:
   ports:
     - targetPort: web
       name: web
+      protocol: TCP
       port: 80
     - targetPort: web-secure
       name: web-secure
+      protocol: TCP
+      port: 443
+    - targetPort: web-secure-udp
+      name: web-secure-udp
+      protocol: UDP
       port: 443
   selector:
     app: traefik

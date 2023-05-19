@@ -67,22 +67,32 @@ data:
         method: POST
         body: |
           ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
       ns-preview:
         method: POST
         body: |
           ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
   template.app-sync-failed: |
     webhook:
       traq:
         method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
-           {{.app.status.operationState.message}}
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
       ns-preview:
         method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
-          {{.app.status.operationState.message}}
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
   template.app-sync-running: |
     webhook:
       traq:
@@ -99,10 +109,16 @@ data:
         method: POST
         body: |
           ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
       ns-preview:
         method: POST
         body: |
           ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
+          {{range $c := .app.status.conditions}}
+          **{{$c.type}}**: {{$c.message}}
+          {{end}}
 
   # default triggers from: https://github.com/argoproj/argo-cd/blob/master/notifications_catalog/install.yaml
   trigger.on-created: |

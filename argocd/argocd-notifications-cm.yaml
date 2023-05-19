@@ -77,10 +77,12 @@ data:
         method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
+           {{.app.status.operationState.message}}
       ns-preview:
         method: POST
         body: |
           ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
+          {{.app.status.operationState.message}}
   template.app-sync-running: |
     webhook:
       traq:

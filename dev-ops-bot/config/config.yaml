@@ -206,6 +206,8 @@ commands:
         templateRef: deploy-ns
         operators:
           - toki
+          - pikachu
+          - d_etteiu8383
       - name: ns-migrate
         templateRef: deploy
         argsPrefix:
@@ -213,6 +215,8 @@ commands:
           - ns-migrate
         operators:
           - toki
+          - pikachu
+          - d_etteiu8383
       - name: traefik
         templateRef: deploy
         argsPrefix:

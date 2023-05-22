@@ -41,6 +41,14 @@ spec:
           podSelector:
             matchLabels:
               app: mongo
+    # for refactorhub
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: db
+          podSelector:
+            matchLabels:
+              app: postgres
       ports:
         - protocol: TCP
           port: mongo

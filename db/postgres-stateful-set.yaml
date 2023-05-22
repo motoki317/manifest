@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+
+spec:
+  replicas: 1
+  serviceName: postgres
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: postgres
+          image: postgres:12
+          env:
+            - name: POSTGRES_DB
+              value: refactorhub
+            - name: POSTGRES_USER
+              value: rhuser
+            - name: POSTGRES_PASSWORD
+              value: rhpass
+          ports:
+            - name: postgres
+              containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+          resources:
+            limits:
+              memory: 512Mi
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/postgres/data
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3

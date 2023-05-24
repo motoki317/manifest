@@ -4,7 +4,7 @@ metadata:
   name: ns-controller
 
 spec:
-  replicas: 0
+  replicas: 1
   serviceName: ns-controller
   selector:
     matchLabels:

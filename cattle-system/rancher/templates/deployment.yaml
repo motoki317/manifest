@@ -54,7 +54,7 @@ spec:
           effect: "NoSchedule"
           operator: "Equal"
       containers:
-      - image: rancher/rancher:v2.7.5-rc2
+      - image: rancher/rancher:v2.7.3
         imagePullPolicy: IfNotPresent
         name: rancher
         ports:

@@ -13,6 +13,7 @@ spec:
         directories:
           - path: argo
           - path: argocd
+          - path: cattle-system
           - path: cert-manager
           - path: db
           - path: dev-ops-bot

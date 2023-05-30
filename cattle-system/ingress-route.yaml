@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: rancher
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: rancher-tls
+  routes:
+    - kind: Rule
+      match: Host(`rancher.toki317.dev`)
+      middlewares:
+        - name: auth-admin
+          namespace: traefik
+        - name: auth
+          namespace: traefik
+      services:
+        - kind: Service
+          namespace: cattle-system
+          name: rancher
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

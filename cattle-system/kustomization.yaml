@@ -1,0 +1,3 @@
+resources:
+  - certificate.yaml
+  - ingress-route.yaml

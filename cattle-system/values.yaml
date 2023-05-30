@@ -1,7 +1,5 @@
 replicas: 1
 
-addLocal: false
-
 tls: external
 ingress:
   enabled: false

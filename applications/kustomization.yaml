@@ -5,6 +5,5 @@ resources:
   - csi-s3.yaml
   - grafana-agent-operator.yaml
   - ns-apps.yaml
-  - portainer.yaml
   - preview-app-project.yaml
   - preview-ns-application-set.yaml

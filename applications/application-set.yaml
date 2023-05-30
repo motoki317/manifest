@@ -27,7 +27,6 @@ spec:
           - path: nextcloud
           # - path: ns-apps # no prune for resource monitoring
           - path: ns-system
-          - path: portainer
           - path: preview-ns
           - path: refsearch
           - path: registry

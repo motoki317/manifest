@@ -19,7 +19,7 @@ spec:
       services:
         - kind: Service
           namespace: portainer
-          name: release-name-portainer
+          name: portainer
           port: http
           scheme: http
           strategy: RoundRobin

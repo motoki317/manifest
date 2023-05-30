@@ -14,6 +14,7 @@ spec:
       chart: portainer
       targetRevision: "1.0.43"
       helm:
+        releaseName: portainer
         valueFiles:
           - $values/portainer/values.yaml
     - repoURL: https://github.com/motoki317/manifest

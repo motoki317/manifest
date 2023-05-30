@@ -1,3 +1,5 @@
+rancherImageTag: v2.7.5-rc2
+
 replicas: 1
 
 tls: external

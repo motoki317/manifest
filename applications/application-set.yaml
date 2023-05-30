@@ -21,7 +21,6 @@ spec:
           - path: grafana-agent
           - path: growi
           - path: japari
-          - path: kubernetes-dashboard
           - path: monitor
           - path: moto-bot
           - path: nextcloud

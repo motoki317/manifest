@@ -1,7 +1,6 @@
 resources:
   - app-project.yaml
   - application-set.yaml
-  - cattle-system.yaml
   - csi-s3.yaml
   - grafana-agent-operator.yaml
   - ns-apps.yaml

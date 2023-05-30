@@ -1,0 +1,23 @@
+---
+# Source: rancher/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: rancher
+  labels:
+    app: rancher
+    chart: rancher-2.7.3
+    heritage: Helm
+    release: rancher
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  - port: 443
+    targetPort: 444
+    protocol: TCP
+    name: https-internal
+  selector:
+    app: rancher

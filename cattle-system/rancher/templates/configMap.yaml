@@ -1,0 +1,13 @@
+---
+# Source: rancher/templates/configMap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rancher-config
+  labels: 
+    app: rancher
+    chart: rancher-2.7.3
+    heritage: Helm
+    release: rancher
+data:
+  priorityClassName:  rancher-critical

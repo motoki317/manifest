@@ -1,0 +1,54 @@
+---
+# Source: rancher/templates/post-delete-hook-job.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rancher-post-delete
+  namespace: default
+  labels: 
+    app: rancher
+    chart: rancher-2.7.3
+    heritage: Helm
+    release: rancher
+  annotations:
+    "helm.sh/hook": post-delete
+    "helm.sh/hook-weight": "3"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 3
+  template:
+    metadata:
+      name: rancher-post-delete
+      labels: 
+        app: rancher
+        chart: rancher-2.7.3
+        heritage: Helm
+        release: rancher
+    spec:
+      serviceAccountName: rancher-post-delete
+      restartPolicy: OnFailure
+      containers:
+        - name: rancher-post-delete
+          image: "rancher/shell:v0.1.19"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+          command:
+            - /scripts/post-delete-hook.sh
+          volumeMounts:
+            - mountPath: /scripts
+              name: config-volume
+          env:
+            - name: NAMESPACES
+              value: "cattle-fleet-system cattle-system rancher-operator-system"
+            - name: RANCHER_NAMESPACE
+              value: default
+            - name: TIMEOUT
+              value: "120"
+            - name: IGNORETIMEOUTERROR
+              value: "false"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: rancher-post-delete
+            defaultMode: 0777

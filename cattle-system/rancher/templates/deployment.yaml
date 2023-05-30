@@ -71,6 +71,11 @@ spec:
           value: default
         - name: CATTLE_PEER_SERVICE
           value: rancher
+        - name: CATTLE_BOOTSTRAP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: "bootstrap-secret"
+              key: "bootstrapPassword"
         livenessProbe:
           httpGet:
             path: /healthz

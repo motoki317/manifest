@@ -12,6 +12,7 @@ resources:
   - rancher/templates/post-delete-hook-psp.yaml
   - rancher/templates/post-delete-hook-service-account.yaml
   - rancher/templates/priorityClass.yaml
+  - rancher/templates/secret.yaml
   - rancher/templates/service.yaml
   - rancher/templates/serviceAccount.yaml
   - rancher/templates/validate-psp-install.yaml

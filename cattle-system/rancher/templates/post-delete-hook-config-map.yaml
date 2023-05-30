@@ -4,7 +4,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: rancher-post-delete
-  namespace: default
+  namespace: cattle-system
   labels: 
     app: rancher
     chart: rancher-2.7.3

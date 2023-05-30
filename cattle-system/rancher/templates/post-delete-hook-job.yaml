@@ -4,7 +4,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: rancher-post-delete
-  namespace: default
+  namespace: cattle-system
   labels: 
     app: rancher
     chart: rancher-2.7.3
@@ -42,7 +42,7 @@ spec:
             - name: NAMESPACES
               value: "cattle-fleet-system cattle-system rancher-operator-system"
             - name: RANCHER_NAMESPACE
-              value: default
+              value: cattle-system
             - name: TIMEOUT
               value: "120"
             - name: IGNORETIMEOUTERROR

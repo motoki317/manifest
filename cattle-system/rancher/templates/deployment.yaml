@@ -68,7 +68,7 @@ spec:
         - "--add-local=true"
         env:
         - name: CATTLE_NAMESPACE
-          value: default
+          value: cattle-system
         - name: CATTLE_PEER_SERVICE
           value: rancher
         - name: CATTLE_BOOTSTRAP_PASSWORD

@@ -12,7 +12,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: rancher
-  namespace: default
+  namespace: cattle-system
 roleRef:
   kind: ClusterRole
   name: cluster-admin

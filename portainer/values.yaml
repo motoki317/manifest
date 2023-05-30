@@ -1,0 +1,11 @@
+service:
+  type: ClusterIP
+
+tls:
+  force: false
+
+ingress:
+  enabled: false
+
+persistence:
+  enabled: false

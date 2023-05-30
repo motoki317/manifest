@@ -1,0 +1,26 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: portainer
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: portainer-tls
+  routes:
+    - kind: Rule
+      match: Host(`portainer.toki317.dev`)
+      middlewares:
+        - name: auth-admin
+          namespace: traefik
+        - name: auth
+          namespace: traefik
+      services:
+        - kind: Service
+          namespace: portainer
+          name: release-name-portainer
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

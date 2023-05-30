@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: portainer-helm
+  namespace: argocd
+
+spec:
+  destination:
+    namespace: portainer
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - repoURL: https://portainer.github.io/k8s/
+      chart: portainer
+      targetRevision: "1.0.43"
+      helm:
+        valueFiles:
+          - $values/portainer/values.yaml
+    - repoURL: https://github.com/motoki317/manifest
+      targetRevision: master
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

@@ -1,5 +1,6 @@
 resources:
 - deployment.yaml
+- error-test.yaml
 
 images:
 - name: dev-ops-bot

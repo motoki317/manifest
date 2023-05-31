@@ -18,5 +18,5 @@ spec:
       containers:
         - name: demox
           image: busybox:1.28.2
-          command: ['sh', '-c', 'echo d; sleep 1; exit 1']
+          command: ['sh', '-c', 'echo e; sleep 1; exit 1']
       terminationGracePeriodSeconds: 1

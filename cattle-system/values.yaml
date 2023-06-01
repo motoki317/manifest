@@ -1,5 +1,0 @@
-replicas: 1
-
-tls: external
-ingress:
-  enabled: false

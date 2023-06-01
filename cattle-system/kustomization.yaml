@@ -4,7 +4,7 @@
 resources:
   - rancher/templates/clusterRoleBinding.yaml
   - rancher/templates/configMap.yaml
-  # - rancher/templates/deployment.yaml
+  - rancher/templates/deployment.yaml
   - rancher/templates/post-delete-hook-cluster-role-binding.yaml
   - rancher/templates/post-delete-hook-cluster-role.yaml
   - rancher/templates/post-delete-hook-config-map.yaml

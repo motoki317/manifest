@@ -33,17 +33,16 @@ sudo systemctl enable k3s
 Secret is encrypted with [sops](https://github.com/mozilla/sops#encrypting-using-age) using [age](https://github.com/FiloSottile/age).
 This encrypted secret is then decrypted by ArgoCD by [ksops kustomize plugin](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-).
 
-### Set up
+### Setup
 
 - Install age: https://github.com/FiloSottile/age#installation
 - Install sops: https://github.com/mozilla/sops#1download
 
 ### Encrypting (no secret key required)
 
-1. Install age and sops.
-2. `./encrypt.sh filename`
+1. `./encrypt.sh filename`
    - File will be encrypted in-place.
-3. Refer to encrypted file from `ksops.yaml` generator.
+2. Refer to encrypted file from `ksops.yaml` generator.
 
 ```yaml
 apiVersion: viaduct.ai/v1
@@ -60,7 +59,7 @@ files:
   - ./secrets/secret.yaml
 ```
 
-4. Add the following to `kustomization.yaml`.
+3Add the following to `kustomization.yaml`.
 
 ```yaml
 generators:
@@ -69,8 +68,7 @@ generators:
 
 ### Decrypting
 
-1. Install age and sops.
-2. `./decrypt.sh filename`
+`./decrypt.sh filename`
 
 ## bootstrap
 

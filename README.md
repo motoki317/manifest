@@ -28,6 +28,50 @@ curl -sfL https://get.k3s.io | sh -
 sudo systemctl enable k3s
 ```
 
+## Secret management
+
+Secret is encrypted with [sops](https://github.com/mozilla/sops#encrypting-using-age) using [age](https://github.com/FiloSottile/age).
+This encrypted secret is then decrypted by ArgoCD by [ksops kustomize plugin](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-).
+
+### Set up
+
+- Install age: https://github.com/FiloSottile/age#installation
+- Install sops: https://github.com/mozilla/sops#1download
+
+### Encrypting (no secret key required)
+
+1. Install age and sops.
+2. `./encrypt.sh filename`
+   - File will be encrypted in-place.
+3. Refer to encrypted file from `ksops.yaml` generator.
+
+```yaml
+apiVersion: viaduct.ai/v1
+kind: ksops
+metadata:
+  name: ksops
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: ksops
+
+# Refer to encrypted files here
+files:
+  - ./secrets/secret.yaml
+```
+
+4. Add the following to `kustomization.yaml`.
+
+```yaml
+generators:
+  - ksops.yaml
+```
+
+### Decrypting
+
+1. Install age and sops.
+2. `./decrypt.sh filename`
+
 ## bootstrap
 
 1. Install k3s (or any other k8s installation)
@@ -36,12 +80,16 @@ sudo systemctl enable k3s
    - `kubectl create ns argocd`
    - `kubectl apply -n argocd -f {{ latest version install.yaml URL referred to in ./argocd }}`
      - refer to `./argocd/kustomization.yaml` for the current version
+3. Set up secret management
+   - `age-keygen -o key.txt`
+   - `kubectl -n argocd create secret generic age-key --from-file=./key.txt`
+   - `rm key.txt`
+4. Access ArgoCD via port forwarding
    - `kubectl port-forward svc/argocd-server -n argocd 8124:443`
-3. Access localhost:8124
    - Get admin password from ` kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
-4. Add initial `applications` application
+5. Add initial `applications` application
    - Add known hosts and connect repository
    - Add application (path: `applications`)
    - Sync applications
-5. Access `cd.toki317.dev` and more
+6. Access `cd.toki317.dev` and more
    - If for some reason accessing fails, port-forward with `kubectl port-forward svc/argocd-server -n argocd 8124:80`

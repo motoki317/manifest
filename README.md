@@ -80,6 +80,7 @@ generators:
      - refer to `./argocd/kustomization.yaml` for the current version
 3. Set up secret management
    - `age-keygen -o key.txt`
+   - Set public key to `.sops.yaml`
    - `kubectl -n argocd create secret generic age-key --from-file=./key.txt`
    - `rm key.txt`
 4. Access ArgoCD via port forwarding

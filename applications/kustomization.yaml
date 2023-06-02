@@ -2,7 +2,7 @@ resources:
   - app-project.yaml
   - application-set.yaml
   - csi-s3.yaml
-  - grafana-agent-operator.yaml
+  - grafana-agent.yaml
   - ns-apps.yaml
   - preview-app-project.yaml
   - preview-ns-application-set.yaml

@@ -17,7 +17,6 @@ spec:
           - path: db
           - path: dev-ops-bot
           - path: gitea
-          - path: grafana-agent
           - path: growi
           - path: japari
           - path: monitor

@@ -9,3 +9,6 @@ resources:
   - mongo-stateful-set.yaml
   - postgres-service.yaml
   - postgres-stateful-set.yaml
+
+generators:
+  - ksops.yaml

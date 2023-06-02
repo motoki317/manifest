@@ -7,3 +7,6 @@ resources:
   - ingress-route.yaml
   - runner-service.yaml
   - runner-stateful-set.yaml
+
+generators:
+  - ksops.yaml

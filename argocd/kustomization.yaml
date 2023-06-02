@@ -14,3 +14,6 @@ patchesStrategicMerge:
   - argocd-repo-server.yaml
   - argocd-ssh-known-hosts-cm.yaml
   - delete-argocd-notifications-secret.yaml # new argocd-notifications-secret defined in manifest-secret repo
+
+generators:
+  - ksops.yaml

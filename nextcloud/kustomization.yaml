@@ -8,5 +8,9 @@ images:
 - name: nextcloud
   newName: nextcloud
   newTag: 26.0.1
+
+generators:
+- ksops.yaml
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

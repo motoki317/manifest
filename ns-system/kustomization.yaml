@@ -52,6 +52,9 @@ images:
   newName: ghcr.io/traptitech/ns-ssgen
   newTag: 0.4.10
 
+generators:
+- ksops.yaml
+
 configurations:
 - kustomize-config.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1

@@ -10,3 +10,6 @@ configMapGenerator:
   - name: front-config
     files:
       - config/Caddyfile
+
+generators:
+  - ksops.yaml

@@ -44,4 +44,4 @@ spec:
               subPath: key.txt
           env:
             - name: SOPS_AGE_KEY_FILE
-              value: /age-keys/key.txt
+              value: /age-key/key.txt

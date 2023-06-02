@@ -35,5 +35,9 @@ configMapGenerator:
 - files:
   - config/es_jvm.options
   name: es-config
+
+generators:
+- ksops.yaml
+
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

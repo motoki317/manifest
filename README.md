@@ -59,7 +59,7 @@ files:
   - ./secrets/secret.yaml
 ```
 
-3Add the following to `kustomization.yaml`.
+3. Add the following to `kustomization.yaml`.
 
 ```yaml
 generators:

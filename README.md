@@ -70,6 +70,12 @@ generators:
 
 `./decrypt.sh filename`
 
+### Adding / removing keys
+
+1. Update `.sops.yaml`
+2. Run `./updatekeys.sh filename`
+   - Or `find . -type f -path '*/secrets/*' | xargs -n 1 ./updatekeys.sh` to update all
+
 ## bootstrap
 
 1. Install k3s (or any other k8s installation)

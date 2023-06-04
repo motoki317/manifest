@@ -22,10 +22,10 @@ spec:
     - kind: Rule
       match: Host(`monitor.toki317.dev`) && PathPrefix(`/login`)
       middlewares:
-        - name: auth-admin
-          namespace: traefik
-        - name: auth
-          namespace: traefik
+        - name: auth-toki317-dev-admin
+          namespace: auth
+        - name: auth-toki317-dev
+          namespace: auth
       services:
         - namespace: monitor
           kind: Service

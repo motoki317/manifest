@@ -12,10 +12,10 @@ spec:
     - kind: Rule
       match: Host(`git.toki317.dev`)
       middlewares:
-        - name: auth-soft
-          namespace: traefik
-        - name: auth
-          namespace: traefik
+        - name: auth-toki317-dev-soft
+          namespace: auth
+        - name: auth-toki317-dev
+          namespace: auth
       services:
         - namespace: gitea
           kind: Service
@@ -27,8 +27,8 @@ spec:
     - kind: Rule
       match: Host(`git.toki317.dev`) && PathPrefix(`/user/login`)
       middlewares:
-        - name: auth
-          namespace: traefik
+        - name: auth-toki317-dev
+          namespace: auth
       services:
         - namespace: gitea
           kind: Service

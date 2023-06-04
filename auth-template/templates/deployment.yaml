@@ -15,7 +15,7 @@ spec:
     spec:
       enableServiceLinks: false
       containers:
-        - name: auth
+        - name: traefik-forward-auth
           image: {{ .Values.image.name }}:{{ .Values.image.tag }}
           args:
             - --config=/auth.ini

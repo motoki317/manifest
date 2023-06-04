@@ -7,10 +7,10 @@ spec:
   entryPoints:
     - websecure
   tls:
-    secretName: auth-tls
+    secretName: {{ .Release.Name }}-tls
   routes:
     - kind: Rule
-      match: Host(`auth.toki317.dev`)
+      match: Host(`auth.{{ .Values.domain }}`)
       services:
         - namespace: traefik
           kind: Service

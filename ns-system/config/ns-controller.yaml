@@ -10,11 +10,11 @@ k8s:
       auth:
         available: true
         soft:
-          - nsapp-auth-soft
-          - nsapp-auth
+          - auth-toki317-dev-soft
+          - auth-toki317-dev
         hard:
-          - nsapp-auth-hard
-          - nsapp-auth
+          - auth-toki317-dev-hard
+          - auth-toki317-dev
   ports:
     - startPort: 39000
       endPort: 39999

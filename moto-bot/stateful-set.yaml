@@ -5,6 +5,7 @@ metadata:
 
 spec:
   serviceName: moto-bot
+  podManagementPolicy: Parallel
   replicas: 1
   selector:
     matchLabels:

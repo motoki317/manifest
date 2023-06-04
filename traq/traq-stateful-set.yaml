@@ -5,6 +5,7 @@ metadata:
 
 spec:
   serviceName: traq
+  podManagementPolicy: Parallel
   replicas: 1
   selector:
     matchLabels:

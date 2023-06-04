@@ -5,6 +5,7 @@ metadata:
 
 spec:
   serviceName: mariadb
+  podManagementPolicy: Parallel
   replicas: 1
   selector:
     matchLabels:

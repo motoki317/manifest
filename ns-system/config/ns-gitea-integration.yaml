@@ -1,0 +1,11 @@
+gitea:
+  url: https://git.toki317.dev
+  # token: <env secret>
+  intervalSeconds: 600
+
+db:
+  host: mariadb.db.svc.cluster.local
+  port: 3306
+  username: root
+  # password: <env secret>
+  database: neoshowcase

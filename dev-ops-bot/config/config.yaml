@@ -93,6 +93,7 @@ commands:
           kustomize edit set image ns-controller='*':"$TAG"
           kustomize edit set image ns-dashboard='*':"$TAG"
           kustomize edit set image ns-gateway='*':"$TAG"
+          kustomize edit set image ns-gitea-integration='*':"$TAG"
           kustomize edit set image ns-migrate='*':"$TAG"
           kustomize edit set image ns-ssgen='*':"$TAG"
           cd ..
@@ -222,13 +223,6 @@ commands:
         argsPrefix:
           - traefik
           - traefik
-        operators:
-          - toki
-      - name: traefik-forward-auth
-        templateRef: deploy
-        argsPrefix:
-          - traefik
-          - traefik-forward-auth
         operators:
           - toki
       - name: traq

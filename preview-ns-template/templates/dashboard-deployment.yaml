@@ -1,24 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ns-dashboard
+  name: ns-dashboard-{{ .Values.number }}
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      # referenced in kustomize replacements
-      app: ns-dashboard
+      app: ns-dashboard-{{ .Values.number }}
   template:
     metadata:
       labels:
-        # referenced in kustomize replacements
-        app: ns-dashboard
+        app: ns-dashboard-{{ .Values.number }}
     spec:
       enableServiceLinks: false
       containers:
         - name: ns-dashboard
-          image: ghcr.io/traptitech/ns-dashboard
+          image: ghcr.io/traptitech/ns-dashboard:preview-{{ .Values.number }}-{{ .Values.headSha }}
           imagePullPolicy: Always
           ports:
             - containerPort: 80

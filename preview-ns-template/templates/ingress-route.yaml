@@ -1,7 +1,7 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ns-preview
+  name: ns-preview-{{ .Values.number }}
 
 spec:
   entryPoints:
@@ -10,29 +10,27 @@ spec:
     secretName: preview-ns-tls
   routes:
     - kind: Rule
-      # referenced in kustomize replacements
-      match: Host(`ns-preview.toki317.dev`)
+      match: Host(`{{ .Values.number }}.ns-preview.toki317.dev`)
       middlewares:
         - name: auth
           namespace: traefik
       services:
         - namespace: preview-ns
           kind: Service
-          # referenced in kustomize nameReference
-          name: ns-dashboard
+          name: ns-dashboard-{{ .Values.number }}
           port: http
           scheme: http
           strategy: RoundRobin
           weight: 1
     - kind: Rule
-      # referenced in kustomize replacements
-      match: Host(`ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
+      match: Host(`{{ .Values.number }}.ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
       middlewares:
         - name: auth
           namespace: traefik
       services:
         - namespace: ns-system
           kind: Service
+          # point to prod
           name: ns-gateway
           port: http
           scheme: h2c

@@ -32,16 +32,14 @@ spec:
     spec:
       source:
         repoURL: https://github.com/motoki317/manifest
-        targetRevision: master
         path: preview-ns-template
-        kustomize:
-          nameSuffix: -{{number}}
-          commonAnnotations:
-            app/head-sha: "{{head_sha}}"
-            app/param-host: Host(`{{number}}.ns-preview.toki317.dev`)
-            app/param-host-backend: Host(`{{number}}.ns-preview.toki317.dev`) && PathPrefix(`/neoshowcase.protobuf.APIService`)
-          images:
-            - ghcr.io/traptitech/ns-dashboard:preview-{{number}}-{{head_sha}}
+        targetRevision: master
+        helm:
+          parameters:
+            - name: number
+              value: "{{number}}"
+            - name: headSha
+              value: "{{head_sha}}"
       project: preview
       destination:
         server: https://kubernetes.default.svc

@@ -1,9 +1,9 @@
 images:
-  attacher: registry.k8s.io/sig-storage/csi-attacher:v4.2.0
-  registrar: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.6.3
-  provisioner: registry.k8s.io/sig-storage/csi-provisioner:v3.4.1
+  attacher: registry.k8s.io/sig-storage/csi-attacher:v4.3.0
+  registrar: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
+  provisioner: registry.k8s.io/sig-storage/csi-provisioner:v3.5.0
   # Main image
-  csi: ghcr.io/motoki317/k8s-csi-s3:0.35.4-p1
+  csi: ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1
 
 storageClass:
   # Specifies whether the storage class should be created

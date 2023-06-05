@@ -48,7 +48,7 @@ spec:
             - name: GITEA__service__ENABLE_REVERSE_PROXY_AUTHENTICATION
               value: "true"
             - name: GITEA__security__REVERSE_PROXY_AUTHENTICATION_USER
-              value: X-Showcase-User
+              value: X-Forwarded-User
             - name: GITEA__service__ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
               value: "true"
           volumeMounts:

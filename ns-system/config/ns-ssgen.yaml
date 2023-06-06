@@ -1,10 +1,14 @@
 artifactsRoot: /artifacts
+healthPort: 8081
 
-builtIn:
-  port: 80
+server:
+  type: caddy
+  caddy:
+    adminAPI: http://localhost:2019
+    docsRoot: /artifacts
 
-ns:
-  url: http://ns.ns-system.svc.cluster.local:10000
+controller:
+  url: http://ns-controller.ns-system.svc.cluster.local:10000
 
 db:
   host: mariadb.db.svc.cluster.local

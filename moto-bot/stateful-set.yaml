@@ -20,6 +20,7 @@ spec:
       containers:
         - name: moto-bot
           image: ghcr.io/motoki317/moto-bot:master
+          imagePullPolicy: Always
           env:
             - name: LOGBACK_LEVEL
               value: info

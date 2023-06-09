@@ -4,7 +4,8 @@ metadata:
   name: vrc-tweets-fetcher
 
 spec:
-  replicas: 1
+  # rate limit resets on June 26
+  replicas: 0
   revisionHistoryLimit: 0
   selector:
     matchLabels:

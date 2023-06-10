@@ -33,8 +33,8 @@ images:
   newName: prom/pushgateway
   newTag: v1.5.1
 - name: s3-exporter
-  newName: ghcr.io/motoki317/s3_exporter
-  newTag: 0.5.1
+  newName: ghcr.io/traptitech/s3_exporter
+  newTag: 0.5.2
 - name: ssl-exporter
   newName: ribbybibby/ssl-exporter
   newTag: 2.4.2

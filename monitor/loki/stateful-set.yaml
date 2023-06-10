@@ -16,7 +16,7 @@ spec:
       app: loki
   volumeClaimTemplates:
     - metadata:
-        name: loki-chunks
+        name: loki-data
       spec:
         accessModes:
           - ReadWriteOnce
@@ -74,8 +74,8 @@ spec:
               mountPath: /etc/loki/config
             - name: runtime-config
               mountPath: /etc/loki/runtime-config
-            - name: loki-chunks
-              mountPath: /loki-chunks
+            - name: loki-data
+              mountPath: /loki-data
       volumes:
         - name: tmp
           emptyDir: {}

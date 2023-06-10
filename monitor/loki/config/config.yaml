@@ -6,7 +6,8 @@ common:
   replication_factor: 1
   storage:
     filesystem:
-      chunks_directory: /loki-chunks
+      chunks_directory: /loki-data/chunks
+      rules_directory: /loki-data/rules
 
 limits_config:
   enforce_metric_name: false

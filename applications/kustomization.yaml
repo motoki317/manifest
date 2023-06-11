@@ -5,3 +5,6 @@ resources:
   - csi-s3.yaml
   - grafana-agent.yaml
   - ns-apps.yaml
+  - preview-app-project.yaml
+  # example, no longer used (moved to traPtitech/manifest)
+  # - preview-ns-application-set.yaml

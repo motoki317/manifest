@@ -48,6 +48,7 @@ k8s:
   imagePullSecret: ns-image-pull-secret
 
 ssh:
+  host: ns.toki317.dev
   port: 2201
 
 webhook:

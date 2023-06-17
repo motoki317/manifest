@@ -14,8 +14,6 @@ spec:
       middlewares:
         - name: auth-toki317-dev-soft
           namespace: auth
-        - name: auth-toki317-dev
-          namespace: auth
       services:
         - namespace: gitea
           kind: Service
@@ -27,7 +25,7 @@ spec:
     - kind: Rule
       match: Host(`git.toki317.dev`) && PathPrefix(`/user/login`)
       middlewares:
-        - name: auth-toki317-dev
+        - name: auth-toki317-dev-hard
           namespace: auth
       services:
         - namespace: gitea

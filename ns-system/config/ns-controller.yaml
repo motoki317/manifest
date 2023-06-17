@@ -12,12 +12,8 @@ k8s:
         soft:
           - name: auth-toki317-dev-soft
             namespace: auth
-          - name: auth-toki317-dev
-            namespace: auth
         hard:
           - name: auth-toki317-dev-hard
-            namespace: auth
-          - name: auth-toki317-dev
             namespace: auth
   ports:
     - startPort: 39000

@@ -24,8 +24,6 @@ spec:
       middlewares:
         - name: auth-toki317-dev-admin
           namespace: auth
-        - name: auth-toki317-dev
-          namespace: auth
       services:
         - namespace: monitor
           kind: Service

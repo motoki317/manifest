@@ -22,7 +22,7 @@ spec:
     - kind: Rule
       match: Host(`cd.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev
+        - name: auth-toki317-dev-hard
           namespace: auth
       services:
         - kind: Service

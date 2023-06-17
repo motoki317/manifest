@@ -18,8 +18,8 @@ resources:
 - components/gitea-integration-service.yaml
 - components/gitea-integration-stateful-set.yaml
 - components/ingress-route.yaml
-- components/ssgen-deployment.yaml
 - components/ssgen-service.yaml
+- components/ssgen-stateful-set.yaml
 - app-namespace.yaml
 - mariadb-migration-workflow-template.yaml
 

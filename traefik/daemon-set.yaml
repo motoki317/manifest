@@ -21,21 +21,29 @@ spec:
     spec:
       enableServiceLinks: false
       serviceAccountName: traefik
+      volumes:
+        - name: config
+          configMap:
+            name: config
       containers:
         - name: traefik
           image: traefik
+          volumeMounts:
+            - mountPath: /traefik-config
+              name: config
           args:
             - --api.insecure
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress
-            - --providers.file.watch=true
+            - --providers.file.directory=/traefik-config
+            # - --providers.file.watch=true
             - --experimental.http3=true
             - --entrypoints.web.address=:80/tcp
-            - --entrypoints.web.http.middlewares=compress@kubernetescrd
+            - --entrypoints.web.http.middlewares=compress@file
             - --entrypoints.websecure.address=:443/tcp
             - --entrypoints.websecure.http.tls=true
-            - --entrypoints.websecure.http.middlewares=compress@kubernetescrd
+            - --entrypoints.websecure.http.middlewares=compress@file
             - --entrypoints.websecure.http3
             - --entrypoints.traefik.address=:8080/tcp
             - --entrypoints.metrics.address=:9100/tcp

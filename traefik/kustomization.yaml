@@ -2,7 +2,6 @@ resources:
 - https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
 - cluster-role.yaml
 - cluster-role-binding.yaml
-- compress-middleware.yaml
 - daemon-set.yaml
 - dashboard-certificate.yaml
 - dashboard-ingress-route.yaml
@@ -11,6 +10,11 @@ resources:
 - metrics-service.yaml
 - service.yaml
 - service-account.yaml
+
+configMapGenerator:
+- name: config
+  files:
+  - config/traefik.yaml
 
 images:
 - name: traefik

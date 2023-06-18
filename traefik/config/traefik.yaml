@@ -16,8 +16,8 @@ providers:
     allowCrossNamespace: true
   kubernetesIngress: {}
   file:
-    # Specify filename not directory to avoid 'too many open files' error
     filename: /traefik-core-config/dynamic.yaml
+    watch: false
 
 entryPoints:
   web:

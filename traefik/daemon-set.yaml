@@ -34,7 +34,6 @@ spec:
               subPath: traefik.yaml
           args:
             # - --configFile=/traefik-core-config/traefik.yaml
-            - --api.insecure
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress

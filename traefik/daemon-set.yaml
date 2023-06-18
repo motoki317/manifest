@@ -29,8 +29,9 @@ spec:
         - name: traefik
           image: traefik
           volumeMounts:
-            - mountPath: /traefik-core-config
+            - mountPath: /traefik-core-config/traefik.yaml
               name: config
+              subPath: traefik.yaml
           args:
             - --configFile=/traefik-core-config/traefik.yaml
             - --api.insecure

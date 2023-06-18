@@ -28,7 +28,6 @@ entryPoints:
   websecure:
     address: :443/tcp
     http:
-      tls: {}
       middlewares:
         - compress@file
     http3: {}

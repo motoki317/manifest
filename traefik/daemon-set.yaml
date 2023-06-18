@@ -29,15 +29,14 @@ spec:
         - name: traefik
           image: traefik
           volumeMounts:
-            - mountPath: /traefik-core-config/traefik.yaml
+            - mountPath: /traefik-core-config
               name: config
-              subPath: traefik.yaml
           args:
             # - --configFile=/traefik-core-config/traefik.yaml
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress
-            - --providers.file.filename=/traefik-core-config/traefik.yaml
+            - --providers.file.filename=/traefik-core-config/dynamic.yaml
             - --experimental.http3=true
             - --entrypoints.web.address=:80/tcp
             - --entrypoints.web.http.middlewares=compress@file

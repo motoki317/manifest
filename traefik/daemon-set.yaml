@@ -33,11 +33,12 @@ spec:
               name: config
               subPath: traefik.yaml
           args:
-            - --configFile=/traefik-core-config/traefik.yaml
+            # - --configFile=/traefik-core-config/traefik.yaml
             - --api.insecure
             - --providers.kubernetescrd
             - --providers.kubernetescrd.allowCrossNamespace=true
             - --providers.kubernetesingress
+            - --providers.file.directory=/traefik-core-config
             - --experimental.http3=true
             - --entrypoints.web.address=:80/tcp
             - --entrypoints.web.http.middlewares=compress@file

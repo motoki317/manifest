@@ -28,7 +28,7 @@ images:
   newTag: v1.5.0
 - name: victoria-metrics
   newName: victoriametrics/victoria-metrics
-  newTag: v1.19.2
+  newTag: v1.91.2
 - name: pushgateway
   newName: prom/pushgateway
   newTag: v1.5.1

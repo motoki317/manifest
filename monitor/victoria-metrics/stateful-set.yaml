@@ -35,13 +35,13 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: victoria-metrics
+            name: prometheus-config
       containers:
         - name: victoria-metrics
           image: victoria-metrics
           imagePullPolicy: Always
           args:
-            - --config.file=/etc/config/victoria-metrics.yml
+            - --promscrape.config=/etc/config/prometheus.yml
             - --storageDataPath=/data
             - --retentionPeriod=7d
           ports:

@@ -6,6 +6,6 @@ resources:
   - stateful-set.yaml
 
 configMapGenerator:
-  - name: victoria-metrics
+  - name: prometheus-config
     files:
-      - config/victoria-metrics.yml
+      - config/prometheus.yml

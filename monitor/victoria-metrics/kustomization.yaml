@@ -1,11 +1,11 @@
 resources:
   - cluster-role.yaml
   - cluster-role-binding.yaml
-  - deployment.yaml
   - service.yaml
   - service-account.yaml
+  - stateful-set.yaml
 
 configMapGenerator:
-  - name: prometheus
+  - name: victoria-metrics
     files:
-      - config/prometheus.yml
+      - config/victoria-metrics.yml

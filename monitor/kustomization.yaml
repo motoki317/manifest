@@ -4,11 +4,11 @@ resources:
 - grafana
 - loki
 - node-exporter
-- prometheus
 - pushgateway
 - s3-exporter
 - ssl-exporter
 - switchbot-exporter
+- victoria-metrics
 
 images:
 - name: blackbox-exporter
@@ -26,9 +26,9 @@ images:
 - name: node-exporter
   newName: quay.io/prometheus/node-exporter
   newTag: v1.5.0
-- name: prometheus
-  newName: prom/prometheus
-  newTag: v2.43.1
+- name: victoria-metrics
+  newName: victoriametrics/victoria-metrics
+  newTag: v1.19.2
 - name: pushgateway
   newName: prom/pushgateway
   newTag: v1.5.1

@@ -161,11 +161,11 @@ commands:
           - node-exporter
         operators:
           - toki
-      - name: monitor-prometheus
+      - name: monitor-victoria-metrics
         templateRef: deploy
         argsPrefix:
           - monitor
-          - prometheus
+          - victoria-metrics
         operators:
           - toki
       - name: monitor-pushgateway

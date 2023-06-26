@@ -12,6 +12,8 @@ spec:
         operator: In
         values:
           - "true"
+  tolerations:
+    - operator: Exists
   serviceAccountName: system-upgrade
   channel: https://update.k3s.io/v1-release/channels/latest
   upgrade:

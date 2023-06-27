@@ -43,6 +43,10 @@ k8s:
         domains:
           - "*.toki317.dev"
   imagePullSecret: ns-image-pull-secret
+  scheduling:
+    nodeSelector:
+      - key: kubernetes.io/arch
+        value: amd64
 
 ssh:
   host: ns.toki317.dev

@@ -18,7 +18,8 @@ spec:
       serviceAccountName: ns-builder
       containers:
         - name: buildpack
-          image: ghcr.io/motoki317/builder-arm:latest
+          # image: ghcr.io/motoki317/builder-arm:latest
+          image: paketobuildpacks/builder:full
           imagePullPolicy: Always
           command:
             - sleep
@@ -114,3 +115,5 @@ spec:
         - name: known-hosts
           configMap:
             name: known-hosts
+      nodeSelector:
+        kubernetes.io/arch: amd64

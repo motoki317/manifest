@@ -9,9 +9,10 @@ contains () {
   return 1
 }
 
-skip_dirs=("auth-template/")
-for directory in */; do
+skip_dirs=("auth-template")
+for directory in $( echo ./*/ | tr -d './' | tr -d '/'); do
   if ! contains "$directory" "${skip_dirs[@]}"; then
+    kubectl create namespace "$directory" --dry-run=client -o yaml | kubectl apply -f -
     kustomize build ./"$directory" --enable-alpha-plugins --enable-exec | kubectl apply --validate=strict --dry-run=server -f -
   fi
 done

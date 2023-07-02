@@ -35,10 +35,6 @@ jobs:
           kubectl create ns neoshowcase-apps
       - name: Install ksops
         run: curl -s https://raw.githubusercontent.com/viaduct-ai/kustomize-sops/master/scripts/install-ksops-archive.sh | bash
-      - name: Install ksops key
-        run: |
-          mkdir -p ~/.config/sops/age
-          echo "$SOPS_KEY" > ~/.config/sops/age/keys.txt
       - name: Install CRDs
         run: |
           kustomize build https://github.com/argoproj/argo-cd//manifests/crds?ref=v2.7.6 | kubectl create -f -
@@ -59,3 +55,5 @@ jobs:
           kubectl create -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
       - name: Validate
         run: ./check.sh
+        with:
+          SOPS_AGE_KEY: "${{ secrets.SOPS_KEY }}"

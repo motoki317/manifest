@@ -55,5 +55,5 @@ jobs:
           kubectl create -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
       - name: Validate
         run: ./check.sh
-        with:
+        env:
           SOPS_AGE_KEY: "${{ secrets.SOPS_KEY }}"

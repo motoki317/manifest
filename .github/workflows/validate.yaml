@@ -42,7 +42,9 @@ jobs:
       - name: Install CRDs
         run: |
           kustomize build https://github.com/argoproj/argo-cd//manifests/crds?ref=v2.7.6 | kubectl create -f -
-          kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/full?ref=v3.4.8 | kubectl create -f -
+          # Use minimal crd until full CRDs are fixed: https://github.com/argoproj/argo-workflows/issues/11266
+          kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/minimal?ref=v3.4.8 | kubectl create -f -
+          # kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/full?ref=v3.4.8 | kubectl create -f -
           kubectl create -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
           kubectl create -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.1/cert-manager.yaml
           kubectl create -f https://raw.githubusercontent.com/grafana/agent/main/production/operator/crds/monitoring.grafana.com_podlogs.yaml

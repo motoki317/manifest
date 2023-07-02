@@ -47,6 +47,7 @@ jobs:
           # kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/full?ref=v3.4.8 | kubectl create -f -
           kubectl create -f https://raw.githubusercontent.com/traefik/traefik/v2.10/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
           kubectl create -f https://github.com/cert-manager/cert-manager/releases/download/v1.12.1/cert-manager.yaml
+          sleep 10 # wait for cert-manager deployment
           kubectl create -f https://raw.githubusercontent.com/grafana/agent/main/production/operator/crds/monitoring.grafana.com_podlogs.yaml
           kubectl create -f https://raw.githubusercontent.com/grafana/agent/main/production/operator/crds/monitoring.grafana.com_metricsinstances.yaml
           kubectl create -f https://raw.githubusercontent.com/grafana/agent/main/production/operator/crds/monitoring.grafana.com_logsinstances.yaml

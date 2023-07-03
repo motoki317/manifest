@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: postgres
-          image: postgres:12
+          image: postgres:15
           env:
             - name: POSTGRES_DB
               value: refactorhub

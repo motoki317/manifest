@@ -21,7 +21,6 @@
   "suppressNotifications": ["prIgnoreNotification"],
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
-  "automergeStrategy": "squash",
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
   },

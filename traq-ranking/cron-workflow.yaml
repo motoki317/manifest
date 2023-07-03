@@ -4,9 +4,8 @@ metadata:
   name: traq-ranking-cron
 
 spec:
-  # in UTC 15:30 every day
-  # in JST 00:30 every day
-  schedule: "30 15 * * *"
+  schedule: "30 0 * * *"
+  timezone: Asia/Tokyo
   concurrencyPolicy: "Replace"
   startingDeadlineSeconds: 0
   workflowSpec:

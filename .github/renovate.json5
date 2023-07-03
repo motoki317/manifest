@@ -14,6 +14,7 @@
     "github>motoki317/manifest//.github/renovate/semantic-commits.json5"
   ],
   "platform": "github",
+  "platformAutomerge": true,
   "onboarding": false,
   "requireConfig": "optional",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",

@@ -8,6 +8,7 @@
     ":semanticCommits",
     ":automergeDigest",
     ":automergeBranch",
+    ":automergePatch",
     "github>motoki317/manifest//.github/renovate/auto-merge.json5",
     "github>motoki317/manifest//.github/renovate/commit-message.json5",
     "github>motoki317/manifest//.github/renovate/groups.json5",

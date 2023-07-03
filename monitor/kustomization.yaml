@@ -16,7 +16,7 @@ images:
   newTag: v0.22.0
 - name: domain-exporter
   newName: caarlos0/domain_exporter
-  newTag: v1.17.1
+  newTag: v1.21.1
 - name: grafana
   newName: grafana/grafana
   newTag: 9.5.2

@@ -20,7 +20,7 @@ images:
   newTag: 7.17.9-3.0.1
 - name: traq-ui
   newName: ghcr.io/traptitech/traq-ui
-  newTag: 3.17.2
+  newTag: 3.17.3
 - name: traq-widget
   newName: ghcr.io/traptitech/traq-widget
   newTag: 0.3.6

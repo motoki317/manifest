@@ -10,9 +10,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3
       - name: Create single cluster
-        uses: AbsaOSS/k3d-action@v2
+        uses: AbsaOSS/k3d-action@4e8b3239042be1dc0aed6c5eb80c13b18200fc79 # v2
         id: single-cluster
         with:
           cluster-name: "test-cluster"
@@ -54,7 +54,7 @@ jobs:
           # datasource=github-releases depName=rancher/system-upgrade-controller
           kubectl create -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
       - name: Validate
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@943e742917ac94714d2f408a0e8320f2d1fcafcd # v2
         with:
           timeout_minutes: 10
           max_attempts: 3

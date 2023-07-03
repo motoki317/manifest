@@ -19,9 +19,6 @@
   "requireConfig": "optional",
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prIgnoreNotification"],
-  "helm-values": {
-    "fileMatch": [".+\\.ya?ml$"]
-  },
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
   },

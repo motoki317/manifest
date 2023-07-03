@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "username": "renovate[bot]",
+  "gitAuthor": "renovate <renovate[bot]@toki317.dev>",
+  "repositories": ["motoki317/manifest"]
+}

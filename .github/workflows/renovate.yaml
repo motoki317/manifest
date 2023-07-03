@@ -15,11 +15,12 @@ on:
     # 5 a.m. in JST(+9)
     - cron: "0 20 * * *"
   push:
-    branches: ["main"]
+    branches: ["master"]
     paths:
       - .github/renovate-bot.json5
       - .github/renovate.json5
       - .github/renovate/**.json5
+      - .github/workflows/renovate.yaml
 
 env:
   LOG_LEVEL: debug

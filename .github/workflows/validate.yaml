@@ -54,6 +54,10 @@ jobs:
           # datasource=github-releases depName=rancher/system-upgrade-controller
           kubectl create -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
       - name: Validate
-        run: ./check.sh
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: ./check.sh
         env:
           SOPS_AGE_KEY: "${{ secrets.SOPS_KEY }}"

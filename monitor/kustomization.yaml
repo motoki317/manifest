@@ -25,7 +25,7 @@ images:
   newTag: 2.8.0
 - name: node-exporter
   newName: quay.io/prometheus/node-exporter
-  newTag: v1.5.0
+  newTag: v1.6.0
 - name: victoria-metrics
   newName: victoriametrics/victoria-metrics
   newTag: v1.91.2

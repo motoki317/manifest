@@ -4,28 +4,55 @@ toki317.dev
 
 ## k3s installation
 
-`/etc/systemd/system/k3s.service.env`
-```
-K3S_KUBECONFIG_MODE="644"
-```
-
-`/etc/rancher/k3s/config.yaml`
+`/etc/rancher/k3s/config.yaml` (server)
 ```yaml
 # default
 cluster-cidr: 10.42.0.0/16
-# default
 service-cidr: 10.43.0.0/16
+
 disable:
   - traefik
+
 kubelet-arg:
   - container-log-max-files=2
   - container-log-max-size=1Mi
+  - config=/etc/rancher/k3s/kubelet-config.yaml
+
+flannel-backend: wireguard-native
+
+node-external-ip: <external ip>
+# enable if multi-cloud cluster (i.e. nodes are accessible each other only from public ip)
+# advertise-address: <external ip>
+# flannel-external-ip: true
+
+kube-controller-manager-arg:
+  - node-cidr-mask-size-ipv4=22
+```
+
+`/etc/rancher/k3s/config.yaml` (agent)
+```yaml
+kubelet-arg:
+  - container-log-max-files=2
+  - container-log-max-size=1Mi
+  - config=/etc/rancher/k3s/kubelet-config.yaml
+
+node-external-ip: <external ip>
+```
+
+`/etc/rancher/k3s/kubelet-config.yaml` (server, agent)
+```yaml
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+
+maxPods: 250
 ```
 
 https://k3s.io/
 ```sh
-curl -sfL https://get.k3s.io | sh -
-sudo systemctl enable k3s
+# Setup server
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -
+# Setup agent
+curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
 ```
 
 ## Secret management

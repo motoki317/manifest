@@ -18,6 +18,9 @@ spec:
       containers:
         - name: metrics
           image: ghcr.io/lowlighter/metrics:v3.33
+          command:
+            - npm
+            - start
           ports:
             - containerPort: 3000
               name: http

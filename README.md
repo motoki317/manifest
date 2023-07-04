@@ -93,9 +93,9 @@ generators:
   - ksops.yaml
 ```
 
-### Decrypting
+### Decrypting / Editing
 
-`./decrypt.sh filename`
+`./edit.sh filename`
 
 ### Adding / removing keys
 

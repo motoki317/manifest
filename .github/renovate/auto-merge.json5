@@ -9,6 +9,13 @@
       "ignoreTests": true,
       "automergeType": "branch",
       "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "description": "Auto merge minor",
+      "matchUpdateTypes": ["minor"],
+      "matchDepNames": [
+        "ghcr.io/lowlighter/metrics",
+      ]
     }
   ]
 }

@@ -56,7 +56,7 @@ images:
   newTag: 0.12.3
 - name: ns-ssgen
   newName: ghcr.io/traptitech/ns-ssgen
-  newTag: 0.12.3
+  newTag: 0.12.4
 
 generators:
 - ksops.yaml

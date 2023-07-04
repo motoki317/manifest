@@ -41,7 +41,7 @@ images:
   newTag: 0.12.3
 - name: ns-controller
   newName: ghcr.io/traptitech/ns-controller
-  newTag: 0.12.3
+  newTag: 0.12.4
 - name: ns-dashboard
   newName: ghcr.io/traptitech/ns-dashboard
   newTag: 0.12.3

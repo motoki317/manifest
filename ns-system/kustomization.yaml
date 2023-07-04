@@ -50,7 +50,7 @@ images:
   newTag: 0.12.3
 - name: ns-gitea-integration
   newName: ghcr.io/traptitech/ns-gitea-integration
-  newTag: 0.12.3
+  newTag: 0.12.4
 - name: ns-migrate
   newName: ghcr.io/traptitech/ns-migrate
   newTag: 0.12.3

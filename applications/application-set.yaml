@@ -28,7 +28,6 @@ spec:
           - path: traefik
           - path: traq
           - path: traq-ranking
-          - path: vrc-tweets-fetcher
   template:
     metadata:
       name: '{{path}}'

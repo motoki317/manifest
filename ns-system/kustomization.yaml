@@ -47,7 +47,7 @@ images:
   newTag: 0.12.4
 - name: ns-gateway
   newName: ghcr.io/traptitech/ns-gateway
-  newTag: 0.12.3
+  newTag: 0.12.4
 - name: ns-gitea-integration
   newName: ghcr.io/traptitech/ns-gitea-integration
   newTag: 0.12.3

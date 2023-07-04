@@ -17,6 +17,7 @@ spec:
           - path: gitea
           - path: growi
           - path: japari
+          - path: lowlighter-metrics
           - path: monitor
           - path: moto-bot
           - path: nextcloud

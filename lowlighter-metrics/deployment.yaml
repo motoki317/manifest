@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: metrics
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: metrics
+  template:
+    metadata:
+      labels:
+        app: metrics
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: metrics
+          image: ghcr.io/lowlighter/metrics:v3.33
+          ports:
+            - containerPort: 3000
+              name: http
+          volumeMounts:
+            - mountPath: /metrics/settings.json
+              name: settings
+              subPath: settings.json
+      volumes:
+        - name: settings
+          secret:
+            secretName: settings
+      nodeSelector:
+        kubernetes.io/arch: amd64

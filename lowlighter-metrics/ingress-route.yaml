@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: metrics
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: metrics-tls
+  routes:
+    - kind: Rule
+      match: Host(`lowlighter-metrics.toki317.dev`)
+      services:
+        - namespace: lowlighter-metrics
+          kind: Service
+          name: metrics
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

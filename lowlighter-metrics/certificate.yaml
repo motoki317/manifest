@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: metrics
+
+spec:
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer
+  secretName: metrics-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 720h0m0s # 30d
+  dnsNames:
+    - lowlighter-metrics.toki317.dev

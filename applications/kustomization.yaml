@@ -3,7 +3,6 @@ resources:
   - application-set.yaml
   - auth-application-set.yaml
   - csi-s3.yaml
-  - grafana-agent.yaml
   - ns-apps.yaml
   - preview-app-project.yaml
   # example, no longer used (moved to traPtitech/manifest)

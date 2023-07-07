@@ -11,7 +11,7 @@ spec:
   project: default
   sources:
     - repoURL: https://grafana.github.io/helm-charts
-      chart: grafana/promtail
+      chart: promtail
       targetRevision: "6.11.5"
       helm:
         valueFiles:

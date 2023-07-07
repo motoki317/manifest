@@ -7,3 +7,4 @@ resources:
   - preview-app-project.yaml
   # example, no longer used (moved to traPtitech/manifest)
   # - preview-ns-application-set.yaml
+  - promtail.yaml

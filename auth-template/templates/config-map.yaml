@@ -27,7 +27,7 @@ data:
     providers.generic-oauth.prompt = none
 
     rule.admin.rule = Headers(`X-Forward-Auth-Type`, `admin`)
-    rule.admin.whitelist = toki,osushi
+    rule.admin.whitelist = toki,osushi,pikachu
 
     rule.soft.rule = Headers(`X-Forward-Auth-Type`, `soft`)
     rule.soft.action = soft-auth

@@ -23,6 +23,8 @@ data:
     headers:
       - name: Content-Type
         value: "text/plain; charset=utf-8"
+      - name: X-TRAQ-Channel-Id
+        value: a978e6a0-43ab-48b7-9224-70de36c3b183
   template.app-created: |
     webhook:
       traq:

@@ -1,0 +1,45 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mcgtnh
+
+spec:
+  serviceName: mcgtnh
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcgtnh
+  template:
+    metadata:
+      labels:
+        app: mcgtnh
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+      volumes:
+        - name: game
+          hostPath:
+            path: /srv/mcgtnh
+      containers:
+        - name: mcgtnh
+          image: amazoncorretto:17-alpine
+          imagePullPolicy: Always
+          tty: true
+          stdin: true
+          command:
+            - java
+          args:
+            - -Xms8G
+            - -Xmx12G
+            - -jar
+            - forge-1.7.10-10.13.4.1614-1.7.10-universal.jar
+            - nogui
+          ports:
+            - containerPort: 25565
+              name: game
+          volumeMounts:
+            - mountPath: /srv/mcgtnh
+              name: game

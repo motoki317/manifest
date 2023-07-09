@@ -18,6 +18,7 @@ spec:
           - path: growi
           - path: japari
           - path: lowlighter-metrics
+          - path: mcgtnh
           - path: monitor
           - path: moto-bot
           - path: nextcloud

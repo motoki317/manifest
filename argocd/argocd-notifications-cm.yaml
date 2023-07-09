@@ -20,40 +20,60 @@ data:
         - on-sync-status-unknown
   service.webhook.traq: |
     url: https://q.toki317.dev/api/v3/webhooks/$traq-webhook-id
-    method: POST
     headers:
       - name: Content-Type
         value: "text/plain; charset=utf-8"
   template.app-created: |
     message: |
       ### :new: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Created :new:
+    webhook:
+      traq:
+        method: POST
   template.app-deleted: |
     message: |
       ### :ayase_null: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deleted :ayase_null:
+    webhook:
+      traq:
+        method: POST
   template.app-deployed: |
     message: |
       ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
+    webhook:
+      traq:
+        method: POST
   template.app-health-degraded: |
     message: |
       ### :alert: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Degraded :alert:
       {{range $c := .app.status.conditions}}
       **{{$c.type}}**: {{$c.message}}
       {{end}}
+    webhook:
+      traq:
+        method: POST
   template.app-sync-failed: |
     message: |
       ### :exclamation: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Failed :exclamation:
       {{range $c := .app.status.conditions}}
       **{{$c.type}}**: {{$c.message}}
       {{end}}
+    webhook:
+      traq:
+        method: POST
   template.app-sync-running: |
     message: |
       ### :spinner: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Syncing :spinner:
+    webhook:
+      traq:
+        method: POST
   template.app-sync-status-unknown: |
     message: |
       ### :question: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Sync Status Unknown :question:
       {{range $c := .app.status.conditions}}
       **{{$c.type}}**: {{$c.message}}
       {{end}}
+    webhook:
+      traq:
+        method: POST
 
   # default triggers from: https://github.com/argoproj/argo-cd/blob/master/notifications_catalog/install.yaml
   trigger.on-created: |

@@ -31,13 +31,7 @@ spec:
           stdin: true
           workingDir: /srv/mcgtnh
           command:
-            - java
-          args:
-            - -Xms8G
-            - -Xmx12G
-            - -jar
-            - forge-1.7.10-10.13.4.1614-1.7.10-universal.jar
-            - nogui
+            - ./start.sh
           ports:
             - containerPort: 25565
               name: game

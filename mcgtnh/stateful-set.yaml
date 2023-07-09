@@ -31,7 +31,7 @@ spec:
           stdin: true
           workingDir: /srv/mcgtnh
           command:
-            - ./start.sh
+            - /srv/mcgtnh/start.sh
           ports:
             - containerPort: 25565
               name: game

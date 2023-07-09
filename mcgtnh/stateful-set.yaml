@@ -31,9 +31,8 @@ spec:
           stdin: true
           workingDir: /srv/mcgtnh
           command:
-            - bash
-            - -c
-            - cat
+            - sleep
+            - infinity
           ports:
             - containerPort: 25565
               name: game

@@ -25,7 +25,7 @@ spec:
             path: /srv/mcgtnh
       containers:
         - name: mcgtnh
-          image: amazoncorretto:17-alpine
+          image: amazoncorretto:17.0.7-alpine
           imagePullPolicy: Always
           tty: true
           stdin: true

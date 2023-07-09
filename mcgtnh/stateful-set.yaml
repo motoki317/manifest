@@ -29,6 +29,7 @@ spec:
           imagePullPolicy: Always
           tty: true
           stdin: true
+          workingDir: /srv/mcgtnh
           command:
             - java
           args:

@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: app
-          image: weseek/growi:6.1.4
+          image: weseek/growi:6.1.5
           ports:
             - containerPort: 3000
               name: http

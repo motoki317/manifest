@@ -69,4 +69,4 @@ commands:
           - motoki317
           - manifest
           - renovate.yaml
-          - main
+          - master

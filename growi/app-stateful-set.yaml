@@ -17,6 +17,17 @@ spec:
         app: app
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: config
+          configMap:
+            name: front-config
+        - name: data
+          hostPath:
+            path: /srv/growi/data/growi
+
       containers:
         - name: app
           image: weseek/growi:6.1.5
@@ -43,12 +54,3 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-      volumes:
-        - name: config
-          configMap:
-            name: front-config
-        - name: data
-          hostPath:
-            path: /srv/growi/data/growi
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

@@ -17,6 +17,14 @@ spec:
         app: gitea
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/gitea/data
+
       containers:
         - name: gitea
           image: gitea
@@ -54,9 +62,3 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/gitea/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

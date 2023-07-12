@@ -17,6 +17,14 @@ spec:
         app: mongo
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/mongo/data
+
       containers:
         - name: mongo
           image: mongo:6
@@ -41,9 +49,3 @@ spec:
           resources:
             limits:
               memory: 512Mi
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/mongo/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

@@ -15,11 +15,23 @@ spec:
         app: grafana
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/grafana/data
+        - name: config
+          configMap:
+            name: grafana
+
       securityContext:
         fsGroup: 472
         runAsGroup: 472
         runAsNonRoot: true
         runAsUser: 472
+
       containers:
         - name: grafana
           image: grafana
@@ -33,12 +45,3 @@ spec:
             - mountPath: /etc/grafana/grafana.ini
               name: config
               subPath: grafana.ini
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/grafana/data
-        - name: config
-          configMap:
-            name: grafana
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

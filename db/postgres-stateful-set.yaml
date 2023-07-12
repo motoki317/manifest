@@ -17,6 +17,14 @@ spec:
         app: postgres
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/postgres/data
+
       containers:
         - name: postgres
           image: postgres:12
@@ -36,9 +44,3 @@ spec:
           resources:
             limits:
               memory: 512Mi
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/postgres/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

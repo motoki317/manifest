@@ -17,6 +17,14 @@ spec:
         app: mariadb
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/mariadb/data
+
       containers:
         - name: mariadb
           image: mariadb:10.11.4
@@ -32,9 +40,3 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: data
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/mariadb/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

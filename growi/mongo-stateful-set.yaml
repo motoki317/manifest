@@ -17,6 +17,17 @@ spec:
         app: mongo
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: mongo-config
+          hostPath:
+            path: /srv/growi/data/mongo_config
+        - name: data
+          hostPath:
+            path: /srv/growi/data/mongo
+
       containers:
         - name: mongo
           image: mongo:6.0
@@ -28,12 +39,3 @@ spec:
               name: mongo-config
             - mountPath: /data/db
               name: data
-      volumes:
-        - name: mongo-config
-          hostPath:
-            path: /srv/growi/data/mongo_config
-        - name: data
-          hostPath:
-            path: /srv/growi/data/mongo
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

@@ -17,6 +17,14 @@ spec:
         app: nextcloud
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/nextcloud/data
+
       containers:
         - name: nextcloud
           image: nextcloud
@@ -44,9 +52,3 @@ spec:
           volumeMounts:
             - mountPath: /var/www/html
               name: data
-      volumes:
-        - name: data
-          hostPath:
-            path: /srv/nextcloud/data
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3

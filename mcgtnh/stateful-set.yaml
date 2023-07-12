@@ -19,10 +19,12 @@ spec:
       enableServiceLinks: false
       nodeSelector:
         kubernetes.io/hostname: moto-a1-3
+
       volumes:
         - name: game
           hostPath:
             path: /srv/mcgtnh
+
       containers:
         - name: mcgtnh
           image: amazoncorretto:17.0.7-alpine

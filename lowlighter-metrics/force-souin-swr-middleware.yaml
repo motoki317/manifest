@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: force-souin-swr
+
+spec:
+  headers:
+    customRequestHeaders:
+      Cache-Control: max-stale

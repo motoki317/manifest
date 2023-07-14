@@ -12,8 +12,6 @@ spec:
     - kind: Rule
       match: Host(`lowlighter-metrics.toki317.dev`)
       middlewares:
-        - name: force-souin-swr
-        - name: swr
         - name: force-swr
       services:
         - namespace: lowlighter-metrics

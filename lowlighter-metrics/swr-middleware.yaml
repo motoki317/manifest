@@ -7,5 +7,5 @@ spec:
   plugin:
     souin:
       default_cache:
-        ttl: 3600s
-        stale: 86400s
+        ttl: 60s
+        stale: 60s

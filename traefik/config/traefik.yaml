@@ -3,6 +3,11 @@ api:
 
 experimental:
   http3: true
+  plugins:
+    souin:
+      moduleName: github.com/darkweak/souin
+      # datasource=github-releases depName=darkweak/souin
+      version: "v1.6.38"
 
 ping:
   entryPoint: traefik

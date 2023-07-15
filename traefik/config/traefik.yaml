@@ -5,8 +5,8 @@ experimental:
   http3: true
   plugins:
     swr:
-      moduleName: github.com/motoki317/swr
-      # datasource=github-releases depName=motoki317/swr
+      moduleName: github.com/motoki317/traefik-swr
+      # datasource=github-releases depName=motoki317/traefik-swr
       version: "v0.0.1"
 
 ping:

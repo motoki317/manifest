@@ -7,7 +7,7 @@ experimental:
     swr:
       moduleName: github.com/motoki317/traefik-swr
       # datasource=github-releases depName=motoki317/traefik-swr
-      version: "v0.0.1"
+      version: "v0.0.2"
 
 ping:
   entryPoint: traefik

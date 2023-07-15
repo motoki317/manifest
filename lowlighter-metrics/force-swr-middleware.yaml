@@ -1,9 +1,0 @@
-apiVersion: traefik.io/v1alpha1
-kind: Middleware
-metadata:
-  name: force-swr
-
-spec:
-  headers:
-    customResponseHeaders:
-      Cache-Control: public, max-age=3600, stale-while-revalidate=86400

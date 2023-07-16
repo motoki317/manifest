@@ -3,7 +3,6 @@ resources:
   - deployment.yaml
   - ingress-route.yaml
   - service.yaml
-  - swr-middleware.yaml
 
 generators:
   - ksops.yaml

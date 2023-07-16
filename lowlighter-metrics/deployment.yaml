@@ -15,7 +15,26 @@ spec:
         app: metrics
     spec:
       enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/arch: amd64
+
+      volumes:
+        - name: settings
+          secret:
+            secretName: settings
+
       containers:
+        - name: cache
+          image: ghcr.io/motoki317/swr-cache:0.0.6
+          command:
+            - --ttl=1h
+            - --grace=168h
+            - --target=http://localhost:3000
+            - --port=8080
+          ports:
+            - containerPort: 8080
+              name: http
+
         - name: metrics
           image: ghcr.io/lowlighter/metrics:v3.33
           command:
@@ -23,14 +42,8 @@ spec:
             - start
           ports:
             - containerPort: 3000
-              name: http
+              name: metrics-internal
           volumeMounts:
             - mountPath: /metrics/settings.json
               name: settings
               subPath: settings.json
-      volumes:
-        - name: settings
-          secret:
-            secretName: settings
-      nodeSelector:
-        kubernetes.io/arch: amd64

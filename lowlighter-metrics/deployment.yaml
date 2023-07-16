@@ -26,7 +26,7 @@ spec:
       containers:
         - name: cache
           image: ghcr.io/motoki317/swr-cache:0.0.6
-          command:
+          args:
             - --ttl=1h
             - --grace=168h
             - --target=http://localhost:3000

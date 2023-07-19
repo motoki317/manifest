@@ -27,7 +27,7 @@ spec:
 
       containers:
         - name: mcgtnh
-          image: amazoncorretto:17.0.7-alpine
+          image: amazoncorretto:17.0.8-alpine
           imagePullPolicy: Always
           tty: true
           stdin: true

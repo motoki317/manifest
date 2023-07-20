@@ -17,6 +17,11 @@ spec:
       enableServiceLinks: false
       nodeSelector:
         kubernetes.io/arch: amd64
+      tolerations:
+        - key: toki317.dev/role
+          operator: Equal
+          value: amd64-burstable
+          effect: NoExecute
 
       volumes:
         - name: settings

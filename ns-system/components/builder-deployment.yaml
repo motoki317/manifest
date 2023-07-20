@@ -16,6 +16,22 @@ spec:
     spec:
       enableServiceLinks: false
       serviceAccountName: ns-builder
+
+      volumes:
+        - name: buildpack
+          emptyDir: {}
+        - name: socket
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: ns-config
+        - name: keys
+          secret:
+            secretName: ns-keys
+        - name: known-hosts
+          configMap:
+            name: known-hosts
+
       containers:
         - name: buildpack
           # image: ghcr.io/motoki317/builder-arm:latest
@@ -101,17 +117,3 @@ spec:
             - mountPath: /root/.ssh/known_hosts
               name: known-hosts
               subPath: known_hosts
-      volumes:
-        - name: buildpack
-          emptyDir: {}
-        - name: socket
-          emptyDir: {}
-        - name: config
-          configMap:
-            name: ns-config
-        - name: keys
-          secret:
-            secretName: ns-keys
-        - name: known-hosts
-          configMap:
-            name: known-hosts

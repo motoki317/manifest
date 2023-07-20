@@ -115,5 +115,3 @@ spec:
         - name: known-hosts
           configMap:
             name: known-hosts
-      nodeSelector:
-        kubernetes.io/arch: amd64

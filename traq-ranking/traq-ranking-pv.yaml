@@ -26,4 +26,5 @@ spec:
     volumeAttributes:
       capacity: 1Gi
       mounter: geesefs
+      options: "--memory-limit 100 --dir-mode 0777 --file-mode 0666 --no-systemd --cheap"
     volumeHandle: traq-ranking

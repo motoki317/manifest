@@ -24,8 +24,9 @@ spec:
           image: ghcr.io/motoki317/traq-ranking:master
           imagePullPolicy: Always
           command:
-            - cat
-          args: []
+            - sleep
+          args:
+            - infinity
           volumeMounts:
             - mountPath: /data
               name: data

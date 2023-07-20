@@ -1,9 +1,12 @@
 images:
-  attacher: registry.k8s.io/sig-storage/csi-attacher:v4.3.0
-  registrar: registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0
-  provisioner: registry.k8s.io/sig-storage/csi-provisioner:v3.5.0
-  # Main image
-  csi: ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1
+  # datasource=docker
+  attacher: "registry.k8s.io/sig-storage/csi-attacher:v4.3.0"
+  # datasource=docker
+  registrar: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0"
+  # datasource=docker
+  provisioner: "registry.k8s.io/sig-storage/csi-provisioner:v3.5.0"
+  # datasource=docker
+  csi: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
 
 storageClass:
   # Specifies whether the storage class should be created

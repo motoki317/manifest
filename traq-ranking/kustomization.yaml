@@ -6,6 +6,7 @@ resources:
   - traq-ranking-pvc.yaml
   - traq-ranking-toki317-dev-cm.yaml
   - workflow.yaml
+  - debug-deployment.yaml
 
 generators:
   - ksops.yaml

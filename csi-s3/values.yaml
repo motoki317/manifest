@@ -1,12 +1,10 @@
 images:
   # image datasource=docker registryUrl=https://registry.k8s.io
-  attacher: "registry.k8s.io/sig-storage/csi-attacher:v4.3.0"
-  # image datasource=docker registryUrl=https://registry.k8s.io
   registrar: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0"
   # image datasource=docker registryUrl=https://registry.k8s.io
   provisioner: "registry.k8s.io/sig-storage/csi-provisioner:v3.5.0"
   # image datasource=docker registryUrl=https://ghcr.io
-  csi: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
+  csi: "ghcr.io/motoki317/k8s-csi-s3:0.36.2-p1"
 
 storageClass:
   # Specifies whether the storage class should be created

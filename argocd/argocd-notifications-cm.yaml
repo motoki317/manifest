@@ -9,11 +9,22 @@ data:
   subscriptions: |
     - recipients:
         - traq
-      selector: pr-preview!=true
+      selector: type!=multiple-revisions
       triggers:
         - on-created
         - on-deleted
         - on-deployed
+        - on-health-degraded
+        - on-sync-failed
+        - on-sync-running
+        - on-sync-status-unknown
+    - recipients:
+        - traq
+      selector: type=multiple-revisions
+      triggers:
+        - on-created
+        - on-deleted
+        - on-deployed-multiple-revisions
         - on-health-degraded
         - on-sync-failed
         - on-sync-running
@@ -93,6 +104,14 @@ data:
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.status.operationState.syncResult.revision
+      send:
+      - app-deployed
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
+        == 'Healthy'
+  # For apps with multiple revisions
+  trigger.on-deployed-multiple-revisions: |
+    - description: Application is synced and healthy. Triggered once per commit.
+      oncePer: app.status.operationState.syncResult.revisions
       send:
       - app-deployed
       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status

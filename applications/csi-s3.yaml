@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: csi-s3
   namespace: argocd
-  labels:
-    type: multiple-revisions
 
 spec:
   destination:

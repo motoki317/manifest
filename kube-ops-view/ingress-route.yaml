@@ -11,6 +11,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`monitor-nodes.toki317.dev`)
+      middlewares:
+        - name: auth-toki317-dev-hard
+          namespace: auth
       services:
         - namespace: kube-ops-view
           kind: Service

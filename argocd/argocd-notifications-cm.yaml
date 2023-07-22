@@ -95,15 +95,13 @@ data:
       oncePer: app.status.operationState.startedAt
       send:
       - app-deployed
-      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
-        == 'Healthy'
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
   trigger.on-preview-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
       oncePer: app.metadata.annotations.pr-preview-head-sha
       send:
       - app-preview-deployed
-      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status
-        == 'Healthy'
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy'
   trigger.on-health-degraded: |
     - description: Application has degraded
       send:

@@ -16,6 +16,14 @@ spec:
     spec:
       enableServiceLinks: false
       serviceAccountName: kube-ops-view
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      tolerations:
+        - key: toki317.dev/role
+          operator: Equal
+          value: amd64-burstable
+          effect: NoExecute
+
       containers:
         - name: kube-ops-view
           # see https://github.com/hjacobs/kube-ops-view/releases

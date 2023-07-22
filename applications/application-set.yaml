@@ -17,6 +17,7 @@ spec:
           - path: gitea
           - path: growi
           - path: japari
+          - path: kube-ops-view
           - path: lowlighter-metrics
           - path: mcgtnh
           - path: monitor

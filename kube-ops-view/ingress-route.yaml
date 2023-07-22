@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: monitor-nodes
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: monitor-nodes-tls
+  routes:
+    - kind: Rule
+      match: Host(`monitor-nodes.toki317.dev`)
+      services:
+        - namespace: kube-ops-view
+          kind: Service
+          name: kube-ops-view
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

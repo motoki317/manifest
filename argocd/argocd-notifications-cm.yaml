@@ -9,7 +9,7 @@ data:
   subscriptions: |
     - recipients:
         - traq
-      selector: skip-notification!=true
+      selector: skip-default-notification!=true
       triggers:
         - on-created
         - on-deleted

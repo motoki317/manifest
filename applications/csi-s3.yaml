@@ -4,7 +4,7 @@ metadata:
   name: csi-s3
   namespace: argocd
   labels:
-    skip-notification: "true"
+    skip-default-notification: "true"
 
 spec:
   destination:

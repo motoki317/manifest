@@ -1,5 +1,0 @@
-modules:
-  http_check:
-    prober: http
-    http:
-      preferred_ip_protocol: ipv4

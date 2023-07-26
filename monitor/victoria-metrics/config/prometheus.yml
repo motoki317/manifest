@@ -314,6 +314,12 @@ scrape_configs:
           - https://q.toki317.dev
           - https://wiki.toki317.dev
           - https://drive.toki317.dev
+          - https://ns.toki317.dev
+          - https://cd.toki317.dev
+          - https://workflow.toki317.dev
+          - https://traefik.toki317.dev
+          - https://monitor.toki317.dev
+          - https://monitor-nodes.toki317.dev
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target

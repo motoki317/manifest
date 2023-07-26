@@ -2,7 +2,5 @@ resources:
   - deployment.yaml
   - service.yaml
 
-configMapGenerator:
-  - name: blackbox-exporter
-    files:
-      - config/config.yml
+generators:
+  - ksops.yaml

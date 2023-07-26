@@ -15,6 +15,10 @@ spec:
         app: blackbox-exporter
     spec:
       enableServiceLinks: false
+      volumes:
+        - name: config
+          secret:
+            secretName: blackbox-exporter
       containers:
         - name: blackbox-exporter
           image: blackbox-exporter
@@ -26,7 +30,3 @@ spec:
             - mountPath: /etc/blackbox_exporter/config.yml
               name: config
               subPath: config.yml
-      volumes:
-        - name: config
-          configMap:
-            name: blackbox-exporter

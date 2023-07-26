@@ -42,7 +42,7 @@ data:
       traq:
         method: POST
         body: |
-          ### :leftparrot: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :rightparrot:
+          ### :mokuri_love: [{{.app.metadata.name}}]({{.context.argocdUrl}}/applications/{{.app.metadata.name}}) Deployed :mokuri_love:
   template.app-health-degraded: |
     webhook:
       traq:

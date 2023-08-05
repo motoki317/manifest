@@ -19,6 +19,7 @@ spec:
           - path: japari
           - path: kube-ops-view
           - path: lowlighter-metrics
+          - path: mc-mm
           - path: mcgtnh
           - path: monitor
           - path: moto-bot

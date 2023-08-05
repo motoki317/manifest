@@ -1,0 +1,42 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: server
+
+spec:
+  serviceName: server
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: game
+          hostPath:
+            path: /srv/mc-mm
+
+      containers:
+        - name: server
+          image: amazoncorretto:17.0.8-alpine
+          imagePullPolicy: Always
+          tty: true
+          stdin: true
+          workingDir: /srv/mc-mm
+          command:
+            - /srv/mc-mm/run.sh
+          ports:
+            - containerPort: 25566
+              name: game
+          volumeMounts:
+            - mountPath: /srv/mc-mm
+              name: game

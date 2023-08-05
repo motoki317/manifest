@@ -36,7 +36,7 @@ spec:
             - /srv/mc-mm/run.sh
           ports:
             - containerPort: 25566
-              name: game
+              name: server
           volumeMounts:
             - mountPath: /srv/mc-mm
               name: game

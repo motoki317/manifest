@@ -19,8 +19,7 @@ spec:
                 annotations:
                   traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
       - dns01:
-          cloudDNS:
-            project: hobby-256508
-            serviceAccountSecretRef:
-              name: dns-key
-              key: key.json
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-key
+              key: api-token

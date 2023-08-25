@@ -3,8 +3,6 @@ resources:
   - app-stateful-set.yaml
   - certificate.yaml
   - ingress-route.yaml
-  - mongo-service.yaml
-  - mongo-stateful-set.yaml
 
 generators:
   - ksops.yaml

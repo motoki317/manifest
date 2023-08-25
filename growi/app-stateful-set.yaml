@@ -36,7 +36,10 @@ spec:
               name: http
           env:
             - name: MONGO_URI
-              value: mongodb://mongo:27017/growi
+              valueFrom:
+                secretKeyRef:
+                  name: growi
+                  key: mongo-uri
             # hard to build for arm64
             # - name: ELASTICSEARCH_URI
             #   value: http://es:9200/growi

@@ -18,6 +18,7 @@ spec:
       containers:
         - name: backend
           image: ghcr.io/salab/refsearch-backend:master
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               name: http

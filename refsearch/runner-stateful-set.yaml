@@ -20,6 +20,7 @@ spec:
       containers:
         - name: runner
           image: ghcr.io/salab/refsearch-runner:master
+          imagePullPolicy: Always
           env:
             - name: RUNNER_ID
               valueFrom:

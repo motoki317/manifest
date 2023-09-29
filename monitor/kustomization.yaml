@@ -19,7 +19,7 @@ images:
   newTag: v1.21.1
 - name: grafana
   newName: grafana/grafana
-  newTag: 10.1.2
+  newTag: 10.1.4
 - name: loki
   newName: grafana/loki
   newTag: 2.9.1

@@ -17,30 +17,45 @@ spec:
         app: ns-gitea-integration
     spec:
       enableServiceLinks: false
+      volumes:
+        - name: config
+          configMap:
+            name: ns-config
+
       containers:
         - name: ns-gitea-integration
           image: ns-gitea-integration
           imagePullPolicy: Always
           args:
-            - run
             - --loglevel=debug
-            - --config=/opt/config/ns-gitea-integration.yaml
+            - --config=/opt/config/ns.yaml
           env:
-            - name: NS_GITEA_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: ns
-                  key: gitea-token
             - name: NS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ns
                   key: db-password
+            - name: NS_STORAGE_S3_ACCESSKEY
+              valueFrom:
+                secretKeyRef:
+                  name: ns
+                  key: s3-access-key
+            - name: NS_STORAGE_S3_ACCESSSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ns
+                  key: s3-access-secret
+            - name: NS_IMAGE_REGISTRY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ns
+                  key: registry-password
+            - name: NS_COMPONENTS_GITEAINTEGRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ns
+                  key: gitea-token
           volumeMounts:
-            - mountPath: /opt/config/ns-gitea-integration.yaml
+            - mountPath: /opt/config/ns.yaml
               name: config
-              subPath: ns-gitea-integration.yaml
-      volumes:
-        - name: config
-          configMap:
-            name: ns-config
+              subPath: ns.yaml

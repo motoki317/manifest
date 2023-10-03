@@ -18,3 +18,6 @@ configMapGenerator:
 
 generators:
   - ksops.yaml
+
+configurations:
+  - kustomize-config.yaml

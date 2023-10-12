@@ -6,7 +6,7 @@ metadata:
 
 spec:
   destination:
-    namespace: promtail
+    namespace: harbor
     server: https://kubernetes.default.svc
   project: default
   sources:
@@ -16,7 +16,7 @@ spec:
       targetRevision: "1.13.0"
       helm:
         valueFiles:
-          - $values/promtail/values.yaml
+          - $values/harbor/values.yaml
     - repoURL: https://github.com/motoki317/manifest
       path: harbor
       targetRevision: master

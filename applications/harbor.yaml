@@ -8,7 +8,7 @@ spec:
   # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
   ignoreDifferences:
     - kind: Secret
-      name: harbor-registry
+      name: harbor-registry-htpasswd
       jsonPointers:
         - /data/REGISTRY_HTPASSWD
   destination:

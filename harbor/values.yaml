@@ -101,7 +101,8 @@ registry:
       value: amd64-burstable
       effect: NoExecute
   credentials:
-    username: ""
+    username: "registry"
+    password: "password"
     # If using existingSecret, the key must be REGISTRY_PASSWD and REGISTRY_HTPASSWD
     existingSecret: ""
 

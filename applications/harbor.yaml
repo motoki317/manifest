@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor
+  namespace: argocd
+
+spec:
+  destination:
+    namespace: promtail
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+    - repoURL: https://helm.goharbor.io
+      chart: harbor
+      # datasource=helm depName=harbor registryUrl=https://helm.goharbor.io
+      targetRevision: "1.13.0"
+      helm:
+        valueFiles:
+          - $values/promtail/values.yaml
+    - repoURL: https://github.com/motoki317/manifest
+      targetRevision: master
+      ref: values
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

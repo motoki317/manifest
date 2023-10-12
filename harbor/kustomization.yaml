@@ -1,0 +1,4 @@
+resources: []
+
+generators:
+  - ksops.yaml

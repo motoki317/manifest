@@ -25,8 +25,8 @@ spec:
           hostPath:
             path: /srv/quay/storage
         - name: config
-          hostPath:
-            path: /srv/quay/config
+          secret:
+            secretName: quay
         - name: log
           emptyDir: {}
         - name: tmp
@@ -42,7 +42,8 @@ spec:
             - name: storage
               mountPath: /datastorage
             - name: config
-              mountPath: /conf/stack
+              mountPath: /conf/stack/config.yaml
+              subPath: config.yaml
             - name: log
               mountPath: /var/log
             - name: tmp

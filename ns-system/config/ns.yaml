@@ -21,7 +21,7 @@ image:
   registry:
     scheme: https
     addr: registry.toki317.dev
-    username: registry
+    username: "robot$registry"
     # password: <env secret>
   namePrefix: ns-apps/
   tmpNamePrefix: ns-apps-tmp/

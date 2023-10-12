@@ -7,6 +7,9 @@ metadata:
 spec:
   # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
   ignoreDifferences:
+    - kind: Secret
+      jsonPointers:
+        - /data/REGISTRY_HTPASSWD
     - kind: Deployment
       jsonPointers:
         - /spec/template/metadata/annotations/checksum~1secret

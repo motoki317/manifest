@@ -7,10 +7,11 @@ metadata:
 spec:
   # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
   ignoreDifferences:
-    - kind: Secret
-      name: harbor-registry-htpasswd
+    - kind: Deployment
       jsonPointers:
-        - /data/REGISTRY_HTPASSWD
+        - /spec/template/metadata/annotations/checksum~1secret
+        - /spec/template/metadata/annotations/checksum~1secret-core
+        - /spec/template/metadata/annotations/checksum~1secret-jobservice
   destination:
     namespace: harbor
     server: https://kubernetes.default.svc

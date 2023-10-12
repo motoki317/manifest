@@ -5,6 +5,12 @@ metadata:
   namespace: argocd
 
 spec:
+  # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
+  ignoreDifferences:
+    - kind: Secret
+      name: harbor-registry
+      jsonPointers:
+        - /data/REGISTRY_HTPASSWD
   destination:
     namespace: harbor
     server: https://kubernetes.default.svc

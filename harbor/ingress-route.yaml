@@ -12,9 +12,9 @@ spec:
     - kind: Rule
       match: Host(`registry.toki317.dev`)
       services:
-        - namespace: registry
+        - namespace: harbor
           kind: Service
-          name: registry
+          name: harbor
           port: http
           scheme: http
           strategy: RoundRobin

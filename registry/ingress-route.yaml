@@ -11,10 +11,12 @@ spec:
   routes:
     - kind: Rule
       match: Host(`registry.toki317.dev`)
+      middlewares:
+        - name: registry-auth
       services:
-        - namespace: quay
+        - namespace: registry
           kind: Service
-          name: quay
+          name: registry
           port: http
           scheme: http
           strategy: RoundRobin

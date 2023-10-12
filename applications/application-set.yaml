@@ -24,7 +24,6 @@ spec:
           - path: nextcloud
           # - path: ns-apps # no prune for resource monitoring
           - path: ns-system
-          - path: quay
           - path: refsearch
           - path: registry
           - path: system-upgrade

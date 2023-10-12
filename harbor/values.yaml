@@ -52,7 +52,7 @@ existingSecretSecretKey: "secret-key"
 secretKey: HARBOR_SECRET_KEY
 
 # Run the migration job via helm hook
-enableMigrateHelmHook: true
+enableMigrateHelmHook: false
 
 # If service exposed via "ingress", the Nginx will not be used
 nginx:

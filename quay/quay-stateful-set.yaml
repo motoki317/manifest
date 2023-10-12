@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: quay
+
+spec:
+  replicas: 1
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  serviceName: quay
+  selector:
+    matchLabels:
+      app: quay
+  template:
+    metadata:
+      labels:
+        app: quay
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: storage
+          hostPath:
+            path: /srv/quay/storage
+        - name: config
+          hostPath:
+            path: /srv/quay/config
+        - name: log
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+
+      containers:
+        - name: quay
+          image: quay.io/projectquay/quay:3.9.2
+          ports:
+            - name: http
+              containerPort: 8080
+          volumeMounts:
+            - name: storage
+              mountPath: /datastorage
+            - name: config
+              mountPath: /conf/stack
+            - name: log
+              mountPath: /var/log
+            - name: tmp
+              mountPath: /tmp

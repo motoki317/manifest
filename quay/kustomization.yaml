@@ -1,0 +1,10 @@
+resources:
+  - postgres-service.yaml
+  - postgres-stateful-set.yaml
+  - quay-service.yaml
+  - quay-stateful-set.yaml
+  - redis-service.yaml
+  - redis-stateful-set.yaml
+
+generators:
+  - ksops.yaml

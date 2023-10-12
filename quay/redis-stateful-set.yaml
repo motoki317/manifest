@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+
+spec:
+  replicas: 1
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  serviceName: redis
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: redis
+          image: redis:7.2.1
+          ports:
+            - name: redis
+              containerPort: 6379

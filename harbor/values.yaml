@@ -49,7 +49,6 @@ existingSecretAdminPassword: "password"
 existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD
 
 existingSecretSecretKey: "secret-key"
-secretKey: HARBOR_SECRET_KEY
 
 # Run the migration job via helm hook
 enableMigrateHelmHook: false

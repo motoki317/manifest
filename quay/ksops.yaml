@@ -8,4 +8,5 @@ metadata:
         path: ksops
 
 files:
+  - ./secrets/basic-auth.yaml
   - ./secrets/quay.yaml

@@ -14,9 +14,9 @@ spec:
       middlewares:
         - name: registry-auth
       services:
-        - namespace: registry
+        - namespace: quay
           kind: Service
-          name: registry
+          name: quay
           port: http
           scheme: http
           strategy: RoundRobin

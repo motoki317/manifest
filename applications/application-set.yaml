@@ -25,7 +25,6 @@ spec:
           # - path: ns-apps # no prune for resource monitoring
           - path: ns-system
           - path: refsearch
-          - path: registry
           - path: system-upgrade
           - path: traefik
           - path: traq

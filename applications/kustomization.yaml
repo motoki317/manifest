@@ -3,6 +3,7 @@ resources:
   - application-set.yaml
   - auth-application-set.yaml
   - csi-s3.yaml
+  - harbor.yaml
   - ns-apps.yaml
   - preview-app-project.yaml
   - promtail.yaml

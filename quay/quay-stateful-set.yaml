@@ -27,8 +27,6 @@ spec:
         - name: config
           secret:
             secretName: quay
-        - name: log
-          emptyDir: {}
         - name: tmp
           emptyDir: {}
 
@@ -44,7 +42,5 @@ spec:
             - name: config
               mountPath: /conf/stack/config.yaml
               subPath: config.yaml
-            - name: log
-              mountPath: /var/log
             - name: tmp
               mountPath: /tmp

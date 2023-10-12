@@ -55,6 +55,7 @@ enableMigrateHelmHook: false
 
 # If service exposed via "ingress", the Nginx will not be used
 nginx:
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:
@@ -64,6 +65,7 @@ nginx:
       effect: NoExecute
 
 portal:
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:
@@ -73,6 +75,7 @@ portal:
       effect: NoExecute
 
 core:
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:
@@ -84,6 +87,7 @@ core:
 jobservice:
   jobLoggers:
     - stdout
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:
@@ -93,6 +97,7 @@ jobservice:
       effect: NoExecute
 
 registry:
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:
@@ -147,6 +152,7 @@ redis:
         effect: NoExecute
 
 exporter:
+  revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64
   tolerations:

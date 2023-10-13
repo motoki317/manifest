@@ -75,6 +75,9 @@ portal:
       effect: NoExecute
 
 core:
+  # NOTE: https://github.com/goharbor/harbor-helm/issues/1102
+  # core-cert generated with the following helm function: genCA "harbor-token-ca" 36500
+  secretName: core-cert
   revisionHistoryLimit: 0
   nodeSelector:
     kubernetes.io/arch: amd64

@@ -5,27 +5,6 @@ metadata:
   namespace: argocd
 
 spec:
-  # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
-  # https://argo-cd.readthedocs.io/en/stable/user-guide/diffing/
-  # To debug, temporarily disable auto sync and manually see the differences
-#  ignoreDifferences:
-#    - kind: Secret
-#      jsonPointers:
-#        - /data/REGISTRY_HTTP_SECRET
-#        - /data/REGISTRY_HTPASSWD
-#        - /data/secret
-#        - /data/tls.key
-#        - /data/tls.crt
-#        - /data/ca.crt
-#        - /data/CSRF_KEY
-#        - /data/JOBSERVICE_SECRET
-#    - group: apps
-#      kind: Deployment
-#      jsonPointers:
-#        - /spec/template/metadata/annotations/checksum~1secret
-#        - /spec/template/metadata/annotations/checksum~1secret-core
-#        - /spec/template/metadata/annotations/checksum~1secret-jobservice
-
   destination:
     namespace: harbor
     server: https://kubernetes.default.svc

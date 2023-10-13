@@ -6,6 +6,7 @@ metadata:
 
 spec:
   # https://github.com/goharbor/harbor-helm/issues/1102#issuecomment-1017880020
+  # To debug, temporarily disable auto sync and manually see the differences
   ignoreDifferences:
     - kind: Secret
       jsonPointers:

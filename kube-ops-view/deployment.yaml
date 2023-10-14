@@ -22,7 +22,7 @@ spec:
         - key: toki317.dev/role
           operator: Equal
           value: amd64-burstable
-          effect: NoExecute
+          effect: NoSchedule
 
       containers:
         - name: kube-ops-view

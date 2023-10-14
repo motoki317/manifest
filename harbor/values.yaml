@@ -62,7 +62,7 @@ nginx:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 portal:
   revisionHistoryLimit: 0
@@ -72,7 +72,7 @@ portal:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 core:
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
@@ -89,7 +89,7 @@ core:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 jobservice:
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
@@ -103,7 +103,7 @@ jobservice:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 registry:
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
@@ -115,7 +115,7 @@ registry:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
   credentials:
     username: "registry"
     password: "password"
@@ -132,7 +132,7 @@ trivy:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 database:
   type: internal
@@ -149,7 +149,7 @@ database:
       - key: toki317.dev/role
         operator: Equal
         value: amd64-burstable
-        effect: NoExecute
+        effect: NoSchedule
 
 redis:
   type: internal
@@ -160,7 +160,7 @@ redis:
       - key: toki317.dev/role
         operator: Equal
         value: amd64-burstable
-        effect: NoExecute
+        effect: NoSchedule
 
 exporter:
   revisionHistoryLimit: 0
@@ -170,7 +170,7 @@ exporter:
     - key: toki317.dev/role
       operator: Equal
       value: amd64-burstable
-      effect: NoExecute
+      effect: NoSchedule
 
 metrics:
   enabled: false

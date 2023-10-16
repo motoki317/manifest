@@ -15,7 +15,7 @@ data:
     cookie-domain = {{ .Values.domain }}
     cookie-name = {{ .Values.cookieName }}
     header-names = {{ join "," .Values.headerNames }}
-    # 2 weeks in seconds
+    # 2 weeks
     lifetime = 1209600
 
     providers.generic-oauth.auth-url = https://q.toki317.dev/api/v3/oauth2/authorize

@@ -67,9 +67,24 @@ This encrypted secret is then decrypted by ArgoCD by [ksops kustomize plugin](ht
 
 ### Encrypting (no secret key required)
 
-1. `./encrypt.sh filename`
+1. Write a secret.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+  annotations:
+    # Only add this annotation if secret name can be resolved by resources using kustomize nameReference
+    # (no need to alter configuration if secret is only used by normal Deployments etc.)
+    kustomize.config.k8s.io/needs-hash: "true"
+stringData:
+  my-secret-key: "my-super-secret-value"
+```
+
+2. Encrypt the secret: `./encrypt.sh secret.yaml`
    - File will be encrypted in-place.
-2. Refer to encrypted file from `ksops.yaml` generator.
+3. Refer to encrypted file from `ksops.yaml` file.
 
 ```yaml
 apiVersion: viaduct.ai/v1
@@ -86,7 +101,7 @@ files:
   - ./secrets/secret.yaml
 ```
 
-3. Add the following to `kustomization.yaml`.
+4. Add the following to `kustomization.yaml`.
 
 ```yaml
 generators:

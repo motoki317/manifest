@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: traq-ranking
-
-data:
-  base-path: "https://q.trap.jp/api/v3"
-  target-channel: "15f5efeb-78b3-4af6-a886-7043e273a84c"
-  save-file: "/data/ranking.q.trap.jp.json"

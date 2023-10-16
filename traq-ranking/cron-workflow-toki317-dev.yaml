@@ -15,6 +15,8 @@ spec:
     arguments:
       parameters:
         - name: configmap
+          # Referenced in kustomize-config.yaml
           value: traq-ranking-toki317-dev
         - name: secret
+          # Referenced in kustomize-config.yaml
           value: traq-ranking-toki317-dev

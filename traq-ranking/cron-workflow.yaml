@@ -19,4 +19,4 @@ spec:
           value: traq-ranking
         - name: secret
           # Referenced in kustomize-config.yaml
-          value: traq-ranking
+          value: traq-ranking-secret

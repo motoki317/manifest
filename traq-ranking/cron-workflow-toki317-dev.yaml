@@ -19,4 +19,4 @@ spec:
           value: traq-ranking-toki317-dev
         - name: secret
           # Referenced in kustomize-config.yaml
-          value: traq-ranking-toki317-dev
+          value: traq-ranking-secret-toki317-dev

@@ -1,0 +1,6 @@
+# For Secret name with hash suffix substitution
+nameReference:
+  - kind: Secret
+    fieldSpecs:
+      - kind: ClusterIssuer
+        path: spec/acme/solvers/dns01/cloudflare/apiTokenSecretRef/name

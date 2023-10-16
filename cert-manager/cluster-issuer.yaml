@@ -21,5 +21,6 @@ spec:
       - dns01:
           cloudflare:
             apiTokenSecretRef:
+              # Referenced in kustomize-config.yaml for hash suffix substitution
               name: cloudflare-key
               key: api-token

@@ -1,7 +1,9 @@
+# For image name substitution
 images:
   - kind: WorkflowTemplate
     path: spec/templates/container/image
 
+# For ConfigMap name with hash suffix substitution
 nameReference:
   - kind: ConfigMap
     fieldSpecs:

@@ -1,3 +1,4 @@
+{{- $ConfigMap := (lookup "v1" "ConfigMap" .Release.Namespace "testmap") }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,6 +14,10 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}
+      annotations:
+        # https://helm.sh/docs/howto/charts_tips_and_tricks/#automatically-roll-deployments
+        checksum/config: {{ include (print $.Template.BasePath "/config-map.yaml") . | sha256sum }}
+        checksum/secret: {{ lookup "v1" "Secret" .Release.Namespace .Values.secretName | toYaml | sha256sum }}
     spec:
       enableServiceLinks: false
 

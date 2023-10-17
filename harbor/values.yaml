@@ -55,26 +55,24 @@ enableMigrateHelmHook: false
 
 # If service exposed via "ingress", the Nginx will not be used
 nginx:
+  image:
+    repository: ghcr.io/octohelm/goharbor/nginx-photon
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/nginx-photon registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
 
 portal:
+  image:
+    repository: ghcr.io/octohelm/goharbor/harbor-portal
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/harbor-portal registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
 
 core:
+  image:
+    repository: ghcr.io/octohelm/goharbor/harbor-core
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/harbor-core registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "gYdR4OeI60tmNah4"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
@@ -83,39 +81,26 @@ core:
   # core-cert generated with the following helm function: genCA "harbor-token-ca" 36500
   secretName: core-cert
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
 
 jobservice:
+  image:
+    repository: ghcr.io/octohelm/goharbor/harbor-jobservice
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/harbor-jobservice registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "ZWm61Lg3hjhbQZF0"
   jobLoggers:
     - stdout
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
 
 registry:
+  image:
+    repository: ghcr.io/octohelm/goharbor/registry-photon
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/registry-photon registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "K2En0kIK4bCrOmBq"
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
   credentials:
     username: "registry"
     password: "password"
@@ -126,51 +111,39 @@ registry:
 
 trivy:
   enabled: true
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
+  image:
+    repository: ghcr.io/octohelm/goharbor/trivy-adapter-photon
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/trivy-adapter-photon registryUrl=https://ghcr.io
+    tag: "v2.9.0"
 
 database:
   type: internal
   internal:
+    image:
+      repository: ghcr.io/octohelm/goharbor/harbor-db
+      # image datasource=docker depName=ghcr.io/octohelm/goharbor/harbor-db registryUrl=https://ghcr.io
+      tag: "v2.9.0"
     password: "password"
     shmSizeLimit: 128Mi
     livenessProbe:
       timeoutSeconds: 5
     readinessProbe:
       timeoutSeconds: 5
-    nodeSelector:
-      kubernetes.io/arch: amd64
-    tolerations:
-      - key: toki317.dev/role
-        operator: Equal
-        value: amd64-burstable
-        effect: NoSchedule
 
 redis:
   type: internal
   internal:
-    nodeSelector:
-      kubernetes.io/arch: amd64
-    tolerations:
-      - key: toki317.dev/role
-        operator: Equal
-        value: amd64-burstable
-        effect: NoSchedule
+    image:
+      repository: ghcr.io/octohelm/goharbor/redis-photon
+      # image datasource=docker depName=ghcr.io/octohelm/goharbor/redis-photon registryUrl=https://ghcr.io
+      tag: "v2.9.0"
 
 exporter:
+  image:
+    repository: ghcr.io/octohelm/goharbor/harbor-exporter
+    # image datasource=docker depName=ghcr.io/octohelm/goharbor/harbor-exporter registryUrl=https://ghcr.io
+    tag: "v2.9.0"
   revisionHistoryLimit: 0
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  tolerations:
-    - key: toki317.dev/role
-      operator: Equal
-      value: amd64-burstable
-      effect: NoSchedule
 
 metrics:
   enabled: false

@@ -26,8 +26,8 @@ spec:
 
       containers:
         - name: kube-ops-view
-          # see https://github.com/hjacobs/kube-ops-view/releases
-          image: hjacobs/kube-ops-view:23.5.0
+          # image: hjacobs/kube-ops-view:23.5.0
+          image: registry.toki317.dev/pub/kube-ops-view:latest
           # args:
             # remove this option to use built-in memory store
             # - --redis-url=redis://kube-ops-view-redis:6379

@@ -9,6 +9,7 @@ metadata:
 
 files:
   - ./secrets/core-cert.yaml
+  - ./secrets/image-pull-secret.yaml
   - ./secrets/password.yaml
   - ./secrets/secret-key.yaml
   - ./secrets/storage.yaml

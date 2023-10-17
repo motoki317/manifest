@@ -94,10 +94,16 @@ jobservice:
   revisionHistoryLimit: 0
 
 registry:
-  image:
-    repository: ghcr.io/octohelm/harbor/registry-photon
-    # image datasource=docker depName=ghcr.io/octohelm/harbor/registry-photon registryUrl=https://ghcr.io
-    tag: "v2.9.0"
+  registry:
+    image:
+      repository: ghcr.io/octohelm/harbor/registry-photon
+      # image datasource=docker depName=ghcr.io/octohelm/harbor/registry-photon registryUrl=https://ghcr.io
+      tag: "v2.9.0"
+  controller:
+    image:
+      repository: ghcr.io/octohelm/harbor/harbor-registryctl
+      # image datasource=docker depName=ghcr.io/octohelm/harbor/harbor-registryctl registryUrl=https://ghcr.io
+      tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "K2En0kIK4bCrOmBq"
   revisionHistoryLimit: 0

@@ -2,6 +2,8 @@ resources:
 - certificate.yaml
 - ingress-route.yaml
 - service.yaml
+- ss-deployment.yaml
+- ss-service.yaml
 - stateful-set.yaml
 
 images:

@@ -74,7 +74,7 @@ scrape_configs:
           - __meta_kubernetes_node_name
         target_label: node
       - action: replace
-        regex: ^([^:]+):\d+
+        regex: ^([^:]+)
         replacement: $1:9101
         source_labels:
           - __meta_kubernetes_node_address_ExternalIP

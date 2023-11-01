@@ -34,7 +34,7 @@ spec:
 
       containers:
         - name: buildpack
-          image: dashuan/builder:base
+          image: dashaun/builder:base
           # image: paketobuildpacks/builder:full
           imagePullPolicy: Always
           command:

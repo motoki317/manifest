@@ -10,7 +10,7 @@ spec:
     secretName: traq-tls
   routes:
     - kind: Rule
-      match: Host(`q.toki317.dev`) && PathPrefix(`/api`)
+      match: Host(`q.toki317.dev`) && (PathPrefix(`/api`) || PathPrefix(`/.well-known`))
       services:
         - namespace: traq
           kind: Service

@@ -34,7 +34,7 @@ spec:
 
       containers:
         - name: buildpack
-          image: ghcr.io/motoki317/builder-arm:latest
+          image: dashuan/builder:base
           # image: paketobuildpacks/builder:full
           imagePullPolicy: Always
           command:

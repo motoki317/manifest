@@ -20,6 +20,7 @@ spec:
       containers:
         - name: traq
           image: traq
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
               name: http

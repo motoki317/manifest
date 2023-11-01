@@ -8,6 +8,7 @@ headerNames:
   - X-Showcase-User
 
 image:
-  name: "ghcr.io/traptitech/traefik-forward-auth"
-  # image datasource=docker depName=ghcr.io/traptitech/traefik-forward-auth registryUrl=https://ghcr.io
-  tag: "2.7.3"
+  # name: "ghcr.io/traptitech/traefik-forward-auth"
+  name: "registry.toki317.dev/pub/traefik-forward-auth"
+  # -- image datasource=docker depName=ghcr.io/traptitech/traefik-forward-auth registryUrl=https://ghcr.io
+  tag: "2.7.3-p1"

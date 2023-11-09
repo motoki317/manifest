@@ -30,7 +30,7 @@ jobs:
           kubectl get nodes -o wide
       - name: Install ksops-dry-run
         run: |
-          curl -sSLO https://github.com/joshdk/ksops-dry-run/releases/download/v0.2.0/ksops-dry-run-linux-amd64.tar.gz
+          curl -sSLO https://github.com/motoki317/ksops-dry-run/releases/download/v0.3.0/ksops-dry-run-linux-amd64.tar.gz
           tar -zxvf ksops-dry-run-linux-amd64.tar.gz
           rm ksops-dry-run-linux-amd64.tar.gz
           sudo install ksops-dry-run /usr/local/bin

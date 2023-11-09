@@ -28,8 +28,13 @@ jobs:
           kubectl cluster-info --context k3d-test-cluster
           kubectl config use-context k3d-test-cluster
           kubectl get nodes -o wide
-      - name: Install ksops
-        run: curl -s https://raw.githubusercontent.com/viaduct-ai/kustomize-sops/master/scripts/install-ksops-archive.sh | bash
+      - name: Install ksops-dry-run
+        run: |
+          curl -sSLO https://github.com/joshdk/ksops-dry-run/releases/download/v0.2.0/ksops-dry-run-linux-amd64.tar.gz
+          tar -zxvf ksops-dry-run-linux-amd64.tar.gz
+          rm ksops-dry-run-linux-amd64.tar.gz
+          sudo install ksops-dry-run /usr/local/bin
+          sudo ln -s ksops-dry-run /usr/local/bin/ksops
       - name: Install CRDs
         run: |
           # datasource=github-releases depName=argoproj/argo-cd
@@ -52,4 +57,4 @@ jobs:
           max_attempts: 3
           command: ./check.sh
         env:
-          SOPS_AGE_KEY: "${{ secrets.SOPS_KEY }}"
+          KSOPS_DRY_RUN: "1"

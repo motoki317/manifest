@@ -28,6 +28,7 @@ jobs:
           kubectl cluster-info --context k3d-test-cluster
           kubectl config use-context k3d-test-cluster
           kubectl get nodes -o wide
+      # https://stackoverflow.com/a/73596568
       - name: Setup to skip ksops decryption
         run: sudo ln -s /bin/true /usr/local/bin/ksops
       - name: Install CRDs

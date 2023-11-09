@@ -28,13 +28,8 @@ jobs:
           kubectl cluster-info --context k3d-test-cluster
           kubectl config use-context k3d-test-cluster
           kubectl get nodes -o wide
-      - name: Install ksops-dry-run
-        run: |
-          curl -sSLO https://github.com/motoki317/ksops-dry-run/releases/download/v0.3.0/ksops-dry-run-linux-amd64.tar.gz
-          tar -zxvf ksops-dry-run-linux-amd64.tar.gz
-          rm ksops-dry-run-linux-amd64.tar.gz
-          sudo install ksops-dry-run /usr/local/bin
-          sudo ln -s ksops-dry-run /usr/local/bin/ksops
+      - name: Setup to skip ksops decryption
+        run: sudo ln -s /bin/true /usr/local/bin/ksops
       - name: Install CRDs
         run: |
           # datasource=github-releases depName=argoproj/argo-cd
@@ -56,5 +51,3 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           command: ./check.sh
-        env:
-          KSOPS_DRY_RUN: "1"

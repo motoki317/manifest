@@ -45,7 +45,9 @@
         ".+\\.ya?ml$"
       ],
       "matchStrings": [
-        // Example: fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
+        // Example:
+        // # renovate:image-full
+        // fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
         "# renovate:image-full\n.*?\"(?<registryUrl>[^\\s/]+)/(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
       ],
       "datasourceTemplate": "docker",
@@ -58,10 +60,14 @@
         ".+\\.ya?ml$"
       ],
       "matchStrings": [
-        // Example: fooTag: "0.35.5-p1"
-        "# renovate:image-tag depName=(?<depName>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<currentValue>.+)\"\n",
+        // Example:
+        // # renovate:image-tag imageName=ghcr.io/traptitech/traq
+        // fooTag: "0.35.5-p1"
+        "# renovate:image-tag imageName=(?<registryUrl>[^\\s/]+)/(?<depName>\\S+)\n.*?\"(?<currentValue>.+)\"\n",
       ],
       "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://{{{registryUrl}}}",
+      "depNameTemplate": "{{{registryUrl}}}/{{{depName}}}"
     },
     {
       "description": "GitHub URL dependencies",

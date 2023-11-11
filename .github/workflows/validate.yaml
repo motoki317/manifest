@@ -33,18 +33,18 @@ jobs:
         run: sudo ln -s /bin/true /usr/local/bin/ksops
       - name: Install CRDs
         run: |
-          # renovate:github-url depName=argoproj/argo-cd
+          # renovate:github-url
           kustomize build https://github.com/argoproj/argo-cd//manifests/crds?ref=v2.9.0 | kubectl create -f -
           # Use minimal crd until full CRDs are fixed: https://github.com/argoproj/argo-workflows/issues/11266
-          # renovate:github-url depName=argoproj/argo-workflows
+          # renovate:github-url
           kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/minimal?ref=v3.5.1 | kubectl create -f -
-          # renovate:github-url depName=argoproj/argo-workflows
+          # renovate:github-url
           # kustomize build https://github.com/argoproj/argo-workflows//manifests/base/crds/full?ref=v3.5.1 | kubectl create -f -
-          # renovate:github-url depName=traefik/traefik
+          # renovate:github-url
           kubectl create -f https://raw.githubusercontent.com/traefik/traefik/v2.10.5/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
-          # renovate:github-url depName=cert-manager/cert-manager
+          # renovate:github-url
           kubectl create -f https://github.com/cert-manager/cert-manager/releases/download/v1.13.2/cert-manager.yaml
-          # renovate:github-url depName=rancher/system-upgrade-controller
+          # renovate:github-url
           kubectl create -f https://github.com/rancher/system-upgrade-controller/releases/download/v0.13.1/crd.yaml
       - name: Validate
         uses: nick-fields/retry@v2

@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: https://github.com/yandex-cloud/k8s-csi-s3
       path: deploy/helm
-      # datasource=github-releases depName=yandex-cloud/k8s-csi-s3
+      # renovate:general datasource=github-releases depName=yandex-cloud/k8s-csi-s3
       targetRevision: "v0.37.4"
       helm:
         releaseName: csi-s3

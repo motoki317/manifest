@@ -36,12 +36,21 @@
         "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
         // Example: (helm) targetRevision: "6.11.5"
         "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) registryUrl=(?<registryUrl>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
-        // Example: (docker) fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
-        "# renovate:image datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
-        // Example: (docker) fooTag: "0.35.5-p1"
-        "# renovate:image datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<currentValue>.+)\"\n",
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
+    },
+    {
+      "description": "OCI image dependencies",
+      "fileMatch": [
+        ".+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        // Example: (docker) fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
+        "# renovate:image( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
+        // Example: (docker) fooTag: "0.35.5-p1"
+        "# renovate:image depName=(?<depName>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<currentValue>.+)\"\n",
+      ],
+      "datasourceTemplate": "docker",
     },
     {
       "description": "GitHub URL dependencies",

@@ -57,21 +57,21 @@ enableMigrateHelmHook: false
 nginx:
   image:
     repository: ghcr.io/octohelm/harbor/nginx-photon
-    # renovate:image depName=ghcr.io/octohelm/harbor/nginx-photon registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/nginx-photon registryUrl=https://ghcr.io
     tag: "v2.9.0"
   revisionHistoryLimit: 0
 
 portal:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-portal
-    # renovate:image depName=ghcr.io/octohelm/harbor/harbor-portal registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-portal registryUrl=https://ghcr.io
     tag: "v2.9.0"
   revisionHistoryLimit: 0
 
 core:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-core
-    # renovate:image depName=ghcr.io/octohelm/harbor/harbor-core registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-core registryUrl=https://ghcr.io
     tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "gYdR4OeI60tmNah4"
@@ -85,7 +85,7 @@ core:
 jobservice:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-jobservice
-    # renovate:image depName=ghcr.io/octohelm/harbor/harbor-jobservice registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-jobservice registryUrl=https://ghcr.io
     tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "ZWm61Lg3hjhbQZF0"
@@ -97,12 +97,12 @@ registry:
   registry:
     image:
       repository: ghcr.io/octohelm/harbor/registry-photon
-      # renovate:image depName=ghcr.io/octohelm/harbor/registry-photon registryUrl=https://ghcr.io
+      # renovate:image-tag depName=ghcr.io/octohelm/harbor/registry-photon registryUrl=https://ghcr.io
       tag: "v2.9.0"
   controller:
     image:
       repository: ghcr.io/octohelm/harbor/harbor-registryctl
-      # renovate:image depName=ghcr.io/octohelm/harbor/harbor-registryctl registryUrl=https://ghcr.io
+      # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-registryctl registryUrl=https://ghcr.io
       tag: "v2.9.0"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "K2En0kIK4bCrOmBq"
@@ -119,7 +119,7 @@ trivy:
   enabled: true
   image:
     repository: ghcr.io/octohelm/harbor/trivy-adapter-photon
-    # renovate:image depName=ghcr.io/octohelm/harbor/trivy-adapter-photon registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/trivy-adapter-photon registryUrl=https://ghcr.io
     tag: "v2.9.0"
 
 database:
@@ -127,7 +127,7 @@ database:
   internal:
     image:
       repository: ghcr.io/octohelm/harbor/harbor-db
-      # renovate:image depName=ghcr.io/octohelm/harbor/harbor-db registryUrl=https://ghcr.io
+      # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-db registryUrl=https://ghcr.io
       tag: "v2.9.0"
     password: "password"
     shmSizeLimit: 128Mi
@@ -141,13 +141,13 @@ redis:
   internal:
     image:
       repository: ghcr.io/octohelm/harbor/redis-photon
-      # renovate:image depName=ghcr.io/octohelm/harbor/redis-photon registryUrl=https://ghcr.io
+      # renovate:image-tag depName=ghcr.io/octohelm/harbor/redis-photon registryUrl=https://ghcr.io
       tag: "v2.9.0"
 
 exporter:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-exporter
-    # renovate:image depName=ghcr.io/octohelm/harbor/harbor-exporter registryUrl=https://ghcr.io
+    # renovate:image-tag depName=ghcr.io/octohelm/harbor/harbor-exporter registryUrl=https://ghcr.io
     tag: "v2.9.0"
   revisionHistoryLimit: 0
 

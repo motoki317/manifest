@@ -45,10 +45,12 @@
         ".+\\.ya?ml$"
       ],
       "matchStrings": [
-        // Example: (docker) fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
-        "# renovate:image-full( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
+        // Example: fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.35.5-p1"
+        "# renovate:image-full\n.*?\"(?<registryUrl>[^\\s/]+)/(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
       ],
       "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://{{{registryUrl}}}",
+      "depNameTemplate": "{{{registryUrl}}}/{{{depName}}}",
     },
     {
       "description": "OCI image dependencies (tag)",

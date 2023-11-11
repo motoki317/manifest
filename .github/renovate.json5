@@ -40,15 +40,23 @@
         "# renovate:image datasource=(?<datasource>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
         // Example: (docker) fooTag: "0.35.5-p1"
         "# renovate:image datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( registryUrl=(?<registryUrl>\\S+))?\n.*?\"(?<currentValue>.+)\"\n",
-        // Example: kustomize build https://github.com/argoproj/argo-cd//manifests/crds?ref=v2.7.6 | kubectl create -f -
-        "# renovate:github-url datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?https://github\\.com/[^/]+/[^/]+//.*?\\?ref=(?<currentValue>\\S+)",
-        // Example: - https://raw.githubusercontent.com/traefik/traefik/v2.10.3/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
-        "# renovate:github-url datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?https://raw\\.githubusercontent\\.com/[^/]+/[^/]+/(?<currentValue>[^/]+)",
-        // Example: - https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
-        "# renovate:github-url datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?https://github\\.com/[^/]+/[^/]+/releases/download/(?<currentValue>[^/]+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
+    {
+      "description": "GitHub URL dependencies",
+      "fileMatch": [
+        ".+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        // Example: kustomize build https://github.com/argoproj/argo-cd//manifests/crds?ref=v2.7.6 | kubectl create -f -
+        "# renovate:github-url depName=(?<depName>\\S+)\n.*?https://github\\.com/[^/]+/[^/]+//.*?\\?ref=(?<currentValue>\\S+)",
+        // Example: - https://raw.githubusercontent.com/traefik/traefik/v2.10.3/docs/content/reference/dynamic-configuration/kubernetes-crd-definition-v1.yml
+        "# renovate:github-url depName=(?<depName>\\S+)\n.*?https://raw\\.githubusercontent\\.com/[^/]+/[^/]+/(?<currentValue>[^/]+)",
+        // Example: - https://github.com/rancher/system-upgrade-controller/releases/download/v0.11.0/crd.yaml
+        "# renovate:github-url depName=(?<depName>\\S+)\n.*?https://github\\.com/[^/]+/[^/]+/releases/download/(?<currentValue>[^/]+)"
+      ],
+      "datasourceTemplate": "github-releases",
+    }
   ]
 }

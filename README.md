@@ -110,7 +110,8 @@ generators:
 
 ### Decrypting / Editing
 
-`./edit.sh filename`
+- `./set-secret.sh`
+- or`./edit-secret.sh` if you have decrypting key
 
 ### Adding / removing keys
 

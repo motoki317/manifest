@@ -65,7 +65,7 @@ portal:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-portal
     # renovate:image-tag imageName=ghcr.io/octohelm/harbor/harbor-portal
-    tag: "v2.9.0"
+    tag: "v2.9.1"
   revisionHistoryLimit: 0
 
 core:

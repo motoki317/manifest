@@ -128,7 +128,7 @@ database:
     image:
       repository: ghcr.io/octohelm/harbor/harbor-db
       # renovate:image-tag imageName=ghcr.io/octohelm/harbor/harbor-db
-      tag: "v2.9.0"
+      tag: "v2.9.1"
     password: "password"
     shmSizeLimit: 128Mi
     livenessProbe:

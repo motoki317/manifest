@@ -72,7 +72,7 @@ core:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-core
     # renovate:image-tag imageName=ghcr.io/octohelm/harbor/harbor-core
-    tag: "v2.9.0"
+    tag: "v2.9.1"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102
   secret: "gYdR4OeI60tmNah4"
   # NOTE: explicit supply, see: https://github.com/goharbor/harbor-helm/issues/1102

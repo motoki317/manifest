@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "description": "NeoShowcase Group",
+      "description": "NeoShowcase",
       "groupName": "NeoShowcase",
       "matchPackagePatterns": ["ghcr.io/traptitech/ns-"],
       "matchDatasources": ["docker"],
@@ -11,6 +11,17 @@
         "commitMessageTopic": "{{{groupName}}} group"
       },
       "separateMinorPatch": true
-    }
+    },
+    {
+      "description": "harbor",
+      "groupName": "harbor",
+      "matchPackagePatterns": ["ghcr.io/octohelm/harbor/"],
+      "matchDatasources": ["docker"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
   ]
 }

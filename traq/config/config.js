@@ -16,10 +16,16 @@
         label: 'Bot Console',
         iconPath: 'bot-console.svg',
         appLink: 'https://bot-console.toki317.dev'
+      },
+      {
+        label: 'NeoShowcase',
+        iconPath: 'neoshowcase.svg',
+        appLink: 'https://ns.toki317.dev'
       }
     ],
     ogpIgnoreHostNames: [
-      'bot-console.toki317.dev'
+      'bot-console.toki317.dev',
+      'ns.toki317.dev'
     ],
 //    wikiPageOrigin: 'https://wiki.example.com',
     isRootChannelSelectableAsParentChannel: true,

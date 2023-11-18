@@ -52,3 +52,6 @@ jobs:
         with:
           configurationFile: "${{ env.RENOVATE_CONFIG_FILE }}"
           token: "${{ steps.generate-token.outputs.token }}"
+        env:
+          DOCKER_GHCR_IO_USERNAME: motoki317
+          DOCKER_GHCR_IO_PASSWORD: "${{ env.DOCKER_GHCR_IO_PASSWORD }}"

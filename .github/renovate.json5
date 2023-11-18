@@ -28,12 +28,7 @@
   "packageRules": [
     {
       "matchDatasources": ["docker"],
-      "matchCurrentValue": "/^master$/",
-      "pinDigests": true,
-    },
-    {
-      "matchDatasources": ["docker"],
-      "matchCurrentValue": "/^latest$/",
+      "matchCurrentValue": "/^master|latest$$/",
       "pinDigests": true,
     },
   ],

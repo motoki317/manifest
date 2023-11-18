@@ -18,7 +18,7 @@ spec:
             claimName: traq-ranking
       container:
         name: traq-ranking
-        image: ghcr.io/motoki317/traq-ranking:master
+        image: ghcr.io/motoki317/traq-ranking:master@sha256:e38d0cf3e8e6b8b6c3b7f46943088cf77737bf53bb1a53794388f81c75188548
         imagePullPolicy: Always
         args:
           - daily-ranking

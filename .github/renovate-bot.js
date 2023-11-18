@@ -1,7 +1,14 @@
-{
+module.exports = {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "username": "moto-renovate[bot]",
   "gitAuthor": "moto-renovate <138499486+moto-renovate[bot]@users.noreply.github.com>",
   "repositories": ["motoki317/manifest"],
-  "detectHostRulesFromEnv": true,
+  "hostRules": [
+    {
+      "hostType": "docker",
+      "matchHost": "ghcr.io",
+      "username": "motoki317",
+      "password": process.env.RENOVATE_DOCKER_TOKEN,
+    }
+  ],
 }

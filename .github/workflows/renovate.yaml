@@ -25,7 +25,7 @@ on:
 env:
   LOG_LEVEL: debug
   RENOVATE_DRY_RUN: false
-  RENOVATE_CONFIG_FILE: .github/renovate-bot.json5
+  RENOVATE_CONFIG_FILE: .github/renovate-bot.js
 
 jobs:
   renovate:
@@ -52,7 +52,6 @@ jobs:
         with:
           configurationFile: "${{ env.RENOVATE_CONFIG_FILE }}"
           token: "${{ steps.generate-token.outputs.token }}"
-          env-regex: "^DOCKER_GHCR_IO_(USERNAME|PASSWORD)$"
         env:
-          DOCKER_GHCR_IO_USERNAME: motoki317
-          DOCKER_GHCR_IO_PASSWORD: "${{ secrets.DOCKER_GHCR_IO_PASSWORD }}"
+          # Envs prefixed with "RENOVATE_" are passed to renovate container
+          RENOVATE_DOCKER_TOKEN: "${{ secrets.RENOVATE_DOCKER_TOKEN }}"

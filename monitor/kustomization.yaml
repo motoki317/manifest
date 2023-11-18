@@ -40,4 +40,4 @@ images:
     newTag: 2.4.2
   - name: switchbot-exporter
     newName: ghcr.io/motoki317/switchbot_exporter
-    newTag: master
+    newTag: master@sha256:9de4d9d25b42467c9c73df5ec1d9c8e25a90f53d6ec013a2b659ce23bcc91b16

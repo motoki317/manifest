@@ -21,7 +21,7 @@ spec:
         - name: japari-image-pull-secret
       containers:
         - name: game
-          image: ghcr.io/japariproject/game:master
+          image: ghcr.io/japariproject/game:master@sha256:5e51afb17ba5403e2e9c33b0ab64c31fe316b88bd04b810b836a4ae72bd7ecbc
           env:
             - name: PORT
               value: "3000"

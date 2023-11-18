@@ -25,6 +25,18 @@
   "kubernetes": {
     "fileMatch": [".+\\.ya?ml$"]
   },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchCurrentValue": "master",
+      "pinDigests": true,
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchCurrentValue": "latest",
+      "pinDigests": true,
+    },
+  ],
   "customManagers": [
     {
       "description": "Process custom dependencies",

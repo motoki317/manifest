@@ -11,7 +11,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/yandex-cloud/k8s-csi-s3
-      path: deploy/helm
+      path: deploy/helm/csi-s3
       # renovate:general datasource=github-releases depName=yandex-cloud/k8s-csi-s3
       targetRevision: "v0.38.3"
       helm:

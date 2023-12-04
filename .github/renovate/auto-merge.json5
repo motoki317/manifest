@@ -11,7 +11,9 @@
     },
     {
       "description": "Auto merge minor",
-      "matchUpdateTypes": ["minor"],
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch"],
       "matchDepNames": [
         "ghcr.io/lowlighter/metrics",
         "ghcr.io/renovatebot/renovate",

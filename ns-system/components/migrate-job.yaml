@@ -2,6 +2,9 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: ns-migrate
+  annotations:
+    # Required because spec.template field is immutable
+    kustomize.config.k8s.io/needs-hash: "true"
 
 spec:
   backoffLimit: 0

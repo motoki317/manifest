@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ns-migrate
+
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      automountServiceAccountToken: false
+      enableServiceLinks: false
+      containers:
+        - name: migrate
+          image: ns-migrate
+          imagePullPolicy: Always
+          env:
+            - name: DB_HOST
+              value: mariadb.db.svc.cluster.local
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_USER
+              value: root
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: ns
+                  key: db-password
+            - name: DB_NAME
+              value: neoshowcase

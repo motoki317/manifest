@@ -9,11 +9,11 @@ spec:
     spec:
       automountServiceAccountToken: false
       enableServiceLinks: false
+      restartPolicy: Never
       containers:
         - name: migrate
           image: ns-migrate
           imagePullPolicy: Always
-          restartPolicy: Never
           env:
             - name: DB_HOST
               value: mariadb.db.svc.cluster.local

@@ -135,7 +135,8 @@ components:
   giteaIntegration:
     url: https://git.toki317.dev
     # token: <env secret>
-    intervalSeconds: 600
+    controller:
+      url: http://ns-controller.ns-system.svc.cluster.local:10000
 
   ssgen:
     artifactsRoot: /artifacts

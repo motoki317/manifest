@@ -26,6 +26,11 @@ spec:
           env:
             - name: discovery.type
               value: single-node
+            - name: ELASTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: traq
+                  key: es-password
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
               name: config

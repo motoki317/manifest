@@ -19,6 +19,8 @@ mariadb:
 
 es:
   url: http://traq-es.traq.svc.cluster.local:9200
+  username: elastic
+  # password: <env secret>
 
 storage:
   type: s3

@@ -45,6 +45,11 @@ spec:
                 secretKeyRef:
                   name: traq
                   key: skyway-secret
+            - name: TRAQ_ES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: traq
+                  key: es-password
           volumeMounts:
             - mountPath: /app/config.yml
               name: config

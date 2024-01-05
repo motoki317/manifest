@@ -12,6 +12,7 @@ spec:
           - path: argocd
           - path: auth
           - path: cert-manager
+          - path: csi-s3
           - path: db
           - path: dev-ops-bot
           - path: gitea

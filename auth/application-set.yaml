@@ -26,6 +26,7 @@ spec:
         path: auth/template
         targetRevision: master
         helm:
+          releaseName: '{{name}}'
           parameters:
             - name: domain
               value: '{{domain}}'

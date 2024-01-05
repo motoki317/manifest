@@ -19,7 +19,6 @@ spec:
         valueFiles:
           - $values/harbor/values.yaml
     - repoURL: https://github.com/motoki317/manifest
-      path: harbor
       targetRevision: master
       ref: values
   syncPolicy:

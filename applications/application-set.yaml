@@ -17,6 +17,7 @@ spec:
           - path: dev-ops-bot
           - path: gitea
           - path: growi
+          - path: harbor
           - path: japari
           - path: kube-ops-view
           - path: lowlighter-metrics

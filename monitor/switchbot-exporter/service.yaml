@@ -4,11 +4,12 @@ metadata:
   name: switchbot-exporter
   annotations:
     prometheus.io/scrape: "true"
+    prometheus.io/port: "9257"
 
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 9257
       targetPort: http
       name: http
   selector:

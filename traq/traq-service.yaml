@@ -4,6 +4,7 @@ metadata:
   name: traq
   annotations:
     prometheus.io/scrape: "true"
+    prometheus.io/port: "3000"
     prometheus.io/path: /api/metrics
 
 spec:
@@ -11,6 +12,6 @@ spec:
   ports:
     - targetPort: http
       name: http
-      port: 80
+      port: 3000
   selector:
     app: traq

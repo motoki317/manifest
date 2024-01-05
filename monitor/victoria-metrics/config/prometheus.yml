@@ -99,6 +99,16 @@ scrape_configs:
         regex: true
         source_labels:
           - __meta_kubernetes_service_annotation_prometheus_io_scrape_slow
+      # Keep only TCP port targets
+      - action: keep
+        regex: TCP
+        source_labels:
+          - __meta_kubernetes_endpoint_port_protocol
+      # Drop port targets that do not equal the "prometheus.io/port" annotation
+      - action: keepequal
+        source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_port
+        target_label: __meta_kubernetes_pod_container_port_number
       - action: replace
         regex: (https?)
         source_labels:
@@ -149,6 +159,16 @@ scrape_configs:
         regex: true
         source_labels:
           - __meta_kubernetes_service_annotation_prometheus_io_scrape_slow
+      # Keep only TCP port targets
+      - action: keep
+        regex: TCP
+        source_labels:
+          - __meta_kubernetes_endpoint_port_protocol
+      # Drop port targets that do not equal the "prometheus.io/port" annotation
+      - action: keepequal
+        source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_port
+        target_label: __meta_kubernetes_pod_container_port_number
       - action: replace
         regex: (https?)
         source_labels:
@@ -200,6 +220,11 @@ scrape_configs:
         regex: true
         source_labels:
           - __meta_kubernetes_service_annotation_prometheus_io_probe
+      # Keep only TCP port targets
+      - action: keep
+        regex: TCP
+        source_labels:
+          - __meta_kubernetes_endpoint_port_protocol
       - source_labels:
           - __address__
         target_label: __param_target
@@ -231,6 +256,16 @@ scrape_configs:
         regex: true
         source_labels:
           - __meta_kubernetes_pod_annotation_prometheus_io_scrape_slow
+      # Keep only TCP port targets
+      - action: keep
+        regex: TCP
+        source_labels:
+          - __meta_kubernetes_endpoint_port_protocol
+      # Drop port targets that do not equal the "prometheus.io/port" annotation
+      - action: keepequal
+        source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_port
+        target_label: __meta_kubernetes_pod_container_port_number
       - action: replace
         regex: (https?)
         source_labels:
@@ -283,6 +318,16 @@ scrape_configs:
         regex: true
         source_labels:
           - __meta_kubernetes_pod_annotation_prometheus_io_scrape_slow
+      # Keep only TCP port targets
+      - action: keep
+        regex: TCP
+        source_labels:
+          - __meta_kubernetes_endpoint_port_protocol
+      # Drop port targets that do not equal the "prometheus.io/port" annotation
+      - action: keepequal
+        source_labels:
+          - __meta_kubernetes_service_annotation_prometheus_io_port
+        target_label: __meta_kubernetes_pod_container_port_number
       - action: replace
         regex: (https?)
         source_labels:

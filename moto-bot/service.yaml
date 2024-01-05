@@ -4,11 +4,12 @@ metadata:
   name: moto-bot
   annotations:
     prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
 
 spec:
   type: ClusterIP
   ports:
-    - port: 80
+    - port: 8080
       name: metrics
       targetPort: metrics
   selector:

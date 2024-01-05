@@ -6,4 +6,3 @@ resources:
   - harbor.yaml
   - ns-apps.yaml
   - preview-app-project.yaml
-  - promtail.yaml

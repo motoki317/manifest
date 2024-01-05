@@ -24,6 +24,7 @@ spec:
           - path: nextcloud
           # - path: ns-apps # no prune for resource monitoring
           - path: ns-system
+          - path: promtail
           - path: refsearch
           - path: system-upgrade
           - path: traefik

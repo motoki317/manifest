@@ -20,7 +20,6 @@ spec:
           - $values/csi-s3/values.yaml
     - repoURL: https://github.com/motoki317/manifest
       path: csi-s3
-      targetRevision: master
       ref: values
   syncPolicy:
     syncOptions:

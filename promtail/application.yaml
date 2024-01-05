@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: promtail-helm
+  name: promtail-app
   namespace: argocd
 
 spec:

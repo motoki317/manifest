@@ -18,6 +18,7 @@ data:
     # 2 weeks
     lifetime = 1209600
 
+    providers.oidc.scope = "profile"
     providers.oidc.issuer-url = https://q.toki317.dev
     providers.oidc.client-id = {{ .Values.clientID }}
     # providers.oidc.client-secret = <env secret>

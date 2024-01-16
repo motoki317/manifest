@@ -1,6 +1,7 @@
 resources:
   # renovate:github-url
-  - https://github.com/argoproj/argo-workflows/releases/download/v3.5.4/install.yaml
+  - https://github.com/argoproj/argo-workflows//manifests/base/crds/minimal?ref=v3.5.4
+  - application.yaml
   - certificate.yaml
   - ingress-route.yaml
   - test-fail-workflow-template.yaml

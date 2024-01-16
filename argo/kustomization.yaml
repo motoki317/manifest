@@ -3,5 +3,6 @@ resources:
   - certificate.yaml
   - ingress-route.yaml
   - test-fail-workflow-template.yaml
+  - test-success-cron-workflow.yaml
   - test-success-workflow-template.yaml
   - traq-webhook-workflow-template.yaml

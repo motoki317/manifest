@@ -9,5 +9,4 @@ resources:
   - traq-webhook-workflow-template.yaml
 
 patches:
-  - path: argo-server.yaml
   - path: workflow-controller-cm.yaml

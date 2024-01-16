@@ -1,9 +1,15 @@
+server:
+  authModes:
+    - server
+  secure: false
+
 workflow:
   serviceAccount:
     create: true
     name: argo-workflow
   rbac:
     create: true
+
 controller:
   workflowNamespaces:
     - argo

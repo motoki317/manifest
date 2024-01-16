@@ -28,6 +28,8 @@ controller:
                   clusterScope: true
                   name: traq-webhook
                   template: run
+
+  # Append namespaces below in which workflows will be run
   workflowNamespaces:
     - argo
     - traq-ranking

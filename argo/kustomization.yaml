@@ -7,6 +7,3 @@ resources:
   - test-fail-workflow-template.yaml
   - test-success-workflow-template.yaml
   - traq-webhook-workflow-template.yaml
-
-patches:
-  - path: workflow-controller-cm.yaml

@@ -31,7 +31,7 @@ images:
     newTag: v1.96.0
   - name: pushgateway
     newName: prom/pushgateway
-    newTag: v1.6.2
+    newTag: v1.7.0
   - name: s3-exporter
     newName: ghcr.io/traptitech/s3_exporter
     newTag: 0.5.2

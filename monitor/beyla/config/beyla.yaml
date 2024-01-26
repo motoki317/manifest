@@ -20,4 +20,4 @@ otel_traces_export:
   protocol: grpc
   sampler:
     name: "parentbased_traceidratio"
-    arg: "0.01"
+    arg: "1"

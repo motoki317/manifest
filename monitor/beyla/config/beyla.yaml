@@ -14,7 +14,7 @@ routes:
   unmatched: heuristic
 
 otel_traces_export:
-  endpoint: http://tempo.monitor.svc.cluser.local:4317/
+  endpoint: http://tempo.monitor.svc.cluster.local:4317/
   protocol: grpc
   sampler:
     name: "parentbased_traceidratio"

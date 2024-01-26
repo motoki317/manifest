@@ -4,9 +4,11 @@ metadata:
   name: beyla
 
 spec:
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app: beyla
+
   template:
     metadata:
       labels:

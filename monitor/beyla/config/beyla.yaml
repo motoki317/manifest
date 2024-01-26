@@ -1,5 +1,5 @@
 # https://grafana.com/docs/beyla/v1.2.x/configure/options/
-print_traces: true
+# print_traces: true # for debug
 
 attributes:
   kubernetes:

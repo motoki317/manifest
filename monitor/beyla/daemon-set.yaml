@@ -19,6 +19,10 @@ spec:
         - name: beyla-config
           configMap:
             name: beyla-config
+        # https://grafana.com/docs/beyla/latest/distributed-traces/
+        - name: kernel-security
+          hostPath:
+            path: /sys/kernel-security
 
       containers:
         - name: beyla
@@ -27,8 +31,10 @@ spec:
             runAsUser: 0
             privileged: true
           volumeMounts:
-            - mountPath: /config
-              name: beyla-config
+            - name: beyla-config
+              mountPath: /config
+            - name: kernel-security
+              mountPath: /sys/kernel/security
           env:
             - name: BEYLA_CONFIG_PATH
               value: "/config/beyla.yaml"

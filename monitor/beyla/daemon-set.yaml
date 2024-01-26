@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: beyla
+
+spec:
+  selector:
+    matchLabels:
+      app: beyla
+  template:
+    metadata:
+      labels:
+        app: beyla
+    spec:
+      hostPID: true
+      serviceAccountName: beyla
+
+      volumes:
+        - name: beyla-config
+          configMap:
+            name: beyla-config
+
+      containers:
+        - name: beyla
+          image: grafana/beyla:1.2.0
+          securityContext:
+            runAsUser: 0
+            privileged: true
+          volumeMounts:
+            - mountPath: /config
+              name: beyla-config
+          env:
+            - name: BEYLA_CONFIG_PATH
+              value: "/config/beyla.yaml"

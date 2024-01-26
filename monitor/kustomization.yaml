@@ -1,4 +1,5 @@
 resources:
+  - beyla
   - blackbox-exporter
   - domain-exporter
   - grafana
@@ -8,6 +9,7 @@ resources:
   - s3-exporter
   - ssl-exporter
   - switchbot-exporter
+  - tempo
   - victoria-metrics
 
 images:

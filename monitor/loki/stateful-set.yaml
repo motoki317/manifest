@@ -5,15 +5,17 @@ metadata:
 
 spec:
   replicas: 1
+  serviceName: loki-headless
   podManagementPolicy: Parallel
   revisionHistoryLimit: 0
   updateStrategy:
     rollingUpdate:
       partition: 0
-  serviceName: loki-headless
+
   selector:
     matchLabels:
       app: loki
+
   volumeClaimTemplates:
     - metadata:
         name: loki-data
@@ -23,59 +25,22 @@ spec:
         resources:
           requests:
             storage: 1Gi
+
   template:
     metadata:
       labels:
         app: loki
     spec:
       enableServiceLinks: false
+      terminationGracePeriodSeconds: 30
       securityContext:
         fsGroup: 10001
         runAsGroup: 10001
         runAsNonRoot: true
         runAsUser: 10001
-      terminationGracePeriodSeconds: 30
-      containers:
-        - name: loki
-          image: loki
-          imagePullPolicy: IfNotPresent
-          args:
-            - -config.file=/etc/loki/config/config.yaml
-            - -config.expand-env=true
-            - -target=all
-          ports:
-            - name: http-metrics
-              containerPort: 3100
-              protocol: TCP
-            - name: grpc
-              containerPort: 9095
-              protocol: TCP
-            - name: http-memberlist
-              containerPort: 7946
-              protocol: TCP
-          securityContext:
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-              - ALL
-            readOnlyRootFilesystem: true
-          readinessProbe:
-            httpGet:
-              path: /ready
-              port: http-metrics
-            periodSeconds: 1
-            failureThreshold: 60
-          volumeMounts:
-            - name: tmp
-              mountPath: /tmp
-            - name: storage
-              mountPath: /var/loki
-            - name: config
-              mountPath: /etc/loki/config
-            - name: runtime-config
-              mountPath: /etc/loki/runtime-config
-            - name: loki-data
-              mountPath: /loki-data
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
       volumes:
         - name: tmp
           emptyDir: {}
@@ -87,3 +52,50 @@ spec:
         - name: runtime-config
           configMap:
             name: loki-runtime-config
+
+      containers:
+        - name: loki
+          image: loki
+          imagePullPolicy: IfNotPresent
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+
+          args:
+            - -config.file=/etc/loki/config/config.yaml
+            - -config.expand-env=true
+            - -target=all
+
+          ports:
+            - name: http-metrics
+              containerPort: 3100
+              protocol: TCP
+            - name: grpc
+              containerPort: 9095
+              protocol: TCP
+            - name: http-memberlist
+              containerPort: 7946
+              protocol: TCP
+
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            periodSeconds: 1
+            failureThreshold: 60
+
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+            - name: storage
+              mountPath: /var/loki
+            - name: config
+              mountPath: /etc/loki/config
+            - name: runtime-config
+              mountPath: /etc/loki/runtime-config
+            - name: loki-data
+              mountPath: /loki-data

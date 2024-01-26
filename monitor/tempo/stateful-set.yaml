@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tempo
+
+spec:
+  replicas: 1
+  serviceName: tempo
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+
+  selector:
+    matchLabels:
+      app: tempo
+
+  volumeClaimTemplates:
+    - metadata:
+        name: tempo-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+
+  template:
+    metadata:
+      labels:
+        app: tempo
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: tempo-config
+          configMap:
+            name: tempo-config
+
+      containers:
+        - name: tempo
+          image: grafana/tempo:2.3.1
+          imagePullPolicy: IfNotPresent
+          args:
+            - -config.file=/etc/tempo.yaml
+
+          ports:
+            - name: tempo
+              containerPort: 3200
+            - name: otlp-grpc
+              containerPort: 4317
+            - name: otlp-http
+              containerPort: 4318
+
+          volumeMounts:
+            - name: tempo-config
+              mountPath: /etc/tempo.yaml
+              subPath: tempo.yaml
+            - name: tempo-data
+              mountPath: /tmp/tempo

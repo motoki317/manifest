@@ -1,0 +1,8 @@
+resources:
+  - service.yaml
+  - stateful-set.yaml
+
+configMapGenerator:
+  - name: tempo-config
+    files:
+      - ./config/tempo.yaml

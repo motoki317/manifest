@@ -7,6 +7,8 @@ attributes:
 
 discovery:
   services:
+    - k8s_namespace: "^monitor$"
+      k8s_deployment_name: "^grafana$"
     - k8s_namespace: "^traq$"
       k8s_pod_name: "^traq-\\d+$"
 

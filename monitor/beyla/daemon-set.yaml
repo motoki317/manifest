@@ -22,7 +22,7 @@ spec:
         # https://grafana.com/docs/beyla/latest/distributed-traces/
         - name: kernel-security
           hostPath:
-            path: /sys/kernel-security
+            path: /sys/kernel/security
 
       containers:
         - name: beyla

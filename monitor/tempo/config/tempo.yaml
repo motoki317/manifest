@@ -17,3 +17,15 @@ storage:
       path: /tmp/tempo/wal
     local:
       path: /tmp/tempo/blocks
+
+metrics_generator:
+  storage:
+    path: /tmp/tempo/generator/wal
+    remote_write:
+      - url: http://victoria-metrics.monitor.svc.cluster.local/api/v1/write
+
+overrides:
+  defaults:
+    metrics_generator:
+      processors:
+        - service-graphs

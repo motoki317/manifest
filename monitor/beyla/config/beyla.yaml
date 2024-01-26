@@ -8,7 +8,7 @@ attributes:
 discovery:
   services:
     - k8s_namespace: "^traq$"
-      k8s_pod_name: "^traq-\d+$"
+      k8s_pod_name: "^traq-\\d+$"
 
 routes:
   unmatched: heuristic

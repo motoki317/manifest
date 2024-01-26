@@ -7,12 +7,14 @@ attributes:
 
 discovery:
   services:
-    - k8s_namespace: "^monitor$"
-      k8s_deployment_name: "^grafana$"
-    - k8s_namespace: "^traefik$"
-      k8s_pod_name: "^traefik-"
-    - k8s_namespace: "^traq$"
-      k8s_pod_name: "^traq-\\d+$"
+#    - k8s_namespace: "^monitor$"
+#      k8s_deployment_name: "^grafana$"
+#    - k8s_namespace: "^traefik$"
+#      k8s_pod_name: "^traefik-"
+#    - k8s_namespace: "^traq$"
+#      k8s_pod_name: "^traq-\\d+$"
+    - k8s_namespace: "^.+$"
+      k8s_pod_name: "^.+$"
 
 routes:
   unmatched: heuristic
@@ -22,4 +24,4 @@ otel_traces_export:
   protocol: grpc
   sampler:
     name: "parentbased_traceidratio"
-    arg: "1"
+    arg: "0.01"

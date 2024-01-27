@@ -8,25 +8,25 @@ attributes:
 discovery:
   services:
     - k8s_namespace: "^gitea$"
-      k8s_pod_name: "^gitea-\\d+$"
+      k8s_statefulset_name: "^gitea$"
     - k8s_namespace: "^growi$"
-      k8s_pod_name: "^growi-\\d+$"
+      k8s_statefulset_name: "^growi$"
     - k8s_namespace: "^nextcloud$"
-      k8s_pod_name: "^nextcloud-\\d+$"
+      k8s_statefulset_name: "^nextcloud$"
     - k8s_namespace: "^ns-system$"
       k8s_deployment_name: "^ns-builder$"
     - k8s_namespace: "^ns-system$"
-      k8s_pod_name: "^ns-controller-\\d+$"
+      k8s_statefulset_name: "^ns-controller$"
     - k8s_namespace: "^ns-system$"
       k8s_deployment_name: "^ns-gateway$"
     - k8s_namespace: "^ns-system$"
-      k8s_pod_name: "^ns-gitea-integration-\\d+$"
+      k8s_statefulset_name: "^ns-gitea-integration$"
     - k8s_namespace: "^ns-system$"
-      k8s_pod_name: "^ns-ssgen-\\d+$"
+      k8s_statefulset_name: "^ns-ssgen$"
     - k8s_namespace: "^traefik$"
-      k8s_pod_name: "^traefik-"
+      k8s_daemonset_name: "^traefik$"
     - k8s_namespace: "^traq$"
-      k8s_pod_name: "^traq-\\d+$"
+      k8s_statefulset_name: "^traq$"
 
 routes:
   unmatched: heuristic

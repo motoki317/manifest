@@ -45,7 +45,7 @@ spec:
 
       containers:
         - name: victoria-metrics
-          image: victoria-metrics
+          image: victoriametrics/victoria-metrics:v1.96.0
           imagePullPolicy: Always
           args:
             - --promscrape.config=/etc/config/prometheus.yml

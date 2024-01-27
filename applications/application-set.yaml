@@ -22,7 +22,7 @@ spec:
           - path: kube-ops-view
           - path: lowlighter-metrics
           - path: monitor
-          - path: moto-bot
+          # - path: moto-bot
           - path: nextcloud
           # - path: ns-apps # no prune for resource monitoring
           - path: ns-system

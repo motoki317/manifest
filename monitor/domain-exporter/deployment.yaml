@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: domain-exporter
-          image: caarlos0/domain_exporter:v1.22.0
+          image: caarlos0/domain_exporter:v1.23.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Node
+metadata:
+  name: g001
+
+spec:
+  taints:
+    - key: toki317.dev/role
+      value: amd64-burstable
+      effect: NoSchedule

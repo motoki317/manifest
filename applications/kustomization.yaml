@@ -2,5 +2,4 @@ resources:
   - app-project.yaml
   - application-set.yaml
   - nodes.yaml
-  - ns-apps.yaml
   - preview-app-project.yaml

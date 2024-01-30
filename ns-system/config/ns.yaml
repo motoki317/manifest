@@ -69,9 +69,10 @@ components:
         port: 80
         scheme: http
       namespace: ns-apps
-      labels:
-        - key: app.kubernetes.io/instance
-          value: ns-apps
+      labels: []
+        # To utilize ArgoCD orphaned resource monitoring:
+        # - key: app.kubernetes.io/instance
+        #   value: ns-apps
       tls:
         type: cert-manager
         certManager:

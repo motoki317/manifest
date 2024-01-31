@@ -1,0 +1,14 @@
+logLevel: warn
+logFormat: json
+
+route:
+  routes:
+    - match:
+        - receiver: "loki"
+
+receivers:
+  - name: "loki"
+    loki:
+      streamLabels:
+        app: k8s-event-exporter
+      url: http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push

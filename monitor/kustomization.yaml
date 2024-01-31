@@ -2,6 +2,7 @@ resources:
   - beyla
   - blackbox-exporter
   - domain-exporter
+  - event-exporter
   - grafana
   - loki
   - node-exporter

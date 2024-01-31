@@ -27,4 +27,4 @@ receivers:
               component: "{{ .Source.Component }}"
             values:
               - - "{{ mul .GetTimestampMs 1000000 }}"
-                - "namespace={{ .InvolvedObject.Namespace }} severity={{ .Type }} reason={{ .Reason }} object={{ .InvolvedObject.Kind }}/{{ .InvolvedObject.Name }} message={{ .Message }}"
+                - "namespace={{ .InvolvedObject.Namespace }} severity={{ .Type }} reason={{ .Reason }} object={{ .InvolvedObject.Kind }}/{{ .InvolvedObject.Name }} message={{ .Message | quote }}"

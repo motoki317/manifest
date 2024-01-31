@@ -1,4 +1,5 @@
 auth_enabled: false
+log_level: warn
 
 common:
   compactor_address: 'loki'

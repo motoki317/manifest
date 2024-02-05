@@ -35,5 +35,5 @@ otel_traces_export:
   endpoint: http://tempo.monitor.svc.cluster.local:4317/
   protocol: grpc
   sampler:
-    name: "parentbased_traceidratio"
-    arg: "0.01"
+    name: "traceidratio"
+    arg: "0.5"

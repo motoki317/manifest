@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: beyla-services
+  name: beyla
 
 spec:
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: beyla-services
+      app: beyla
 
   template:
     metadata:
       labels:
-        app: beyla-services
+        app: beyla
     spec:
       hostPID: true
       serviceAccountName: beyla
 
       volumes:
-        - name: config
+        - name: beyla-config
           configMap:
-            name: beyla-services
+            name: beyla-config
         # https://grafana.com/docs/beyla/latest/distributed-traces/
         - name: kernel-security
           hostPath:
@@ -33,9 +33,8 @@ spec:
             runAsUser: 0
             privileged: true
           volumeMounts:
-            - name: config
-              subPath: beyla-services.yaml
-              mountPath: /config/beyla.yaml
+            - name: beyla-config
+              mountPath: /config
             - name: kernel-security
               mountPath: /sys/kernel/security
           env:

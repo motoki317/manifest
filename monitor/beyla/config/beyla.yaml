@@ -1,0 +1,39 @@
+# https://grafana.com/docs/beyla/latest/configure/options/
+# print_traces: true # for debug
+
+attributes:
+  kubernetes:
+    enable: true
+
+discovery:
+  services:
+    - k8s_namespace: "^gitea$"
+      k8s_statefulset_name: "^gitea$"
+    - k8s_namespace: "^growi$"
+      k8s_statefulset_name: "^growi$"
+    - k8s_namespace: "^nextcloud$"
+      k8s_statefulset_name: "^nextcloud$"
+    - k8s_namespace: "^ns-system$"
+      k8s_deployment_name: "^ns-builder$"
+    - k8s_namespace: "^ns-system$"
+      k8s_statefulset_name: "^ns-controller$"
+    - k8s_namespace: "^ns-system$"
+      k8s_deployment_name: "^ns-gateway$"
+    - k8s_namespace: "^ns-system$"
+      k8s_statefulset_name: "^ns-gitea-integration$"
+    - k8s_namespace: "^ns-system$"
+      k8s_statefulset_name: "^ns-ssgen$"
+    - k8s_namespace: "^traefik$"
+      k8s_daemonset_name: "^traefik$"
+    - k8s_namespace: "^traq$"
+      k8s_statefulset_name: "^traq$"
+
+routes:
+  unmatched: heuristic
+
+otel_traces_export:
+  endpoint: http://tempo.monitor.svc.cluster.local:4317/
+  protocol: grpc
+  sampler:
+    name: "parentbased_traceidratio"
+    arg: "0.01"

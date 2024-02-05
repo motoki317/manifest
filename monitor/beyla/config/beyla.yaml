@@ -13,6 +13,8 @@ discovery:
       k8s_statefulset_name: "^growi$"
     - k8s_namespace: "^nextcloud$"
       k8s_statefulset_name: "^nextcloud$"
+    - k8s_namespace: "^ns-apps$"
+      k8s_statefulset_name: "^nsapp-[0-9a-b]{22}$"
     - k8s_namespace: "^ns-system$"
       k8s_deployment_name: "^ns-builder$"
     - k8s_namespace: "^ns-system$"

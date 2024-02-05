@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: beyla-entrypoint
+
+spec:
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: beyla-entrypoint
+
+  template:
+    metadata:
+      labels:
+        app: beyla-entrypoint
+    spec:
+      hostPID: true
+      serviceAccountName: beyla
+
+      volumes:
+        - name: config
+          configMap:
+            name: beyla-entrypoint
+        # https://grafana.com/docs/beyla/latest/distributed-traces/
+        - name: kernel-security
+          hostPath:
+            path: /sys/kernel/security
+
+      containers:
+        - name: beyla
+          image: grafana/beyla:1.2.1
+          securityContext:
+            runAsUser: 0
+            privileged: true
+          volumeMounts:
+            - name: config
+              subPath: beyla-entrypoint.yaml
+              mountPath: /config/beyla.yaml
+            - name: kernel-security
+              mountPath: /sys/kernel/security
+          env:
+            - name: BEYLA_CONFIG_PATH
+              value: "/config/beyla.yaml"

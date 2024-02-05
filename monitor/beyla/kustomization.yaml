@@ -1,10 +1,14 @@
 resources:
   - cluster-role.yaml
   - cluster-role-binding.yaml
-  - daemon-set.yaml
+  - daemon-set-entrypoint.yaml
+  - daemon-set-services.yaml
   - service-account.yaml
 
 configMapGenerator:
-  - name: beyla-config
+  - name: beyla-entrypoint
     files:
-      - ./config/beyla.yaml
+      - ./config/beyla-entrypoint.yaml
+  - name: beyla-services
+    files:
+      - ./config/beyla-services.yaml

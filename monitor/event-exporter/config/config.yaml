@@ -19,7 +19,8 @@ receivers:
           - stream:
               app: k8s-event-exporter
               namespace: "{{ .InvolvedObject.Namespace }}"
+              host: "{{ .Source.Host }}"
               severity: "{{ .Type }}"
             values:
               - - "{{ mul .GetTimestampMs 1000000 }}"
-                - "namespace={{ .InvolvedObject.Namespace }} severity={{ .Type }} reason={{ .Reason }} object={{ .InvolvedObject.Kind }}/{{ .InvolvedObject.Name }} message={{ .Message | quote }}"
+                - "namespace={{ .InvolvedObject.Namespace }} host={{ .Source.Host }} severity={{ .Type }} reason={{ .Reason }} object={{ .InvolvedObject.Kind }}/{{ .InvolvedObject.Name }} message={{ .Message | quote }}"

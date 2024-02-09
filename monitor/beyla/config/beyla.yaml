@@ -7,7 +7,7 @@ attributes:
 
 discovery:
   services:
-    - k8s_namespace: "^(?!traefik)$"
+    - k8s_namespace: "^(?<!traefik).+$"
 
 routes:
   unmatched: heuristic

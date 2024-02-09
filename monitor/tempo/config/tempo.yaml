@@ -8,8 +8,8 @@ distributor:
     zipkin: {} # for traefik v2
     otlp:
       protocols:
-        http: {}
         grpc: {}
+        http: {}
 
 storage:
   trace:

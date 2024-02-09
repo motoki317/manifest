@@ -10,10 +10,10 @@ metrics:
 
 tracing:
   sampleRate: 0.01
-  otlp:
-    grpc:
-      endpoint: tempo.monitor.svc.cluster.local:4317
-      insecure: true
+#  otlp:
+#    grpc:
+#      endpoint: tempo.monitor.svc.cluster.local:4317
+#      insecure: true
 
 providers:
   kubernetesCRD:

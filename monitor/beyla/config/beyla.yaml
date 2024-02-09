@@ -16,6 +16,6 @@ otel_traces_export:
   endpoint: http://tempo.monitor.svc.cluster.local:4317/
   protocol: grpc
   sampler:
-    name: "always_off"
+#    name: "always_off"
 # Switch to config below once traefik v3.0.0-beta6 or later is released and "sampleRate" config is supported
-#    name: "parentbased_always_off"
+    name: "parentbased_always_off"

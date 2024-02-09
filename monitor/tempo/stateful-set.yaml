@@ -51,8 +51,8 @@ spec:
               containerPort: 4317
             - name: otlp-http
               containerPort: 4318
-            - name: jaeger-compact # for traefik v2
-              containerPort: 6831
+            - name: zipkin # for traefik v2
+              containerPort: 9411
 
           volumeMounts:
             - name: tempo-config

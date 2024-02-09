@@ -13,7 +13,7 @@ tracing:
     samplingType: probabilistic
     samplingParam: 0.01
     collector:
-      endpoint: http://tempo.monitor.svc.cluster.local:14268
+      endpoint: http://tempo.monitor.svc.cluster.local:6831
 # Switch to config below after v3.0.0-beta6 release or later
 #tracing:
 #  sampleRate: 0.01

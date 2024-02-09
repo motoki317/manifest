@@ -5,7 +5,9 @@ server:
 
 distributor:
   receivers:
-    zipkin: {} # for traefik v2
+    jaeger:
+      protocols:
+        thrift_compact: {} # for traefik v2
     otlp:
       protocols:
         http: {}

@@ -17,6 +17,6 @@ spec:
     - name: otlp-http
       port: 4318
       targetPort: otlp-http
-    - name: zipkin # for traefik v2
-      port: 9411
-      targetPort: zipkin
+    - name: jaeger-http # for traefik v2
+      port: 14268
+      targetPort: jaeger-http

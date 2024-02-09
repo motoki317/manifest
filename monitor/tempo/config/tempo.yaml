@@ -5,7 +5,6 @@ server:
 
 distributor:
   receivers:
-    zipkin: {} # for traefik v2
     otlp:
       protocols:
         grpc: {}

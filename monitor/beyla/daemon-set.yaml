@@ -16,8 +16,8 @@ spec:
     spec:
       hostPID: true
       serviceAccountName: beyla
-      tolerations:
-        - operator: Exists
+#      tolerations:
+#        - operator: Exists
 
       volumes:
         - name: beyla-config

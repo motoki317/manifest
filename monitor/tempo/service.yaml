@@ -17,6 +17,6 @@ spec:
     - name: otlp-http
       port: 4318
       targetPort: otlp-http
-    - name: jaeger-thrift-compact # for traefik v2
+    - name: jaeger-compact # for traefik v2
       port: 6831
-      targetPort: jaeger-thrift-compact
+      targetPort: jaeger-compact

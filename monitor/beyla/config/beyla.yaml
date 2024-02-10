@@ -7,7 +7,7 @@ attributes:
 
 discovery:
   services:
-    - k8s_namespace: "^.+$"
+    - k8s_namespace: "^(ns-system|ns-preview|refsearch|traq)$"
 
 routes:
   unmatched: heuristic

@@ -45,6 +45,16 @@ components:
     mode: k8s
     k8s:
       domains:
+        - domain: "toki317.dev"
+          excludes: []
+          auth:
+            available: true
+            soft:
+              - name: auth-toki317-dev-soft
+                namespace: auth
+            hard:
+              - name: auth-toki317-dev-hard
+                namespace: auth
         - domain: "*.ns.toki317.dev"
           excludes: []
           auth:

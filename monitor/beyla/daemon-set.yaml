@@ -42,3 +42,5 @@ spec:
           env:
             - name: BEYLA_CONFIG_PATH
               value: "/config/beyla.yaml"
+            - name: BEYLA_PROFILE_PORT
+              value: "6060"

@@ -44,3 +44,6 @@ spec:
               value: "/config/beyla.yaml"
             - name: BEYLA_PROFILE_PORT
               value: "6060"
+          resources:
+            limits:
+              memory: 500Mi

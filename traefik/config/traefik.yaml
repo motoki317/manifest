@@ -8,17 +8,12 @@ metrics:
   prometheus:
     entryPoint: metrics
 
-#tracing:
-#  openTelemetry:
-#    address: tempo.monitor.svc.cluster.local:4318
-#    insecure: true
-# Switch to config below after v3.0.0-beta6 release or later
-#tracing:
-#  sampleRate: 0.01
-#  otlp:
-#    grpc:
-#      endpoint: tempo.monitor.svc.cluster.local:4317
-#      insecure: true
+tracing:
+  sampleRate: 0.01
+  otlp:
+    grpc:
+      endpoint: tempo.monitor.svc.cluster.local:4317
+      insecure: true
 
 providers:
   kubernetesCRD:

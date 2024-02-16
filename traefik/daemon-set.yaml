@@ -22,8 +22,6 @@ spec:
     spec:
       enableServiceLinks: false
       serviceAccountName: traefik
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       volumes:
         - name: config
           configMap:
@@ -37,21 +35,36 @@ spec:
           args:
             # must not specify other flags when --configFile is set
             - --configFile=/traefik-core-config/traefik.yaml
-          # Must not specify "ports" section, otherwise k8s cannot schedule pod due to conflicted host ports
+          ports:
+            - name: web
+              protocol: TCP
+              containerPort: 80
+            - name: web-secure
+              protocol: TCP
+              containerPort: 443
+            - name: web-secure-udp
+              protocol: UDP
+              containerPort: 443
+            - name: dashboard
+              protocol: TCP
+              containerPort: 8080
+            - name: metrics
+              protocol: TCP
+              containerPort: 9100
           readinessProbe:
             httpGet:
-              port: 8080
+              port: dashboard
               path: /ping
             periodSeconds: 1
             failureThreshold: 60
           startupProbe:
             httpGet:
-              port: 8080
+              port: dashboard
               path: /ping
             periodSeconds: 1
             failureThreshold: 60
           livenessProbe:
             httpGet:
-              port: 8080
+              port: dashboard
               path: /ping
             periodSeconds: 10

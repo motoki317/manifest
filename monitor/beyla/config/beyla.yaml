@@ -7,9 +7,9 @@ attributes:
 
 discovery:
   services:
-#    - k8s_namespace: "^.+$"
-     - k8s_namespace: "^traq$"
-       k8s_statefulset_name: "^traq$"
+    - k8s_namespace: "^.+$"
+#     - k8s_namespace: "^traq$"
+#       k8s_statefulset_name: "^traq$"
 
 routes:
   unmatched: heuristic

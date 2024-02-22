@@ -21,6 +21,7 @@ spec:
           - path: japari
           - path: kube-ops-view
           - path: lowlighter-metrics
+          - path: mc-skies-expert
           - path: monitor
           # - path: moto-bot
           - path: nextcloud

@@ -1,0 +1,40 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mc-skies-expert
+
+spec:
+  serviceName: mc-skies-expert
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mc-skies-expert
+  template:
+    metadata:
+      labels:
+        app: mc-skies-expert
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/mc-skies-expert
+
+      containers:
+        - name: mc-skies-expert
+          image: amazoncorretto:17
+          imagePullPolicy: Always
+          ports:
+            - name: mc
+              containerPort: 25565
+          workingDir: /srv/mc-skies-expert
+          command:
+            - ./start.sh
+          volumeMounts:
+            - name: data
+              mountPath: /srv/mc-skies-expert

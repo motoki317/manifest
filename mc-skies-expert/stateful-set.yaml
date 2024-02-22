@@ -29,6 +29,8 @@ spec:
         - name: mc-skies-expert
           image: amazoncorretto:21.0.2
           imagePullPolicy: Always
+          stdin: true
+          tty: true
           ports:
             - name: mc
               containerPort: 25565

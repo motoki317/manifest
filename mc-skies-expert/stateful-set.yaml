@@ -27,7 +27,7 @@ spec:
 
       containers:
         - name: mc-skies-expert
-          image: amazoncorretto:17
+          image: amazoncorretto:17.0.10
           imagePullPolicy: Always
           ports:
             - name: mc

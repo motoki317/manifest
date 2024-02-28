@@ -380,7 +380,7 @@ scrape_configs:
           - https://cd.toki317.dev
           - https://workflow.toki317.dev
           - https://traefik.toki317.dev
-          - https://monitor.toki317.dev
+          # - https://monitor.toki317.dev
           - https://monitor-nodes.toki317.dev
     relabel_configs:
       - source_labels: [__address__]

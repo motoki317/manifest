@@ -399,7 +399,7 @@ scrape_configs:
           - toki317.dev:443
           - bot-console.toki317.dev:443
           - japari.toki317.dev:443
-          - monitor.toki317.dev:443
+          # - monitor.toki317.dev:443
           - q.toki317.dev:443
           - wiki.toki317.dev:443
           - drive.toki317.dev:443

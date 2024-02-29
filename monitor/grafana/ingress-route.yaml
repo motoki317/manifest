@@ -11,16 +11,6 @@ spec:
   routes:
     - kind: Rule
       match: Host(`monitor.toki317.dev`)
-      services:
-        - namespace: monitor
-          kind: Service
-          name: grafana
-          port: http
-          scheme: http
-          strategy: RoundRobin
-          weight: 1
-    - kind: Rule
-      match: Host(`monitor.toki317.dev`) && PathPrefix(`/login`)
       middlewares:
         - name: auth-toki317-dev-admin
           namespace: auth

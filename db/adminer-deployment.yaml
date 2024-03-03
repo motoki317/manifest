@@ -18,14 +18,6 @@ spec:
       containers:
         - name: adminer
           image: adminer:4.8.1
-          command:
-            - sh
-            - -c
-            # Install mongodb driver https://gist.github.com/cilf/017348bfbce87fb95ff61e295415a54f
-            - "apk add autoconf gcc g++ make libffi-dev openssl-dev &&
-              pecl install mongodb &&
-              echo \"extension=mongodb.so\" > /usr/local/etc/php/conf.d/docker-php-ext-mongodb.ini &&
-              exec entrypoint.sh php -S [::]:8080 -t /var/www/html" # https://hub.docker.com/_/adminer/
           env:
             - name: ADMINER_DEFAULT_SERVER
               value: mariadb

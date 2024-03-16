@@ -7,7 +7,7 @@ spec:
   serviceName: mc-skies-expert
   podManagementPolicy: Parallel
   revisionHistoryLimit: 0
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: mc-skies-expert

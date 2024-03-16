@@ -51,3 +51,10 @@ spec:
         automated:
           prune: true
           selfHeal: true
+      ignoreDifferences:
+        - group: apps
+          kind: StatefulSet
+          namespace: mc-skies-expert
+          name: mc-skies-expert
+          jsonPointers:
+            - /spec/replicas

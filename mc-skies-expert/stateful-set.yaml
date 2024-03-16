@@ -26,6 +26,16 @@ spec:
             path: /srv/mc-skies-expert
 
       containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:2024.2.1
+          imagePullPolicy: Always
+          env:
+            - name: TUNNEL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tunnel
+                  key: tunnel-token
+
         - name: mc-skies-expert
           image: amazoncorretto:21.0.2
           imagePullPolicy: Always

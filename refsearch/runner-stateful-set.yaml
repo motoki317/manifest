@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: runner
-          image: ghcr.io/salab/refsearch-runner:master@sha256:36d15b9bc74acd9f95eb05616469cbf25c20633c57d6679ef4dc78b6f93ad0a1
+          image: ghcr.io/salab/refsearch-runner:master@sha256:891c96d0cfbe7ea08c420ff83b60b1af0ebb2c2b7a7f7cebadacd24b4a5afa28
           imagePullPolicy: Always
           env:
             - name: RUNNER_ID

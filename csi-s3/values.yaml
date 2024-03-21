@@ -1,6 +1,6 @@
 images:
   # renovate:image-full
-  registrar: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.0"
+  registrar: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.10.1"
   # renovate:image-full
   provisioner: "registry.k8s.io/sig-storage/csi-provisioner:v4.0.0"
   # renovate:image-full

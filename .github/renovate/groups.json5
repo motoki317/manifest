@@ -23,5 +23,16 @@
       },
       "separateMinorPatch": true
     },
+    {
+      "description": "RefSearch",
+      "groupName": "RefSearch",
+      "matchPackagePatterns": ["ghcr.io/salab/refsearch-"],
+      "matchDatasources": ["docker"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
   ]
 }

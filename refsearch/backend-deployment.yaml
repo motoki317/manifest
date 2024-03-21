@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: backend
-          image: ghcr.io/salab/refsearch-backend:master@sha256:bd279926ba1b06c02f586cc5f1cbaa71e0c210249eef4d0c8842998fd56c919b
+          image: ghcr.io/salab/refsearch-backend:master@sha256:fcec31de9d1bb9e15b9677fd6cf3e62defdd2d94e91f8ca46512026b946a63ca
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

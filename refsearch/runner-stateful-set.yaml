@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: runner
-          image: ghcr.io/salab/refsearch-runner:master@sha256:891c96d0cfbe7ea08c420ff83b60b1af0ebb2c2b7a7f7cebadacd24b4a5afa28
+          image: ghcr.io/salab/refsearch-runner:master@sha256:da3bfd0d3d15790d1193868d7b0e666884c18800e1c7ba0045074cb3df96f471
           imagePullPolicy: Always
           env:
             - name: RUNNER_ID
@@ -56,7 +56,7 @@ spec:
               name: data
 
         - name: rminer
-          image: ghcr.io/salab/refsearch-rminer:master@sha256:4ce7ea03f5193dbbe481091597064ea731b99d429340a6209f2b0247cb7fea77
+          image: ghcr.io/salab/refsearch-rminer:master@sha256:5a0bab70ba128606ede72953d92a6520b58764aff0b168b682006d8fb1008554
           args:
             - serve
             - --port
@@ -69,7 +69,7 @@ spec:
               name: data
 
         - name: refdiff
-          image: ghcr.io/salab/refsearch-refdiff:master@sha256:f1cc66bfc6341e6823448e550aeb58de4a73a17838c92f1d61f8bb5ae011f094
+          image: ghcr.io/salab/refsearch-refdiff:master@sha256:a8bd691076713a96acd4ee2f21dfe8a1a689125660bed3c88985e3f439e55d24
           args:
             - serve
             - --port

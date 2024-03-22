@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: frontend
-          image: ghcr.io/salab/refsearch-frontend:master@sha256:f196a368c51a1b2a853ab9e545fc02721fdcffb69183180b13ee859ef75d57d9
+          image: ghcr.io/salab/refsearch-frontend:master@sha256:ded02c593953e2e35501af9053335b24a4a59a997990c8ca707464555f0be4ba
           imagePullPolicy: Always
           ports:
             - containerPort: 80

@@ -56,7 +56,7 @@ spec:
               name: data
 
         - name: rminer
-          image: ghcr.io/salab/refsearch-rminer:master@sha256:5a0bab70ba128606ede72953d92a6520b58764aff0b168b682006d8fb1008554
+          image: ghcr.io/salab/refsearch-rminer:master@sha256:68e0427a4f219f4f02d3616c4ab0f48318632d375d843013ed42b05cd04ae028
           args:
             - serve
             - --port

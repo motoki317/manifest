@@ -13,7 +13,7 @@ spec:
     - repoURL: https://github.com/yandex-cloud/k8s-csi-s3
       path: deploy/helm/csi-s3
       # renovate:general datasource=github-releases depName=yandex-cloud/k8s-csi-s3
-      targetRevision: "v0.40.3"
+      targetRevision: "v0.40.6"
       helm:
         releaseName: csi-s3
         valueFiles:

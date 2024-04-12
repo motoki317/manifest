@@ -15,3 +15,9 @@ github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okW
 [git.toki317.dev]:2200 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7rgqhIVCbCaYDFYgrST9PRNVuZ6uOJX39+2j2kZdPH
 # git.toki317.dev:2200 SSH-2.0-OpenSSH_9.1
 # git.toki317.dev:2200 SSH-2.0-OpenSSH_9.1
+# git.trap.jp:2200 SSH-2.0-Go
+[git.trap.jp]:2200 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDls/lZkUFkcPCUg5mnQyAj36iUFxeIy+Qa1G6xlZg5mBI7aQuoVcf+k5uPQGLl1RkbN2aa7tkG6DWm76f+VzYgrU7r6hl+L2SkCLmm0uABgU0u/5UEQLJP43Mw4kdb5ioUNaELtHK/JyprJ+KmOx6YDKb1OE5hNu8+/+RB9lL4t/FsGvlokucetAV39Dfsm4U8M/BOe1CRTh/cveyEO6RCzn3T6ixUenoYLqurcOnqVmlz/Bi/QW0sAmBezcDbhJq5Rbu1BHM9/ZWBDLsjvJ7+Oro4ZV8CLJIobR8WSBCbvUEVHj7L34+htQXwPdVtV2lAAxb2KfVznMxL239Haz0/
+# git.trap.jp:2200 SSH-2.0-Go
+# git.trap.jp:2200 SSH-2.0-Go
+# git.trap.jp:2200 SSH-2.0-Go
+# git.trap.jp:2200 SSH-2.0-Go

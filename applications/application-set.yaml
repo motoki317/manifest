@@ -21,7 +21,6 @@ spec:
           - path: japari
           - path: kube-ops-view
           - path: lowlighter-metrics
-          - path: mc-skies-expert
           - path: monitor
           # - path: moto-bot
           - path: nextcloud
@@ -51,10 +50,3 @@ spec:
         automated:
           prune: true
           selfHeal: true
-      ignoreDifferences:
-        - group: apps
-          kind: StatefulSet
-          namespace: mc-skies-expert
-          name: mc-skies-expert
-          jsonPointers:
-            - /spec/replicas

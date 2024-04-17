@@ -27,7 +27,7 @@ spec:
 
       containers:
         - name: mc-skies-expert
-          image: amazoncorretto:21.0.2
+          image: amazoncorretto:21.0.3
           imagePullPolicy: Always
           stdin: true
           tty: true

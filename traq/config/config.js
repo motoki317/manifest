@@ -15,7 +15,7 @@
       {
         label: 'Bot Console',
         iconPath: 'bot-console.svg',
-        appLink: 'https://bot-console.toki317.dev'
+        appLink: 'https://bot-console.ns.toki317.dev'
       },
       {
         label: 'NeoShowcase',
@@ -24,7 +24,7 @@
       }
     ],
     ogpIgnoreHostNames: [
-      'bot-console.toki317.dev',
+      'bot-console.ns.toki317.dev',
       'ns.toki317.dev'
     ],
 //    wikiPageOrigin: 'https://wiki.example.com',

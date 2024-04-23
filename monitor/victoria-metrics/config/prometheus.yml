@@ -370,7 +370,7 @@ scrape_configs:
     static_configs:
       - targets:
           - https://toki317.dev
-          - https://bot-console.toki317.dev
+          - https://bot-console.ns.toki317.dev
           - https://japari.toki317.dev
           - https://monitor.toki317.dev
           - https://q.toki317.dev
@@ -397,7 +397,7 @@ scrape_configs:
     static_configs:
       - targets:
           - toki317.dev:443
-          - bot-console.toki317.dev:443
+          - bot-console.ns.toki317.dev:443
           - japari.toki317.dev:443
           # - monitor.toki317.dev:443
           - q.toki317.dev:443

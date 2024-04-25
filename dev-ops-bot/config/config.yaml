@@ -59,8 +59,9 @@ templates:
 
 commands:
   - name: check
-    description: "Checks kustomize image versions in specified directory. Usage: /deploy check [directory]"
+    description: "Checks kustomize image versions in specified directory."
     templateRef: check
+    argsSyntax: "[directory]"
   - name: update
     description: "Starts Renovate on manifest repository."
     templateRef: dispatch-github-workflow

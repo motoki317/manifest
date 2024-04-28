@@ -4,6 +4,9 @@ resources:
   - sshd-service.yaml
   - sshd-service-account.yaml
   - sshd-statefulset.yaml
+  - dynmap-certificate.yaml
+  - dynmap-ingress-route.yaml
+  - dynmap-service.yaml
 
 configMapGenerator:
   - name: authorized-keys

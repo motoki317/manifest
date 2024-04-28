@@ -35,6 +35,8 @@ spec:
           ports:
             - name: mc
               containerPort: 25565
+            - name: dynmap
+              containerPort: 8123
           workingDir: /srv/mcgtnh-trap
           command:
             - ./start.sh

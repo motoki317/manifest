@@ -1,0 +1,21 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dynmap
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: dynmap-tls
+  routes:
+    - kind: Rule
+      match: Host(`dynmap.mc.toki317.dev`)
+      services:
+        - namespace: mcgtnh-trap
+          kind: Service
+          name: dynmap
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

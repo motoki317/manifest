@@ -1,8 +1,6 @@
 resources:
   - service.yaml
   - statefulset.yaml
-  - sshd-role.yaml
-  - sshd-role-binding.yaml
   - sshd-service.yaml
   - sshd-service-account.yaml
   - sshd-statefulset.yaml

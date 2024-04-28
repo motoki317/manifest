@@ -67,7 +67,8 @@ spec:
           command:
             - sh
             - -c
-            - '/root/scripts/init.sh && exec /entry.sh "$@"'
+            # https://github.com/panubo/docker-sshd/blob/main/Dockerfile
+            - '/root/scripts/init.sh && exec /entry.sh /usr/sbin/sshd -D -e -f /etc/ssh/sshd_config'
           ports:
             - name: sshd
               containerPort: 22

@@ -4,7 +4,7 @@ metadata:
   name: dynmap
 
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: mcgtnh-trap
   ports:

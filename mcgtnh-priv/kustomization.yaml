@@ -9,3 +9,11 @@ configMapGenerator:
   - name: authorized-keys
     files:
       - config/authorized_keys
+  - name: scripts
+    files:
+      - scripts/README.md
+      - scripts/attach-console.sh
+      - scripts/get-logs.sh
+      - scripts/init.sh
+      - scripts/start-server.sh
+      - scripts/stop-server.sh

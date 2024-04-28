@@ -41,3 +41,10 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /srv/mcgtnh-trap
+          resources:
+            requests:
+              cpu: "0.5"
+              memory: "6Gi"
+            limits:
+              cpu: "3"
+              memory: "12Gi"

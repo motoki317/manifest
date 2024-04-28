@@ -4,15 +4,20 @@ metadata:
   name: sshd
 
 rules:
-  - apiGroups: ["apps"]
-    resources: ["statefulsets"]
-    verbs: ["get", "list", "watch", "patch"]
-    resourceNames: ["mcgtnh-priv"]
-  - apiGroups: [""]
-    resources: ["pods"]
-    verbs: ["*"]
-    resourceNames: ["mcgtnh-priv-0"]
-  - apiGroups: [""]
-    resources: ["pods/exec"]
-    verbs: ["*"]
-    resourceNames: ["mcgtnh-priv-0"]
+  - apiGroups:
+      - apps
+    resources:
+      - statefulsets
+      - statefulsets/scale
+    verbs:
+      - *
+    resourceNames:
+      - mcgtnh-priv
+  - resources:
+      - pods
+      - pods/exec
+      - pods/attach
+    verbs:
+      - *
+    resourceNames:
+      - mcgtnh-priv-0

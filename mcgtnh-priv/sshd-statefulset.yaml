@@ -67,7 +67,7 @@ spec:
           command:
             - sh
             - -c
-            - "./scripts/init.sh && exec /start.sh"
+            - "/root/scripts/init.sh && exec /start.sh"
           ports:
             - name: sshd
               containerPort: 22

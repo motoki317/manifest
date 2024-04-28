@@ -47,7 +47,7 @@ spec:
           image: quay.io/panubo/sshd:1.8.0
           ports:
             - name: sshd
-              containerPort: 25576
+              containerPort: 22
           env:
             - name: SSH_ENABLE_ROOT
               value: "true"

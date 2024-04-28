@@ -22,7 +22,6 @@ spec:
           - path: kube-ops-view
           - path: lowlighter-metrics
           - path: monitor
-          # - path: moto-bot
           - path: nextcloud
           - path: ns-apps
           - path: ns-system

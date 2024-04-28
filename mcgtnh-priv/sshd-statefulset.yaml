@@ -17,6 +17,7 @@ spec:
         app: sshd
     spec:
       enableServiceLinks: false
+      serviceAccountName: sshd
       nodeSelector:
         kubernetes.io/hostname: moto-a1-3
 

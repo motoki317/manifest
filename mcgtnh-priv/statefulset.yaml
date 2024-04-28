@@ -17,6 +17,7 @@ spec:
         app: mcgtnh-priv
     spec:
       enableServiceLinks: false
+      automountServiceAccountToken: false
       nodeSelector:
         kubernetes.io/hostname: moto-a1-3
 

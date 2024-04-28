@@ -1,0 +1,61 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: sshd
+
+spec:
+  serviceName: sshd
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sshd
+  template:
+    metadata:
+      labels:
+        app: sshd
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: authorized-keys
+          configMap:
+            name: authorized-keys
+            defaultMode: 0600
+        - name: bin
+          emptyDir: {}
+        - name: data
+          hostPath:
+            path: /srv/mcgtnh-priv
+
+      initContainers:
+        - name: install-kubectl
+          image: bitnami/kubectl:1.30.0
+          command:
+            - cp
+            - /opt/bitnami/kubectl/bin/kubectl
+            - /usr/local/bin/
+          volumeMounts:
+            - mountPath: /usr/local/bin
+              name: bin
+
+      containers:
+        - name: sshd
+          image: quay.io/panubo/sshd:1.8.0
+          ports:
+            - name: sshd
+              containerPort: 25576
+          env:
+            - name: SSH_ENABLE_ROOT
+              value: "true"
+          volumeMounts:
+            - mountPath: /root/.ssh/authorized_keys
+              name: authorized-keys
+              subPath: authorized_keys
+            - mountPath: /usr/local/bin
+              name: bin
+            - mountPath: /srv/mcgtnh-priv
+              name: data

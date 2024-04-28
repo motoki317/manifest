@@ -21,6 +21,7 @@ spec:
           - path: japari
           - path: kube-ops-view
           - path: lowlighter-metrics
+          - path: mcgtnh-priv
           - path: monitor
           - path: nextcloud
           - path: ns-apps

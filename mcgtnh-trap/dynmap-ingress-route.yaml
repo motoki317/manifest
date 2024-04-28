@@ -15,7 +15,7 @@ spec:
         - namespace: mcgtnh-trap
           kind: Service
           name: dynmap
-          port: http
+          port: dynmap
           scheme: http
           strategy: RoundRobin
           weight: 1

@@ -10,7 +10,7 @@ rules:
       - statefulsets
       - statefulsets/scale
     verbs:
-      - *
+      - "*"
     resourceNames:
       - mcgtnh-priv
   - resources:
@@ -18,6 +18,6 @@ rules:
       - pods/exec
       - pods/attach
     verbs:
-      - *
+      - "*"
     resourceNames:
       - mcgtnh-priv-0

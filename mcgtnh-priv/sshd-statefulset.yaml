@@ -64,6 +64,10 @@ spec:
       containers:
         - name: sshd
           image: quay.io/panubo/sshd:1.8.0
+          command:
+            - sh
+            - -c
+            - "./scripts/init.sh && exec /start.sh"
           ports:
             - name: sshd
               containerPort: 22

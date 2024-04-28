@@ -22,6 +22,7 @@ spec:
           - path: kube-ops-view
           - path: lowlighter-metrics
           - path: mcgtnh-priv
+          - path: mcgtnh-trap
           - path: monitor
           - path: nextcloud
           - path: ns-apps

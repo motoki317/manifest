@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcgtnh-trap
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: mcgtnh-trap
+  ports:
+    - name: mc
+      port: 25565
+      targetPort: mc

@@ -1,0 +1,43 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mcgtnh-trap
+
+spec:
+  serviceName: mcgtnh-trap
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  # replicas: 1 # Omit from ArgoCD definition to allow configuring from kubectl (default is 1)
+  selector:
+    matchLabels:
+      app: mcgtnh-trap
+  template:
+    metadata:
+      labels:
+        app: mcgtnh-trap
+    spec:
+      enableServiceLinks: false
+      automountServiceAccountToken: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+
+      volumes:
+        - name: data
+          hostPath:
+            path: /srv/mcgtnh-trap
+
+      containers:
+        - name: mcgtnh-trap
+          image: amazoncorretto:21.0.3
+          imagePullPolicy: Always
+          stdin: true
+          tty: true
+          ports:
+            - name: mc
+              containerPort: 25565
+          workingDir: /srv/mcgtnh-trap
+          command:
+            - ./start.sh
+          volumeMounts:
+            - name: data
+              mountPath: /srv/mcgtnh-trap

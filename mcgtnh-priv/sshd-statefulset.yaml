@@ -11,6 +11,20 @@ spec:
   selector:
     matchLabels:
       app: sshd
+
+  persistentVolumeClaimRetentionPolicy:
+    whenScaled: Delete
+    whenDeleted: Delete
+  volumeClaimTemplates:
+    - metadata:
+        name: ssh-keys
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Mi
+
   template:
     metadata:
       labels:
@@ -56,6 +70,8 @@ spec:
             - mountPath: /root/.ssh/authorized_keys
               name: authorized-keys
               subPath: authorized_keys
+            - mountPath: /etc/ssh/keys
+              name: ssh-keys
             - mountPath: /usr/local/bin
               name: bin
             - mountPath: /srv/mcgtnh-priv

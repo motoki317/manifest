@@ -19,6 +19,9 @@ spec:
         - name: config
           configMap:
             name: config
+        - name: known-hosts
+          configMap:
+            name: known-hosts
         - name: commands
           emptyDir: {}
         - name: secret
@@ -28,7 +31,7 @@ spec:
 
       containers:
         - name: dev-ops-bot
-          image: dev-ops-bot
+          image: ghcr.io/traptitech/dev-ops-bot:4.1.0
           env:
             - name: CONFIG_FILE
               value: /config/config.yaml
@@ -47,6 +50,9 @@ spec:
             - mountPath: /config/config.yaml
               name: config
               subPath: config.yaml
+            - mountPath: /root/.ssh/known_hosts
+              name: known-hosts
+              subPath: known_hosts
             - mountPath: /commands
               name: commands
             - mountPath: /root/.ssh/id_ed25519

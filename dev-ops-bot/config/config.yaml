@@ -1,5 +1,7 @@
 traqOrigin: "wss://q.toki317.dev"
 channelID: "a978e6a0-43ab-48b7-9224-70de36c3b183"
+# token: <env secret>
+prefix: "/"
 
 stamps:
   accept: "0c542f3c-4704-4a4a-930d-9f7101dc0c6c"
@@ -8,6 +10,8 @@ stamps:
   success: "1f399400-aa12-4e62-8264-b3a61135ff74"
   failure: "e08e7d4c-108b-42d7-8ed7-cc1a60341825"
   running: "6680190b-fbd8-44e2-ae59-53bf249bd7ff"
+
+tmpDir: "/commands"
 
 templates:
   - name: check

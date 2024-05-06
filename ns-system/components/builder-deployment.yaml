@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: ns-builder
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/buildkitd: unconfined
     spec:
       enableServiceLinks: false
 
@@ -59,11 +61,12 @@ spec:
               subPath: ns.yaml
 
         - name: buildkitd
-          image: moby/buildkit:v0.13.2
+          image: moby/buildkit:v0.13.2-rootless
           imagePullPolicy: Always
           args:
             - --addr
-            - unix:///run/buildkit/buildkitd.sock
+            - unix:///run/user/1000/buildkit/buildkitd.sock
+            - --oci-worker-no-process-sandbox
           readinessProbe:
             exec:
               command:
@@ -81,9 +84,12 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 30
           securityContext:
-            privileged: true
+            seccompProfile:
+              type: Unconfined
+            runAsUser: 1000
+            runAsGroup: 1000
           volumeMounts:
-            - mountPath: /run/buildkit
+            - mountPath: /run/user/1000/buildkit
               name: socket
 
         - name: builder

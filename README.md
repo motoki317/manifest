@@ -1,143 +1,185 @@
 # manifest
 
-toki317.dev
+Kubernetes manifestファイル群
 
-## k3s installation
+mainブランチへの変更は、ArgoCDによって自動的に本番環境へ反映されます。
 
-`/etc/rancher/k3s/config.yaml` (server)
-```yaml
-# default
-cluster-cidr: 10.42.0.0/16
-service-cidr: 10.43.0.0/16
+## 書き始める前に
 
-disable:
-  - traefik
+GitHub Actionsでのyamlのバリデーションがありますが、各自のエディタに以下のような拡張機能をインストールし、補完を頼りながら書くと良いでしょう。
 
-kubelet-arg:
-  - container-log-max-files=2
-  - container-log-max-size=1Mi
-  - config=/etc/rancher/k3s/kubelet-config.yaml
+### VSCode
 
-flannel-backend: wireguard-native
+ref: [Kubernetesエンジニア向け開発ツール欲張りセット2022](https://zenn.dev/zoetro/articles/9454a6231a1273#vscode-extensions)
 
-node-external-ip: <external ip>
-# enable if multi-cloud cluster (i.e. nodes are accessible each other only from public ip)
-# advertise-address: <external ip>
-# flannel-external-ip: true
+[YAML - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) をインストールし、以下を `.vscode/settings.json` に追加
 
-kube-controller-manager-arg:
-  - node-cidr-mask-size-ipv4=22
+```json
+{
+   "yaml.schemas": {
+      "kubernetes": [
+         "*.yml",
+         "*.yaml"
+      ]
+   }
+}
 ```
 
-`/etc/rancher/k3s/config.yaml` (agent)
-```yaml
-kubelet-arg:
-  - container-log-max-files=2
-  - container-log-max-size=1Mi
-  - config=/etc/rancher/k3s/kubelet-config.yaml
+CRD(Custom Resource Definition)の補完は知らない
+誰か知ってたら助けて
 
-node-external-ip: <external ip>
-```
+### IntelliJ IDEA Ultimate
 
-`/etc/rancher/k3s/kubelet-config.yaml` (server, agent)
-```yaml
-apiVersion: kubelet.config.k8s.io/v1beta1
-kind: KubeletConfiguration
+[Kubernetes - IntelliJ IDEs Plugin | Marketplace](https://plugins.jetbrains.com/plugin/10485-kubernetes)
 
-maxPods: 250
-```
+`Languages & Frameworks > Kubernetes` より、CRD定義のURLを追加すると、CRDの補完も効くようになります
+e.g. `https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml`
 
-https://k3s.io/
-```sh
-# Setup server
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest sh -
-# Setup agent
-curl -sfL https://get.k3s.io | INSTALL_K3S_CHANNEL=latest K3S_URL=https://myserver:6443 K3S_TOKEN=mynodetoken sh -
-```
+## 書き方
 
-## Secret management
+各ディレクトリ（アプリ）には `kustomization.yaml` が置いてあり、ここを起点として kustomize によって読み込まれます。
+また、各ディレクトリ（アプリ）は `./applications/application-set.yaml` を起点として読み込まれます。
 
-Secret is encrypted with [sops](https://github.com/mozilla/sops#encrypting-using-age) using [age](https://github.com/FiloSottile/age).
-This encrypted secret is then decrypted by ArgoCD by [ksops kustomize plugin](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-).
+具体的なリソースの書き方は、[Deployments | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) のような公式ドキュメントや、既存アプリの書き方を参考にしてください。
 
-### Setup
+### 既存アプリにリソースを追加・削除・編集する場合
 
-- Install age: https://github.com/FiloSottile/age#installation
-- Install sops: https://github.com/mozilla/sops#1download
+1. 編集したいリソースのyamlを追加・削除・編集します。
+2. リソースを追加・削除した場合、各ディレクトリの `kustomization.yaml` の `resources` フィールドの更新を忘れないようにすること。
 
-### Encrypting (no secret key required)
+### アプリ自体を新しく追加する場合
 
-1. Write a secret.
+1. 新しくディレクトリを作り、リソースを書いていきます。
+2. `kustomization.yaml` から書いたリソースを適切に参照します。
+3. `./applications/application-set.yaml` の `spec.generators.git.directories` に `- path: ディレクトリ名` を追加します。
+
+## Secretの追加・編集方法
+
+公開鍵暗号方式なので、Secretの追加・値の上書きは誰でも可能です。
+
+Secretは[sops](https://github.com/mozilla/sops#encrypting-using-age)と[age](https://github.com/FiloSottile/age)で暗号化しています。
+暗号化されたSecretは[ksops kustomize plugin](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-)を通してArgoCDによって読まれます。
+
+### 前準備
+
+以下が必要になるので、インストールしましょう。
+
+- age: https://github.com/FiloSottile/age#installation
+- sops: https://github.com/mozilla/sops#1download
+   - Ubuntu: `wget`/`curl`などで`.deb`を引っ張ってきて`sudo apt install ./sops_x.x.x_amd64.deb` でインストール
+
+### 新規Secretの追加
+
+1. Secretを書く。
 
 ```yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: my-secret
-  annotations:
-    # Only add this annotation if secret name can be resolved by resources using kustomize nameReference
-    # (no need to alter configuration if secret is only used by normal Deployments etc.)
-    kustomize.config.k8s.io/needs-hash: "true"
+   name: my-secret
+   annotations:
+      # kustomizeによってSecret名にhash suffixを付けさせる設定
+      # Secretの中身が変更されたとき、自動リロードが可能になる
+      # kustomize設定のnameReferenceで、Secretを読む側のフィールドを参照する必要あり
+      kustomize.config.k8s.io/needs-hash: "true"
 stringData:
-  my-secret-key: "my-super-secret-value"
+   my-secret-key: "my-super-secret-value"
 ```
 
-2. Encrypt the secret: `./encrypt.sh secret.yaml`
-   - File will be encrypted in-place.
-3. Refer to encrypted file from `ksops.yaml` file.
+2. Secretをsopsで暗号化する: `./encrypt-secret.sh secret.yaml`
+   - ファイルの中身が暗号化されて置き換わります
+3. `ksops.yaml` から以下のようにファイルを参照する。
 
 ```yaml
 apiVersion: viaduct.ai/v1
 kind: ksops
 metadata:
-  name: ksops
-  annotations:
-    config.kubernetes.io/function: |
-      exec:
-        path: ksops
+   name: ksops
+   annotations:
+      config.kubernetes.io/function: |
+         exec:
+           path: ksops
 
-# Refer to encrypted files here
+# ここを編集
 files:
-  - ./secrets/secret.yaml
+   - ./secrets/secret.yaml
 ```
 
-4. Add the following to `kustomization.yaml`.
+4. 次の行を `kustomization.yaml` に追加する。
 
 ```yaml
 generators:
-  - ksops.yaml
+   - ksops.yaml
 ```
 
-### Decrypting / Editing
+### 既存Secretの編集
 
-- `./set-secret.sh`
-- or`./edit-secret.sh` if you have decrypting key
+既存Secretの値だけを上書きしたい場合、次のスクリプトで編集できます。
 
-### Adding / removing keys
+- `./set-secret.sh filename key data`
+   - filenameにはファイル名
+   - keyにはstringData以下のキー名
+   - dataには上書きしたいデータ
 
-1. Update `.sops.yaml`
-2. Run `./updatekeys.sh filename`
-   - Or `find . -type f -path '*/secrets/*' | xargs -n 1 ./updatekeys.sh` to update all
+Secret全体を一旦復号化して編集したい場合は、次のスクリプトで編集できますが、もちろん復号のための鍵が無いとできません。
+誤ってコミットすることを防ぐため、ファイルシステム上で復号化はされず、エディター上で編集します。
+エディターを閉じると自動的に再度暗号化されます。
 
-## bootstrap
+- `./edit-secret.sh filename`
 
-1. Install k3s (or any other k8s installation)
-   - In case of k3s, do not forget to disable default traefik installation, otherwise traefik pod will not be able to bind to port 80, 443
-2. Install ArgoCD
+### 鍵の追加 / 削除方法
+
+当然復号化できる鍵を1つ以上持っていないと（つまりadminでないと）できません。
+
+1. `.sops.yaml` の `age` フィールドの公開鍵一覧(comma-separated)を更新
+2. すべてのSecretファイルに対して、`./updatekeys.sh filename` を実行
+   - `secrets` ディレクトリ以下に存在するので `find . -type f -path '*/secrets/*' | xargs -n 1 ./updatekeys-secret.sh` とすると楽
+
+NOTE: 鍵を削除する場合、中身は遡って復号化できることに注意
+鍵が漏れた場合はSecretの中身も変えないといけません
+
+## Bootstrap
+
+クラスタ自体の構築記録です。
+クラスタが吹き飛んだ場合、以下に沿って構築します。
+
+1. Ansibleを実行してk3sクラスタを構築
+   - https://github.com/motoki317/toki317.dev
+   - master (k3s-server) を構築
+   - **バックアップが存在する場合**、この時点で k3s (server) をストップ、上の方法でリストアし、以下のステップは行わないでよい
+   - Ansible 内の `k3s_token` の値を書き換える
+   - worker (k3s-agent) を構築
+2. ArgoCDをインストール
    - `kubectl create ns argocd`
-   - `kubectl apply -n argocd -f {{ latest version install.yaml URL referred to in ./argocd }}`
-     - refer to `./argocd/kustomization.yaml` for the current version
-3. Set up secret management
+   - `./argocd/kustomization.yaml` の中身を一旦下記に書き換える
+```yaml
+resources:
+   - https://raw.githubusercontent.com/argoproj/argo-cd/{{ version }}/manifests/install.yaml
+
+patches:
+   - path: argocd-cm.yaml
+   - path: argocd-repo-server.yaml
+```
+3. ArgoCDをインストール (続き)
+   - `kubectl apply -n argocd -k argocd`
+   - `./argocd/kustomization.yaml` の中身を戻す
+4. sopsにより暗号化されたSecretの復号化の準備
    - `age-keygen -o key.txt`
-   - Set public key to `.sops.yaml`
+   - Public keyを `.sops.yaml` の該当フィールドに設定
    - `kubectl -n argocd create secret generic age-key --from-file=./key.txt`
+      - `./argocd/argocd-repo-server.yaml` から参照されています
    - `rm key.txt`
-4. Access ArgoCD via port forwarding
+5. Port forwardしてArgoCDにアクセス
    - `kubectl port-forward svc/argocd-server -n argocd 8124:443`
-   - Get admin password from ` kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
-5. Add initial `applications` application
-   - Add known hosts and connect repository
-   - Add application (path: `applications`)
-   - Sync applications
-6. Access `cd.toki317.dev` and more
-   - If for some reason accessing fails, port-forward with `kubectl port-forward svc/argocd-server -n argocd 8124:80`
+   - sshしている場合はlocal forward e.g. `ssh -L 8124:localhost:8124 remote-name`
+   - localhost:8124 へアクセス
+   - Admin password: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
+6. ArgoCDのUIから `applications` アプリケーションを登録
+   - SSH鍵を手元で生成して、公開鍵をGitHubのこのリポジトリ (manifest) に登録
+   - 必要な場合は先にknown_hostsを登録 (GitHubのknown_hostsはデフォルトで入っている)
+   - URLはSSH形式で、秘密鍵をUIで貼り付けてリポジトリを追加
+   - アプリケーションを追加 (path: `applications`)
+   - Syncを行う
+7. cd.toki317.dev にアクセスできるようになるはず
+   - ArgoCDアプリケーションがsyncされた後はargocd serviceのポートは443番から80番になるので注意
+   - local forwardでのアクセスを続けたい場合は `kubectl port-forward svc/argocd-server -n argocd 8124:80`

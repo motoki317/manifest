@@ -32,4 +32,5 @@ controller:
   # Append namespaces below in which workflows will be run
   workflowNamespaces:
     - argo
+    - backup
     - traq-ranking

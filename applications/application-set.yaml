@@ -11,6 +11,7 @@ spec:
           - path: argo
           - path: argocd
           - path: auth
+          - path: backup
           - path: cert-manager
           - path: csi-s3
           - path: db

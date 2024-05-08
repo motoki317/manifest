@@ -138,6 +138,19 @@ Secret全体を一旦復号化して編集したい場合は、次のスクリ�
 NOTE: 鍵を削除する場合、中身は遡って復号化できることに注意
 鍵が漏れた場合はSecretの中身も変えないといけません
 
+## Restore from Backup
+
+万が一 master のホストが壊れたなどの理由で、k8sの状態が全部吹き飛んだ場合に、バックアップからから回復する方法です。
+
+現在のリソースをチェック出来る場合はチェック: `$ kubectl get --all-namespaces all`
+何も無ければ以下を行い、クラスタの状態をバックアップから回復してください。
+
+このリポジトリの `./backup` 以下に、master ノードの SQLite の状態のバックアップを取るスクリプトが置かれています。
+`/var/lib/rancher/k3s/server` 以下を tar.gz として保存し、Google Cloud Storage へバックアップしています。
+
+これから回復するには、 https://docs.k3s.io/datastore/backup-restore の手順に従ってください。
+tar.gz の中身から `db` ディレクトリと `token` ファイルを取り出し、元の `/var/lib/rancher/k3s/server` 以下に配置したあと、k3s (server) を起動してください。
+
 ## Bootstrap
 
 クラスタ自体の構築記録です。

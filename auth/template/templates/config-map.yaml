@@ -22,7 +22,7 @@ data:
     providers.oidc.issuer-url = https://q.toki317.dev
     providers.oidc.client-id = {{ .Values.clientID }}
     # providers.oidc.client-secret = <env secret>
-    providers.generic-oauth.prompt = none
+    providers.oidc.prompt = none
 
     rule.admin.rule = Header(`X-Forward-Auth-Type`, `admin`)
     rule.admin.whitelist = toki,osushi,pikachu

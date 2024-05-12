@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+set -eux
+
 # Install commands for deploy scripts
 apk add --no-cache git openssh curl npm
 

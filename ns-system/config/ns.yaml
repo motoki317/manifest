@@ -1,5 +1,9 @@
 privateKeyFile: /keys/id_ed25519
-adminerURL: https://adminer.toki317.dev/
+additionalLinks:
+  - name: Wiki
+    url: https://wiki.trap.jp/services/NeoShowcase
+  - name: DB Admin
+    url: https://adminer.toki317.dev/
 
 db:
   host: mariadb.db.svc.cluster.local

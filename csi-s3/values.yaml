@@ -12,7 +12,7 @@ storageClass:
   # Name
   name: csi-s3
   # Use a single bucket for all dynamically provisioned persistent volumes
-  # singleBucket: ""
+  singleBucket: "csi-s3"
   # GeeseFS mount options
   mountOptions: "--memory-limit 100 --dir-mode 0777 --file-mode 0666 --no-systemd --cheap"
   # Volume reclaim policy

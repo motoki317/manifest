@@ -33,7 +33,6 @@ spec:
           - path: system-upgrade
           - path: traefik
           - path: traq
-          - path: traq-ranking
   template:
     metadata:
       name: '{{path}}'

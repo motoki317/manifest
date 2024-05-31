@@ -60,6 +60,10 @@ templates:
         -d "{\"ref\":\"$REF\"}"
       
       echo "Dispatched successfully!"
+  - name: kubectl
+    command: |
+      #!/bin/sh
+      exec kubectl "$@"
 
 commands:
   - name: check
@@ -74,3 +78,9 @@ commands:
       - manifest
       - renovate.yaml
       - master
+  - name: kubectl
+    description: "kubectl commands"
+    templateRef: kubectl
+    allowArgs: true
+    operators:
+      - toki

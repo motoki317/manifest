@@ -8,6 +8,8 @@ headerNames:
   - X-Showcase-User
 
 image:
-  name: "ghcr.io/traptitech/traefik-forward-auth"
+  # name: "ghcr.io/traptitech/traefik-forward-auth"
   # renovate:image-tag imageName=ghcr.io/traptitech/traefik-forward-auth
-  tag: "3.0.3"
+  # tag: "3.0.3"
+  name: "registry.toki317.dev/pub/traefik-forward-auth"
+  tag: "3.1.0-b1"

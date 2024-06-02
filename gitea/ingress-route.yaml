@@ -12,20 +12,7 @@ spec:
     - kind: Rule
       match: Host(`git.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev-soft
-          namespace: auth
-      services:
-        - namespace: gitea
-          kind: Service
-          name: gitea
-          port: http
-          scheme: http
-          strategy: RoundRobin
-          weight: 1
-    - kind: Rule
-      match: Host(`git.toki317.dev`) && PathPrefix(`/user/login`)
-      middlewares:
-        - name: auth-toki317-dev-hard
+        - name: auth-toki317-dev-admin
           namespace: auth
       services:
         - namespace: gitea

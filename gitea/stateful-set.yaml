@@ -59,6 +59,8 @@ spec:
               value: X-Forwarded-User
             - name: GITEA__service__ENABLE_REVERSE_PROXY_AUTO_REGISTRATION
               value: "true"
+            - name: GITEA__admin__USER_DISABLED_FEATURES
+              value: "deletion"
           volumeMounts:
             - mountPath: /data
               name: data

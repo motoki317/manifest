@@ -4,7 +4,7 @@ metadata:
   name: tempo
 
 spec:
-  replicas: 0
+  replicas: 1
   serviceName: tempo
   podManagementPolicy: Parallel
   revisionHistoryLimit: 0

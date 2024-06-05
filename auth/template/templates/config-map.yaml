@@ -35,7 +35,7 @@ data:
         action: soft-auth
         route-rule: Header(`X-Forward-Auth-Type`, `soft`)
       force-login:
-        action: auth
+        action: login
         route-rule: Header(`X-Forward-Auth-Type`, `soft`) && PathPrefix(`/_oauth/login`)
       force-logout:
         action: logout

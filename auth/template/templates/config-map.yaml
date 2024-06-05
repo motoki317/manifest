@@ -4,31 +4,46 @@ metadata:
   name: {{ .Release.Name }}
 
 data:
-  auth.ini: |
+  config.yaml: |
     # secret = <env secret>
-    log-level = info
+    log-level: info
 
-    default-provider = oidc
-    user-id-path = name
+    provider: oidc
 
-    auth-host = auth.{{ .Values.domain }}
-    cookie-domain = {{ .Values.domain }}
-    cookie-name = {{ .Values.cookieName }}
-    header-names = {{ join "," .Values.headerNames }}
+    auth-host: auth.{{ .Values.domain }}
+    cookie-domains: {{ .Values.domain }}
+    cookie-name: {{ .Values.cookieName }}
     # 2 weeks
-    lifetime = 1209600
+    lifetime: 1209600
+    info-fields:
+      - name
 
-    providers.oidc.scope = ""
-    providers.oidc.issuer-url = https://q.toki317.dev
-    providers.oidc.client-id = {{ .Values.clientID }}
-    # providers.oidc.client-secret = <env secret>
-    providers.oidc.prompt = none
+    providers:
+      oidc:
+        scope: ""
+        issuer-url: https://q.toki317.dev
+        client-id: {{ .Values.clientID }}
+        # client-secret = <env secret>
+        prompt: none
 
-    rule.admin.rule = Header(`X-Forward-Auth-Type`, `admin`)
-    rule.admin.whitelist = toki,osushi,pikachu
+    rules:
+      admin:
+        action: auth
+        route-rule: Header(`X-Forward-Auth-Type`, `admin`)
+        auth-rule: In(`name`, `toki`, `osushi`, `pikachu`)
+      soft:
+        action: soft-auth
+        route-rule: Header(`X-Forward-Auth-Type`, `soft`)
+      force-login:
+        action: auth
+        route-rule: Header(`X-Forward-Auth-Type`, `soft`) && PathPrefix(`/_oauth/login`)
+      hard:
+        action: auth
+        route-rule: Header(`X-Forward-Auth-Type`, `hard`)
 
-    rule.soft.rule = Header(`X-Forward-Auth-Type`, `soft`)
-    rule.soft.action = soft-auth
-
-    rule.hard.rule = Header(`X-Forward-Auth-Type`, `hard`)
-    rule.hard.action = auth
+    headers:
+      {{- range $i, $h := .Values.headers }}
+      h-{{ $i }}:
+        name: {{ $h.name }}
+        source: {{ $h.source }}
+      {{- end }}

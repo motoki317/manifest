@@ -20,7 +20,7 @@ data:
 
     providers:
       oidc:
-        scope: ""
+        scopes: ""
         issuer-url: https://q.toki317.dev
         client-id: {{ .Values.clientID }}
         # client-secret = <env secret>

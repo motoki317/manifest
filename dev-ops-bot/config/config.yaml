@@ -1,6 +1,10 @@
-traqOrigin: "wss://q.toki317.dev"
-channelID: "a978e6a0-43ab-48b7-9224-70de36c3b183"
-# token: <env secret>
+mode: "traq"
+
+traq:
+  origin: "wss://q.toki317.dev"
+  channelID: "a978e6a0-43ab-48b7-9224-70de36c3b183"
+  # token: <env secret>
+
 prefix: "/"
 
 stamps:

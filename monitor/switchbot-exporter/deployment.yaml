@@ -32,3 +32,8 @@ spec:
                 secretKeyRef:
                   name: switchbot-exporter
                   key: token
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: switchbot-exporter
+                  key: secret

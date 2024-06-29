@@ -43,7 +43,7 @@ spec:
           env:
             - name: CONFIG_FILE
               value: /config.yaml
-            - name: TOKEN
+            - name: TRAQ_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: dev-ops-bot

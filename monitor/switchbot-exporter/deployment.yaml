@@ -25,6 +25,7 @@ spec:
           args:
             - -port=9257
             - -token=$(TOKEN)
+            - -secret=$(SECRET)
           env:
             - name: TOKEN
               valueFrom:

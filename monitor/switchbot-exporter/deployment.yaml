@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: switchbot-exporter
-          image: ghcr.io/motoki317/switchbot_exporter:master@sha256:9de4d9d25b42467c9c73df5ec1d9c8e25a90f53d6ec013a2b659ce23bcc91b16
+          image: ghcr.io/motoki317/switchbot_exporter:master@sha256:4525c01db922d165c170386121e1112040f357b9e944ebcff6937eb2db2d23bb
           imagePullPolicy: Always
           ports:
             - name: http

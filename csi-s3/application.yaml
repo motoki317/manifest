@@ -15,7 +15,7 @@ spec:
     - repoURL: https://github.com/motoki317/k8s-csi-s3
       path: deploy/helm/csi-s3
       # renovate:general datasource=github-releases depName=yandex-cloud/k8s-csi-s3
-      # targetRevision: "v0.41.0"
+      # targetRevision: "v0.41.1"
       targetRevision: "external-provisioner-v5-support"
       helm:
         releaseName: csi-s3

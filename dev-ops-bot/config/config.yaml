@@ -8,7 +8,6 @@ traq:
 prefix: "/"
 
 stamps:
-  accept: "0c542f3c-4704-4a4a-930d-9f7101dc0c6c"
   badCommand: "21ebf09e-a576-430b-8f37-aee402110e48"
   forbid: "5e7fe89f-a120-4ee6-88c5-a4befe96a862"
   success: "1f399400-aa12-4e62-8264-b3a61135ff74"

@@ -9,18 +9,15 @@ spec:
     namespace: argo
     server: https://kubernetes.default.svc
   project: default
-  sources:
-    - repoURL: https://argoproj.github.io/argo-helm
-      chart: argo-workflows
-      # renovate:general datasource=helm depName=argo-workflows registryUrl=https://argoproj.github.io/argo-helm
-      targetRevision: "0.41.11"
-      helm:
-        releaseName: argo
-        valueFiles:
-          - $values/argo/values.yaml
-    - repoURL: https://github.com/motoki317/manifest
-      targetRevision: master
-      ref: values
+  source:
+    repoURL: https://argoproj.github.io/argo-helm
+    chart: argo-workflows
+    # renovate:general datasource=helm depName=argo-workflows registryUrl=https://argoproj.github.io/argo-helm
+    targetRevision: "0.41.11"
+    helm:
+      releaseName: argo
+      valueFiles:
+        - values.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true

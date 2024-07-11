@@ -61,7 +61,7 @@ spec:
               subPath: ns.yaml
 
         - name: buildkitd
-          image: moby/buildkit:v0.14.1-rootless
+          image: moby/buildkit:v0.15.0-rootless
           imagePullPolicy: Always
           args:
             - --addr

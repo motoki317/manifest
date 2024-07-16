@@ -27,7 +27,7 @@ spec:
 
       containers:
         - name: postgres
-          image: postgres:12
+          image: postgres:16
           env:
             - name: POSTGRES_DB
               value: refactorhub

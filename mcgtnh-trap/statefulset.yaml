@@ -28,7 +28,7 @@ spec:
 
       containers:
         - name: mcgtnh-trap
-          image: amazoncorretto:21.0.3
+          image: amazoncorretto:21.0.4
           imagePullPolicy: Always
           stdin: true
           tty: true

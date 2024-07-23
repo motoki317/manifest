@@ -43,10 +43,10 @@ spec:
                   key: mysql-password
             - name: MYSQL_DATABASE
               value: nextcloud
-            - name: PHP_MEMORY_LIMIT
-              value: 2G
-            - name: PHP_UPLOAD_LIMIT
-              value: 2G
+#            - name: PHP_MEMORY_LIMIT
+#              value: 2G
+#            - name: PHP_UPLOAD_LIMIT
+#              value: 2G
             - name: PHP_MAX_INPUT_TIME
               value: "3600"
           volumeMounts:

@@ -14,7 +14,7 @@ resources:
 images:
 - name: traq
   newName: ghcr.io/traptitech/traq
-  newTag: 3.19.0
+  newTag: 3.19.2
 - name: traq-es
   newName: ghcr.io/traptitech/es-with-sudachi
   newTag: 8.8.1-3.1.0

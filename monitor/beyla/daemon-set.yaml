@@ -30,7 +30,7 @@ spec:
 
       containers:
         - name: beyla
-          image: grafana/beyla:1.6.4
+          image: grafana/beyla:1.7.0
           securityContext:
             runAsUser: 0
             privileged: true

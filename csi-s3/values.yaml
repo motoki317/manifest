@@ -2,7 +2,7 @@ images:
   # renovate:image-full
   registrar: "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.11.1"
   # renovate:image-full
-  provisioner: "registry.k8s.io/sig-storage/csi-provisioner:v5.0.1"
+  provisioner: "registry.k8s.io/sig-storage/csi-provisioner:v5.0.2"
   # renovate:image-full
   csi: "ghcr.io/motoki317/k8s-csi-s3:0.40.8-p1"
 

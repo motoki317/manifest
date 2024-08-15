@@ -52,7 +52,7 @@ spec:
 
       initContainers:
         - name: install-kubectl
-          image: bitnami/kubectl:1.30.4
+          image: bitnami/kubectl:1.31.0
           command:
             - cp
             - /opt/bitnami/kubectl/bin/kubectl

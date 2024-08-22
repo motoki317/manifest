@@ -15,8 +15,6 @@ spec:
         app: front
     spec:
       enableServiceLinks: false
-      imagePullSecrets:
-        - name: japari-image-pull-secret
       containers:
         - name: front
           image: ghcr.io/japariproject/front:master@sha256:394ba40ac5914f103f09bf730becb2d1457b4dc11d4be96936666ab04d3e11d5

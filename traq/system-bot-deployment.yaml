@@ -1,0 +1,31 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: system-bot
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: system-bot
+  template:
+    metadata:
+      labels:
+        app: system-bot
+    spec:
+      enableServiceLinks: false
+      automountServiceAccountToken: false
+      containers:
+        - name: system-bot
+          image: ghcr.io/traptitech/traq-system-bot:1.0.0
+          env:
+            - name: BOT_SYSTEM_MESSAGE_CHANNEL_ID
+              value: 0e10c15a-f147-4fbe-a85d-bde865c3861c
+            - name: TRAQ_ORIGIN
+              value: wss://q.toki317.dev
+            - name: BOT_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: system-bot
+                  key: access-token

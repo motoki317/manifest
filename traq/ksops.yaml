@@ -9,4 +9,5 @@ metadata:
 
 files:
   - ./secrets/keys.yaml
+  - ./secrets/system-bot.yaml
   - ./secrets/traq.yaml

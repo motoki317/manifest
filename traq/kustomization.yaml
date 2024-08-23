@@ -5,6 +5,7 @@ resources:
 - frontend-deployment.yaml
 - frontend-service.yaml
 - ingress-route.yaml
+- system-bot-deployment.yaml
 - traq-service.yaml
 - traq-stateful-set.yaml
 - widget-deployment.yaml

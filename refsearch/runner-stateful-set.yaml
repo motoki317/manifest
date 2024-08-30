@@ -17,6 +17,10 @@ spec:
         app: runner
     spec:
       enableServiceLinks: false
+      volumes:
+        - name: data
+          emptyDir: {}
+
       containers:
         - name: runner
           image: ghcr.io/salab/refsearch-runner:master@sha256:ee80b404c469921db6ddabc4fff4004045638b3cbadbb5d317bf5705e9d0a8be
@@ -80,9 +84,3 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
-
-      volumes:
-        - name: data
-          emptyDir: {}
-      imagePullSecrets:
-        - name: image-pull-secret

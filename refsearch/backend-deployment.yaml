@@ -36,5 +36,3 @@ spec:
               value: mongo.db.svc.cluster.local
             - name: MONGODB_PORT
               value: "27017"
-      imagePullSecrets:
-        - name: image-pull-secret

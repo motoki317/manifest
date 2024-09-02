@@ -33,4 +33,3 @@ controller:
   workflowNamespaces:
     - argo
     - backup
-    - traq-ranking

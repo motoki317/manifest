@@ -30,7 +30,7 @@ spec:
 
       containers:
         - name: app
-          image: weseek/growi:7.0.17
+          image: weseek/growi:7.0.18
           ports:
             - containerPort: 3000
               name: http

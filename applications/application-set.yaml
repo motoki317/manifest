@@ -5,44 +5,28 @@ metadata:
   namespace: argocd
 
 spec:
+  goTemplate: true
+  goTemplateOptions:
+    - "missingkey=error"
   generators:
-    - list:
-        elements:
-          - path: argo
-          - path: argocd
-          - path: auth
-          - path: backup
-          - path: cert-manager
-          - path: csi-s3
-          - path: db
-          - path: dev-ops-bot
-          - path: gitea
-          - path: growi
-          - path: harbor
-          - path: japari
-          - path: kube-ops-view
-          - path: lowlighter-metrics
-          - path: mcgtnh-trap
-          - path: monitor
-          - path: nextcloud
-          - path: ns-apps
-          - path: ns-system
-          - path: promtail
-          - path: refsearch
-          - path: system-upgrade
-          - path: traefik
-          - path: traq
+    - git:
+        repoURL: https://github.com/motoki317/manifest
+        revision: master
+        directories:
+          - path: '*'
+          - path: 'applications'
+            exclude: true
   template:
     metadata:
-      name: '{{path}}'
+      name: '{{.path.basename}}'
     spec:
       destination:
-        namespace: '{{path}}'
+        namespace: '{{.path.basename}}'
         server: https://kubernetes.default.svc
       project: default
       source:
         repoURL: https://github.com/motoki317/manifest
-        path: '{{path}}'
+        path: '{{.path.path}}'
         targetRevision: master
       syncPolicy:
         syncOptions:

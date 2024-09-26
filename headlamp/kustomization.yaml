@@ -6,8 +6,20 @@ helmCharts:
     namespace: headlamp
     includeCRDs: true
     releaseName: headlamp
-    valuesInline: {}
+    valuesInline:
+      config:
+        oidc:
+          clientID: "v131vTtyN5QxOSqNWPVyh3Smeb6NtaruXJgq"
+          # clientSecret: ""
+          issuerURL: "https://q.toki317.dev"
+          scopes: "profile"
 
 resources:
   - certificate.yaml
   - ingress-route.yaml
+
+patches:
+  - path: deployment-patch.yaml
+
+generators:
+  - ksops.yaml

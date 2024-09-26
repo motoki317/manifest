@@ -1,6 +1,8 @@
 helmCharts:
-  - repo: https://headlamp-k8s.github.io/headlamp/
+  - repo: https://headlamp-k8s.github.io/headlamp
     name: headlamp
+    # renovate:general datasource=helm depName=headlamp registryUrl=https://headlamp-k8s.github.io/headlamp
+    version: "0.25.0"
     namespace: headlamp
     includeCRDs: true
     releaseName: headlamp

@@ -7,3 +7,7 @@ helmCharts:
     includeCRDs: true
     releaseName: headlamp
     valuesInline: {}
+
+resources:
+  - certificate.yaml
+  - ingress-route.yaml

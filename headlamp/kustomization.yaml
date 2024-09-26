@@ -1,0 +1,7 @@
+helmCharts:
+  - repo: https://headlamp-k8s.github.io/headlamp/
+    name: headlamp
+    namespace: headlamp
+    includeCRDs: true
+    releaseName: headlamp
+    valuesInline: {}

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speedtest
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: speedtest
+  template:
+    metadata:
+      labels:
+        app: speedtest
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: speedtest
+          image: openspeedtest/latest:latest
+          ports:
+            - name: http
+              containerPort: 3000

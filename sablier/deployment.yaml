@@ -15,6 +15,7 @@ spec:
         app: sablier
     spec:
       enableServiceLinks: false
+      serviceAccountName: sablier
       volumes:
         - name: config
           configMap:

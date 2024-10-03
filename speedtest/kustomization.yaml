@@ -2,4 +2,5 @@ resources:
   - certificate.yaml
   - deployment.yaml
   - ingress-route.yaml
+  - middleware-sablier.yaml
   - service.yaml

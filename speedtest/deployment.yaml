@@ -4,7 +4,7 @@ metadata:
   name: speedtest
   labels:
     sablier.enable: "true"
-    sablier.group: dynamic-default
+    sablier.group: speedtest
 
 spec:
   # replicas: 1 # autoscale by sablier

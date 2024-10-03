@@ -1,9 +1,2 @@
 provider:
   name: kubernetes
-strategy:
-  dynamic:
-    show-details-by-default: true
-    default-theme: ghost
-    default-refresh-frequency: 5s
-  blocking:
-    default-timeout: 1m

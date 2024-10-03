@@ -6,7 +6,7 @@ metadata:
 spec:
   plugin:
     sablier:
-      group: default
+      group: dynamic-default
       dynamic:
         displayName: App
         refreshFrequency: 5s

@@ -12,5 +12,5 @@ spec:
         refreshFrequency: 5s
         showDetails: "true"
         theme: ghost
-      sablierUrl: http://sablier.sablier.svc.cluster.local/
+      sablierUrl: http://sablier.sablier.svc.cluster.local
       sessionDuration: 1m

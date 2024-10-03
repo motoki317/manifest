@@ -14,6 +14,8 @@ spec:
       middlewares:
         - name: auth-toki317-dev-admin
           namespace: auth
+        - name: sablier-dynamic
+          namespace: sablier
       services:
         - namespace: speedtest
           kind: Service

@@ -1,0 +1,10 @@
+resources:
+  - cluster-role.yaml
+  - deployment.yaml
+  - middleware-dynamic.yaml
+  - service.yaml
+
+configMapGenerator:
+  - name: sablier
+    files:
+      - config/sablier.yaml

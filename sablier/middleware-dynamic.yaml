@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: sablier-dynamic
+
+spec:
+  plugin:
+    sablier:
+      group: default
+      dynamic:
+        displayName: App
+        refreshFrequency: 5s
+        showDetails: "true"
+        theme: ghost
+      sablierUrl: http://sablier.sablier.svc.cluster.local/
+      sessionDuration: 1m

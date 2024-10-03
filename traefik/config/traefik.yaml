@@ -18,6 +18,7 @@ tracing:
 providers:
   kubernetesCRD:
     allowCrossNamespace: true
+    allowEmptyServices: true
   kubernetesIngress: {}
   file:
     filename: /traefik-core-config/dynamic.yaml

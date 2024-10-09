@@ -11,7 +11,7 @@ spec:
   generators:
     - merge:
         mergeKeys:
-          - path
+          - values.path
         generators:
           - git:
               repoURL: https://github.com/motoki317/manifest

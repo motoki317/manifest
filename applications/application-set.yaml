@@ -9,13 +9,25 @@ spec:
   goTemplateOptions:
     - "missingkey=error"
   generators:
-    - git:
-        repoURL: https://github.com/motoki317/manifest
-        revision: master
-        directories:
-          - path: '*'
-          - path: 'applications'
-            exclude: true
+    - merge:
+        mergeKeys:
+          - "path.basename"
+        generators:
+          - git:
+              repoURL: https://github.com/motoki317/manifest
+              revision: master
+              directories:
+                - path: '*'
+                - path: 'applications'
+                  exclude: true
+              values:
+                path: '{{.path.basename}}'
+                ssa: 'false'
+          - list:
+              elements:
+                - path: 'argo-rollouts'
+                  ssa: 'true'
+
   template:
     metadata:
       name: '{{.path.basename}}'
@@ -31,6 +43,7 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+          - 'ServerSideApply={{.values.ssa}}'
         automated:
           prune: true
           selfHeal: true

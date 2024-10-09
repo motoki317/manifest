@@ -35,7 +35,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/motoki317/manifest
-        path: '{{path.path}}'
+        path: '{{path}}'
         targetRevision: master
       syncPolicy:
         syncOptions:

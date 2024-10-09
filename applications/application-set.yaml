@@ -23,7 +23,7 @@ spec:
           - list:
               elements:
                 - values.path: 'argo-rollouts'
-                  ssa: 'true'
+                  values.ssa: 'true'
 
   template:
     metadata:

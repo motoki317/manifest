@@ -11,7 +11,7 @@ spec:
   generators:
     - merge:
         mergeKeys:
-          - values.path
+          - path
         generators:
           - git:
               repoURL: https://github.com/motoki317/manifest
@@ -21,7 +21,6 @@ spec:
                 - path: 'applications'
                   exclude: true
               values:
-                path: '{{.path.basename}}'
                 ssa: 'false'
           - list:
               elements:

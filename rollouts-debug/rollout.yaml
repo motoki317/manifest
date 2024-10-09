@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: rollouts-demo
-          image: caddy:2.8.4
+          image: caddy:2.8.3
           imagePullPolicy: Always
           ports:
             - containerPort: 80

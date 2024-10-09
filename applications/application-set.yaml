@@ -5,9 +5,6 @@ metadata:
   namespace: argocd
 
 spec:
-  goTemplate: true
-  goTemplateOptions:
-    - "missingkey=error"
   generators:
     - merge:
         mergeKeys:
@@ -21,7 +18,7 @@ spec:
                 - path: 'applications'
                   exclude: true
               values:
-                path: '{{.path.basename}}'
+                path: '{{path.basename}}'
                 ssa: 'false'
           - list:
               elements:
@@ -30,20 +27,20 @@ spec:
 
   template:
     metadata:
-      name: '{{.path.basename}}'
+      name: '{{path.basename}}'
     spec:
       destination:
-        namespace: '{{.path.basename}}'
+        namespace: '{{path.basename}}'
         server: https://kubernetes.default.svc
       project: default
       source:
         repoURL: https://github.com/motoki317/manifest
-        path: '{{.path.path}}'
+        path: '{{path.path}}'
         targetRevision: master
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
-          - 'ServerSideApply={{.values.ssa}}'
+          - 'ServerSideApply={{values.ssa}}'
         automated:
           prune: true
           selfHeal: true

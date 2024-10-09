@@ -22,7 +22,7 @@ spec:
                 ssa: 'false'
           - list:
               elements:
-                - path: 'argo-rollouts'
+                - values.path: 'argo-rollouts'
                   ssa: 'true'
 
   template:

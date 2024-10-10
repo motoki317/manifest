@@ -43,7 +43,7 @@ jobs:
           # With console colors
           dyff between --omit-header base.yaml head.yaml
           # Plaintext
-          dyff between --omit-header base.yaml head.yaml > diff.txt
+          dyff between --omit-header base.yaml head.yaml --output github > diff.txt
 
           echo "diff<<EOF" >> $GITHUB_OUTPUT
           cat diff.txt >> $GITHUB_OUTPUT

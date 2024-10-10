@@ -48,6 +48,6 @@ jobs:
           # renovate:github-url
           wget https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz
           tar -zxvf kubeconform-linux-amd64.tar.gz kubeconform
-          sudo install kubeconform /usr/local/bin && rm kubeconform
+          sudo install kubeconform /usr/local/bin && rm kubeconform kubeconform-linux-amd64.tar.gz
       - name: Validate
         run: ./check.sh

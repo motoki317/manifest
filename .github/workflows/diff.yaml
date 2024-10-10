@@ -52,7 +52,7 @@ jobs:
           cat diff.txt >> $GITHUB_STEP_SUMMARY
           echo "```" >> $GITHUB_STEP_SUMMARY
 
-      - if: ${{ steps.diff.outputs.diff != '\n' }}
+      - if: ${{ steps.diff.outputs.diff != '' }}
         name: Add comment
         uses: mshick/add-pr-comment@v2
         with:
@@ -63,7 +63,7 @@ jobs:
             ```diff
             ${{ steps.diff.outputs.diff }}
             ```
-      - if: ${{ steps.diff.outputs.diff == '\n' }}
+      - if: ${{ steps.diff.outputs.diff == '' }}
         name: Add comment
         uses: mshick/add-pr-comment@v2
         with:

@@ -45,6 +45,7 @@ jobs:
           python3 openapi2jsonschema.py https://github.com/rancher/system-upgrade-controller/releases/download/v0.14.1/crd.yaml
       - name: Install kubeconform
         run: |
+          # renovate:github-url
           wget https://github.com/yannh/kubeconform/releases/download/v0.6.7/kubeconform-linux-amd64.tar.gz
           tar -zxvf kubeconform-linux-amd64.tar.gz kubeconform
           sudo install kubeconform /usr/local/bin && rm kubeconform

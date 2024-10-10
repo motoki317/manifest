@@ -44,8 +44,4 @@ jobs:
           # renovate:github-url
           python3 openapi2jsonschema.py https://github.com/rancher/system-upgrade-controller/releases/download/v0.14.1/crd.yaml
       - name: Validate
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: ./check.sh
+        run: ./check.sh

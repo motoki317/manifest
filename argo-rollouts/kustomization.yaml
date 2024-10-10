@@ -1,3 +1,0 @@
-resources:
-  # renovate:github-url
-  - https://github.com/argoproj/argo-rollouts/releases/download/v1.7.2/install.yaml

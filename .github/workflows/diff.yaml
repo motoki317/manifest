@@ -6,6 +6,8 @@ on:
 jobs:
   diff:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout base
         uses: actions/checkout@v4

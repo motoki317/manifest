@@ -1,5 +1,0 @@
-resources:
-  - application.yaml
-
-generators:
-  - ksops.yaml

@@ -9,6 +9,6 @@ spec:
     name: cluster-issuer
   secretName: {{ .Release.Name }}-tls
   duration: 2160h0m0s # 90d
-  renewBefore: 720h0m0s # 30d
+  renewBefore: 721h0m0s # 30d
   dnsNames:
     - auth.{{ .Values.domain }}

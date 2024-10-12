@@ -5,6 +5,11 @@ metadata:
   namespace: argocd
 
 spec:
+  ignoreApplicationDifferences:
+    # Allow temporary sync toggle
+    - jsonPointers:
+        - /spec/syncPolicy
+
   generators:
     - merge:
         mergeKeys:

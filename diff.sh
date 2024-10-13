@@ -19,9 +19,9 @@ convert() {
   # Exclude some diffs when templating locally
   yq '.' "$BASE_DIR"/*.yaml \
     | yq '(select(.metadata.namespace == "harbor" and .kind == "Secret") | .data) = {}' \
-    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.secret) = ""' \
-    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.secret-core) = ""' \
-    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.secret-jobservice) = ""' \
+    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.checksum/secret) = ""' \
+    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.checksum/secret-core) = ""' \
+    | yq '(select(.metadata.namespace == "harbor" and .kind == "Deployment") | .spec.template.metadata.annotations.checksum/secret-jobservice) = ""' \
     > "$OUTPUT"
 }
 

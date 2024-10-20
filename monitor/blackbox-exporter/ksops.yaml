@@ -7,5 +7,16 @@ metadata:
       exec:
         path: ksops
 
-files:
-  - ./secrets/config.yaml
+secretFromTemplate:
+  - template:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: blackbox-exporter
+        annotations:
+          kustomize.config.k8s.io/needs-hash: "true"
+      files:
+        - config.yml=./secrets/config-template.yaml
+    vars:
+      envs:
+        - ./secrets/vars.env

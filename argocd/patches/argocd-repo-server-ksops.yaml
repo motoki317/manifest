@@ -18,7 +18,9 @@ spec:
       # 2. Use an init container to download/copy custom binaries into the emptyDir
       initContainers:
         - name: install-ksops
-          image: viaductoss/ksops:v4.3.2
+          # image: viaductoss/ksops:v4.3.2
+          # TODO: Use upstream image once PR is merged?
+          image: ghcr.io/motoki317/ksops:v4.4.0
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";

@@ -6,7 +6,7 @@ restarter:
 
 parent:
   envFrom:
-    - secretFrom:
+    - secretRef:
         name: netdata
   claiming:
     enabled: true
@@ -14,7 +14,7 @@ parent:
 
 child:
   envFrom:
-    - secretFrom:
+    - secretRef:
         name: netdata
   claiming:
     enabled: true

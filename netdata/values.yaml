@@ -1,0 +1,21 @@
+image:
+  tag: edge
+
+restarter:
+  enabled: true
+
+parent:
+  envFrom:
+    - secretFrom:
+        name: netdata
+  claiming:
+    enabled: true
+    rooms: 909c7944-93bd-466e-ae35-263dffc4eadc
+
+child:
+  envFrom:
+    - secretFrom:
+        name: netdata
+  claiming:
+    enabled: true
+    rooms: 909c7944-93bd-466e-ae35-263dffc4eadc

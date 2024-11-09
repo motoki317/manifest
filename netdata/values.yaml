@@ -4,7 +4,11 @@ image:
 restarter:
   enabled: true
 
+k8sState:
+  enabled: false
+
 parent:
+  enabled: false
   envFrom:
     - secretRef:
         name: netdata

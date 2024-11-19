@@ -55,7 +55,7 @@ spec:
 
       containers:
         - name: loki
-          image: grafana/loki:3.2.1
+          image: grafana/loki:3.3.0
           imagePullPolicy: IfNotPresent
 
           securityContext:

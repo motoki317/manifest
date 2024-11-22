@@ -69,6 +69,15 @@ components:
             hard:
               - name: auth-toki317-dev-hard
                 namespace: auth
+      middleware:
+        sablier:
+          enable: true
+          url: http://sablier.sablier.svc.cluster.local
+          sessionDuration: 5m
+          dynamic:
+            theme: ghost
+          blocking:
+            timeout: 1m
       ports:
         - startPort: 39000
           endPort: 39999

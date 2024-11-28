@@ -27,7 +27,7 @@ spec:
       containers:
         - name: kube-ops-view
           # image: hjacobs/kube-ops-view:23.5.0
-          image: registry.toki317.dev/pub/kube-ops-view:latest
+          image: registry.toki317.dev/pub/kube-ops-view:latest@sha256:9975b40995da523ebbea4a42dba403b8d5edfae3cef559ca2736ba48bb7de6d2
           imagePullPolicy: Always
           # args:
             # remove this option to use built-in memory store

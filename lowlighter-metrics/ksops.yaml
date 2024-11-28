@@ -8,4 +8,15 @@ metadata:
         path: ksops
 
 files:
-  - ./secrets/settings.yaml
+  - template:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: settings
+        annotations:
+          kustomize.config.k8s.io/needs-hash: "true"
+      files:
+        - settings.json=./secrets/settings-template.json
+    vars:
+      envs:
+        - ./secrets/vars.env

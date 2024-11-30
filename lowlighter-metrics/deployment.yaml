@@ -15,13 +15,6 @@ spec:
         app: metrics
     spec:
       enableServiceLinks: false
-      nodeSelector:
-        kubernetes.io/arch: amd64
-      tolerations:
-        - key: toki317.dev/role
-          operator: Equal
-          value: amd64-burstable
-          effect: NoSchedule
 
       volumes:
         - name: settings
@@ -41,7 +34,8 @@ spec:
               name: http
 
         - name: metrics
-          image: ghcr.io/lowlighter/metrics:v3.34
+          # image: ghcr.io/lowlighter/metrics:v3.34
+          image: registry.toki317.dev/pub/lowlighter-metrics:v3.34
           command:
             - npm
             - start

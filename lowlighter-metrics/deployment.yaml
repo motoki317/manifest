@@ -35,7 +35,7 @@ spec:
 
         - name: metrics
           # image: ghcr.io/lowlighter/metrics:v3.34
-          image: registry.toki317.dev/pub/lowlighter-metrics:v3.35.0-beta
+          image: registry.toki317.dev/pub/lowlighter-metrics:v3.35-beta
           imagePullPolicy: Always
           volumeMounts:
             - mountPath: /metrics/settings.json

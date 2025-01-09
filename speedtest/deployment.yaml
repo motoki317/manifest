@@ -20,7 +20,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: speedtest
-          image: openspeedtest/latest:latest@sha256:0d2d94087a68cf3f6e2a99b9bcc03c49a8624f144cb670f841bfa3c1570a0eb6
+          image: openspeedtest/latest:latest@sha256:1745e913f596fe98882b286a67751efdae74774e9caa742a4934bb056e8748d2
           ports:
             - name: http
               containerPort: 3000

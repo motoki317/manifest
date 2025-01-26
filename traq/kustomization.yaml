@@ -21,7 +21,7 @@ images:
   newTag: 8.8.1-3.1.0
 - name: traq-ui
   newName: ghcr.io/traptitech/traq-ui
-  newTag: 3.22.1
+  newTag: 3.23.2
 - name: traq-widget
   newName: ghcr.io/traptitech/traq-widget
   newTag: 0.3.7

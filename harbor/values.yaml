@@ -138,7 +138,7 @@ exporter:
   image:
     repository: ghcr.io/octohelm/harbor/harbor-exporter
     # renovate:image-tag imageName=ghcr.io/octohelm/harbor/harbor-exporter
-    tag: "v2.11.0"
+    tag: "v2.12.2"
   revisionHistoryLimit: 0
 
 metrics:

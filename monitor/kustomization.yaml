@@ -2,7 +2,6 @@ resources:
   - beyla
   - blackbox-exporter
   - domain-exporter
-  - event-exporter
   - grafana
   - kube-state-metrics
   - loki

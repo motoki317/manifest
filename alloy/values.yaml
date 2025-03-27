@@ -109,6 +109,10 @@ alloy:
             cluster = "moto-a1",
           }
         }
+      
+        stage.logfmt {
+          mapping = { type = "" }
+        }
 
         stage.labels {
           values = {

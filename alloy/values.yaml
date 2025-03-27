@@ -86,7 +86,7 @@ alloy:
           }
         }
   
-        forward_to = [loki.write.in-cluster.receiver]
+        forward_to = [loki.write.in_cluster.receiver]
       }
       
       // loki.source.kubernetes_events tails events from the Kubernetes API and converts them
@@ -102,7 +102,7 @@ alloy:
       // loki.process receives log entries from other loki components, applies one or more processing stages,
       // and forwards the results to the list of receivers in the component's arguments.
       loki.process "cluster_events" {
-        forward_to = [loki.write.in-cluster.receiver]
+        forward_to = [loki.write.in_cluster.receiver]
 
         stage.static_labels {
           values = {
@@ -117,7 +117,7 @@ alloy:
         }
       }
       
-      loki.write "in-cluster" {
+      loki.write "in_cluster" {
         endpoint {
           url = "http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push"
         }

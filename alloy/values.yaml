@@ -4,5 +4,8 @@ alloy:
     # TODO: http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push
     content: ""
 
+crds:
+  create: false
+
 controller:
   type: deployment

@@ -1,0 +1,8 @@
+alloy:
+  configMap:
+    # https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/
+    # TODO: http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push
+    content: ""
+
+controller:
+  type: deployment

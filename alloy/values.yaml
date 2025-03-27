@@ -69,6 +69,12 @@ alloy:
           regex = "^(\\S+):\\/\\/.+$"
           replacement = "$1"
         }
+
+        rule {
+          source_labels = ["__meta_kubernetes_pod_node_name"]
+          action = "replace"
+          target_label = "node"
+        }
       }
 
       // loki.source.kubernetes tails logs from Kubernetes containers using the Kubernetes API.

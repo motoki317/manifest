@@ -111,12 +111,16 @@ alloy:
         }
       
         stage.logfmt {
-          mapping = { type = "" }
+          mapping = {
+            type = "",
+            node = "reportinginstance",
+          }
         }
 
         stage.labels {
           values = {
             type = "",
+            node = "",
           }
         }
       }

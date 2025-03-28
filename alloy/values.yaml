@@ -113,6 +113,7 @@ alloy:
         stage.static_labels {
           values = {
             cluster = "moto-a1",
+            job = "k8s-events",
           }
         }
       

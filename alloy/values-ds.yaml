@@ -140,6 +140,7 @@ alloy:
     - name: GOOGLE_APPLICATION_CREDENTIALS
       value: /etc/otelcol-contrib/key.json
   mounts:
+    varlog: true
     extra:
       - name: alloy
         mountPath: /run/alloy

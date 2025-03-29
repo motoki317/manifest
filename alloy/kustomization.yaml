@@ -9,6 +9,14 @@ helmCharts:
     releaseName: alloy
     valuesFile: values.yaml
 
+  - repo: https://grafana.github.io/helm-charts
+    name: alloy-ds
+    version: "0.12.5"
+    includeCRDs: true
+    namespace: alloy
+    releaseName: alloy-ds
+    valuesFile: values-ds.yaml
+
 images:
   - name: docker.io/grafana/alloy
     newName: ghcr.io/motoki317/alloy

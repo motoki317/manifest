@@ -6,3 +6,11 @@ helmCharts:
     namespace: alloy
     releaseName: alloy
     valuesFile: values.yaml
+
+images:
+  - name: docker.io/grafana/alloy
+    newName: ghcr.io/motoki317/alloy
+    newTag: v1.8.0-p1
+
+generators:
+  - ksops.yaml

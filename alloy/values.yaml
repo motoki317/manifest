@@ -83,7 +83,7 @@ alloy:
           }
         }
   
-        forward_to = [loki.write.in_cluster.receiver]
+        forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.default.receiver]
       }
       
       // loki.source.kubernetes_events tails events from the Kubernetes API and converts them
@@ -99,8 +99,6 @@ alloy:
       // loki.process receives log entries from other loki components, applies one or more processing stages,
       // and forwards the results to the list of receivers in the component's arguments.
       loki.process "cluster_events" {
-        forward_to = [loki.write.in_cluster.receiver]
-
         stage.static_labels {
           values = {
             cluster = "moto-a1",
@@ -121,6 +119,8 @@ alloy:
             node = "",
           }
         }
+      
+        forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.default.receiver]
       }
       
       loki.write "in_cluster" {
@@ -128,7 +128,18 @@ alloy:
           url = "http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push"
         }
       }
-
+      
+      otelcol.receiver.loki "default" {
+        output {
+          logs = [otelcol.exporter.googlecloud.gcp_logs.input]
+        }
+      }
+      
+      otelcol.exporter.googlecloud "gcp_logs" {
+        log {
+          default_log_name = "opentelemetry.io/collector-exported-log"
+        }
+      }
 
 crds:
   create: false

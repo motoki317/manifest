@@ -138,7 +138,26 @@ alloy:
       
       otelcol.receiver.loki "gcp_logs" {
         output {
+          logs = [otelcol.processor.memory_limiter.gcp_logs.input]
+        }
+      }
+      
+      otelcol.processor.memory_limiter "gcp_logs" {
+        check_interval = "1s"
+        limit = "50MiB"
+      
+        output {
+          metrics = [otelcol.processor.batch.gcp_logs.input]
+          logs = [otelcol.processor.batch.gcp_logs.input]
+          traces = [otelcol.processor.batch.gcp_logs.input]
+        }
+      }
+      
+      otelcol.processor.batch "gcp_logs" {
+        output {
+          metrics = [otelcol.exporter.googlecloud.gcp_logs.input]
           logs = [otelcol.exporter.googlecloud.gcp_logs.input]
+          traces = [otelcol.exporter.googlecloud.gcp_logs.input]
         }
       }
       

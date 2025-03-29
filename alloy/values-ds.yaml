@@ -155,6 +155,8 @@ image:
 
 controller:
   type: daemonset
+  tolerations:
+    - operator: Exists
   volumes:
     extra:
       - name: alloy

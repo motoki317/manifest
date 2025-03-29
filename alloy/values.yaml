@@ -65,6 +65,13 @@ alloy:
           action = "replace"
           target_label = "node"
         }
+      
+        // Drop self logs (to avoid infinite error log loop)
+        rule {
+          source_labels = ["__meta_kubernetes_namespace"]
+          regex = "^alloy$"
+          action = "drop"
+        }
       }
 
       // loki.source.kubernetes tails logs from Kubernetes containers using the Kubernetes API.

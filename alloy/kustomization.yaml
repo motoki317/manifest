@@ -10,7 +10,7 @@ helmCharts:
     valuesFile: values.yaml
 
   - repo: https://grafana.github.io/helm-charts
-    name: alloy-ds
+    name: alloy
     version: "0.12.5"
     includeCRDs: true
     namespace: alloy

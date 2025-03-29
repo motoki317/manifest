@@ -153,6 +153,9 @@ alloy:
 crds:
   create: false
 
+image:
+  pullPolicy: Always
+
 controller:
   type: deployment
   volumes:

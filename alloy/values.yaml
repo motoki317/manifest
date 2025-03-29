@@ -158,5 +158,5 @@ controller:
   volumes:
     extra:
       - name: sa
-        configMap:
-          name: sa
+        secret:
+          secretName: sa

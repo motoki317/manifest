@@ -144,7 +144,7 @@ alloy:
       
       otelcol.processor.memory_limiter "gcp_logs" {
         check_interval = "1s"
-        limit = "100MiB"
+        limit = "500MiB"
       
         output {
           metrics = [otelcol.processor.batch.gcp_logs.input]

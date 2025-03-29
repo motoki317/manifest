@@ -142,7 +142,7 @@ alloy:
       }
 
   extraEnv:
-    - key: GOOGLE_APPLICATION_CREDENTIALS
+    - name: GOOGLE_APPLICATION_CREDENTIALS
       value: /etc/otelcol-contrib/key.json
   mounts:
     extra:

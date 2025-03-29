@@ -1,3 +1,5 @@
+namespace: alloy
+
 helmCharts:
   - repo: https://grafana.github.io/helm-charts
     name: alloy

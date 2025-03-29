@@ -141,7 +141,8 @@ alloy:
         }
       }
 
-  stabilityLevel: experimental
+  extraArgs:
+    - --feature.community-components.enabled=true
   extraEnv:
     - name: GOOGLE_APPLICATION_CREDENTIALS
       value: /etc/otelcol-contrib/key.json

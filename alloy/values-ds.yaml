@@ -8,7 +8,7 @@ alloy:
             // Monitor syslog to scrape node-logs
             __path__  = "/var/log/syslog",
             job       = "node/syslog",
-            node_name = sys.env("HOSTNAME"),
+            node      = sys.env("HOSTNAME"),
             cluster   = "moto-a1",
         }]
       }

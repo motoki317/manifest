@@ -129,17 +129,17 @@ alloy:
         }
       }
       
-      otelcol.receiver.loki "default" {
-        output {
-          logs = [otelcol.exporter.googlecloud.gcp_logs.input]
-        }
-      }
-      
-      otelcol.exporter.googlecloud "gcp_logs" {
-        log {
-          default_log_name = "opentelemetry.io/collector-exported-log"
-        }
-      }
+#    otelcol.receiver.loki "default" {
+#      output {
+#        logs = [otelcol.exporter.googlecloud.gcp_logs.input]
+#      }
+#    }
+#
+#    otelcol.exporter.googlecloud "gcp_logs" {
+#      log {
+#        default_log_name = "opentelemetry.io/collector-exported-log"
+#      }
+#    }
 
   extraArgs:
     - --feature.community-components.enabled=true

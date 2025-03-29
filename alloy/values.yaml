@@ -90,7 +90,7 @@ alloy:
           }
         }
   
-        forward_to = [loki.write.in_cluster.receiver] // otelcol.receiver.loki.gcp_logs.receiver
+        forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.gcp_logs2.receiver]
       }
       
       // loki.source.kubernetes_events tails events from the Kubernetes API and converts them
@@ -142,7 +142,19 @@ alloy:
         }
       }
       
+      otelcol.receiver.loki "gcp_logs2" {
+        output {
+          logs = [otelcol.exporter.googlecloud.gcp_logs2.input]
+        }
+      }
+      
       otelcol.exporter.googlecloud "gcp_logs" {
+        log {
+          default_log_name = "opentelemetry.io/collector-exported-log"
+        }
+      }
+      
+      otelcol.exporter.googlecloud "gcp_logs2" {
         log {
           default_log_name = "opentelemetry.io/collector-exported-log"
         }

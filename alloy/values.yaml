@@ -141,8 +141,22 @@ alloy:
         }
       }
 
+  extraEnv:
+    - key: GOOGLE_APPLICATION_CREDENTIALS
+      value: /etc/otelcol-contrib/key.json
+  mounts:
+    extra:
+      - name: sa
+        mountPath: /etc/otelcol-contrib/key.json
+        subPath: key.json
+
 crds:
   create: false
 
 controller:
   type: deployment
+  volumes:
+    extra:
+      - name: sa
+        configMap:
+          name: sa

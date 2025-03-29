@@ -90,7 +90,7 @@ alloy:
           }
         }
   
-        forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.gcp_logs.receiver]
+        forward_to = [loki.write.in_cluster.receiver] // otelcol.receiver.loki.gcp_logs.receiver
       }
       
       // loki.source.kubernetes_events tails events from the Kubernetes API and converts them

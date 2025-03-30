@@ -119,7 +119,7 @@ alloy:
       
         stage.limit {
           rate = 100
-          limit = 1000
+          burst = 1000
         }
       
         stage.static_labels {

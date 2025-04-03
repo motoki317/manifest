@@ -2,21 +2,11 @@ alloy:
   configMap:
     # https://grafana.com/docs/alloy/latest/collect/logs-in-kubernetes/
     content: |
-      // local.file_match discovers files on the local filesystem using glob patterns and the doublestar library. It returns an array of file paths.
-      local.file_match "node_logs" {
-        path_targets = [{
-            // Monitor syslog to scrape node-logs
-            __path__  = "/var/log/syslog",
-            job       = "node/syslog",
-            node      = sys.env("HOSTNAME"),
-            cluster   = "moto-a1",
-        }]
-      }
-
-      // loki.source.file reads log entries from files and forwards them to other loki.* components.
-      // You can specify multiple loki.source.file components by giving them different labels.
-      loki.source.file "node_logs" {
-        targets    = local.file_match.node_logs.targets
+      loki.source.journal "node_journal" {
+        labels = {
+          node    = sys.env("HOSTNAME"),
+          cluster = "moto-a1",
+        }
         forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.gcp_logs.receiver]
       }
 

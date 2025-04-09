@@ -17,7 +17,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: pushgateway
-          image: prom/pushgateway:v1.11.0
+          image: prom/pushgateway:v1.11.1
           imagePullPolicy: IfNotPresent
           ports:
             - name: http

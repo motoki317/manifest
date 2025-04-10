@@ -22,3 +22,17 @@ spec:
           scheme: http
           strategy: RoundRobin
           weight: 1
+
+    - kind: Rule
+      match: Host(`monitor.toki317.dev`) && HeaderRegexp(`Authorization`, `^Bearer .+$`)
+      middlewares:
+        - name: auth-toki317-dev-soft
+          namespace: auth
+      services:
+        - namespace: monitor
+          kind: Service
+          name: grafana
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1

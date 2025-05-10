@@ -1,0 +1,8 @@
+helmCharts:
+  - repo: https://helm.elastic.co
+    name: eck-operator
+    version: "3.0.0"
+    includeCRDs: true
+    namespace: elastic-system
+    releaseName: elastic-operator
+    valuesFile: values.yaml

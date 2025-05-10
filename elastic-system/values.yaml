@@ -1,0 +1,2 @@
+nodeSelector:
+  kubernetes.io/hostname: moto-a1-3

@@ -1,0 +1,11 @@
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: traq
+
+spec:
+  version: 8.8.1
+  image: ghcr.io/traptitech/es-with-sudachi
+  nodeSets:
+    - name: default
+      count: 1

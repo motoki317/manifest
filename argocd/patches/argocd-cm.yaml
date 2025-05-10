@@ -12,3 +12,8 @@ data:
   kustomize.buildOptions: "--enable-alpha-plugins --enable-exec --enable-helm"
   # https://argo-cd.readthedocs.io/en/stable/user-guide/resource_tracking/
   application.resourceTrackingMethod: annotation
+  # v3.0.0にアップデートしたら謎のdiffが表示された
+  # ただし preserveUnknownFields: false はv1のデフォルト値なので、無視して安全
+  resource.customizations.ignoreDifferences.apiextensions.k8s.io_CustomResourceDefinition: |
+    jsonPointers:
+    - "/spec/preserveUnknownFields"

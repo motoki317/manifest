@@ -14,7 +14,7 @@ spec:
 apiVersion: kibana.k8s.elastic.co/v1
 kind: Kibana
 metadata:
-  name: quickstart
+  name: traq
 
 spec:
   version: 8.16.1

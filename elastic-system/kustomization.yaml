@@ -6,6 +6,3 @@ helmCharts:
     namespace: elastic-system
     releaseName: elastic-operator
     valuesFile: values.yaml
-
-resources:
-  - traq.yaml

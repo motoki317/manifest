@@ -8,7 +8,7 @@ resources:
 images:
 - name: gitea
   newName: gitea/gitea
-  newTag: 1.23.7
+  newTag: 1.23.8
 
 generators:
 - ksops.yaml

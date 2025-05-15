@@ -1,3 +1,5 @@
 server:
+  service:
+    clusterIP: ""
   nodeSelector:
     kubernetes.io/hostname: moto-a1-3

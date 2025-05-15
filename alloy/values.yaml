@@ -36,12 +36,18 @@ alloy:
           }
         }
       
-        forward_to = [loki.write.in_cluster.receiver, otelcol.receiver.loki.gcp_logs.receiver]
+        forward_to = [loki.write.in_cluster.receiver, loki.write.vl.receiver, otelcol.receiver.loki.gcp_logs.receiver]
       }
       
       loki.write "in_cluster" {
         endpoint {
           url = "http://loki.monitor.svc.cluster.local:3100/loki/api/v1/push"
+        }
+      }
+      
+      loki.write "vl" {
+        endpoint {
+          url = "http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428/insert/loki/api/v1/push"
         }
       }
       

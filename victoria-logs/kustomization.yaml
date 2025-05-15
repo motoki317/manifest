@@ -1,0 +1,8 @@
+helmCharts:
+  - repo: https://victoriametrics.github.io/helm-charts/
+    name: victoria-logs-single
+    version: "0.9.8"
+    includeCRDs: true
+    namespace: victoria-logs
+    releaseName: victoria-logs
+    valuesFile: values.yaml

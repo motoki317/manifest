@@ -4,7 +4,6 @@ resources:
   - domain-exporter
   - grafana
   - kube-state-metrics
-  - loki
   - node-exporter
   - pushgateway
   - s3-exporter

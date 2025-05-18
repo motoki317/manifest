@@ -142,7 +142,7 @@ alloy:
         endpoint {
           // Prevent auto-parse of JSON messages from ns-apps applications for displaying in NeoShowcase dashboard
           // https://docs.victoriametrics.com/victorialogs/data-ingestion/promtail/index.html
-          url = "http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428/insert/loki/api/v1/push?disable_message_parsing=1&_stream_fields=cluster,namespace,pod,container"
+          url = "http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428/insert/loki/api/v1/push?disable_message_parsing=1&_stream_fields=job,cluster,namespace,pod,container"
         }
       }
       

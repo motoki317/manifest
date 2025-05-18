@@ -1,4 +1,6 @@
 server:
+  extraArgs:
+    defaultMsgValue: "-"
   service:
     clusterIP: ""
   nodeSelector:

@@ -134,9 +134,9 @@ components:
       adminUser: root
       # adminPassword: <env secret>
     log:
-      type: loki
-      loki:
-        endpoint: http://loki.monitor.svc.cluster.local:3100
+      type: victorialogs
+      victorialogs:
+        endpoint: http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428
         queryTemplate: "{namespace=\"ns-apps\",pod=\"nsapp-{{ .App.ID }}-0\"}"
     metrics:
       type: prometheus

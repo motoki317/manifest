@@ -14,7 +14,7 @@ spec:
       services:
         - namespace: refsearch
           kind: Service
-          name: frontend
+          name: notice
           port: http
           scheme: http
           strategy: RoundRobin

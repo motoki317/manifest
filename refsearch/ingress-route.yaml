@@ -19,13 +19,3 @@ spec:
           scheme: http
           strategy: RoundRobin
           weight: 1
-    - kind: Rule
-      match: Host(`refsearch.toki317.dev`) && PathPrefix(`/api/`)
-      services:
-        - namespace: refsearch
-          kind: Service
-          name: backend
-          port: http
-          scheme: http
-          strategy: RoundRobin
-          weight: 1

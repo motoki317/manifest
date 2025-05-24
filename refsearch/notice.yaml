@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notice
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: notice
+  template:
+    metadata:
+      labels:
+        app: notice
+    spec:
+      enableServiceLinks: false
+      volumes:
+        - name: notice-content
+          configMap:
+            name: notice-content
+      containers:
+        - name: notice
+          image: caddy:2-alpine
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - mountPath: /usr/share/caddy
+              name: notice-content
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notice
+
+spec:
+  type: ClusterIP
+  selector:
+    app: notice
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

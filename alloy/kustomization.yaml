@@ -19,8 +19,7 @@ helmCharts:
 
 images:
   - name: docker.io/grafana/alloy
-    newName: ghcr.io/motoki317/alloy
-    newTag: v1.8.0-p1
+    newTag: v1.9.0-rc.1
 
 generators:
   - ksops.yaml

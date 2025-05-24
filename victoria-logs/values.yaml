@@ -1,6 +1,7 @@
 server:
   extraArgs:
     defaultMsgValue: "-"
+    retentionPeriod: 30d
   service:
     clusterIP: ""
   nodeSelector:

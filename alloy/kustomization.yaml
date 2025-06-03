@@ -17,9 +17,5 @@ helmCharts:
     releaseName: alloy-ds
     valuesFile: values-ds.yaml
 
-images:
-  - name: docker.io/grafana/alloy
-    newTag: v1.9.0-rc.1
-
 generators:
   - ksops.yaml

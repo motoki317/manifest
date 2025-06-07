@@ -7,8 +7,6 @@ resources:
   - mariadb-stateful-set.yaml
   - mongo-service.yaml
   - mongo-stateful-set.yaml
-  - postgres-service.yaml
-  - postgres-stateful-set.yaml
 
 generators:
   - ksops.yaml

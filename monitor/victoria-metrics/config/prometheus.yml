@@ -433,3 +433,9 @@ scrape_configs:
     http_sd_configs:
       - url: http://s3-exporter.monitor.svc.cluster.local/discovery
     scrape_interval: 1h
+
+  - job_name: hds-osc
+    static_configs:
+      - targets:
+          - hds-osc.hds-osc.svc.cluster.local:9090
+    scrape_interval: 5s

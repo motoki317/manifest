@@ -1,0 +1,73 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: hds-osc
+
+spec:
+  serviceName: hds-osc
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hds-osc
+  template:
+    metadata:
+      labels:
+        app: hds-osc
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: hds-osc
+          image: ghcr.io/motoki317/hds-osc:0.0.1
+          args:
+            - --receive-mode=hds
+            - --hds-port=3476
+            - --ws-server-enabled
+            - --ws-server-port=8080
+            - --osc-enabled=false
+            - --prom-enabled
+            - --prom-port=9090
+          ports:
+            - name: hds-osc
+              containerPort: 3476
+            - name: http
+              containerPort: 8080
+            - name: metrics
+              containerPort: 9090
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hds-osc
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
+
+spec:
+  type: ClusterIP
+  selector:
+    app: hds-osc
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+    - name: metrics
+      port: 9090
+      targetPort: metrics
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hds-osc-lb
+
+spec:
+  type: LoadBalancer
+  selector:
+    app: hds-osc
+  ports:
+    - name: hds-osc
+      port: 3476
+      targetPort: hds-osc

@@ -20,6 +20,7 @@ spec:
       containers:
         - name: hds-osc
           image: ghcr.io/motoki317/hds-osc:0.0.1
+          imagePullPolicy: Always
           args:
             - --receive-mode=hds
             - --hds-port=3476

@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: hds-osc
-          image: ghcr.io/motoki317/hds-osc:0.0.1
+          image: ghcr.io/motoki317/hds-osc:0.0.2
           imagePullPolicy: Always
           args:
             - --receive-mode=hds

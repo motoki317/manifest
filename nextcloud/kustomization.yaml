@@ -9,7 +9,7 @@ resources:
 images:
 - name: nextcloud
   newName: nextcloud
-  newTag: 31.0.5
+  newTag: 31.0.6
 
 generators:
 - ksops.yaml

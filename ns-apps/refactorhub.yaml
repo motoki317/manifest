@@ -1,0 +1,65 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: refactorhub
+
+spec:
+  serviceName: refactorhub
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: refactorhub
+  template:
+    metadata:
+      labels:
+        app: refactorhub
+    spec:
+      enableServiceLinks: false
+      containers:
+        - name: refactorhub
+          image: registry.toki317.dev/pub/refactorhub@sha256:aff9b9a5e9112a40d5ec6ec3b097f80b082206dd149578e64784b4d814a0702d
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: refactorhub
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: refactorhub
+
+spec:
+  type: ClusterIP
+  selector:
+    app: refactorhub
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: refactorhub
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: nsapp-ns-toki317-dev-wildcard-tls
+  routes:
+    - kind: Rule
+      match: Host(`refactorhub.ns.toki317.dev`)
+      services:
+        - namespace: ns-apps
+          kind: Service
+          name: refactorhub
+          port: http
+          scheme: http
+          strategy: RoundRobin
+          weight: 1
+

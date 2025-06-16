@@ -1,5 +1,6 @@
 resources:
   - network-policy.yaml
+  - refactorhub.yaml
 
 generators:
   - ksops.yaml

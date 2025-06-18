@@ -33,7 +33,7 @@ spec:
       source:
         repoURL: https://github.com/motoki317/manifest
         path: .common/preview-ui-template
-        targetRevision: main
+        targetRevision: master
         helm:
           parameters:
             - name: mode

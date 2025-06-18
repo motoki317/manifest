@@ -9,7 +9,7 @@ data:
   server.rbac.log.enforce.enable: "true"
   # https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-
   # https://argo-cd.readthedocs.io/en/stable/user-guide/kustomize/
-  kustomize.buildOptions: "--enable-alpha-plugins --enable-exec --enable-helm"
+  kustomize.buildOptions: "--enable-alpha-plugins --enable-exec --load-restrictor LoadRestrictionsNone --enable-helm"
   # https://argo-cd.readthedocs.io/en/stable/user-guide/resource_tracking/
   application.resourceTrackingMethod: annotation
   # v3.0.0にアップデートしたら謎のdiffが表示された

@@ -40,7 +40,7 @@ spec:
               value: {{ .Values.mode }}
             - name: number
               value: "{{ "{{" }}number{{ "}}" }}"
-            - name: image.name
+            - name: image
               value: "{{ .Values.preview.imagePattern }}"
             - name: tls.secretName
               value: "{{ .Values.tls.secretName }}"

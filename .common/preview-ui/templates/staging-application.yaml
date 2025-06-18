@@ -4,6 +4,8 @@ kind: Application
 metadata:
   name: {{ .Release.Name }}-staging
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
   labels:
     pr-preview: "true"
     pr-preview-type: "{{ .Release.Name }}"

@@ -28,7 +28,7 @@ spec:
             name: config
       containers:
         - name: traefik
-          image: traefik:v3.4.1
+          image: traefik:v3.4.3
           volumeMounts:
             - mountPath: /traefik-core-config
               name: config

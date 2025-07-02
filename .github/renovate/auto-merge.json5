@@ -18,14 +18,6 @@
         "ghcr.io/lowlighter/metrics",
         "ghcr.io/renovatebot/renovate",
       ]
-    },
-    {
-      "description": "Disable auto merge for broken packages",
-      "automerge": false,
-      "matchDatasources": ["docker"],
-      "matchDepPatterns": [
-        "mongo"
-      ]
     }
   ]
 }

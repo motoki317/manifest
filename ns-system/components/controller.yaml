@@ -1,13 +1,11 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: ns-controller
 
 spec:
   replicas: 1
-  podManagementPolicy: Parallel
   revisionHistoryLimit: 0
-  serviceName: ns-controller
   selector:
     matchLabels:
       app: ns-controller

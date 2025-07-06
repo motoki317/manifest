@@ -9,16 +9,9 @@ rules:
     resources:
       - secrets
       - services
-      - endpoints
       - pods
       - pods/attach
       - pods/exec
-    verbs:
-      - "*"
-  - apiGroups:
-      - discovery.k8s.io
-    resources:
-      - endpointslices
     verbs:
       - "*"
   - apiGroups:

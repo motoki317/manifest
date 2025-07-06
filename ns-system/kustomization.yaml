@@ -2,12 +2,12 @@
 resources:
   - components/builder-deployment.yaml
   - components/certificate.yaml
-  - components/controller.yaml
   - components/controller-cluster-role-binding.yaml
   - components/controller-cluster-role.yaml
   - components/controller-service-account.yaml
   - components/controller-service.yaml
   - components/controller-ssh-service.yaml
+  - components/controller-stateful-set.yaml
   - components/dashboard-deployment.yaml
   - components/dashboard-service.yaml
   - components/gateway-deployment.yaml
@@ -30,26 +30,26 @@ configMapGenerator:
 
 images:
   - name: ns-builder
-    newName: registry.toki317.dev/pub/ns-builder
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-builder
+    newTag: 1.8.7
   - name: ns-controller
-    newName: registry.toki317.dev/pub/ns-controller
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-controller
+    newTag: 1.8.7
   - name: ns-dashboard
-    newName: registry.toki317.dev/pub/ns-dashboard
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-dashboard
+    newTag: 1.8.7
   - name: ns-gateway
-    newName: registry.toki317.dev/pub/ns-gateway
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-gateway
+    newTag: 1.8.7
   - name: ns-gitea-integration
-    newName: registry.toki317.dev/pub/ns-gitea-integration
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-gitea-integration
+    newTag: 1.8.7
   - name: ns-migrate
-    newName: registry.toki317.dev/pub/ns-migrate
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-migrate
+    newTag: 1.8.7
   - name: ns-ssgen
-    newName: registry.toki317.dev/pub/ns-ssgen
-    newTag: v1.9.0-p1
+    newName: ghcr.io/traptitech/ns-ssgen
+    newTag: 1.8.7
 
 generators:
   - ksops.yaml

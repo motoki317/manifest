@@ -20,5 +20,3 @@ spec:
           name: gitea
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1

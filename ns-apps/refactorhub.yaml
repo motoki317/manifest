@@ -60,6 +60,3 @@ spec:
           name: refactorhub
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1
-

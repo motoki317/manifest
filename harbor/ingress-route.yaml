@@ -17,5 +17,3 @@ spec:
           name: harbor
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1

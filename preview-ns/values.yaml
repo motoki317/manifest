@@ -20,8 +20,6 @@ backend:
     name: ns-gateway
     port: http
     scheme: h2c
-    strategy: RoundRobin
-    weight: 1
 
 staging:
   enabled: true

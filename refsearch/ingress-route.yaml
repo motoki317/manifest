@@ -17,5 +17,3 @@ spec:
           name: notice
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1

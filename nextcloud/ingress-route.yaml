@@ -17,8 +17,7 @@ spec:
           name: nextcloud
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1
+
     - kind: Rule
       match: Host(`drive.toki317.dev`) && PathRegexp(`^/apps/files_pdfviewer/.+\.bcmap$`)
       services:
@@ -27,5 +26,3 @@ spec:
           name: static-server
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1

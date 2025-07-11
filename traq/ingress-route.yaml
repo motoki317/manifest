@@ -17,8 +17,7 @@ spec:
           name: traq
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1
+
     - kind: Rule
       match: Host(`q.toki317.dev`) && PathPrefix(`/widget`)
       middlewares:
@@ -29,8 +28,7 @@ spec:
           name: traq-widget
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1
+
     - kind: Rule
       match: Host(`q.toki317.dev`)
       services:
@@ -39,5 +37,3 @@ spec:
           name: traq-frontend
           port: http
           scheme: http
-          strategy: RoundRobin
-          weight: 1

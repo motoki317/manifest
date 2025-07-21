@@ -7,6 +7,10 @@ experimental:
       moduleName: "github.com/acouvreur/sablier"
       # renovate:general datasource=github-releases depName=acouvreur/sablier
       version: "v1.8.0"
+    rewrite:
+      moduleName: "github.com/motoki317/traefik-rewritebody-wasm"
+      # renovate:general datasource=github-releases depName=motoki317/traefik-rewritebody-wasm
+      version: "v0.2.1"
 
 ping:
   entryPoint: traefik

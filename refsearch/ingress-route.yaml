@@ -11,8 +11,8 @@ spec:
   routes:
     - kind: Rule
       match: Host(`refsearch.toki317.dev`)
-      middlewares:
-        - name: rewrite
+      #middlewares:
+      #  - name: rewrite
       services:
         - namespace: refsearch
           kind: Service

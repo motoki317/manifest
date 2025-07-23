@@ -20,7 +20,7 @@ metrics:
     entryPoint: metrics
 
 tracing:
-  sampleRate: 0.01
+  sampleRate: 1
   otlp:
     grpc:
       endpoint: tempo.monitor.svc.cluster.local:4317

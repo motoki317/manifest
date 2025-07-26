@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+cd "$(dirname "$0")"/..
+
 TARGET=""
 if [ "$#" -ge 1 ]; then
   TARGET=$1

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")"/..
 
 if [ "$#" -ne 1 ] && [ "$#" -ne 2 ]; then
   echo "masterと現在の状態のdiffをローカルで取る便利スクリプト（手元で実行することを想定）"

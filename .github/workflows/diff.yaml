@@ -54,13 +54,13 @@ jobs:
         id: diff
         run: |
           # With console colors
-          ./head/diff.sh \
+          ./head/.scripts/diff.sh \
             base/.built \
             head/.built \
             --omit-header
 
           # Plaintext
-          ./head/diff.sh \
+          ./head//.scripts/diff.sh \
             base/.built \
             head/.built \
             --omit-header --output github \

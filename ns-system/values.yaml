@@ -1,0 +1,124 @@
+# common defines various settings for use by all NeoShowcase components.
+common:
+  additionalLinks:
+    - name: Wiki
+      url: https://wiki.trap.jp/services/NeoShowcase
+    - name: DB Admin
+      url: https://adminer.toki317.dev/
+
+  storage:
+    type: s3
+    s3:
+      bucket: neoshowcase
+      # accessKey: <defined by secret>
+      # accessSecret: <defined by secret>
+      region: ap-osaka-1
+      endpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
+
+  image:
+    registry:
+      scheme: https
+      addr: registry.toki317.dev
+      username: "robot$neoshowcase"
+      # password: <defined by secret>
+
+auth:
+  avatarBaseURL: https://q.toki317.dev/api/v3/public/icon/
+
+known_hosts:
+  additionalContent: |
+    [git.toki317.dev]:2200 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMvzEw1MBn06EukYFIaP8GSRQ+GhcI/8V4uheuAZmOvNRHs/Sx7FsGLkbQWXKGpLQ8Lx3K9kVNm/xTJZNB08oHANg9Ogi/33QgbJ1aySd6gv8pjf4ebAdn6sNWRATwlHFQv4GZe/DFkELr8Gu9yvkPjx2INQkAA8xu1qYkah9eXztOBI9ZLA+JJanimTBuYdA/wPQueZaSv6XX5LeDhaEfQgskWGShXV2/6dmf2DZwbpnCh1mYMGuvdomLu8zREwZqyVTluh0pBb+0dYK2SUHbuHyu+F+KJ0F3ZMO7wrkz6khD4z7XF6Z27LmLpDI0+O2zQ2emBOCNLlk9eT528gGJ
+    [git.toki317.dev]:2200 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMr03/M+uwHtrWOto+7rlmOHRMD4u2D7/auJVwAxYQgBYtEC8HnJCwzzv6dGTaC2It52zhOek6bF0GjzGbTbvvo=
+    [git.toki317.dev]:2200 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB7rgqhIVCbCaYDFYgrST9PRNVuZ6uOJX39+2j2kZdPH
+
+domains:
+  - domain: "toki317.dev"
+    excludes: []
+    auth:
+      available: true
+      soft:
+        - name: auth-toki317-dev-soft
+          namespace: auth
+      hard:
+        - name: auth-toki317-dev-hard
+          namespace: auth
+  - domain: "*.ns.toki317.dev"
+    excludes: []
+    auth:
+      available: true
+      soft:
+        - name: auth-toki317-dev-soft
+          namespace: auth
+      hard:
+        - name: auth-toki317-dev-hard
+          namespace: auth
+
+tls:
+  type: cert-manager
+  certManager:
+    issuer:
+      kind: ClusterIssuer
+      name: cluster-issuer
+    wildcard:
+      domains:
+        - "*.toki317.dev"
+
+ports:
+  - startPort: 39000
+    endPort: 39999
+    protocol: tcp
+  - startPort: 39000
+    endPort: 39999
+    protocol: udp
+
+observability:
+  log:
+    type: victorialogs
+    victorialogs:
+      endpoint: http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428
+  metrics:
+    type: prometheus
+    prometheus:
+      endpoint: http://victoria-metrics.monitor.svc.cluster.local
+
+app:
+  imagePullSecret: 'ns-image-pull-secret'
+
+# ns-builder component
+builder:
+  replicas: 1
+  buildpack:
+    image: dashaun/builder:base
+  buildkit:
+    # renovate:image-full
+    image: "moby/buildkit:v0.23.2-rootless"
+
+controller:
+  replicas: 3
+  ssh:
+    host: ns.toki317.dev
+    port: 2201
+
+dashboard:
+  replicas: 1
+
+gateway:
+  replicas: 1
+
+giteaIntegration:
+  enabled: true
+  url: https://git.toki317.dev
+
+ssgen:
+  replicas: 2
+
+ingressRoute:
+  enabled: true
+  host: ns.toki317.jp
+  entrypoints:
+    - websecure
+  tls:
+    secretName: ns-tls
+  middlewares:
+    - name: auth-toki317-dev-hard
+      namespace: auth

@@ -35,12 +35,12 @@ git worktree add -f "$WORKTREE_DIR" master
 
 echo "==> Building at master ..."
 # Run build.sh in the worktree directory
-(cd "$WORKTREE_DIR" && ./build.sh "$@")
+(cd "$WORKTREE_DIR" && .scripts/build.sh "$@")
 rm -rf .built.master
 mv "$WORKTREE_DIR"/.built .built.master
 
 echo "==> Building at current ..."
-./build.sh "$@"
+.scripts/build.sh "$@"
 
 echo "==> Calculating diff ..."
-./diff.sh .built.master .built --omit-header
+.scripts/diff.sh .built.master .built --omit-header

@@ -45,10 +45,10 @@ jobs:
 
       - name: Build base
         working-directory: ./base
-        run: ./build.sh
+        run: .scripts/build.sh
       - name: Build head
         working-directory: ./head
-        run: ./build.sh
+        run: .scripts/build.sh
 
       - name: Diff
         id: diff

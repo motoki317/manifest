@@ -114,7 +114,7 @@ ssgen:
 
 ingressRoute:
   enabled: true
-  host: ns.toki317.jp
+  host: ns.toki317.dev
   entrypoints:
     - websecure
   tls:

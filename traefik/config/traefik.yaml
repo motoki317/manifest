@@ -10,7 +10,7 @@ experimental:
     rewrite:
       moduleName: "github.com/motoki317/traefik-rewritebody-wasm"
       # renovate:general datasource=github-releases depName=motoki317/traefik-rewritebody-wasm
-      version: "v0.2.2"
+      version: "v0.3.0"
 
 ping:
   entryPoint: traefik

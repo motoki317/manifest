@@ -39,7 +39,7 @@ spec:
 
       containers:
         - name: tempo
-          image: grafana/tempo:2.8.1
+          image: grafana/tempo:2.8.2
           imagePullPolicy: IfNotPresent
           args:
             - -config.file=/etc/tempo.yaml

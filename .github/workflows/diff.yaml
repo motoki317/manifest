@@ -49,6 +49,12 @@ jobs:
       - name: Build head
         working-directory: ./head
         run: .scripts/build.sh
+      - name: Debug
+        run: |
+          echo "base:"
+          ls -lha ./base
+          echo "head:
+          ls -lha ./head
 
       - name: Diff
         id: diff

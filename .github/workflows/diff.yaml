@@ -49,12 +49,6 @@ jobs:
       - name: Build head
         working-directory: ./head
         run: .scripts/build.sh
-      - name: Debug
-        run: |
-          echo "base:"
-          ls -lha ./base/.built
-          echo "head:"
-          ls -lha ./head/.built
 
       - name: Diff
         id: diff
@@ -66,7 +60,7 @@ jobs:
             --omit-header
 
           # Plaintext
-          ./head//.scripts/diff.sh \
+          ./head/.scripts/diff.sh \
             base/.built \
             head/.built \
             --omit-header --output github \

@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo pipefail
-
-cd "$(dirname "$0")"/..
+set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 <before dir> <after dir> [extra dyff options]"

@@ -53,7 +53,7 @@ jobs:
         run: |
           echo "base:"
           ls -lha ./base
-          echo "head:
+          echo "head:"
           ls -lha ./head
 
       - name: Diff

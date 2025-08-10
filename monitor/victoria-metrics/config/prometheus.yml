@@ -361,7 +361,6 @@ scrape_configs:
     static_configs:
       - targets:
           - pushgateway.monitor.svc.cluster.local
-    scrape_interval: 10s
 
   - job_name: blackbox
     metrics_path: /probe

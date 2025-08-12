@@ -1,7 +1,7 @@
 helmCharts:
   - repo: oci://registry.toki317.dev/pub/charts
     name: neoshowcase
-    version: "1.9.1"
+    version: "1.9.3"
     includeCRDs: true
     namespace: ns-system
     releaseName: ns

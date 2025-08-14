@@ -39,5 +39,9 @@ spec:
             - mountPath: /app/override/config.js
               name: config
               subPath: config.js
+          {{- if .resources }}
+          resources:
+            {{- .resources | toYaml | nindent 12 }}
+          {{- end }}
 
 {{- end }}

@@ -37,6 +37,10 @@ spec:
                 secretKeyRef:
                   name: system-bot
                   key: access-token
+          {{- if .resources }}
+          resources:
+            {{- .resources | toYaml | nindent 12 }}
+          {{- end }}
 
 {{- end }}
 {{- end }}

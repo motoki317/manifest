@@ -28,5 +28,9 @@ spec:
           ports:
             - name: http
               containerPort: 80
+          {{- if .resources }}
+          resources:
+            {{- .resources | toYaml | nindent 12 }}
+          {{- end }}
 
 {{- end }}

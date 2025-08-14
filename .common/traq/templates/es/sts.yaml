@@ -53,6 +53,10 @@ spec:
               subPath: es_jvm.options
             - mountPath: /usr/share/elasticsearch/data
               name: data
+          {{- if .resources }}
+          resources:
+            {{- .resources | toYaml | nindent 12 }}
+          {{- end }}
 
 {{- end }}
 {{- end }}

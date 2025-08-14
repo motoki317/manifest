@@ -75,5 +75,9 @@ spec:
               mountPath: /keys
             - name: cache
               mountPath: /storage
+          {{- if .resources }}
+          resources:
+            {{- .resources | toYaml | nindent 12 }}
+          {{- end }}
 
 {{- end }}

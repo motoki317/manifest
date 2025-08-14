@@ -1,3 +1,5 @@
+{{- with .Values.ingressRoute }}
+{{- if .enabled }}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -8,3 +10,6 @@ spec:
   stripPrefix:
     prefixes:
       - /widget
+
+{{- end }}
+{{- end }}

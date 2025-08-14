@@ -9,6 +9,7 @@ helmCharts:
   valuesFile: values.yaml
 
 resources:
+- secrets
 - certificate.yaml
 
 configMapGenerator:
@@ -20,9 +21,6 @@ configMapGenerator:
   - config/config.js
   name: frontend-config
   namespace: traq
-
-generators:
-- ksops.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization

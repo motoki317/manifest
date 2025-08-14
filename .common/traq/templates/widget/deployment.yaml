@@ -23,7 +23,7 @@ spec:
       {{- end }}
 
       containers:
-        - name: traq-frontend
+        - name: traq-widget
           image: {{ .image }}
           ports:
             - name: http

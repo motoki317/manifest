@@ -1,7 +1,7 @@
 host: q.trap.jp
 
 backend:
-  image: ghcr.io/traptitech/traq:latest
+  image: ghcr.io/traptitech/traq
   replicas: 1
   nodeSelector: {}
   configMap:
@@ -20,20 +20,20 @@ es:
     existingName: traq
   
 frontend:
-  image: ghcr.io/traptitech/traq-ui:latest
+  image: ghcr.io/traptitech/traq-ui
   replicas: 1
   nodeSelector: {}
   themeColor: "#0D67EA"
   
 widget:
-  image: ghcr.io/traptitech/traq-widget:master
+  image: ghcr.io/traptitech/traq-widget
   replicas: 1
   nodeSelector: {}
 
 systemBot:
   enabled: true
   replicas: 1
-  image: ghcr.io/traptitech/traq-system-bot:latest
+  image: ghcr.io/traptitech/traq-system-bot
   nodeSelector: {}
   channelId: ""
 

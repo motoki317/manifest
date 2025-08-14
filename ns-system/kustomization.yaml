@@ -1,5 +1,5 @@
 helmCharts:
-  - repo: oci://registry.toki317.dev/pub/charts
+  - repo: oci://ghcr.io/traptitech/charts
     name: neoshowcase
     version: "1.9.3"
     includeCRDs: true

@@ -1,42 +1,30 @@
+{{- with $.Values.es }}
+{{- if .enabled }}
 kind: StatefulSet
 apiVersion: apps/v1
 metadata:
-  name: traq-es
+  name: {{ $.Release.Name }}-es
+  namespace: {{ $.Release.Namespace }}
 
 spec:
-  serviceName: traq-es
+  serviceName: {{ $.Release.Name }}-es
   podManagementPolicy: Parallel
   revisionHistoryLimit: 0
-  replicas: 1
+  replicas: {{ .replicas }}
+
   selector:
     matchLabels:
-      app: traq-es
+      app: {{ $.Release.Name }}-es
   template:
     metadata:
       labels:
-        app: traq-es
+        app: {{ $.Release.Name }}-es
     spec:
       enableServiceLinks: false
-      containers:
-        - name: traq-es
-          image: traq-es
-          ports:
-            - containerPort: 9200
-              name: http
-          env:
-            - name: discovery.type
-              value: single-node
-            - name: ELASTIC_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: traq
-                  key: es-password
-          volumeMounts:
-            - mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
-              name: config
-              subPath: es_jvm.options
-            - mountPath: /usr/share/elasticsearch/data
-              name: data
+      {{- if .nodeSelector }}
+      nodeSelector:
+        {{- .nodeSelector | toYaml | nindent 8 }}
+      {{- end }}
       volumes:
         - name: config
           configMap:
@@ -44,5 +32,27 @@ spec:
         - name: data
           hostPath:
             path: /srv/traq/data/es
-      nodeSelector:
-        kubernetes.io/hostname: moto-a1-3
+
+      containers:
+        - name: traq-es
+          image: {{ .image }}
+          ports:
+            - name: http
+              containerPort: 9200
+          env:
+            - name: discovery.type
+              value: single-node
+            - name: ELASTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .secret.existingName }}
+                  key: es-password
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
+              name: config
+              subPath: es_jvm.options
+            - mountPath: /usr/share/elasticsearch/data
+              name: data
+
+{{- end }}
+{{- end }}

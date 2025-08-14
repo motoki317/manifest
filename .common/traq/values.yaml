@@ -1,0 +1,42 @@
+host: q.trap.jp
+
+backend:
+  image: ghcr.io/traptitech/traq:latest
+  replicas: 1
+  nodeSelector: {}
+  configMap:
+    existingName: traq-config
+  secret:
+    existingName: traq
+  keysSecret:
+    existingName: traq-keys
+
+es:
+  enabled: true
+  image: ghcr.io/traptitech/es-with-sudachi:8.8.1-3.1.0
+  replicas: 1
+  nodeSelector: {}
+  secret:
+    existingName: traq
+  
+frontend:
+  image: ghcr.io/traptitech/traq-ui:latest
+  replicas: 1
+  nodeSelector: {}
+  themeColor: "#0D67EA"
+  
+widget:
+  image: ghcr.io/traptitech/traq-widget:master
+  replicas: 1
+  nodeSelector: {}
+
+systemBot:
+  enabled: true
+  replicas: 1
+  image: ghcr.io/traptitech/traq-system-bot:latest
+  nodeSelector: {}
+  channelId: ""
+
+ingressRoute:
+  enabled: true
+  tls: traq-tls

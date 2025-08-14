@@ -1,7 +1,8 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: widget-strip
+  name: {{ $.Release.Name }}-widget-strip
+  namespace: {{ $.Release.Namespace }}
 
 spec:
   stripPrefix:

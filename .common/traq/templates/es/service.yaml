@@ -1,0 +1,19 @@
+{{- with $.Values.es }}
+{{- if .enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-es
+  namespace: {{ $.Release.Namespace }}
+
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ $.Release.Name }}-es
+  ports:
+    - name: http
+      port: 9200
+      targetPort: http
+
+{{- end }}
+{{- end }}

@@ -1,41 +1,29 @@
+helmGlobals:
+  chartHome: ../.common
+
+helmCharts:
+- name: traq
+  releaseName: traq
+  namespace: traq
+  includeCRDs: true
+  valuesFile: values.yaml
+
 resources:
 - certificate.yaml
-- es-service.yaml
-- es-stateful-set.yaml
-- frontend-deployment.yaml
-- frontend-service.yaml
-- ingress-route.yaml
-- system-bot-deployment.yaml
-- traq-service.yaml
-- traq-stateful-set.yaml
-- widget-deployment.yaml
-- widget-service.yaml
-- widget-strip-middleware.yaml
-
-images:
-- name: traq
-  newName: ghcr.io/traptitech/traq
-  newTag: 3.24.14
-- name: traq-es
-  newName: ghcr.io/traptitech/es-with-sudachi
-  newTag: 8.8.1-3.1.0
-- name: traq-ui
-  newName: ghcr.io/traptitech/traq-ui
-  newTag: 3.26.2
-- name: traq-widget
-  newName: ghcr.io/traptitech/traq-widget
-  newTag: 0.3.7
 
 configMapGenerator:
 - files:
   - config/config.yml
   name: traq-config
+  namespace: traq
 - files:
   - config/config.js
   name: frontend-config
+  namespace: traq
 - files:
   - config/es_jvm.options
   name: es-config
+  namespace: traq
 
 generators:
 - ksops.yaml

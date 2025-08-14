@@ -1,0 +1,32 @@
+{{- with $.Values.widget }}
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: {{ $.Release.Name }}-widget
+  namespace: {{ $.Release.Namespace }}
+
+spec:
+  replicas: {{ .replicas }}
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}-widget
+  template:
+    metadata:
+      labels:
+        app: {{ $.Release.Name }}-widget
+    spec:
+      enableServiceLinks: false
+      {{- if .nodeSelector }}
+      nodeSelector:
+        {{- .nodeSelector | toYaml | nindent 8 }}
+      {{- end }}
+
+      containers:
+        - name: traq-frontend
+          image: {{ .image }}
+          ports:
+            - name: http
+              containerPort: 80
+
+{{- end }}

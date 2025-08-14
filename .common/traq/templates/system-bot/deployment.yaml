@@ -1,31 +1,42 @@
+{{- with $.Values.systemBot }}
+{{- if .enabled }}
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: system-bot
+  name: {{ $.Release.Name }}-system-bot
+  namespace: {{ $.Release.Namespace }}
 
 spec:
-  replicas: 1
+  replicas: {{ .replicas }}
   revisionHistoryLimit: 0
   selector:
     matchLabels:
-      app: system-bot
+      app: {{ $.Release.Name }}-system-bot
   template:
     metadata:
       labels:
-        app: system-bot
+        app: {{ $.Release.Name }}-system-bot
     spec:
       enableServiceLinks: false
       automountServiceAccountToken: false
+      {{- if .nodeSelector }}
+      nodeSelector:
+        {{- .nodeSelector | toYaml | nindent 8 }}
+      {{- end }}
+
       containers:
         - name: system-bot
-          image: ghcr.io/traptitech/traq-system-bot:1.0.0
+          image: {{ .image }}
           env:
             - name: BOT_SYSTEM_MESSAGE_CHANNEL_ID
-              value: 0e10c15a-f147-4fbe-a85d-bde865c3861c
+              value: {{ .channelId | quote }}
             - name: TRAQ_ORIGIN
-              value: wss://q.toki317.dev
+              value: wss://{{ $.Values.host }}
             - name: BOT_ACCESS_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: system-bot
                   key: access-token
+
+{{- end }}
+{{- end }}

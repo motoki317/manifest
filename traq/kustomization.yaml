@@ -20,10 +20,6 @@ configMapGenerator:
   - config/config.js
   name: frontend-config
   namespace: traq
-- files:
-  - config/es_jvm.options
-  name: es-config
-  namespace: traq
 
 generators:
 - ksops.yaml

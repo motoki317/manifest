@@ -28,7 +28,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: es-config
+            name: {{ $.Release.Name }}-es
         - name: data
           hostPath:
             path: /srv/traq/data/es
@@ -48,11 +48,11 @@ spec:
                   name: {{ .secret.existingName }}
                   key: es-password
           volumeMounts:
-            - mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
-              name: config
+            - name: config
+              mountPath: /usr/share/elasticsearch/config/jvm.options.d/es_jvm.options
               subPath: es_jvm.options
-            - mountPath: /usr/share/elasticsearch/data
-              name: data
+            - name: data
+              mountPath: /usr/share/elasticsearch/data
           {{- if .resources }}
           resources:
             {{- .resources | toYaml | nindent 12 }}

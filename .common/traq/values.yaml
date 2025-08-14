@@ -20,7 +20,10 @@ es:
   resources: {}
   secret:
     existingName: traq
-  
+  jvmOptions: |
+    -Xms512m
+    -Xmx512m
+
 frontend:
   image: ghcr.io/traptitech/traq-ui
   replicas: 1

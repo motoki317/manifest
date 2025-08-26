@@ -23,7 +23,7 @@ backend:
 
 staging:
   enabled: true
-  image: ghcr.io/traptitech/ns-dashboard:main
+  image: ghcr.io/traptitech/ns-dashboard:main@sha256:bca39f07db33677db072e6bd9dfa548ecc1fb1bc3a6e4cc35e373ca27fd653f3
 
 otherParameters:
   port: 80

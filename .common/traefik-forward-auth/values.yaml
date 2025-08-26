@@ -14,8 +14,6 @@ headers:
     source: name
 
 image:
-  # name: "ghcr.io/traptitech/traefik-forward-auth"
-  name: "registry.toki317.dev/pub/traefik-forward-auth"
+  name: "ghcr.io/traptitech/traefik-forward-auth"
   # renovate:image-tag imageName=ghcr.io/traptitech/traefik-forward-auth
-  # tag: "3.2.1"
-  tag: "main"
+  tag: "3.3.0"

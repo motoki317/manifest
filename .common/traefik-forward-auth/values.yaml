@@ -1,19 +1,36 @@
-authHosts:
-  - auth.toki317.dev
-hosts:
-  - toki317.dev
-
-clientID: "hmYC37lIpJOjf3igr1wGdeb6jQoKs1cyQF8v"
-secretName: "forward-auth"
-
-cookieName: "_forward_auth"
-headers:
-  - name: X-Forwarded-User
-    source: name
-  - name: X-Showcase-User
-    source: name
-
 image:
   name: "ghcr.io/traptitech/traefik-forward-auth"
   # renovate:image-tag imageName=ghcr.io/traptitech/traefik-forward-auth
   tag: "3.3.1"
+
+authHosts: []
+hosts: []
+
+replicas: 2
+pdb:
+  enabled: true
+  minAvailable: 1
+
+ingressRoute:
+  enabled: true
+  entrypoints:
+    - web
+  tlsName: ""
+
+oidc:
+  clientID: ""
+  scopes: ""
+  issuerUrl: "https://q.toki317.dev"
+  prompt: none
+
+secretName: "forward-auth"
+
+cookie:
+  name: "_forward_auth"
+  lifetime: 1209600 # 2 weeks
+
+infoFields:
+  - name
+headers:
+  - name: X-Forwarded-User
+    source: name

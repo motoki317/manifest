@@ -1,0 +1,16 @@
+{{- with $.Values.pdb }}
+{{- if .enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ $.Release.Name }}
+  namespace: {{ $.Release.Namespace }}
+
+spec:
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}
+  minAvailable: {{ .minAvailable }}
+
+{{- end }}
+{{- end }}

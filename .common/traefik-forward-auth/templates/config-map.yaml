@@ -11,21 +11,20 @@ data:
 
     provider: oidc
 
-    auth-host: {{ .Values.authHosts | join "," }}
-    cookie-domains: {{ .Values.hosts | join "," }}
-    cookie-name: {{ .Values.cookieName }}
-    # 2 weeks
-    lifetime: 1209600
+    auth-host: {{ $.Values.authHosts | join "," }}
+    cookie-domains: {{ $.Values.hosts | join "," }}
+    cookie-name: {{ $.Values.cookie.name }}
+    lifetime: {{ $.Values.cookie.lifetime }}
     info-fields:
-      - name
+      {{- $.Values.infoFields | toYaml | nindent 6 }}
 
     providers:
       oidc:
-        scopes: ""
-        issuer-url: https://q.toki317.dev
-        client-id: {{ .Values.clientID }}
+        scopes: {{ $.Values.oidc.scopes }}
+        issuer-url: {{ $.Values.oidc.issuerUrl }}
+        client-id: {{ $.Values.oidc.clientID }}
         # client-secret = <env secret>
-        prompt: none
+        prompt: {{ $.Values.oidc.prompt }}
 
     rules:
       admin:

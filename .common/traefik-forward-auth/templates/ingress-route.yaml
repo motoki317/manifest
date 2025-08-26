@@ -1,3 +1,5 @@
+{{- with $.Values.ingressRoute }}
+{{- if .enabled }}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -6,9 +8,12 @@ metadata:
 
 spec:
   entryPoints:
-    - websecure
+    {{ .entrypoints | toYaml | nindent 4 }}
+  {{- if .tlsName }}
   tls:
-    secretName: {{ $.Release.Name }}-tls
+    secretName: {{ .tlsName }}
+  {{- end }}
+
   routes:
     {{- range $.Values.authHosts }}
     - kind: Rule
@@ -19,3 +24,6 @@ spec:
           port: http
           scheme: http
     {{- end }}
+
+{{- end }}
+{{- end }}

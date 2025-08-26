@@ -7,6 +7,10 @@ helmCharts:
     namespace: auth
     releaseName: auth
     valuesInline:
+      authHosts:
+        - auth.toki317.dev
+      hosts:
+        - toki317.dev
       oidc:
         clientID: "hmYC37lIpJOjf3igr1wGdeb6jQoKs1cyQF8v"
       ingressRoute:

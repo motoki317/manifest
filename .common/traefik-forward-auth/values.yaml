@@ -14,7 +14,7 @@ pdb:
 ingressRoute:
   enabled: true
   entrypoints:
-    - web
+    - websecure
   tlsName: ""
 
 oidc:

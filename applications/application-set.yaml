@@ -11,24 +11,15 @@ spec:
         - /spec/syncPolicy
 
   generators:
-    - merge:
-        mergeKeys:
-          - values.path
-        generators:
-          - git:
-              repoURL: https://github.com/motoki317/manifest
-              revision: master
-              directories:
-                - path: '*'
-                - path: 'applications'
-                  exclude: true
-              values:
-                path: '{{path.basename}}'
-                ssa: 'false'
-          - list:
-              elements:
-                - values.path: 'argo-rollouts'
-                  values.ssa: 'true'
+    - git:
+        repoURL: https://github.com/motoki317/manifest
+        revision: master
+        directories:
+          - path: '*'
+          - path: 'applications'
+            exclude: true
+        values:
+          path: '{{path.basename}}'
 
   template:
     metadata:
@@ -45,7 +36,9 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
-          - 'ServerSideApply={{values.ssa}}'
+          # Workaround to error "... is invalid: metadata.annotations: Too long: must have at most 262144 bytes"
+          # https://github.com/prometheus-community/helm-charts/issues/3345#issuecomment-1574929706
+          - ServerSideApply=true
         automated:
           prune: true
           selfHeal: true

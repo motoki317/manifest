@@ -45,7 +45,7 @@ jobs:
 
       - name: Build and validate
         run: |
-          for DIR in ${{ matrix.cluster }}/*/; do
+          for DIR in ./*/; do
             echo "Validating $DIR"
             .scripts/build.sh "$DIR" | .scripts/check.sh
           done

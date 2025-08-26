@@ -15,7 +15,7 @@ spec:
       match: Host(`{{ .Values.number }}.{{ .Values.host.base }}`)
       priority: -100
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Release.Name }}
           namespace: {{ .Release.Namespace }}
@@ -30,7 +30,7 @@ spec:
       match: Host(`{{ .Values.number }}.{{ .Values.host.base }}`) && ({{ .Values.backend.matcher }})
       priority: -99
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Release.Name }}
           namespace: {{ .Release.Namespace }}
@@ -42,7 +42,7 @@ spec:
       match: Host(`{{ .Values.number }}-dev.{{ .Values.host.base }}`)
       priority: -100
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Values.number }}
           namespace: {{ .Release.Namespace }}
@@ -57,7 +57,7 @@ spec:
       match: Host(`{{ .Values.number }}-dev.{{ .Values.host.base }}`) && ({{ .Values.backend.matcher }})
       priority: -99
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Release.Name }}
           namespace: {{ .Release.Namespace }}
@@ -68,7 +68,7 @@ spec:
       match: Host(`{{ .Values.number }}-prod.{{ .Values.host.base }}`)
       priority: -100
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Values.number }}
           namespace: {{ .Release.Namespace }}
@@ -83,7 +83,7 @@ spec:
       match: Host(`{{ .Values.number }}-prod.{{ .Values.host.base }}`) && ({{ .Values.backend.matcher }})
       priority: -99
       middlewares:
-        - name: auth-{{ include "auth.middleware.baseName" $ }}-hard
+        - name: auth-hard
           namespace: auth
         - name: sablier-{{ .Release.Name }}
           namespace: {{ .Release.Namespace }}

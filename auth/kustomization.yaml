@@ -1,8 +1,8 @@
 helmGlobals:
-  chartHome: ./
+  chartHome: ../.common
 
 helmCharts:
-  - name: template
+  - name: traefik-forward-auth
     includeCRDs: true
     namespace: auth
     releaseName: auth

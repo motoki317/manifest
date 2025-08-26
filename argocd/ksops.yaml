@@ -8,5 +8,6 @@ metadata:
         path: ksops
 
 files:
+  - ./secrets/argocd-secret.yaml
   - ./secrets/notifications.yaml
   - ./secrets/preview-pr-generator.yaml

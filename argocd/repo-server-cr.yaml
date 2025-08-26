@@ -1,8 +1,32 @@
+# https://github.com/argoproj/argo-cd/issues/5202#issuecomment-2081661930
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: argocd-repo-server
+
 rules:
   - apiGroups: [""]
-    resources: ["configmaps", "secrets"]
+    resources:
+      - configmaps
+      - secrets
+      - persistentvolumeclaims
     verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+    verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: argocd-repo-server
+subjects:
+  - kind: ServiceAccount
+    name: argocd-repo-server
+    namespace: argocd
+roleRef:
+  kind: ClusterRole
+  name: argocd-repo-server
+  apiGroup: rbac.authorization.k8s.io

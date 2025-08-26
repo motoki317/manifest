@@ -13,7 +13,6 @@ spec:
       match: Host(`appset.cd.toki317.dev`)
       services:
         - kind: Service
-          namespace: argocd
           name: argocd-applicationset-controller
-          port: webhook
+          port: http-webhook
           scheme: http

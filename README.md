@@ -38,7 +38,7 @@ e.g. `https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/a
 ## 書き方
 
 各ディレクトリ（アプリ）には `kustomization.yaml` が置いてあり、ここを起点として kustomize によって読み込まれます。
-また、各ディレクトリ（アプリ）は `./applications/application-set.yaml` を起点として読み込まれます。
+また、各ディレクトリ（アプリ）は `.applications/application-set.yaml` を起点として読み込まれます。
 
 具体的なリソースの書き方は、[Deployments | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) のような公式ドキュメントや、既存アプリの書き方を参考にしてください。
 

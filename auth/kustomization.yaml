@@ -5,11 +5,8 @@ helmCharts:
   - name: template
     includeCRDs: true
     namespace: auth
-    releaseName: auth-toki317-dev
-    valuesInline:
-      domain: toki317.dev
-      clientID: hmYC37lIpJOjf3igr1wGdeb6jQoKs1cyQF8v
-      secretName: forward-auth
+    releaseName: auth
+    valuesInline: {}
 
 generators:
   - ksops.yaml

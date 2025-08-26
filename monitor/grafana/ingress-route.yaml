@@ -12,7 +12,7 @@ spec:
     - kind: Rule
       match: Host(`monitor.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev-admin
+        - name: auth-admin
           namespace: auth
       services:
         - namespace: monitor
@@ -24,7 +24,7 @@ spec:
     - kind: Rule
       match: Host(`monitor.toki317.dev`) && HeaderRegexp(`Authorization`, `^Bearer .+$`)
       middlewares:
-        - name: auth-toki317-dev-soft
+        - name: auth-soft
           namespace: auth
       services:
         - namespace: monitor

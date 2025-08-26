@@ -1,12 +1,13 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: {{ .Release.Name }}-core
+  name: {{ $.Release.Name }}-core
+  namespace: {{ $.Release.Namespace }}
 
 spec:
   forwardAuth:
-    address: http://{{ .Release.Name }}.{{ .Release.Namespace }}.svc.cluster.local/
+    address: http://{{ $.Release.Name }}.{{ $.Release.Namespace }}.svc.cluster.local/
     authResponseHeaders:
-      {{- range .Values.headers }}
+      {{- range $.Values.headers }}
       - {{ .name }}
       {{- end }}

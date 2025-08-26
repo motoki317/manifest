@@ -37,20 +37,20 @@ domains:
     auth:
       available: true
       soft:
-        - name: auth-toki317-dev-soft
+        - name: auth-soft
           namespace: auth
       hard:
-        - name: auth-toki317-dev-hard
+        - name: auth-hard
           namespace: auth
   - domain: "*.ns.toki317.dev"
     excludes: []
     auth:
       available: true
       soft:
-        - name: auth-toki317-dev-soft
+        - name: auth-soft
           namespace: auth
       hard:
-        - name: auth-toki317-dev-hard
+        - name: auth-hard
           namespace: auth
 
 tls:
@@ -120,5 +120,5 @@ ingressRoute:
   tls:
     secretName: ns-tls
   middlewares:
-    - name: auth-toki317-dev-hard
+    - name: auth-hard
       namespace: auth

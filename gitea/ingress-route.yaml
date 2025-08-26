@@ -12,7 +12,7 @@ spec:
     - kind: Rule
       match: Host(`git.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev-admin
+        - name: auth-admin
           namespace: auth
       services:
         - namespace: gitea

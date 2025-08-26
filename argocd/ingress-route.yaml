@@ -21,7 +21,7 @@ spec:
     - kind: Rule
       match: Host(`cd.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev-admin
+        - name: auth-admin
           namespace: auth
       services:
         - kind: Service

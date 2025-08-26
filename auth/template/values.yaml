@@ -1,6 +1,10 @@
-domain: ""
-clientID: ""
-secretName: ""
+authHosts:
+  - auth.toki317.dev
+hosts:
+  - toki317.dev
+
+clientID: "hmYC37lIpJOjf3igr1wGdeb6jQoKs1cyQF8v"
+secretName: "forward-auth"
 
 cookieName: "_forward_auth"
 headers:
@@ -10,6 +14,8 @@ headers:
     source: name
 
 image:
-  name: "ghcr.io/traptitech/traefik-forward-auth"
+  # name: "ghcr.io/traptitech/traefik-forward-auth"
+  name: "registry.toki317.dev/pub/traefik-forward-auth"
   # renovate:image-tag imageName=ghcr.io/traptitech/traefik-forward-auth
-  tag: "3.2.1"
+  # tag: "3.2.1"
+  tag: "main"

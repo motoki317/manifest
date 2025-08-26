@@ -12,7 +12,7 @@ spec:
     - kind: Rule
       match: Host(`traefik.toki317.dev`)
       middlewares:
-        - name: auth-toki317-dev-hard
+        - name: auth-hard
           namespace: auth
       services:
         - kind: TraefikService
@@ -20,7 +20,7 @@ spec:
     - kind: Rule
       match: Host(`traefik.toki317.dev`) && PathPrefix(`/api`)
       middlewares:
-        - name: auth-toki317-dev-hard
+        - name: auth-hard
           namespace: auth
       services:
         - kind: TraefikService

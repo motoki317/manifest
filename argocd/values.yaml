@@ -69,7 +69,7 @@ configs:
       issuer: https://q.toki317.dev
       clientID: "p6957nUX0J0Ag7T9yJcgWIDz1SH23jopkLPN"
       clientSecret: $oidc.traq.clientSecret
-      requestedScopes: ["openid", "email", "profile"]
+      requestedScopes: ["openid", "read", "profile"]
 
   # https://argo-cd.readthedocs.io/en/stable/operator-manual/server-commands/additional-configuration-method/
   params:

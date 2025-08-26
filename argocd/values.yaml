@@ -86,8 +86,9 @@ configs:
   # https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/
   rbac:
     policy.default: "role:readonly"
+    # 8a1feae7-8a8d-4449-8566-478d2d8decfa: toki
     policy.csv: |
-      g, toki, role:admin
+      g, 8a1feae7-8a8d-4449-8566-478d2d8decfa, role:admin
 
   styles: |
     .ui-banner-text {

@@ -16,8 +16,6 @@ spec:
         revision: master
         directories:
           - path: '*'
-          - path: 'applications'
-            exclude: true
         values:
           path: '{{path.basename}}'
 

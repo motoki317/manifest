@@ -1,197 +1,257 @@
 # manifest
 
-Kubernetes manifestファイル群
+(Based on [manifest-template](https://github.com/gmo-media/manifest-template))
 
-mainブランチへの変更は、ArgoCDによって自動的に本番環境へ反映されます。
+A GitOps manifest repository with ArgoCD and validation on GitHub Actions.
 
-## 書き始める前に
+See also: [infra-template](https://github.com/gmo-media/infra-template), [toki317.dev](https://github.com/motoki317/toki317.dev)
 
-GitHub Actionsでのyamlのバリデーションがありますが、各自のエディタに以下のような拡張機能をインストールし、補完を頼りながら書くと良いでしょう。
+## Directory structure
 
-### VSCode
+ArgoCD's "root" Application loads `./dev/.applications` directory.
+ApplicationSet discovers applications in `./dev/*`, where directory names
+correspond to application name and namespace name.
 
-ref: [Kubernetesエンジニア向け開発ツール欲張りセット2022](https://zenn.dev/zoetro/articles/9454a6231a1273#vscode-extensions)
-
-[YAML - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) をインストールし、以下を `.vscode/settings.json` に追加
-
-```json
-{
-   "yaml.schemas": {
-      "kubernetes": [
-         "*.yml",
-         "*.yaml"
-      ]
-   }
-}
+```plaintext
+manifest
+├── dev
+│   ├── .applications
+│   │   ├── application-set.yaml
+│   │   └── kustomization.yaml
+│   └── my-app
+│       ├── resource-1.yaml
+│       ├── resource-2.yaml
+│       └── kustomization.yaml
+└── prod
+    ├── .applications
+    │   ├── application-set.yaml
+    │   └── kustomization.yaml
+    └── my-app
+        ├── resource-1.yaml
+        ├── resource-2.yaml
+        └── kustomization.yaml
 ```
 
-CRD(Custom Resource Definition)の補完は知らない
-誰か知ってたら助けて
+## Setup
 
-### IntelliJ IDEA Ultimate
+### Setup k8s cluster
 
-[Kubernetes - IntelliJ IDEs Plugin | Marketplace](https://plugins.jetbrains.com/plugin/10485-kubernetes)
+This repository assumes that you already own a Kubernetes cluster.
+See [infra-template](https://github.com/gmo-media/infra-template) to get started.
+Make sure you can run `kubectl apply` to deploy initial resources.
 
-`Languages & Frameworks > Kubernetes` より、CRD定義のURLを追加すると、CRDの補完も効くようになります
-e.g. `https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml`
+### Setup sops / age
 
-## 書き方
+1. Install [sops](https://github.com/getsops/sops) and [age](https://github.com/FiloSottile/age) locally.
+2. Run `age-keygen -o key.txt` to generate a key pair.
+    - `key.txt` is the private key, so you want to keep this secret.
+    - Public key is printed to stdout. Set this to `.sops.yaml`.
+3. Create a Secret named `age-key` in `argocd` namespace.
+   `kubectl create secret generic age-key -n argocd --from-file=key.txt`
+    - This is referenced from `./dev/argocd` manifest.
+4. Place `key.txt` somewhere safe, or delete if you don't need it.
+    - macOS recommended location: `$HOME/Library/Application Support/sops/age/keys.txt`
+    - https://github.com/getsops/sops?tab=readme-ov-file#23encrypting-using-age
 
-各ディレクトリ（アプリ）には `kustomization.yaml` が置いてあり、ここを起点として kustomize によって読み込まれます。
-また、各ディレクトリ（アプリ）は `.applications/application-set.yaml` を起点として読み込まれます。
+### Encrypting secrets
 
-具体的なリソースの書き方は、[Deployments | Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) のような公式ドキュメントや、既存アプリの書き方を参考にしてください。
+See `scripts/secret-*.sh` for various utility scripts to manipulate sops-encrypted files.
 
-### 既存アプリにリソースを追加・削除・編集する場合
+Most basic ones:
+- `scripts/secret-encrypt.sh`: Encrypt a file.
+- `scripts/secret-set-key.sh`: Set a key-value pair in an encrypted file.
+- `scripts/secret-set-key-base64.sh`: Use this instead if your value has special characters.
 
-1. 編集したいリソースのyamlを追加・削除・編集します。
-2. リソースを追加・削除した場合、各ディレクトリの `kustomization.yaml` の `resources` フィールドの更新を忘れないようにすること。
+You will NOT likely need to use `secret-decrypt.sh` or `secret-edit.sh` NOR need the private key locally,
+given the fact that age encryption is asymmetric.
+You could even commit encrypted files to a public repository.
 
-### アプリ自体を新しく追加する場合
-
-1. 新しくディレクトリを1階層目に作り、リソースを書いていきます。
-2. `./新しいディレクトリ名/kustomization.yaml` から書いたリソースを適切に参照します。
-
-## Secretの追加・編集方法
-
-公開鍵暗号方式なので、Secretの追加・値の上書きは誰でも可能です。
-
-Secretは[sops](https://github.com/mozilla/sops#encrypting-using-age)と[age](https://github.com/FiloSottile/age)で暗号化しています。
-暗号化されたSecretは[ksops kustomize plugin](https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-)を通してArgoCDによって読まれます。
-
-### 前準備
-
-以下が必要になるので、インストールしましょう。
-
-- age: https://github.com/FiloSottile/age#installation
-- sops: https://github.com/mozilla/sops#1download
-   - Ubuntu: `wget`/`curl`などで`.deb`を引っ張ってきて`sudo apt install ./sops_x.x.x_amd64.deb` でインストール
-
-### 新規Secretの追加
-
-1. Secretを書く。
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-   name: my-secret
-   annotations:
-      # kustomizeによってSecret名にhash suffixを付けさせる設定
-      # Secretの中身が変更されたとき、自動リロードが可能になる
-      # kustomize設定のnameReferenceで、Secretを読む側のフィールドを参照する必要あり
-      kustomize.config.k8s.io/needs-hash: "true"
-stringData:
-   my-secret-key: "my-super-secret-value"
-```
-
-2. Secretをsopsで暗号化する: `./encrypt-secret.sh secret.yaml`
-   - ファイルの中身が暗号化されて置き換わります
-3. `ksops.yaml` から以下のようにファイルを参照する。
+After encrypting a file with `scripts/secret-encrypt.sh` (usually placed at `./dev/*/secrets/*.yaml`),
+reference them via [ksops](https://github.com/viaduct-ai/kustomize-sops) file (usually placed at `./dev/*/ksops.yaml`).
 
 ```yaml
 apiVersion: viaduct.ai/v1
 kind: ksops
 metadata:
-   name: ksops
-   annotations:
-      config.kubernetes.io/function: |
-         exec:
-           path: ksops
+  name: ksops
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: ksops
 
-# ここを編集
 files:
-   - ./secrets/secret.yaml
+  # Comment these lines out if you don't need them yet
+  - ./secrets/argocd-secret.yaml
+  - ./secrets/notifications.yaml
 ```
 
-4. 次の行を `kustomization.yaml` に追加する。
+For starters, you will likely need to set secret values in `./dev/argocd/secrets/argocd-secret.yaml`
+and run `scripts/secret-encrypt.sh ./dev/argocd/secrets/argocd-secret.yaml` to encrypt the file.
+Update `./dev/argocd/ksops.yaml` as needed.
+
+### Install ArgoCD
+
+See `./dev/argocd/values.yaml` to configure values.
+You will likely need to change:
+- `global.domain`: Your ArgoCD host.
+- `configs.cm."oidc.config"`: OIDC configuration.
+- `configs.rbac`: RBAC configuration.
+
+Then:
+1. Create `argocd` namespace: `kubectl create namespace argocd`
+2. Apply the manifests: `scripts/build.sh ./dev/argocd | kubectl apply -f -`
+3. Get `admin` password: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
+4. Port-forward to access temporarily at `localhost:8080`: `kubectl port-forward -n argocd svc/argocd-server 8080:8080`
+
+### Connect the manifest repository
+
+1. Create a GitHub App.
+    - Minimal permission required: `Contents: Read-Only`
+        - If you want to discover Applications based on PRs, you will also need `Pull-Requests: Read-Only`
+    - Then, install this app into your manifest repository.
+    - Take note of: GitHub App ID, installation ID (check the URL in your browser after installation!), and private key.
+2. [Add repository from ArgoCD UI](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#github-app-credential).
+3. Create a "root" Application.
+    - Replace `<your-org>/<your-repo>` in `application-set.yaml` with your actual repository names.
+    - To prevent accidental deletion of all applications, `.syncPolicy.preserveResourcesOnDeletion` is set to `true` in
+      `./dev/.applications/application-set.yaml`.
+      To properly delete Application resources, you must first empty the Application directory - that is, set
+      `resources: []` in `kustomization.yaml`.
+      https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Application-Deletion/
+4. Configure webhook on push from GitHub to `https://<your-argocd-url>/api/webhook`.
+    - Set webhook "Content Type" to `application/json`.
+    - https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/
+
+### Setup ArgoCD notifications (Slack)
+
+https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/services/slack/
+
+1. Create a Slack App
+    - Example app manifest:
+
+        ```yaml
+        display_information:
+          name: ArgoCD (dev)
+          description: ArgoCD (dev) notifications
+          background_color: "#a36d00"
+        features:
+          bot_user:
+            display_name: ArgoCD (dev)
+            always_online: false
+        oauth_config:
+          scopes:
+            bot:
+              - chat:write
+              - chat:write.customize
+        settings:
+          org_deploy_enabled: false
+          socket_mode_enabled: false
+          token_rotation_enabled: false
+        ```
+
+2. Obtain an OAuth Token (`xoxp-...`) and set it to `argocd-notifications-secret` (`./dev/argocd/secrets/notifications.yaml`).
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: argocd-notifications-secret
+    
+    stringData:
+      slack-token: "replace-me-with-actual-token"
+    ```
+
+3. Run `scripts/secret-encrypt.sh ./dev/argocd/secrets/notifications.yaml` to encrypt the secret.
+   Reference it from `./dev/argocd/ksops.yaml` accordingly.
+
+## Best practices
+
+### Use repository-local helm chart
+
+When you need to share a set of manifest definitions between environments / applications,
+place a helm chart under `./base` (or somewhere else).
+`./base/traefik-forward-auth` is one such example.
+
+Creating repository-local helm chart and simply rendering from `kustomization.yaml`
+is *much* simpler and easier to maintain than using traditional "overlays" and "patches" using kustomize.
+
+At first, kustomize patch seems to be simpler than Helm's template engine to patch a few locations - but
+as your manifests grow, the patch set quickly blows up and it becomes almost impossible for newcomers
+to understand what's going on.
+
+Helm template engine gives you much more control and flexibility for managing common manifest definitions.
+`values.yaml` is the "interface" between the common definition and your actual use-case.
+Try to "design" these `values.yaml` to be as agnostic as possible to your actual use-cases.
+There is no need to make *every* value configurable via `values.yaml` - this chart is only used locally after all -
+try to keep `values.yaml` as simple as possible.
+
+### Use third-party helm charts whenever possible
+
+Similarly, you will likely want to rely on third-party helm charts as much as possible.
+
+At first, you might want to reference a resource URL (e.g. `https://raw.githubusercontent.com/argoproj/argo-cd/refs/heads/master/manifests/install.yaml`)
+from `kustomization.yaml` and maintain a few kustomize patches along, but for similar reasons as above,
+kustomize patches and extra resources quickly become unmaintainable.
+
+Try to rely on well-maintained helm charts whenever possible, so you write less code and get more work done.
+
+Examples:
+- ArgoCD: https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd
+- victoria-metrics-k8s-stack (all-in-one monitoring solution): https://github.com/VictoriaMetrics/helm-charts/tree/master/charts/victoria-metrics-k8s-stack
+- Self-host Sentry (in case you prefer self-hosting): https://github.com/sentry-kubernetes/charts
+- OpenCost (for tracking resource costs): https://github.com/opencost/opencost-helm-chart/tree/main/charts/opencost
+
+### Do not hesitate to push to `main` frequently
+
+This repository is intended to be used with ArgoCD with GitOps principles.
+Create a PR, wait for CI to pass, merge, and repeat quickly.
+Even if you break something, just do `git revert && git push` and you're all good (for most cases).
+
+When you have a commit history and this GitOps repository as the "single source of truth" for your infrastructure,
+rollbacks and post-mortem investigations become *much* easier.
+
+### Do not use `kubectl` to manipulate cluster states
+
+For similar reasons as well - keep this repository as the "single source of truth" for your infrastructure.
+
+Use `kubectl` or [k9s](https://k9scli.io/) only for inspecting cluster states.
+`alias k9s-ro='k9s --readonly'` is one good alias to use.
+When you need to make changes to the cluster, always make changes via this repository.
+
+### Use centralized SSO (single-sign-on)
+
+`./dev/auth` and `./dev/traefik` gives you centralized SSO and allow apps to use header authentication
+via [traefik ForwardAuth middlewares](https://doc.traefik.io/traefik/middlewares/http/forwardauth/).
+
+[traPtitech/traefik-forward-auth](https://github.com/traPtitech/traefik-forward-auth) gives you a simple, yet powerful
+SSO and header authentication solution via OAuth2 or OIDC.
+This assumes you already have an identity provider (IdP).
+We recommend using Google's OAuth2 App for starters.
+
+Configure "groups" in `./base/traefik-forward-auth/values.yaml`.
+(see the actual templates for more details for how this is done)
 
 ```yaml
-generators:
-   - ksops.yaml
+groups:
+  admin:
+    - admin@example.com
 ```
 
-### 既存Secretの編集
+This will generate `auth-group-${group_name}` middlewares for each group,
+so reference them in your IngressRoute definitions.
 
-既存Secretの値だけを上書きしたい場合、次のスクリプトで編集できます。
-
-- `./set-secret.sh filename key data`
-   - filenameにはファイル名
-   - keyにはstringData以下のキー名
-   - dataには上書きしたいデータ
-
-Secret全体を一旦復号化して編集したい場合は、次のスクリプトで編集できますが、もちろん復号のための鍵が無いとできません。
-誤ってコミットすることを防ぐため、ファイルシステム上で復号化はされず、エディター上で編集します。
-エディターを閉じると自動的に再度暗号化されます。
-
-- `./edit-secret.sh filename`
-
-### 鍵の追加 / 削除方法
-
-当然復号化できる鍵を1つ以上持っていないと（つまりadminでないと）できません。
-
-1. `.sops.yaml` の `age` フィールドの公開鍵一覧(comma-separated)を更新
-2. すべてのSecretファイルに対して、`./updatekeys.sh filename` を実行
-   - `secrets` ディレクトリ以下に存在するので `find . -type f -path '*/secrets/*' | xargs -n 1 ./updatekeys-secret.sh` とすると楽
-
-NOTE: 鍵を削除する場合、中身は遡って復号化できることに注意
-鍵が漏れた場合はSecretの中身も変えないといけません
-
-## Restore from Backup
-
-万が一 master のホストが壊れたなどの理由で、k8sの状態が全部吹き飛んだ場合に、バックアップからから回復する方法です。
-
-現在のリソースをチェック出来る場合はチェック: `$ kubectl get --all-namespaces all`
-何も無ければ以下を行い、クラスタの状態をバックアップから回復してください。
-
-このリポジトリの `./backup` 以下に、master ノードの SQLite の状態のバックアップを取るスクリプトが置かれています。
-`/var/lib/rancher/k3s/server` 以下を tar.gz として保存し、Google Cloud Storage へバックアップしています。
-
-これから回復するには、 https://docs.k3s.io/datastore/backup-restore の手順に従ってください。
-tar.gz の中身から `db` ディレクトリと `token` ファイルを取り出し、元の `/var/lib/rancher/k3s/server` 以下に配置したあと、k3s (server) を起動してください。
-
-## Bootstrap
-
-クラスタ自体の構築記録です。
-クラスタが吹き飛んだ場合、以下に沿って構築します。
-
-1. Ansibleを実行してk3sクラスタを構築
-   - https://github.com/motoki317/toki317.dev
-   - master (k3s-server) を構築
-   - **バックアップが存在する場合**、この時点で k3s (server) をストップ、上の方法でリストアし、以下のステップは行わないでよい
-   - Ansible 内の `k3s_token` の値を書き換える
-   - worker (k3s-agent) を構築
-2. ArgoCDをインストール
-   - `kubectl create ns argocd`
-   - `./argocd/kustomization.yaml` の中身を一旦下記に書き換える
 ```yaml
-resources:
-   - https://raw.githubusercontent.com/argoproj/argo-cd/{{ version }}/manifests/install.yaml
-
-patches:
-   - path: argocd-cm.yaml
-   - path: argocd-repo-server.yaml
+    - kind: Rule
+      match: Host(`traefik.example.com`)
+      middlewares:
+        - name: auth-group-admin
+          namespace: auth
+      services:
+        - kind: TraefikService
+          name: dashboard@internal
 ```
-3. ArgoCDをインストール (続き)
-   - `kubectl apply -n argocd -k argocd`
-   - `./argocd/kustomization.yaml` の中身を戻す
-4. sopsにより暗号化されたSecretの復号化の準備
-   - `age-keygen -o key.txt`
-   - Public keyを `.sops.yaml` の該当フィールドに設定
-   - `kubectl -n argocd create secret generic age-key --from-file=./key.txt`
-      - `./argocd/argocd-repo-server.yaml` から参照されています
-   - `rm key.txt`
-5. Port forwardしてArgoCDにアクセス
-   - `kubectl port-forward svc/argocd-server -n argocd 8124:443`
-   - sshしている場合はlocal forward e.g. `ssh -L 8124:localhost:8124 remote-name`
-   - localhost:8124 へアクセス
-   - Admin password: `kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo`
-6. ArgoCDのUIから `applications` アプリケーションを登録
-   - SSH鍵を手元で生成して、公開鍵をGitHubのこのリポジトリ (manifest) に登録
-   - 必要な場合は先にknown_hostsを登録 (GitHubのknown_hostsはデフォルトで入っている)
-   - URLはSSH形式で、秘密鍵をUIで貼り付けてリポジトリを追加
-   - アプリケーションを追加 (path: `applications`)
-   - Syncを行う
-7. cd.toki317.dev にアクセスできるようになるはず
-   - ArgoCDアプリケーションがsyncされた後はargocd serviceのポートは443番から80番になるので注意
-   - local forwardでのアクセスを続けたい場合は `kubectl port-forward svc/argocd-server -n argocd 8124:80`
+
+This will also pass `X-Forwarded-User` and `X-Forwarded-Sub` headers to your application.
+If your application supports header authentication (a.k.a "proxy authentication"), configure them accordingly.
+
+For example, [Grafana supports proxy authentication](https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/auth-proxy/).

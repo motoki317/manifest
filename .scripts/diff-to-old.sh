@@ -46,12 +46,17 @@ for dir in "$@"; do
   .scripts/build.sh "$DIR" > "$AFTER_TMP"
 
   echo >&2 "==> [$DIR] Building at ${TARGET} ..."
-  BEFORE_DIR="$(cd "$WORKTREE_DIR/$DIR";pwd)"
-  # Copy ./charts directory (if any) in current directory to avoid downloading twice
-  if [ -d "$DIR/charts" ]; then
-    cp -r "$DIR/charts" "$BEFORE_DIR/charts"
+  if [ -d "$WORKTREE_DIR/$DIR" ]; then
+    BEFORE_DIR="$(cd "$WORKTREE_DIR/$DIR";pwd)"
+    # Copy ./charts directory (if any) in current directory to avoid downloading twice
+    if [ -d "$DIR/charts" ]; then
+      cp -r "$DIR/charts" "$BEFORE_DIR/charts"
+    fi
+    .scripts/build.sh "$BEFORE_DIR" > "$BEFORE_TMP"
+  else
+    # If directory did not exist before, set empty result
+    echo "" > "$BEFORE_TMP"
   fi
-  .scripts/build.sh "$BEFORE_DIR" > "$BEFORE_TMP"
 
   echo >&2 "==> [$DIR] Calculating diff ..."
   .scripts/diff.sh "$BEFORE_TMP" "$AFTER_TMP" $DYFF_OPTIONS

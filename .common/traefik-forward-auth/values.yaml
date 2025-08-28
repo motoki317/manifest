@@ -1,7 +1,7 @@
 image:
   name: "ghcr.io/traptitech/traefik-forward-auth"
   # renovate:image-tag imageName=ghcr.io/traptitech/traefik-forward-auth
-  tag: "3.3.1"
+  tag: "3.3.2"
 
 authHosts: []
 hosts: []

@@ -20,7 +20,7 @@ on:
       - completed
   # For auto-merge and rebasing
   push:
-    branches: ["master"]
+    branches: ["main"]
   schedule:
     # Hour 0, 6, 12, 18 in JST(+9)
     # which translates to hour 9, 15, 21, 27(3) in UTC(+0)

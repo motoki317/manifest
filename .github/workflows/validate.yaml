@@ -4,7 +4,7 @@ on:
   # Validate on push for Renovate auto merge without PR
   push:
     branches:
-      - 'master'
+      - 'main'
       - 'renovate/**'
   pull_request:
 

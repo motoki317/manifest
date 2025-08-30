@@ -13,7 +13,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/motoki317/manifest
-        revision: master
+        revision: main
         directories:
           - path: '*'
         values:
@@ -30,7 +30,7 @@ spec:
       source:
         repoURL: https://github.com/motoki317/manifest
         path: '{{path}}'
-        targetRevision: master
+        targetRevision: main
       syncPolicy:
         syncOptions:
           - CreateNamespace=true

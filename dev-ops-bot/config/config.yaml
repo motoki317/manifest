@@ -80,7 +80,7 @@ commands:
       - motoki317
       - manifest
       - renovate.yaml
-      - master
+      - main
   - name: kubectl
     description: "kubectl commands"
     templateRef: kubectl

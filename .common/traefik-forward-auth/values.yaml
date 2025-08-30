@@ -19,7 +19,7 @@ ingressRoute:
 
 oidc:
   clientID: ""
-  scopes: ""
+  scopes: "openid"
   issuerUrl: "https://q.toki317.dev"
   prompt: none
 

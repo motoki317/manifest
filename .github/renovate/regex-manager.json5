@@ -12,7 +12,6 @@
         // Example: (helm) targetRevision: "6.11.5"
         "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) registryUrl=(?<registryUrl>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
       ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
     },
     {
       "description": "k3s versioning",

@@ -43,7 +43,7 @@ updateStrategy:
   type: RollingUpdate
 
 # debug, info, warning, error or fatal
-logLevel: info
+logLevel: warning
 
 existingSecretAdminPassword: "password"
 existingSecretAdminPasswordKey: HARBOR_ADMIN_PASSWORD

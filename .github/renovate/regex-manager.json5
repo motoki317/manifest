@@ -6,10 +6,9 @@
       "fileMatch": [
         ".+"
       ],
+      // Example: (github-releases) version: "v1.27.3"
       "matchStrings": [
-        // Example: (github-releases) version: "v1.27.3"
         "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
-        // Example: (helm) targetRevision: "6.11.5"
         "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) registryUrl=(?<registryUrl>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
       ],
     },

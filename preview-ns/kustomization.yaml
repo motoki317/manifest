@@ -1,9 +1,0 @@
-helmGlobals:
-  chartHome: ../.common
-
-helmCharts:
-  - includeCRDs: true
-    name: preview-ui
-    namespace: preview-ns
-    releaseName: preview-ns
-    valuesFile: values.yaml

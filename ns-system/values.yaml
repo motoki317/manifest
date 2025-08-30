@@ -90,8 +90,7 @@ builder:
   buildpack:
     image: dashaun/builder:base
   buildkit:
-    # renovate:image-full
-    image: "moby/buildkit:v0.23.2-rootless"
+    image: moby/buildkit:v0.23.2-rootless
 
 controller:
   replicas: 3

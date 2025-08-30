@@ -8,8 +8,8 @@
       ],
       // Example: (github-releases) version: "v1.27.3"
       "matchStrings": [
-        "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
-        "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) registryUrl=(?<registryUrl>\\S+)\n.*?\"(?<currentValue>.*)\"\n",
+        "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\n.*?\"(?<currentValue>.*)\"",
+        "# renovate:general datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) registryUrl=(?<registryUrl>\\S+)\n.*?\"(?<currentValue>.*)\"",
       ],
     },
     {
@@ -34,7 +34,7 @@
         // Example:
         // # renovate:image-full
         // fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.40.8-p1"
-        "# renovate:image-full\n.*?\"(?<registryUrl>[^\\s/]+)/(?<depName>[^\\s:]+):(?<currentValue>.+)\"\n",
+        "# renovate:image-full\n.*?\"(?<registryUrl>[^\\s/]+)/(?<depName>[^\\s:]+):(?<currentValue>.+)\"",
       ],
       "datasourceTemplate": "docker",
       "registryUrlTemplate": "https://{{{registryUrl}}}",
@@ -49,7 +49,7 @@
         // Example:
         // # renovate:image-tag imageName=ghcr.io/traptitech/traq
         // fooTag: "0.35.5-p1"
-        "# renovate:image-tag imageName=(?<registryUrl>[^\\s/]+)/(?<depName>\\S+)\n.*?\"(?<currentValue>.+)\"\n",
+        "# renovate:image-tag imageName=(?<registryUrl>[^\\s/]+)/(?<depName>\\S+)\n.*?\"(?<currentValue>.+)\"",
       ],
       "datasourceTemplate": "docker",
       "registryUrlTemplate": "https://{{{registryUrl}}}",

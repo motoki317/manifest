@@ -5,10 +5,10 @@ metadata:
   namespace: argocd
 
 spec:
-  ignoreApplicationDifferences:
+  ignoreApplicationDifferences: []
     # Allow temporary sync toggle
-    - jsonPointers:
-        - /spec/syncPolicy
+    # - jsonPointers:
+    #     - /spec/syncPolicy
 
   generators:
     - git:

@@ -1,6 +1,6 @@
 template: |
-  ### [{{ .CommonLabels.severity | upper }}] {{ .CommonAnnotations.summary }}{{ if eq .Status "firing" }} (x{{ .Alerts.Firing | len }}){{ end }}
-  *Runbook:* {{ .CommonAnnotations.runbook_url }}
-  {{- range $idx, $alert := .Alerts }}
-  - {{ .Annotations.description }}
+  ### [{{ .commonLabels.severity | upper }}] {{ .commonAnnotations.summary }}{{ if eq .status "firing" }} (x{{ .alerts | len }}){{ end }}
+  *Runbook:* {{ .commonAnnotations.runbook_url }}
+  {{- range $idx, $alert := .alerts }}
+  - {{ .annotations.description }}
   {{- end }}

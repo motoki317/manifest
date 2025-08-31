@@ -21,7 +21,7 @@ spec:
             name: traq-webhook-converter
       containers:
         - name: traq-webhook-converter
-          image: ghcr.io/motoki317/traq-webhook-converter:0.1.1
+          image: ghcr.io/motoki317/traq-webhook-converter:0.1.2
           imagePullPolicy: Always
           ports:
             - name: http

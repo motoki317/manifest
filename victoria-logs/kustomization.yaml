@@ -6,3 +6,6 @@ helmCharts:
     namespace: victoria-logs
     releaseName: vl
     valuesFile: values.yaml
+
+resources:
+  - datasource-cm.yaml

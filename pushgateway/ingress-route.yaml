@@ -12,8 +12,7 @@ spec:
     - kind: Rule
       match: Host(`pushgateway.toki317.dev`)
       services:
-        - namespace: monitor
-          kind: Service
+        - kind: Service
           name: pushgateway
           port: http
           scheme: http

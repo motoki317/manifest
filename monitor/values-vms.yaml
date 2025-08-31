@@ -21,10 +21,10 @@ alertmanager:
       routes:
         - receiver: 'null'
           matchers:
-            - alertname = "Watchdog"
+            - alertname =~ "Watchdog|InfoInhibitor"
         - receiver: 'null'
           matchers:
-            - alertname = "InfoInhibitor"
+            - alertname = "KubeMemoryOvercommit"
     receivers:
       - name: 'null'
       - name: traq

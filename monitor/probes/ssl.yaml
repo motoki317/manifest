@@ -12,10 +12,10 @@ spec:
   targets:
     staticConfig:
       targets:
-        - toki317.dev
-        - bot-console.ns.toki317.dev
-        - japari.toki317.dev
-        - monitor.toki317.dev
-        - q.toki317.dev
-        - wiki.toki317.dev
-        - drive.toki317.dev
+        - toki317.dev:443
+        - bot-console.ns.toki317.dev:443
+        - japari.toki317.dev:443
+        - monitor.toki317.dev:443
+        - q.toki317.dev:443
+        - wiki.toki317.dev:443
+        - drive.toki317.dev:443

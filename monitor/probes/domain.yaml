@@ -1,10 +1,10 @@
 apiVersion: operator.victoriametrics.com/v1beta1
 kind: VMProbe
 metadata:
-  name: ssl
+  name: domain
 
 spec:
-  jobName: ssl
+  jobName: domain
   vmProberSpec:
     url: domain-exporter.monitor.svc.cluster.local
   interval: 5m

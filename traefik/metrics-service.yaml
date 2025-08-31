@@ -2,15 +2,28 @@ apiVersion: v1
 kind: Service
 metadata:
   name: metrics
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9100"
+  labels:
+    app: metrics
 
 spec:
   type: ClusterIP
-  ports:
-    - targetPort: metrics
-      name: metrics
-      port: 9100
   selector:
     app: traefik
+  ports:
+    - name: metrics
+      port: 9100
+      targetPort: metrics
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: metrics
+
+spec:
+  selector:
+    matchLabels:
+      app: metrics
+  endpoints:
+    - port: http
+      interval: 1m

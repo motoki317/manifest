@@ -30,6 +30,7 @@ alertmanager:
       - name: traq
         webhook_configs:
           - url: 'http://traq-webhook-converter.monitor.svc.cluster.local/'
+          - url: 'https://eotbjzsmadf2k5e.m.pipedream.net'
 
 grafana:
   enabled: false

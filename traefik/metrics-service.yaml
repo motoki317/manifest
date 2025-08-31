@@ -25,5 +25,5 @@ spec:
     matchLabels:
       app: metrics
   endpoints:
-    - port: http
+    - port: metrics
       interval: 1m

@@ -1,6 +1,7 @@
 resources:
   - deployment.yaml
   - service.yaml
+  - service-monitor.yaml
 
 generators:
   - ksops.yaml

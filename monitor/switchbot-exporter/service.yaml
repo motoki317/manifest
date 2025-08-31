@@ -2,15 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: switchbot-exporter
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "9257"
+  labels:
+    app: switchbot-exporter
 
 spec:
   type: ClusterIP
-  ports:
-    - port: 9257
-      targetPort: http
-      name: http
   selector:
     app: switchbot-exporter
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

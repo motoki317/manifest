@@ -1,0 +1,21 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMSingle
+metadata:
+  name: vm-archive
+
+spec:
+  extraArgs:
+    maxLabelsPerTimeseries: "100"
+  image:
+    # renovate:image-tag imageName=victoriametrics/victoria-metrics
+    tag: "v1.124.0"
+  port: "8428"
+  replicaCount: 1
+  retentionPeriod: 100y
+  storage:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 10Gi
+    storageClassName: local-path

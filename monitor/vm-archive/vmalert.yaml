@@ -1,0 +1,29 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlert
+metadata:
+  name: vm-archive
+
+spec:
+  evaluationInterval: 1m
+  extraArgs:
+    http.pathPrefix: /
+    remoteWrite.disablePathAppend: "true"
+  image:
+    # renovate:image-tag imageName=victoriametrics/vmalert
+    tag: "v1.124.0"
+  port: "8080"
+  datasource:
+    url: http://vmsingle-vms-victoria-metrics-k8s-stack.monitor.svc.cluster.local.:8428
+  remoteRead:
+    url: http://vmsingle-vms-victoria-metrics-k8s-stack.monitor.svc.cluster.local.:8428
+  remoteWrite:
+    url: http://vmsingle-vm-archive.monitor.svc.cluster.local.:8428/api/v1/write
+
+  # Configures rules from VMRules with vm-archive: true label
+  ruleNamespaceSelector:
+    matchExpressions:
+      - key: kubernetes.io/metadata.name
+        operator: Exists
+  ruleSelector:
+    matchLabels:
+      vm-archive: "true"

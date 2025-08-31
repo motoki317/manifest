@@ -1,0 +1,5 @@
+resources:
+  - datasource-cm.yaml
+  - vmagent.yaml
+  - vmalert.yaml
+  - vmsingle.yaml

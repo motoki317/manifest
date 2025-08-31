@@ -1,0 +1,25 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAgent
+metadata:
+  name: vm-archive
+
+spec:
+  extraArgs:
+    promscrape.dropOriginalLabels: "true"
+    promscrape.streamParse: "true"
+  image:
+    # renovate:image-tag imageName=victoriametrics/vmagent
+    tag: "v1.124.0"
+  port: "8429"
+  remoteWrite:
+    - url: http://vmsingle-vm-archive.monitor.svc.cluster.local.:8428/api/v1/write
+  scrapeInterval: 1m
+
+  # Scrapes ServiceMonitors with vm-archive: true label
+  serviceScrapeNamespaceSelector:
+    matchExpressions:
+      - key: kubernetes.io/metadata.name
+        operator: Exists
+  serviceScrapeSelector:
+    matchLabels:
+      vm-archive: "true"

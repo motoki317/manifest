@@ -46,7 +46,7 @@ spec:
       rules:
         - alert: ssl_expiry
           expr: >-
-            ssl_cert_not_after - time() < 86400 * 317
+            (ssl_cert_not_after - time() < 86400 * 317) <= 0
           for: 5m
           labels:
             severity: critical

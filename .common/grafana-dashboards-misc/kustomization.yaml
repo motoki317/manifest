@@ -1,0 +1,22 @@
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: grafana-dashboards-misc
+    files:
+      - alert-certificates.json
+      - alert-domain.json
+      - alert-service-health.json
+      - middlewares-mysql.json
+      - middlewares-victoriametrics.json
+      - nodes-details.json
+      - nodes-overview.json
+      - nodes-syslog.json
+      - nodes-windows-exporter.json
+      - resources-s3.json
+      - services-hds.json
+      - services-japari.json
+      - services-switchbot.json
+      - services-traq.json

@@ -1,0 +1,113 @@
+alertmanager:
+  # https://docs.victoriametrics.com/operator/api#vmalertmanagerspec
+  spec:
+    storage:
+      volumeClaimTemplate:
+        metadata:
+          name: alertmanager-data
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          storageClassName: local-path
+          resources:
+            requests:
+              storage: 1Gi
+  config:
+    route:
+      group_by: ['alertname']
+      receiver: traq
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      routes:
+        - receiver: 'null'
+          matchers:
+            - alertname = "Watchdog"
+        - receiver: 'null'
+          matchers:
+            - alertname = "InfoInhibitor"
+    receivers:
+      - name: 'null'
+      - name: traq
+        webhook_configs:
+          - url: 'http://traq-webhook-converter.monitor.svc.cluster.local/'
+
+grafana:
+  enabled: false
+  forceDeployDatasource: true
+
+defaultDashboards:
+  defaultTimezone: Asia/Tokyo
+  labels:
+    grafana_dashboard: "1"
+
+vmsingle:
+  # https://docs.victoriametrics.com/operator/api#vmsinglespec
+  spec:
+    extraArgs:
+      maxLabelsPerTimeseries: "100"
+    retentionPeriod: 35d
+    storage:
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 10Gi
+
+vmagent:
+  # https://docs.victoriametrics.com/operator/api/index.html#vmagentspec
+  spec:
+    # Select all monitoring resources in the cluster (e.g. VMServiceScrape)
+    selectAllByDefault: true
+    scrapeInterval: 1m
+    inlineScrapeConfig: |
+      - job_name: s3
+        metrics_path: /probe
+        http_sd_configs:
+          - url: http://s3-exporter.monitor.svc.cluster.local/discovery
+        scrape_interval: 1h
+
+vmalert:
+  spec:
+    evaluationInterval: 1m
+
+kubelet:
+  vmScrape:
+    spec:
+      interval: 1m
+
+kubeControllerManager:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kube-state-metrics:
+  extraArgs:
+    - >-
+      --metric-labels-allowlist=nodes=[
+      karpenter.sh/nodepool,
+      node.kubernetes.io/instance-type,
+      karpenter.sh/capacity-type,
+      topology.kubernetes.io/region,
+      topology.kubernetes.io/zone
+      ]
+
+prometheus-node-exporter:
+  prometheus:
+    monitor:
+      attachMetadata:
+        node: true
+      relabelings:
+        - action: replace
+          sourceLabels: [__meta_kubernetes_pod_node_name]
+          targetLabel: nodename
+        - action: replace
+          sourceLabels: [__meta_kubernetes_node_label_karpenter_sh_nodepool]
+          targetLabel: nodepool
+
+victoria-metrics-operator:
+  operator:
+    # Convert ServiceMonitor into VMServiceScrape with ownerReferences
+    enable_converter_ownership: true

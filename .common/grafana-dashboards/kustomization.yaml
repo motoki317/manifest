@@ -1,0 +1,19 @@
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: grafana-dashboards
+    files:
+      - container-logs.json
+      - containers.json
+      - events.json
+      - hpa.json
+      - main.json
+      - nodes-overview.json
+      - opencost.json
+      - persistent-volumes.json
+      - traefik.json
+      - traefik-logs.json
+      - victoria-logs.json

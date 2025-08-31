@@ -1,0 +1,21 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMProbe
+metadata:
+  name: ssl
+
+spec:
+  jobName: ssl
+  vmProberSpec:
+    url: ssl-exporter.monitor.svc.cluster.local
+  interval: 5m
+  scrapeTimeout: 10s
+  targets:
+    staticConfig:
+      targets:
+        - toki317.dev
+        - bot-console.ns.toki317.dev
+        - japari.toki317.dev
+        - monitor.toki317.dev
+        - q.toki317.dev
+        - wiki.toki317.dev
+        - drive.toki317.dev

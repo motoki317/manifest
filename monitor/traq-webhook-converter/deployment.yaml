@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traq-webhook-converter
+
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: traq-webhook-converter
+  template:
+    metadata:
+      labels:
+        app: traq-webhook-converter
+    spec:
+      enableServiceLinks: false
+      volumes:
+        - name: config
+          configMap:
+            name: traq-webhook-converter
+      containers:
+        - name: traq-webhook-converter
+          image: ghcr.io/motoki317/traq-webhook-converter:0.1.0
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          args:
+            - -config=/config.yaml
+          envFrom:
+            - secretRef:
+                name: traq-webhook-converter
+          volumeMounts:
+            - name: config
+              subPath: config.yaml
+              mountPath: /config.yaml

@@ -1,0 +1,80 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMRule
+metadata:
+  name: rules
+
+spec:
+  groups:
+    - name: services
+      rules:
+        - alert: probe_success
+          expr: >-
+            probe_success{job="blackbox"} < 1
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Service is down"
+            description: "Service is down for {{ $labels.instance }}"
+            # runbook_url: ""
+
+        - alert: duration
+          expr: >-
+            sum by (instance) (probe_http_duration_seconds{job="blackbox"}) > 8
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Service is responding slowly"
+            description: "Service response time is {{ $value }} for {{ $labels.instance }}"
+            # runbook_url: ""
+
+    - name: domain
+      rules:
+        - alert: domain_expiry
+          expr: >-
+            domain_expiry_days < 7
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Domain expiry is less than 7 days"
+            description: "Domain expires in {{ $value }} for {{ $labels.instance }}"
+            # runbook_url: ""
+
+    - name: ssl
+      rules:
+        - alert: ssl_expiry
+          expr: >-
+            ssl_cert_not_after - time() < 86400 * 317
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "SSL certificate is expiring soon"
+            description: "{{ $labels.instance }} のSSL証明書の有効期限が7日以内/期限切れ、または取得出来ません"
+            # runbook_url: ""
+
+    - name: nodes
+      rules:
+        - alert: disk
+          expr: >-
+            (1 - (node_filesystem_avail_bytes{device=~"/dev/.*"} / node_filesystem_size_bytes{device=~"/dev/.*"})) > 0.95
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Node disk is filling up"
+            description: "Disk for {{ $labels.node }} / {{ $labels.device }} is at {{ $value }}%"
+            # runbook_url: ""
+
+        - alert: major_page_faults
+          expr: >-
+            rate(node_vmstat_pgmajfault[5m]) > 1000
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Node is experiencing major page faults"
+            description: "{{ $labels.instance }} のメモリ負荷が高くなっています"
+            # runbook_url: ""

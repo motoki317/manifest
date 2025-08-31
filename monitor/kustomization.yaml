@@ -1,13 +1,38 @@
+helmCharts:
+  # Add ServiceMonitor CRD which is widely used in community charts
+  - repo: https://prometheus-community.github.io/helm-charts
+    name: prometheus-operator-crds
+    version: "23.0.0"
+    includeCRDs: true
+    namespace: monitor
+    releaseName: crds
+    valuesInline: {}
+
+  - repo: https://grafana.github.io/helm-charts
+    name: grafana
+    version: "9.4.0"
+    includeCRDs: true
+    namespace: monitor
+    releaseName: grafana
+    valuesFile: values-grafana.yaml
+
+  - repo: https://victoriametrics.github.io/helm-charts/
+    name: victoria-metrics-k8s-stack
+    version: "0.59.3"
+    includeCRDs: true
+    namespace: monitor
+    releaseName: vms
+    valuesFile: values-vms.yaml
+
 resources:
-  - beyla
+  - ../.common/grafana-dashboards
+  - ../.common/grafana-dashboards-misc
   - blackbox-exporter
   - domain-exporter
-  - grafana
-  - kube-state-metrics
-  - node-exporter
-  - pushgateway
+  - probes
+  - rules
   - s3-exporter
   - ssl-exporter
   - switchbot-exporter
-  - tempo
-  - victoria-metrics
+  - traq-webhook-converter
+  - ingress-route.yaml

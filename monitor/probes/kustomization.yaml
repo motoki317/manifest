@@ -1,0 +1,5 @@
+resources:
+  - blackbox.yaml
+  - domain.yaml
+  - s3.yaml
+  - ssl.yaml

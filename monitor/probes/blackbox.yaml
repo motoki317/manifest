@@ -1,0 +1,27 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMProbe
+metadata:
+  name: blackbox
+
+spec:
+  jobName: blackbox
+  vmProberSpec:
+    url: blackbox-exporter.monitor.svc.cluster.local
+  module: http_check
+  interval: 1m
+  scrapeTimeout: 10s
+  targets:
+    staticConfig:
+      targets:
+        - https://toki317.dev/
+        - https://bot-console.ns.toki317.dev/
+        - https://japari.toki317.dev/
+        - https://q.toki317.dev/
+        - https://wiki.toki317.dev/
+        - https://drive.toki317.dev/
+        - https://ns.toki317.dev/
+        - https://cd.toki317.dev/
+        - https://workflow.toki317.dev/
+        - https://traefik.toki317.dev/
+        - https://monitor.toki317.dev/
+        - https://monitor-nodes.toki317.dev/

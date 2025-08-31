@@ -1,5 +1,6 @@
 resources:
-  - app.yaml
   - certificate.yaml
+  - deployment.yaml
   - ingress-route.yaml
+  - service.yaml
   - service-monitor.yaml

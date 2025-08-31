@@ -1,0 +1,6 @@
+template: |
+  ### [{{ .CommonLabels.severity | toUpper }}] {{ .CommonAnnotations.summary }}{{ if eq .Status "firing" }} (x{{ .Alerts.Firing | len }}){{ end }}
+  *Runbook:* {{ .CommonAnnotations.runbook_url }}
+  {{- range $idx, $alert := .Alerts }}
+  - {{ .Annotations.description }}
+  {{- end }}

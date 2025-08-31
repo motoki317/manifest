@@ -1,0 +1,47 @@
+deploymentStrategy:
+  type: RollingUpdate
+  # Avoid ebs "Multi-attach error"
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 1
+
+grafana.ini:
+  server:
+    root_url: https://monitor.toki317.dev/
+  auth.proxy:
+    enabled: true
+    header_name: X-Forwarded-User
+    header_property: email
+    auto_sign_up: true
+    sync_ttl: 60
+    enable_login_token: false
+  # Auto-assign *organization* roles (NOT Grafana Admin) to SSO users
+  users:
+    auto_assign_org: true
+    auto_assign_org_role: Viewer # Viewer, Editor, or Admin
+  # NOTE: To make users into "Grafana Admin", first retrieve user id inside the pod:
+  #  curl -v -u "admin:$GF_SECURITY_ADMIN_PASSWORD" "http://localhost:3000/api/users/lookup?loginOrEmail=example@example.com"
+  # Then make this user into Grafana Admin:
+  #  curl -v -u "admin:$GF_SECURITY_ADMIN_PASSWORD" -X PUT -H "Content-Type: application/json" -d '{"isGrafanaAdmin": true}' "http://localhost:3000/api/admin/users/<user-id>/permissions"
+
+persistence:
+  enabled: true
+  size: 1Gi
+
+plugins:
+  - victoriametrics-logs-datasource
+
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "1"
+    searchNamespace: ALL
+  datasources:
+    enabled: true
+    label: grafana_datasource
+    labelValue: "1"
+    searchNamespace: ALL
+
+serviceMonitor:
+  enabled: true

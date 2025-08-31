@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: hds-osc
+
+spec:
+  selector:
+    matchLabels:
+      app: hds-osc
+  endpoints:
+    - port: metrics
+      interval: 5s
+      honorLabels: true

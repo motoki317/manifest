@@ -35,4 +35,5 @@ resources:
   - ssl-exporter
   - switchbot-exporter
   - traq-webhook-converter
+  - certificate.yaml
   - ingress-route.yaml

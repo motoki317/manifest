@@ -2,15 +2,28 @@ apiVersion: v1
 kind: Service
 metadata:
   name: game
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "3000"
+  labels:
+    app: game
 
 spec:
   type: ClusterIP
-  ports:
-    - port: 3000
-      name: http
-      targetPort: http
   selector:
     app: game
+  ports:
+    - name: http
+      port: 3000
+      targetPort: http
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: game
+
+spec:
+  selector:
+    matchLabels:
+      app: game
+  endpoints:
+    - port: http
+      interval: 1m

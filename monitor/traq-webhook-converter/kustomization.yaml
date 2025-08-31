@@ -2,5 +2,10 @@ resources:
   - deployment.yaml
   - service.yaml
 
+configMapGenerator:
+  - name: traq-webhook-converter
+    files:
+      - config/config.yaml
+
 generators:
   - ksops.yaml

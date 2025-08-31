@@ -8,6 +8,7 @@ spec:
   extraArgs:
     http.pathPrefix: /
     remoteWrite.disablePathAppend: "true"
+    notifier.blackhole: "true"
   image:
     # renovate:image-tag imageName=victoriametrics/vmalert
     tag: "v1.124.0"

@@ -142,7 +142,23 @@ alloy:
       
       otelcol.receiver.loki "gcp_logs" {
         output {
+          logs = [otelcol.processor.transform.gcp_logs.input]
+        }
+      }
+      
+      otelcol.processor.transform "gcp_logs" {
+        log_statements {
+          context = "log"
+          statements = [
+            `set(parsed, ParseJSON(body))`,
+            `set(body, parsed)`,
+          ]
+        }
+      
+        output {
+          metrics = [otelcol.processor.memory_limiter.gcp_logs.input]
           logs = [otelcol.processor.memory_limiter.gcp_logs.input]
+          traces = [otelcol.processor.memory_limiter.gcp_logs.input]
         }
       }
       

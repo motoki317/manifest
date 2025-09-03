@@ -150,8 +150,8 @@ alloy:
         log_statements {
           context = "log"
           statements = [
-            `set(parsed, ParseJSON(body))`,
-            `set(body, parsed)`,
+            `set(cache["parsed"], ParseJSON(body))`,
+            `set(body, cache["parsed"])`,
           ]
         }
       

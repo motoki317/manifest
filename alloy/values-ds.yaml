@@ -149,6 +149,9 @@ alloy:
       otelcol.processor.transform "gcp_logs" {
         log_statements {
           context = "log"
+          conditions = [
+            `Substring(body, 0, 1) == "{"`,
+          ]
           statements = [
             `set(cache["parsed"], ParseJSON(body))`,
             `set(body, cache["parsed"])`,

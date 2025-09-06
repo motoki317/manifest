@@ -33,7 +33,6 @@
       ],
       "matchStrings": [
         // Example:
-        // # renovate:image-full
         // fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.40.8-p1"
         "# renovate:image-full\n.*?\"(?<packageName>[^\\s:]+):(?<currentValue>.+)\"",
       ],
@@ -46,7 +45,7 @@
       ],
       "matchStrings": [
         // Example:
-        // # renovate:image-tag imageName=ghcr.io/traptitech/traq
+        // # ... imageName=ghcr.io/traptitech/traq
         // fooTag: "0.35.5-p1"
         "# renovate:image-tag imageName=(?<packageName>\\S+)\n.*?\"(?<currentValue>.+)\"",
       ],
@@ -68,6 +67,6 @@
         "# renovate:github-url\n.*?https://github\\.com/(?<depName>[^/]+/[^/]+)/archive/(?<currentValue>[^/]+)\.zip",
       ],
       "datasourceTemplate": "github-releases",
-    }
+    },
   ]
 }

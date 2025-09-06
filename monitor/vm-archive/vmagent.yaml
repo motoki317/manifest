@@ -8,7 +8,7 @@ spec:
     promscrape.dropOriginalLabels: "true"
     promscrape.streamParse: "true"
   image:
-    # renovate:image-tag imageName=victoriametrics/vmagent
+    # renovate:image-tag imageName=docker.io/victoriametrics/vmagent
     tag: "v1.124.0"
   port: "8429"
   remoteWrite:

@@ -59,7 +59,7 @@ jobs:
           echo "LOG_LEVEL=${{ github.event.inputs.logLevel || env.LOG_LEVEL }}" >> "${GITHUB_ENV}"
 
       - name: Renovate
-        uses: renovatebot/github-action@v43.0.10
+        uses: renovatebot/github-action@v43.0.9
         with:
           renovate-image: "ghcr.io/renovatebot/renovate"
           renovate-version: "latest"
@@ -67,4 +67,5 @@ jobs:
           token: "${{ steps.generate-token.outputs.token }}"
         env:
           # Envs prefixed with "RENOVATE_" are passed to renovate container
-          RENOVATE_DOCKER_TOKEN: "${{ secrets.RENOVATE_DOCKER_TOKEN }}"
+          RENOVATE_DOCKER_IO_TOKEN: "${{ secrets.RENOVATE_DOCKER_IO_TOKEN }}"
+          RENOVATE_GHCR_IO_TOKEN: "${{ secrets.RENOVATE_DOCKER_TOKEN }}"

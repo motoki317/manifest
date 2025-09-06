@@ -7,9 +7,15 @@ module.exports = {
   "hostRules": [
     {
       "hostType": "docker",
+      "matchHost": "docker.io",
+      "username": "motoki317",
+      "password": process.env.RENOVATE_DOCKER_IO_TOKEN,
+    },
+    {
+      "hostType": "docker",
       "matchHost": "ghcr.io",
       "username": "motoki317",
-      "password": process.env.RENOVATE_DOCKER_TOKEN,
+      "password": process.env.RENOVATE_GHCR_IO_TOKEN,
     }
   ],
 }

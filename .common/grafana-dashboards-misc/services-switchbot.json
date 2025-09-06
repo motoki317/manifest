@@ -887,7 +887,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (device_name) (switchbot_plug_power{device_name=~\"$plug\"})",
+          "expr": "avg_over_time(avg by (device_name) (switchbot_plug_power{device_name=~\"$plug\"})[1h])",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -895,7 +895,7 @@
           "refId": "A"
         }
       ],
-      "title": "Current Power",
+      "title": "Current Power (1h avg)",
       "transparent": true,
       "type": "piechart"
     },
@@ -1361,5 +1361,5 @@
   "timezone": "",
   "title": "Services / SwitchBot",
   "uid": "uUQpBhH7z",
-  "version": 3
+  "version": 4
 }

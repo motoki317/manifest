@@ -35,11 +35,9 @@
         // Example:
         // # renovate:image-full
         // fooImage: "ghcr.io/motoki317/k8s-csi-s3:0.40.8-p1"
-        "# renovate:image-full\n.*?\"(?<registryUrl>[^\\s/]+)/(?<depName>[^\\s:]+):(?<currentValue>.+)\"",
+        "# renovate:image-full\n.*?\"(?<packageName>[^\\s:]+):(?<currentValue>.+)\"",
       ],
       "datasourceTemplate": "docker",
-      "registryUrlTemplate": "https://{{{registryUrl}}}",
-      "depNameTemplate": "{{{registryUrl}}}/{{{depName}}}",
     },
     {
       "description": "OCI image dependencies (tag)",
@@ -50,11 +48,9 @@
         // Example:
         // # renovate:image-tag imageName=ghcr.io/traptitech/traq
         // fooTag: "0.35.5-p1"
-        "# renovate:image-tag imageName=(?<registryUrl>[^\\s/]+)/(?<depName>\\S+)\n.*?\"(?<currentValue>.+)\"",
+        "# renovate:image-tag imageName=(?<packageName>\\S+)\n.*?\"(?<currentValue>.+)\"",
       ],
-      "datasourceTemplate": "docker",
-      "registryUrlTemplate": "https://{{{registryUrl}}}",
-      "depNameTemplate": "{{{registryUrl}}}/{{{depName}}}"
+      "datasourceTemplate": "docker"
     },
     {
       "description": "GitHub URL dependencies",

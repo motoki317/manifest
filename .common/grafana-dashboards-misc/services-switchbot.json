@@ -804,8 +804,8 @@
     "list": [
       {
         "current": {
-          "text": "Prometheus",
-          "value": "70XbdJRnk"
+          "text": "vm-archive",
+          "value": "vm-archive"
         },
         "name": "datasource",
         "options": [],
@@ -845,5 +845,5 @@
   "timezone": "",
   "title": "Services / SwitchBot",
   "uid": "uUQpBhH7z",
-  "version": 1
+  "version": 2
 }

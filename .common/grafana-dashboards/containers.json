@@ -2443,7 +2443,7 @@
       {
         "current": {
           "text": "VictoriaMetrics",
-          "value": "P4169E866C3094E38"
+          "value": "victoria-metrics"
         },
         "name": "datasource",
         "options": [],

@@ -18,7 +18,7 @@
   "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 434,
+  "id": 856,
   "links": [
     {
       "asDropdown": false,
@@ -97,7 +97,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -106,7 +106,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}[$__range]))",
+          "expr": "sum(increase(traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -175,7 +175,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -184,7 +184,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(\r\n    sum(increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code!~\"5..\", le=\"0.3\"}\r\n        , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n    [$__range]))\r\n    +\r\n    sum(increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code!~\"5xx\", le=\"1.2\"}\r\n        , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n    [$__range]))\r\n) / 2\r\n/ \r\nsum(increase(\r\n    label_replace(\r\n        traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}\r\n    , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n[$__range]))",
+          "expr": "(\r\n    sum(increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", code!~\"5..\", le=\"0.3\"}\r\n        , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n    [$__range]))\r\n    +\r\n    sum(increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", code!~\"5xx\", le=\"1.2\"}\r\n        , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n    [$__range]))\r\n) / 2\r\n/ \r\nsum(increase(\r\n    label_replace(\r\n        traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}\r\n    , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -245,7 +245,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -254,7 +254,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code!~\"5..\"}[$__range]))\r\n/\r\nsum(increase(traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}[$__range]))",
+          "expr": "sum(increase(traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code!~\"5..\"}[$__range]))\r\n/\r\nsum(increase(traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -327,7 +327,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -336,7 +336,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(\r\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__range]))\r\n-\r\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"$slow_threshold\"}[$__range]))\r\n)\r\n/\r\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__range]))",
+          "expr": "(\r\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__range]))\r\n-\r\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"$slow_threshold\"}[$__range]))\r\n)\r\n/\r\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -404,7 +404,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -413,7 +413,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"5..\"}[$__range]))",
+          "expr": "sum(increase(traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"5..\"}[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -486,7 +486,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -495,7 +495,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__range]))\r\n-\r\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"$slow_threshold\"}[$__range]))",
+          "expr": "sum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__range]))\r\n-\r\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"$slow_threshold\"}[$__range]))",
           "instant": true,
           "legendFormat": "__auto",
           "range": false,
@@ -597,7 +597,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -605,7 +605,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "(\r\n    sum by ($group_by) (increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code!~\"5..\", le=\"0.3\"}\r\n        , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n    [$__rate_interval]))\r\n    +\r\n    sum by ($group_by) (increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code!~\"5..\", le=\"1.2\"}\r\n        , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n    [$__rate_interval]))\r\n) / 2\r\n/ \r\nsum by ($group_by) (increase(\r\n    label_replace(\r\n        traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}\r\n    , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n[$__rate_interval]))",
+          "expr": "(\r\n    sum by ($group_by) (increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", code!~\"5..\", le=\"0.3\"}\r\n        , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n    [$__rate_interval]))\r\n    +\r\n    sum by ($group_by) (increase(\r\n        label_replace(\r\n            traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", code!~\"5..\", le=\"1.2\"}\r\n        , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n    [$__rate_interval]))\r\n) / 2\r\n/ \r\nsum by ($group_by) (increase(\r\n    label_replace(\r\n        traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}\r\n    , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n[$__rate_interval]))",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -696,7 +696,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -704,7 +704,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -810,7 +810,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -819,7 +819,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "histogram_quantile(0.99, sum by (le, $group_by) (rate(\r\n    label_replace(\r\n    traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n    , \"namespace\", \"$1\", \"exported_service\", \"([a-z]+)-.+\")\r\n[$__rate_interval])))",
+          "expr": "histogram_quantile(0.99, sum by (le, $group_by) (rate(\r\n    label_replace(\r\n    traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\"}\r\n    , \"namespace\", \"$1\", \"service\", \"([a-z]+)-.+\")\r\n[$__rate_interval])))",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -895,7 +895,7 @@
           "unit": "s"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -904,7 +904,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum by (le) (increase(\r\n    traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n[$__rate_interval]))",
+          "expr": "sum by (le) (increase(\r\n    traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\"}\r\n[$__rate_interval]))",
           "format": "heatmap",
           "hide": false,
           "instant": false,
@@ -1001,7 +1001,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1010,7 +1010,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "(\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))\n-\nsum by (le) (increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le!=\"+Inf\"}[$__rate_interval]))\n)\n/\nsum(increase(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))",
+          "expr": "(\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))\n-\nsum by (le) (increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le!=\"+Inf\"}[$__rate_interval]))\n)\n/\nsum(increase(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1106,7 +1106,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1115,7 +1115,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "(\nsum(rate(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))\n-\nsum by (le) (rate(traefik_service_request_duration_seconds_bucket{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", le!=\"+Inf\"}[$__rate_interval]))\n)",
+          "expr": "(\nsum(rate(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le=\"+Inf\"}[$__rate_interval]))\n-\nsum by (le) (rate(traefik_service_request_duration_seconds_bucket{service=~\"$namespace-.+\", service=~\"$service\", le!=\"+Inf\"}[$__rate_interval]))\n)",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -1223,7 +1223,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1231,7 +1231,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"5..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"5..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1325,7 +1325,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1333,7 +1333,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"5..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"5..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1425,7 +1425,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1433,7 +1433,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"3..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"3..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "interval": "",
           "legendFormat": "__auto",
           "range": true,
@@ -1528,7 +1528,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1536,7 +1536,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"3..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"3..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "legendFormat": "{{ $group_by }} (3xx)",
           "range": true,
           "refId": "A"
@@ -1628,7 +1628,7 @@
           "sort": "asc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1636,7 +1636,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"4..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"4..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)\r\n/\r\nsum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "interval": "",
           "legendFormat": "__auto",
           "range": true,
@@ -1731,7 +1731,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1739,7 +1739,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\", code=~\"4..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n)",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        increase(\r\n          traefik_service_requests_total{service=~\"$namespace-.+\", service=~\"$service\", code=~\"4..\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n)",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -1844,7 +1844,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -1959,7 +1959,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2072,7 +2072,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2179,7 +2179,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2285,7 +2285,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2390,7 +2390,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2494,7 +2494,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2502,7 +2502,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_bytes_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n) * 8",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_requests_bytes_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n) * 8",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2593,7 +2593,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.1.0",
+      "pluginVersion": "12.1.1",
       "targets": [
         {
           "datasource": {
@@ -2601,7 +2601,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_responses_bytes_total{exported_service=~\"$namespace-.+\", exported_service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"exported_service\", \"^([a-z]+)-.+\")\r\n) * 8",
+          "expr": "sum by ($group_by) (\r\n    label_replace(\r\n        rate(\r\n          traefik_service_responses_bytes_total{service=~\"$namespace-.+\", service=~\"$service\"}\r\n      [$__rate_interval])\r\n    , \"namespace\", \"$1\", \"service\", \"^([a-z]+)-.+\")\r\n) * 8",
           "legendFormat": "__auto",
           "range": true,
           "refId": "A"
@@ -2623,7 +2623,7 @@
       {
         "current": {
           "text": "VictoriaMetrics",
-          "value": "P4169E866C3094E38"
+          "value": "victoria-metrics"
         },
         "name": "datasource",
         "options": [],
@@ -2650,7 +2650,7 @@
             "value": "exported_service"
           }
         ],
-        "query": "namespace, service : exported_service",
+        "query": "namespace, service",
         "type": "custom"
       },
       {
@@ -2664,13 +2664,13 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(traefik_service_requests_total,exported_service)",
+        "definition": "label_values(traefik_service_requests_total,service)",
         "includeAll": true,
         "name": "namespace",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(traefik_service_requests_total,exported_service)",
+          "query": "label_values(traefik_service_requests_total,service)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
@@ -2687,7 +2687,7 @@
           "type": "prometheus",
           "uid": "${datasource}"
         },
-        "definition": "label_values(traefik_service_requests_total{exported_service=~\"$namespace-.+\"},exported_service)",
+        "definition": "label_values(traefik_service_requests_total{service=~\"$namespace-.+\"},service)",
         "description": "",
         "includeAll": true,
         "multi": true,
@@ -2695,7 +2695,7 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(traefik_service_requests_total{exported_service=~\"$namespace-.+\"},exported_service)",
+          "query": "label_values(traefik_service_requests_total{service=~\"$namespace-.+\"},service)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -2745,5 +2745,5 @@
   "timezone": "browser",
   "title": "Cluster / Traefik",
   "uid": "e800400a-6e52-48db-95aa-1592f8dc167a",
-  "version": 25
+  "version": 2
 }

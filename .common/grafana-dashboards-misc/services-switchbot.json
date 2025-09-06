@@ -21,10 +21,10 @@
       }
     ]
   },
-  "editable": true,
+  "editable": false,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 30,
+  "id": 90,
   "links": [],
   "panels": [
     {
@@ -101,7 +101,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "switchbot_temperature{device_name=~\"$device\"}",
+          "expr": "avg by (device_name) (switchbot_temperature{device_name=~\"$device\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -187,7 +187,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "(switchbot_humidity{device_name=~\"$device\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$device\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$device\"} + 273.15) * 18.01528",
+          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$device\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$device\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$device\"} + 273.15) * 18.01528\r\n)",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -273,7 +273,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "0.81 * switchbot_temperature{device_name=~\"$device\"} + 0.01 * switchbot_humidity{device_name=~\"$device\"} * (0.99 * switchbot_temperature{device_name=~\"$device\"} - 14.3) + 46.3",
+          "expr": "avg by (device_name) (\r\n0.81 * switchbot_temperature{device_name=~\"$device\"} + 0.01 * switchbot_humidity{device_name=~\"$device\"} * (0.99 * switchbot_temperature{device_name=~\"$device\"} - 14.3) + 46.3\r\n)",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -845,5 +845,5 @@
   "timezone": "",
   "title": "Services / SwitchBot",
   "uid": "uUQpBhH7z",
-  "version": 20
+  "version": 1
 }

@@ -21,12 +21,25 @@
       }
     ]
   },
-  "editable": false,
+  "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 90,
   "links": [],
   "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 13,
+      "panels": [],
+      "title": "Meters",
+      "type": "row"
+    },
     {
       "datasource": {
         "type": "prometheus",
@@ -73,7 +86,7 @@
         "h": 8,
         "w": 8,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 8,
       "options": {
@@ -101,7 +114,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (device_name) (switchbot_temperature{device_name=~\"$device\"})",
+          "expr": "avg by (device_name) (switchbot_temperature{device_name=~\"$meter\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -159,7 +172,7 @@
         "h": 8,
         "w": 8,
         "x": 8,
-        "y": 0
+        "y": 1
       },
       "id": 10,
       "options": {
@@ -187,7 +200,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$device\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$device\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$device\"} + 273.15) * 18.01528\r\n)",
+          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$meter\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$meter\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$meter\"} + 273.15) * 18.01528\r\n)",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -245,7 +258,7 @@
         "h": 8,
         "w": 8,
         "x": 16,
-        "y": 0
+        "y": 1
       },
       "id": 11,
       "options": {
@@ -273,7 +286,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "avg by (device_name) (\r\n0.81 * switchbot_temperature{device_name=~\"$device\"} + 0.01 * switchbot_humidity{device_name=~\"$device\"} * (0.99 * switchbot_temperature{device_name=~\"$device\"} - 14.3) + 46.3\r\n)",
+          "expr": "avg by (device_name) (\r\n0.81 * switchbot_temperature{device_name=~\"$meter\"} + 0.01 * switchbot_humidity{device_name=~\"$meter\"} * (0.99 * switchbot_temperature{device_name=~\"$meter\"} - 14.3) + 46.3\r\n)",
           "instant": true,
           "interval": "",
           "legendFormat": "{{ device_name }}",
@@ -346,7 +359,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 2,
       "options": {
@@ -373,7 +386,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (device_name) (switchbot_temperature{device_name=~\"$device\"})",
+          "expr": "avg by (device_name) (switchbot_temperature{device_name=~\"$meter\"})",
           "interval": "",
           "legendFormat": "{{ device_name }}",
           "range": true,
@@ -446,7 +459,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 9
       },
       "id": 3,
       "options": {
@@ -473,7 +486,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (device_name) (switchbot_humidity{device_name=~\"$device\"})",
+          "expr": "avg by (device_name) (switchbot_humidity{device_name=~\"$meter\"})",
           "interval": "",
           "legendFormat": "{{ device_name }}",
           "range": true,
@@ -558,9 +571,9 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
+        "w": 8,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 4,
       "options": {
@@ -587,7 +600,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (device_name) (\r\n0.81 * switchbot_temperature{device_name=~\"$device\"} + 0.01 * switchbot_humidity{device_name=~\"$device\"} * (0.99 * switchbot_temperature{device_name=~\"$device\"} - 14.3) + 46.3\r\n)",
+          "expr": "avg by (device_name) (\r\n0.81 * switchbot_temperature{device_name=~\"$meter\"} + 0.01 * switchbot_humidity{device_name=~\"$meter\"} * (0.99 * switchbot_temperature{device_name=~\"$meter\"} - 14.3) + 46.3\r\n)",
           "interval": "",
           "legendFormat": "{{ device_name }}",
           "range": true,
@@ -657,9 +670,9 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 17
+        "w": 8,
+        "x": 8,
+        "y": 18
       },
       "id": 5,
       "options": {
@@ -686,7 +699,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$device\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$device\"} + 273.15)))) * 133.32 / 100\r\n)",
+          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$meter\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$meter\"} + 273.15)))) * 133.32 / 100\r\n)",
           "interval": "",
           "legendFormat": "{{ device_name }}",
           "range": true,
@@ -756,9 +769,9 @@
       },
       "gridPos": {
         "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 26
+        "w": 8,
+        "x": 16,
+        "y": 18
       },
       "id": 6,
       "options": {
@@ -785,7 +798,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$device\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$device\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$device\"} + 273.15) * 18.01528\r\n)",
+          "expr": "avg by (device_name) (\r\n(switchbot_humidity{device_name=~\"$meter\"} / 100) * (2.718 ^ (20.386 - (5132 / (switchbot_temperature{device_name=~\"$meter\"} + 273.15)))) * 133.32 / 8.314 / (switchbot_temperature{device_name=~\"$meter\"} + 273.15) * 18.01528\r\n)",
           "interval": "",
           "legendFormat": "{{ device_name }}",
           "range": true,
@@ -793,6 +806,481 @@
         }
       ],
       "title": "Absolute Humidity (g/m^3)",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 27
+      },
+      "id": 14,
+      "panels": [],
+      "title": "Plugs",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 12,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg by (device_name) (switchbot_plug_power{device_name=~\"$plug\"})",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{ device_name }}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Current Power",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 20,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum_over_time(\r\n(\r\n  avg by (device_name) (switchbot_plug_power{device_name=~\"$plug\"})\r\n)\r\n[$__range:$__rate_interval]) / (1h / $__rate_interval)",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{ device_name }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Power Total",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 35,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "#EAB839",
+                "value": 300
+              },
+              {
+                "color": "red",
+                "value": 750
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 16,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg by (device_name) (switchbot_plug_power{device_name=~\"$plug\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ device_name }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Power",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "volt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 49
+      },
+      "id": 17,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg by (device_name) (switchbot_plug_voltage{device_name=~\"$plug\"})",
+          "interval": "",
+          "legendFormat": "{{ device_name }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Voltage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "amp"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 49
+      },
+      "id": 18,
+      "options": {
+        "legend": {
+          "calcs": [
+            "last"
+          ],
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "avg by (device_name) (switchbot_plug_current{device_name=~\"$plug\"} / 1000)",
+          "interval": "",
+          "legendFormat": "{{ device_name }}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Amperage",
       "type": "timeseries"
     }
   ],
@@ -825,11 +1313,39 @@
         },
         "definition": "label_values(switchbot_temperature, device_name)",
         "includeAll": true,
-        "name": "device",
+        "name": "meter",
         "options": [],
         "query": {
           "query": "label_values(switchbot_temperature, device_name)",
           "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "allValue": ".+",
+        "current": {
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${datasource}"
+        },
+        "definition": "label_values(switchbot_plug_voltage,device_name)",
+        "includeAll": true,
+        "multi": true,
+        "name": "plug",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(switchbot_plug_voltage,device_name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
@@ -845,5 +1361,5 @@
   "timezone": "",
   "title": "Services / SwitchBot",
   "uid": "uUQpBhH7z",
-  "version": 2
+  "version": 3
 }

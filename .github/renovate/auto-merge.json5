@@ -17,6 +17,7 @@
       "matchDepNames": [
         "ghcr.io/lowlighter/metrics",
         "ghcr.io/renovatebot/renovate",
+        ".*victoriametrics.*",
       ]
     }
   ]

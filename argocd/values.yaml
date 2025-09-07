@@ -32,11 +32,13 @@ repoServer:
             *) echo "unsupported arch: $(uname -m)"; exit 1 ;;
           esac
           # renovate:general datasource=github-releases depName=viaduct-ai/kustomize-sops
-          # VERSION="4.4.0"
-          # URL="https://github.com/viaduct-ai/kustomize-sops/releases/download/v${VERSION}/ksops_${VERSION}_Linux_${ARCH}.tar.gz"
+          # VERSION="v4.4.0"
+          # VERSION_STRIPPED="${VERSION#v}"
+          # URL="https://github.com/viaduct-ai/kustomize-sops/releases/download/${VERSION}/ksops_${VERSION_STRIPPED}_Linux_${ARCH}.tar.gz"
           # renovate:general datasource=github-releases depName=motoki317/kustomize-sops
-          VERSION="4.4.1"
-          URL="https://github.com/motoki317/kustomize-sops/releases/download/v${VERSION}/ksops_${VERSION}_Linux_${ARCH}.tar.gz"
+          VERSION="v4.4.1"
+          VERSION_STRIPPED="${VERSION#v}"
+          URL="https://github.com/motoki317/kustomize-sops/releases/download/${VERSION}/ksops_${VERSION_STRIPPED}_Linux_${ARCH}.tar.gz"
           curl -fsSL -o ksops.tar.gz "${URL}"
           tar -C /custom-tools -xzf ksops.tar.gz ksops
           chmod +x /custom-tools/ksops

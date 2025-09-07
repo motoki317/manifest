@@ -20,15 +20,26 @@ repoServer:
   # 2. Use an init container to download/copy custom binaries into the emptyDir
   initContainers:
     - name: install-ksops
-      # image: viaductoss/ksops:v4.3.3
-      # https://github.com/viaduct-ai/kustomize-sops/pull/264
-      image: ghcr.io/motoki317/ksops:v4.4.0
+      image: alpine:latest
       command: ["/bin/sh", "-c"]
       args:
-        - echo "Installing KSOPS...";
-          mv ksops /custom-tools/;
-          mv kustomize /custom-tools/;
-          echo "Done.";
+        - |
+          set -eux
+          apk add --no-cache ca-certificates curl tar
+          case "$(uname -m)" in
+            x86_64|amd64) ARCH="x86_64" ;;
+            aarch64|arm64) ARCH="arm64" ;;
+            *) echo "unsupported arch: $(uname -m)"; exit 1 ;;
+          esac
+          # renovate:general datasource=github-releases depName=viaduct-ai/kustomize-sops
+          # VERSION="4.4.0"
+          # URL="https://github.com/viaduct-ai/kustomize-sops/releases/download/v${VERSION}/ksops_${VERSION}_Linux_${ARCH}.tar.gz"
+          # renovate:general datasource=github-releases depName=motoki317/kustomize-sops
+          VERSION="4.4.1"
+          URL="https://github.com/motoki317/kustomize-sops/releases/download/v${VERSION}/ksops_${VERSION}_Linux_${ARCH}.tar.gz"
+          curl -fsSL -o ksops.tar.gz "${URL}"
+          tar -C /custom-tools -xzf ksops.tar.gz ksops
+          chmod +x /custom-tools/ksops
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
@@ -38,10 +49,7 @@ repoServer:
       mountPath: /usr/local/sbin/helm
       subPath: helm
     # https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-
-    # 3. Volume mount the custom binary to the bin directory (overriding the existing version)
-    - mountPath: /usr/local/bin/kustomize
-      name: custom-tools
-      subPath: kustomize
+    # 3. Volume mount the custom binary to the bin directory
     - mountPath: /usr/local/bin/ksops
       name: custom-tools
       subPath: ksops

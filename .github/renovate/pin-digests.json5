@@ -6,5 +6,16 @@
       "matchCurrentValue": "/^main|master|latest$/",
       "pinDigests": true,
     },
+    // Ignore some dependencies that are intended to be used with "latest"
+    {
+      "matchDatasources": ["docker"],
+      "matchDepNames": [
+        "amazon/aws-cli",
+        "renovate/renovate",
+        "bitnami/kubectl",
+        "alpine",
+      ],
+      "pinDigests": false,
+    }
   ]
 }

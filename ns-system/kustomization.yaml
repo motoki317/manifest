@@ -13,3 +13,37 @@ resources:
 
 generators:
   - ksops.yaml
+
+patches:
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ns-controller
+        namespace: ns-system
+      spec:
+        template:
+          spec:
+            containers:
+              - name: controller
+                env:
+                  # https://github.com/aws/aws-sdk-go-v2/discussions/2960
+                  # https://gitlab.com/gitlab-org/charts/gitlab/-/issues/6094
+                  - name: AWS_REQUEST_CHECKSUM_CALCULATION
+                    value: WHEN_REQUIRED
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: ns-gateway
+        namespace: ns-system
+      spec:
+        template:
+          spec:
+            containers:
+              - name: gateway
+                env:
+                  # https://github.com/aws/aws-sdk-go-v2/discussions/2960
+                  # https://gitlab.com/gitlab-org/charts/gitlab/-/issues/6094
+                  - name: AWS_REQUEST_CHECKSUM_CALCULATION
+                    value: WHEN_REQUIRED

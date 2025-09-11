@@ -1,3 +1,10 @@
+global:
+  # OCI Object Storage workaround
+  # (x-amz-content-sha256 must be UNSIGNED-PAYLOAD or a valid sha256 value)
+  image:
+    repository: registry.toki317.dev/pub/
+  appVersionOverride: "main"
+
 # common defines various settings for use by all NeoShowcase components.
 common:
   additionalLinks:

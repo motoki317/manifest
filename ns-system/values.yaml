@@ -86,7 +86,7 @@ observability:
   metrics:
     type: prometheus
     prometheus:
-      endpoint: http://victoria-metrics.monitor.svc.cluster.local
+      endpoint: http://vmsingle-vms-victoria-metrics-k8s-stack.monitor.svc.cluster.local.:8428
 
 app:
   imagePullSecret: 'ns-image-pull-secret'

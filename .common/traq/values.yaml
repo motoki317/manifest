@@ -5,6 +5,7 @@ backend:
   replicas: 1
   nodeSelector: {}
   resources: {}
+  env: {}
   configMap:
     existingName: traq-config
   secret:

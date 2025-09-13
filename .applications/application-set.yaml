@@ -6,7 +6,7 @@ metadata:
 
 spec:
   syncPolicy:
-    # Important: Preserve Application resources on accidental ApplicationSet deletion
+    # Important: Preserve Application resources on accidental ApplicationSet/Application deletion
     preserveResourcesOnDeletion: true
     # Preserve Applications if directories are not discovered anymore.
     # To delete an Application itself and its resources, first delete from the git repository and then delete using cascading deletion from the UI.

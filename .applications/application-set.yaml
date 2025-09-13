@@ -9,7 +9,7 @@ spec:
     # Important: Preserve Application resources on accidental ApplicationSet deletion
     preserveResourcesOnDeletion: true
     # Preserve Applications if directories are not discovered anymore.
-    # To delete an Application itself and its resources, first delete from git repository, and then delete using cascading deletion from the UI.
+    # To delete an Application itself and its resources, first delete from the git repository and then delete using cascading deletion from the UI.
     # https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Controlling-Resource-Modification/
     applicationsSync: create-update
 

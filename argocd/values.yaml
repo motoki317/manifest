@@ -89,6 +89,8 @@ configs:
     reposerver.log.level: "warn"
     applicationsetcontroller.log.level: "warn"
     notificationscontroller.log.level: "warn"
+    # https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Controlling-Resource-Modification/
+    applicationsetcontroller.enable.policy.override: "true"
 
   secret:
     createSecret: false

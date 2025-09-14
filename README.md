@@ -113,11 +113,6 @@ Then:
 2. [Add repository from ArgoCD UI](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#github-app-credential).
 3. Create a "root" Application.
     - Replace `<your-org>/<your-repo>` in `application-set.yaml` with your actual repository names.
-    - To prevent accidental deletion of all applications, `.syncPolicy.preserveResourcesOnDeletion` is set to `true` in
-      `./dev/.applications/application-set.yaml`.
-      To properly delete Application resources, you must first empty the Application directory - that is, set
-      `resources: []` in `kustomization.yaml`.
-      https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Application-Deletion/
 4. Configure webhook on push from GitHub to `https://<your-argocd-url>/api/webhook`.
     - Set webhook "Content Type" to `application/json`.
     - https://argo-cd.readthedocs.io/en/stable/operator-manual/webhook/

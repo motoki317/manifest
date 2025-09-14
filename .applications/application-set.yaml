@@ -6,12 +6,14 @@ metadata:
 
 spec:
   syncPolicy:
-    # Important: Preserve Application resources on accidental ApplicationSet/Application deletion
+    # Prevents ArgoCD from deleting Application resources when the Application is deleted.
+    # https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/Application-Deletion/
     preserveResourcesOnDeletion: true
-    # Preserve Applications if directories are not discovered anymore.
-    # To delete an Application itself and its resources, first delete from the git repository and then delete using cascading deletion from the UI.
+    # Prevents ApplicationSet from deleting Application when it is no longer discovered.
     # https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Controlling-Resource-Modification/
     applicationsSync: create-update
+    # To properly delete an Application itself and its resources, first delete the directory from the git repository
+    # and then delete the Application using cascading deletion from the UI.
 
   ignoreApplicationDifferences: []
     # Allow temporary sync toggle

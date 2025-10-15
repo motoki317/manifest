@@ -25,7 +25,7 @@ widget:
     kubernetes.io/hostname: moto-a1-3
 
 systemBot:
-  image: ghcr.io/traptitech/traq-system-bot:1.0.0
+  image: ghcr.io/traptitech/traq-system-bot:1.1.0
   nodeSelector:
     kubernetes.io/hostname: moto-a1-3
   channelId: 0e10c15a-f147-4fbe-a85d-bde865c3861c

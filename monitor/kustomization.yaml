@@ -2,7 +2,7 @@ helmCharts:
   # Add ServiceMonitor CRD which is widely used in community charts
   - repo: https://prometheus-community.github.io/helm-charts
     name: prometheus-operator-crds
-    version: "24.0.1"
+    version: "24.0.2"
     includeCRDs: true
     namespace: monitor
     releaseName: crds

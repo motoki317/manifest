@@ -1,7 +1,7 @@
 host: q.toki317.dev
 
 backend:
-  image: ghcr.io/traptitech/traq:3.26.1
+  image: ghcr.io/traptitech/traq:3.27.1
   nodeSelector:
     kubernetes.io/hostname: moto-a1-3
   env:

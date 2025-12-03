@@ -37,8 +37,6 @@ grafana:
 
 defaultDashboards:
   defaultTimezone: Asia/Tokyo
-  labels:
-    grafana_dashboard: "1"
 
 vmsingle:
   # https://docs.victoriametrics.com/operator/api#vmsinglespec

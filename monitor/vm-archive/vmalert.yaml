@@ -11,7 +11,7 @@ spec:
     notifier.blackhole: "true"
   image:
     # renovate:image-tag imageName=docker.io/victoriametrics/vmalert
-    tag: "v1.131.0"
+    tag: "v1.132.0"
   port: "8080"
   datasource:
     url: http://vmsingle-vms-victoria-metrics-k8s-stack.monitor.svc.cluster.local.:8428

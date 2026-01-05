@@ -8,7 +8,7 @@ spec:
     maxLabelsPerTimeseries: "100"
   image:
     # renovate:image-tag imageName=docker.io/victoriametrics/victoria-metrics
-    tag: "v1.132.0"
+    tag: "v1.133.0"
   port: "8428"
   replicaCount: 1
   retentionPeriod: 100y

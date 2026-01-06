@@ -1,7 +1,7 @@
 helmCharts:
   - repo: oci://ghcr.io/traptitech/charts
     name: neoshowcase
-    version: "1.10.5"
+    version: "1.10.6"
     includeCRDs: true
     namespace: ns-system
     releaseName: ns

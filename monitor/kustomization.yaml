@@ -10,7 +10,7 @@ helmCharts:
 
   - repo: https://grafana.github.io/helm-charts
     name: grafana
-    version: "10.5.3"
+    version: "10.5.4"
     includeCRDs: true
     namespace: monitor
     releaseName: grafana

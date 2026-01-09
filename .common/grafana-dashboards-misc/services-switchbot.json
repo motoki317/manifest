@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 498,
+  "id": 606,
   "links": [],
   "panels": [
     {
@@ -1499,7 +1499,7 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "none"
+              "mode": "normal"
             },
             "thresholdsStyle": {
               "mode": "dashed"
@@ -1516,11 +1516,11 @@
               },
               {
                 "color": "#EAB839",
-                "value": 300
+                "value": 500
               },
               {
                 "color": "red",
-                "value": 750
+                "value": 1000
               }
             ]
           },

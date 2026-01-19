@@ -9,7 +9,7 @@ spec:
     promscrape.streamParse: "true"
   image:
     # renovate:image-tag imageName=docker.io/victoriametrics/vmagent
-    tag: "v1.133.0"
+    tag: "v1.134.0"
   port: "8429"
   remoteWrite:
     - url: http://vmsingle-vm-archive.monitor.svc.cluster.local.:8428/api/v1/write

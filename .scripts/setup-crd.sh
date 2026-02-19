@@ -26,7 +26,7 @@ python3 openapi2jsonschema.py https://raw.githubusercontent.com/traefik/traefik/
 python3 openapi2jsonschema.py https://github.com/cert-manager/cert-manager/releases/download/v1.19.3/cert-manager.yaml
 
 # renovate:github-url
-python3 openapi2jsonschema.py https://github.com/rancher/system-upgrade-controller/releases/download/v0.18.0/crd.yaml
+python3 openapi2jsonschema.py https://github.com/rancher/system-upgrade-controller/releases/download/v0.19.0/crd.yaml
 
 # renovate:general datasource=helm depName=prometheus-operator-crds registryUrl=https://prometheus-community.github.io/helm-charts
 helm template --include-crds --repo https://prometheus-community.github.io/helm-charts --set settings.clusterName=test prometheus-operator-crds --version "27.0.0" > crd.yaml

@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -lt 1 ]; then
   echo >&2 "Build a kustomize directory."
   echo >&2 "Usage: $0 <dir-to-build>"
   echo >&2 "Example: $0 ./dev/karpenter"
@@ -13,5 +13,7 @@ fi
 BASENAME=$(basename "$1")
 NAMESPACE="${NAMESPACE:-$BASENAME}"
 
-kustomize build "$1" --enable-alpha-plugins --enable-exec --load-restrictor LoadRestrictionsNone --enable-helm \
-  | yq ".metadata.namespace = (.metadata.namespace // \"$NAMESPACE\")"
+for dir in "$@"; do
+  kustomize build "$dir" --enable-alpha-plugins --enable-exec --load-restrictor LoadRestrictionsNone --enable-helm |
+    yq ".metadata.namespace = (.metadata.namespace // \"$NAMESPACE\")"
+done

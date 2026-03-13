@@ -1,4 +1,4 @@
-CLUSTERS := "arrove-staging arrove-production"
+CLUSTERS := "."
 
 [private]
 default:
@@ -13,9 +13,10 @@ build +dirs:
   .scripts/build.sh {{dirs}}
 
 build-all:
-  for cluster in {{CLUSTERS}}; do \
-    just build ./$cluster/*; \
-  done
+  just build ./*/
+  # for cluster in {{CLUSTERS}}; do \
+  #   just build ./$cluster/*; \
+  # done
 
 # 文法チェック
 check +dirs:
@@ -26,9 +27,10 @@ check +dirs:
 check-all:
   #!/usr/bin/env bash
   set -euo pipefail
-  for cluster in {{CLUSTERS}}; do \
-    just check ./$cluster/*; \
-  done
+  just check ./*/
+  # for cluster in {{CLUSTERS}}; do \
+  #   just check ./$cluster/*; \
+  # done
 
 # ビルド結果のdiffを見る TARGET 環境変数（デフォルト: main）で比較対象を設定
 diff +dirs:
@@ -37,6 +39,7 @@ diff +dirs:
 diff-all:
   #!/usr/bin/env bash
   set -euo pipefail
-  for cluster in {{CLUSTERS}}; do \
-    just diff ./$cluster/*; \
-  done
+  just diff ./*/
+  # for cluster in {{CLUSTERS}}; do \
+  #   just diff ./$cluster/*; \
+  # done

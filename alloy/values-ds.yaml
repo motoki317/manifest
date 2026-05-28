@@ -129,7 +129,6 @@ alloy:
           }
         }
   
-        // forward_to = [loki.write.vl.receiver, otelcol.receiver.loki.gcp_logs.receiver]
         forward_to = [loki.write.vl.receiver]
       }
       
@@ -140,71 +139,13 @@ alloy:
           url = "http://vl-victoria-logs-single-server.victoria-logs.svc.cluster.local:9428/insert/loki/api/v1/push?disable_message_parsing=1&_stream_fields=job,cluster,node,namespace,pod,container"
         }
       }
-      
-      otelcol.receiver.loki "gcp_logs" {
-        output {
-          logs = [otelcol.processor.transform.gcp_logs.input]
-        }
-      }
-      
-      otelcol.processor.transform "gcp_logs" {
-        log_statements {
-          context = "log"
-          conditions = [
-            `Substring(body, 0, 1) == "{"`,
-          ]
-          statements = [
-            `set(cache["parsed"], ParseJSON(body))`,
-            `set(body, cache["parsed"])`,
-          ]
-        }
-      
-        output {
-          metrics = [otelcol.processor.memory_limiter.gcp_logs.input]
-          logs = [otelcol.processor.memory_limiter.gcp_logs.input]
-          traces = [otelcol.processor.memory_limiter.gcp_logs.input]
-        }
-      }
-      
-      otelcol.processor.memory_limiter "gcp_logs" {
-        check_interval = "1s"
-        limit = "500MiB"
-      
-        output {
-          metrics = [otelcol.processor.batch.gcp_logs.input]
-          logs = [otelcol.processor.batch.gcp_logs.input]
-          traces = [otelcol.processor.batch.gcp_logs.input]
-        }
-      }
-      
-      otelcol.processor.batch "gcp_logs" {
-        output {
-          metrics = [otelcol.exporter.googlecloud.gcp_logs.input]
-          logs = [otelcol.exporter.googlecloud.gcp_logs.input]
-          traces = [otelcol.exporter.googlecloud.gcp_logs.input]
-        }
-      }
-      
-      otelcol.exporter.googlecloud "gcp_logs" {
-        log {
-          default_log_name = "opentelemetry.io/collector-exported-log"
-        }
-      }
 
   storagePath: /run/alloy
-  extraArgs:
-    - --feature.community-components.enabled=true
-  extraEnv:
-    - name: GOOGLE_APPLICATION_CREDENTIALS
-      value: /etc/otelcol-contrib/key.json
   mounts:
     varlog: true
     extra:
       - name: alloy
         mountPath: /run/alloy
-      - name: sa
-        mountPath: /etc/otelcol-contrib/key.json
-        subPath: key.json
 
 crds:
   create: false
@@ -221,6 +162,3 @@ controller:
       - name: alloy
         hostPath:
           path: /run/alloy-ds
-      - name: sa
-        secret:
-          secretName: sa

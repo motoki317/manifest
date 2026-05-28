@@ -17,7 +17,7 @@ alloy:
       // You can specify multiple loki.source.file components by giving them different labels.
       loki.source.file "node_logs" {
         targets    = local.file_match.node_logs.targets
-        forward_to = [loki.write.vl.receiver, otelcol.receiver.loki.gcp_logs.receiver]
+        forward_to = [loki.write.vl.receiver]
       }
 
       // discovery.kubernetes allows you to find scrape targets from Kubernetes resources.

@@ -129,7 +129,8 @@ alloy:
           }
         }
   
-        forward_to = [loki.write.vl.receiver, otelcol.receiver.loki.gcp_logs.receiver]
+        // forward_to = [loki.write.vl.receiver, otelcol.receiver.loki.gcp_logs.receiver]
+        forward_to = [loki.write.vl.receiver]
       }
       
       loki.write "vl" {

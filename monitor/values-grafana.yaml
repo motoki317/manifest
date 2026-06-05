@@ -29,6 +29,9 @@ persistence:
   size: 1Gi
 
 plugins:
+  # VM k8s-stack chart (since v0.78.0) provisions a `victoriametrics-metrics-datasource`
+  # datasource; without this plugin Grafana fails provisioning and crash-loops.
+  - victoriametrics-metrics-datasource
   - victoriametrics-logs-datasource
 
 sidecar:

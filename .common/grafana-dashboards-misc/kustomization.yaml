@@ -11,8 +11,8 @@ configMapGenerator:
       - alert-service-health.json
       - middlewares-mysql.json
       - middlewares-victoriametrics.json
+      - node-exporter-overview.json
       - nodes-details.json
-      - nodes-overview.json
       - nodes-syslog.json
       - nodes-windows-exporter.json
       - resources-s3.json

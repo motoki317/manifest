@@ -1,0 +1,11 @@
+helmCharts:
+  - repo: oci://ghcr.io/motoki317/charts
+    name: kd
+    version: "0.1.0"
+    includeCRDs: true
+    namespace: kd
+    releaseName: kd
+    valuesFile: values.yaml
+
+resources:
+  - certificate.yaml

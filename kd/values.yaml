@@ -1,5 +1,12 @@
 # The auth-admin edge already restricts access to admins, so the chart's default
 # policy (every authenticated user is a viewer) needs no further narrowing.
+
+# The image's USER is the non-numeric distroless "nonroot", which kubelet rejects
+# under the chart's runAsNonRoot default unless the UID is stated numerically.
+podSecurityContext:
+  runAsUser: 65532
+  runAsGroup: 65532
+
 ingressRoute:
   enabled: true
   host: kd.toki317.dev

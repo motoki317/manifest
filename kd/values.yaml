@@ -1,6 +1,8 @@
 ingressRoute:
   enabled: true
   host: kd.toki317.dev
+  entryPoints:
+    - websecure
   middlewares:
     - name: auth-admin
       namespace: auth

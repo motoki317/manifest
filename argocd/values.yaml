@@ -1,5 +1,7 @@
 global:
   domain: cd.toki317.dev
+  networkPolicy:
+    create: false
 
 repoServer:
   volumes:

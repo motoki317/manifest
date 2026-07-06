@@ -31,9 +31,8 @@ persistence:
       # Set an existing secret for S3 accesskey and secretkey
       # keys in the secret should be REGISTRY_STORAGE_S3_ACCESSKEY and REGISTRY_STORAGE_S3_SECRETKEY for registry
       existingSecret: "storage"
-      region: ap-osaka-1
-      bucket: harbor
-      regionendpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
+      region: ap-northeast-1
+      bucket: toki317-harbor
 
 imagePullPolicy: Always
 

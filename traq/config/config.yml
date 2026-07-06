@@ -25,9 +25,9 @@ es:
 storage:
   type: s3
   s3:
-    bucket: traq
-    region: ap-osaka-1
-    endpoint: https://axekqehyne6j.compat.objectstorage.ap-osaka-1.oraclecloud.com
+    bucket: toki317-traq
+    region: ap-northeast-1
+    endpoint: https://s3.ap-northeast-1.amazonaws.com
     # accessKey: <env secret>
     # secretKey: <env secret>
     forcePathStyle: true

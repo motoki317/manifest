@@ -1,7 +1,7 @@
 helmCharts:
   - repo: oci://ghcr.io/motoki317/charts
     name: kd
-    version: "0.3.4"
+    version: "0.3.5"
     includeCRDs: true
     namespace: kd
     releaseName: kd

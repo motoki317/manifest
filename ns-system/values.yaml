@@ -91,7 +91,7 @@ builder:
   buildpack:
     image: dashaun/builder:base
   buildkit:
-    image: moby/buildkit:v0.32.0-rootless
+    image: moby/buildkit:v0.32.1-rootless
 
 controller:
   replicas: 3

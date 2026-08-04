@@ -25,21 +25,21 @@ spec:
         repoURL: https://github.com/motoki317/manifest
         revision: main
         directories:
-          - path: '*'
+          - path: "*"
         values:
-          path: '{{path.basename}}'
+          path: "{{path.basename}}"
 
   template:
     metadata:
-      name: '{{path.basename}}'
+      name: "{{path.basename}}"
     spec:
       destination:
-        namespace: '{{path.basename}}'
+        namespace: "{{path.basename}}"
         server: https://kubernetes.default.svc
       project: default
       source:
         repoURL: https://github.com/motoki317/manifest
-        path: '{{path}}'
+        path: "{{path}}"
         targetRevision: main
       syncPolicy:
         syncOptions:
@@ -55,3 +55,7 @@ spec:
           kind: StatefulSet
           jsonPointers:
             - /spec/volumeClaimTemplates
+        - group: operator.victoriametrics.com
+          kind: VMRule
+          jsonPointers:
+            - /spec/groups/rules/record

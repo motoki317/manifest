@@ -91,8 +91,9 @@ configs:
     reposerver.log.level: "warn"
     applicationsetcontroller.log.level: "warn"
     notificationscontroller.log.level: "warn"
-    # https://argo-cd.readthedocs.io/en/latest/operator-manual/applicationset/Controlling-Resource-Modification/
-    applicationsetcontroller.enable.policy.override: "true"
+    # To better align with server-side-apply
+    # https://argo-cd.readthedocs.io/en/stable/user-guide/diff-strategies/#server-side-diff
+    controller.diff.server.side: "true"
 
   secret:
     createSecret: false

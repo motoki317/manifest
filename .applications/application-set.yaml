@@ -55,7 +55,3 @@ spec:
           kind: StatefulSet
           jsonPointers:
             - /spec/volumeClaimTemplates
-        - group: operator.victoriametrics.com
-          kind: VMRule
-          jsonPointers:
-            - /spec/groups/rules/record

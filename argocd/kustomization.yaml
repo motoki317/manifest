@@ -12,13 +12,6 @@ resources:
   - appset-ingress-route.yaml
   - certificate.yaml
   - ingress-route.yaml
-  - repo-server-cr.yaml
-
-configMapGenerator:
-  - name: helm-replace
-    namespace: argocd
-    files:
-      - config/helm
 
 generators:
   - ksops.yaml

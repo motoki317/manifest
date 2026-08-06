@@ -72,6 +72,23 @@ kubelet:
     spec:
       interval: 1m
 
+# Chart >=0.85.0 pulls upstream rules through the sync-job, which dropped the
+# per-component gates the bundled rule files used to carry. Without these, groups
+# for components disabled below evaluate against jobs that are never scraped.
+defaultRules:
+  groups:
+    kube-scheduler.rules:
+      enabled: false
+    kubernetes-system-scheduler:
+      enabled: false
+    kubernetes-system-controller-manager:
+      enabled: false
+    kube-prometheus-general.rules:
+      rules:
+        # Empty whenever every target is up, which trips RecordingRulesNoData
+        "count:up0":
+          enabled: false
+
 kubeControllerManager:
   enabled: false
 

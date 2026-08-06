@@ -5,11 +5,6 @@ global:
 
 repoServer:
   volumes:
-    # https://github.com/argoproj/argo-cd/issues/5202#issuecomment-2081661930
-    - name: helm-replace
-      configMap:
-        name: helm-replace
-        defaultMode: 0777
     # https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-
     # 1. Define an emptyDir volume which will hold the custom binaries
     - name: custom-tools
@@ -49,9 +44,6 @@ repoServer:
           name: custom-tools
 
   volumeMounts:
-    - name: helm-replace
-      mountPath: /usr/local/sbin/helm
-      subPath: helm
     # https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-
     # 3. Volume mount the custom binary to the bin directory
     - mountPath: /usr/local/bin/ksops
@@ -62,8 +54,6 @@ repoServer:
       subPath: key.txt
 
   env:
-    - name: HELM_BIN
-      value: /usr/local/bin/helm
     - name: SOPS_AGE_KEY_FILE
       value: /age-key/key.txt
 

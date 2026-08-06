@@ -44,6 +44,7 @@ spec:
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
+          - RespectIgnoreDifferences=true
           # Workaround to error "... is invalid: metadata.annotations: Too long: must have at most 262144 bytes"
           # https://github.com/prometheus-community/helm-charts/issues/3345#issuecomment-1574929706
           - ServerSideApply=true
@@ -55,3 +56,49 @@ spec:
           kind: StatefulSet
           jsonPointers:
             - /spec/volumeClaimTemplates
+        # These charts generate random values on every render; without Helm lookup, ignore them instead of re-syncing.
+        - kind: Secret
+          name: harbor-core
+          jsonPointers:
+            - /data/CSRF_KEY
+            - /data/secret
+        - kind: Secret
+          name: harbor-jobservice
+          jsonPointers:
+            - /data/JOBSERVICE_SECRET
+        - kind: Secret
+          name: harbor-registry
+          jsonPointers:
+            - /data/REGISTRY_HTTP_SECRET
+        - group: apps
+          kind: Deployment
+          name: harbor-core
+          jsonPointers:
+            - /spec/template/metadata/annotations/checksum~1secret
+            - /spec/template/metadata/annotations/checksum~1secret-jobservice
+        - group: apps
+          kind: Deployment
+          name: harbor-jobservice
+          jsonPointers:
+            - /spec/template/metadata/annotations/checksum~1secret
+            - /spec/template/metadata/annotations/checksum~1secret-core
+        - group: apps
+          kind: Deployment
+          name: harbor-registry
+          jsonPointers:
+            - /spec/template/metadata/annotations/checksum~1secret
+            - /spec/template/metadata/annotations/checksum~1secret-core
+            - /spec/template/metadata/annotations/checksum~1secret-jobservice
+        - kind: Secret
+          name: grafana
+          jsonPointers:
+            - /data/admin-password
+        - group: apps
+          kind: Deployment
+          name: grafana
+          jsonPointers:
+            - /spec/template/metadata/annotations/checksum~1secret
+        - kind: PersistentVolumeClaim
+          name: grafana
+          jsonPointers:
+            - /spec/volumeName

@@ -26,6 +26,7 @@ grafana.ini:
 
 persistence:
   enabled: true
+  lookupVolumeName: false
   size: 1Gi
 
 plugins:

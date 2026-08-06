@@ -106,6 +106,9 @@ prometheus-node-exporter:
           targetLabel: nodepool
 
 victoria-metrics-operator:
+  admissionWebhooks:
+    certManager:
+      enabled: true
   operator:
     # Convert ServiceMonitor into VMServiceScrape with ownerReferences
     enable_converter_ownership: true

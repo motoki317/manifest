@@ -15,7 +15,7 @@ es:
     kubernetes.io/hostname: moto-a1-3
   
 frontend:
-  image: ghcr.io/traptitech/traq-ui:3.33.8
+  image: ghcr.io/traptitech/traq-ui:3.33.9
   nodeSelector:
     kubernetes.io/hostname: moto-a1-3
 

@@ -64,7 +64,7 @@ jobs:
           renovate-image: "ghcr.io/renovatebot/renovate"
           # 44.171.2+ crashes on kustomize helmCharts without `repo` (auth, traq).
           # Return to "latest" once https://github.com/renovatebot/renovate/discussions/47235 is fixed.
-          renovate-version: "44.171.1"
+          renovate-version: "44.171.9"
           configurationFile: "${{ env.RENOVATE_CONFIG_FILE }}"
           token: "${{ steps.generate-token.outputs.token }}"
         env:

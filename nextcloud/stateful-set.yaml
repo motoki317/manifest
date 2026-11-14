@@ -52,3 +52,11 @@ spec:
           volumeMounts:
             - mountPath: /var/www/html
               name: data
+        # Background jobs (log rotation, version expiry, ...) never run in AJAX mode.
+        # Nextcloud switches itself to cron mode on the first CLI cron.php run.
+        - name: cron
+          image: nextcloud
+          command: [/cron.sh]
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: data

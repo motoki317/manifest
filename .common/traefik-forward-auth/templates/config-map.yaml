@@ -12,6 +12,9 @@ data:
     provider: oidc
 
     auth-host: {{ $.Values.authHosts | join "," }}
+    # v4 renamed cookie-domains to auth-domains. Both are set while v3 and v4 may run,
+    # since each version ignores the other key.
+    auth-domains: {{ $.Values.hosts | join "," }}
     cookie-domains: {{ $.Values.hosts | join "," }}
     cookie-name: {{ $.Values.cookie.name }}
     lifetime: {{ $.Values.cookie.lifetime }}

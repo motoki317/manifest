@@ -1,0 +1,19 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: opencloud
+
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: opencloud-tls
+  routes:
+    - kind: Rule
+      match: Host(`cloud.toki317.dev`)
+      services:
+        - namespace: opencloud
+          kind: Service
+          name: opencloud
+          port: http
+          scheme: http

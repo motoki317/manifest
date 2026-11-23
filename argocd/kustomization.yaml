@@ -8,8 +8,6 @@ helmCharts:
     valuesFile: values.yaml
 
 resources:
-  - appset-certificate.yaml
-  - appset-ingress-route.yaml
   - ingress-route.yaml
 
 generators:

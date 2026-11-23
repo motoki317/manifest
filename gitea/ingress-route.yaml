@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: gitea-tls
   routes:
     - kind: Rule
       match: Host(`git.toki317.dev`)

@@ -48,7 +48,6 @@ systemBot:
 
 ingressRoute:
   enabled: true
-  tls: traq-tls
 
 serviceMonitor:
   enabled: true

@@ -9,7 +9,6 @@ helmCharts:
 
 resources:
   - app-namespace.yaml
-  - certificate.yaml
 
 generators:
   - ksops.yaml

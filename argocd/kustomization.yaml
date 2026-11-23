@@ -10,7 +10,6 @@ helmCharts:
 resources:
   - appset-certificate.yaml
   - appset-ingress-route.yaml
-  - certificate.yaml
   - ingress-route.yaml
 
 generators:

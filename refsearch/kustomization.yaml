@@ -1,5 +1,4 @@
 resources:
-  - certificate.yaml
   - ingress-route.yaml
   - notice.yaml
 

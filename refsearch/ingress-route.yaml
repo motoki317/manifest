@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: refsearch-tls
   routes:
     - kind: Rule
       match: Host(`refsearch.toki317.dev`)

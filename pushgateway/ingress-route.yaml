@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: pushgateway-tls
   routes:
     - kind: Rule
       match: Host(`pushgateway.toki317.dev`)

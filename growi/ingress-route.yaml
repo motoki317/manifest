@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: growi-tls
   routes:
     - kind: Rule
       match: Host(`wiki.toki317.dev`)

@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: argo-workflow-tls
   routes:
     - kind: Rule
       match: Host(`workflow.toki317.dev`)

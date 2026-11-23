@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: monitor-nodes-tls
   routes:
     - kind: Rule
       match: Host(`monitor-nodes.toki317.dev`)

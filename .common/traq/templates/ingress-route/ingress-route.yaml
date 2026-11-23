@@ -8,15 +8,7 @@ metadata:
 
 spec:
   entryPoints:
-    {{- if .tls }}
     - websecure
-    {{- else }}
-    - web
-    {{- end }}
-  {{- if .tls }}
-  tls:
-    secretName: {{ .tls }}
-  {{- end }}
   routes:
     - kind: Rule
       match: Host(`{{ $.Values.host }}`) && (PathPrefix(`/api`) || PathPrefix(`/.well-known`))

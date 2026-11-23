@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: grafana-tls
   routes:
     - kind: Rule
       match: Host(`monitor.toki317.dev`)

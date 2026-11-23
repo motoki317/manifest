@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: dashboard-tls
   routes:
     - kind: Rule
       match: Host(`traefik.toki317.dev`)

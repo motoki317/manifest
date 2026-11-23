@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: argocd-server-tls
   routes:
     - kind: Rule
       match: Host(`cd.toki317.dev`) && PathPrefix(`/api/webhook`)

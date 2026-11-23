@@ -6,6 +6,3 @@ helmCharts:
     namespace: kd
     releaseName: kd
     valuesFile: values.yaml
-
-resources:
-  - certificate.yaml

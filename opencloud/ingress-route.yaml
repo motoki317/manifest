@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: opencloud-tls
   routes:
     - kind: Rule
       match: Host(`cloud.toki317.dev`)

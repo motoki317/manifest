@@ -117,8 +117,6 @@ ingressRoute:
   host: ns.toki317.dev
   entrypoints:
     - websecure
-  tls:
-    secretName: ns-tls
   middlewares:
     - name: auth-hard
       namespace: auth

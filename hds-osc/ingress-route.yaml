@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: hds-osc-tls
   routes:
     - kind: Rule
       match: Host(`hds-osc.toki317.dev`)

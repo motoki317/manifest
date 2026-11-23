@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: japari-tls
   routes:
     - kind: Rule
       match: Host(`japari.toki317.dev`)

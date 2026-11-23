@@ -6,8 +6,6 @@ metadata:
 spec:
   entryPoints:
     - websecure
-  tls:
-    secretName: adminer-tls
   routes:
     - kind: Rule
       match: Host(`adminer.toki317.dev`)

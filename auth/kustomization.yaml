@@ -13,11 +13,6 @@ helmCharts:
         - toki317.dev
       oidc:
         clientID: "hmYC37lIpJOjf3igr1wGdeb6jQoKs1cyQF8v"
-      ingressRoute:
-        tlsName: auth-tls
-
-resources:
-  - certificate.yaml
 
 generators:
   - ksops.yaml

@@ -1,5 +1,4 @@
 resources:
-  - adminer-certificate.yaml
   - adminer-deployment.yaml
   - adminer-ingress-route.yaml
   - adminer-service.yaml

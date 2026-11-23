@@ -9,10 +9,6 @@ metadata:
 spec:
   entryPoints:
     {{ .entrypoints | toYaml | nindent 4 }}
-  {{- if .tlsName }}
-  tls:
-    secretName: {{ .tlsName }}
-  {{- end }}
 
   routes:
     {{- range $.Values.authHosts }}

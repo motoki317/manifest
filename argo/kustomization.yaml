@@ -9,7 +9,6 @@ helmCharts:
     valuesFile: values.yaml
 
 resources:
-  - certificate.yaml
   - ingress-route.yaml
   - test-fail-workflow-template.yaml
   # - test-success-cron-workflow.yaml

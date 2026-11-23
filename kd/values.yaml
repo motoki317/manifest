@@ -6,5 +6,3 @@ ingressRoute:
   middlewares:
     - name: auth-admin
       namespace: auth
-  tls:
-    secretName: kd-tls

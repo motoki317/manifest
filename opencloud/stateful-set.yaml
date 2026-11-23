@@ -9,7 +9,7 @@ spec:
   revisionHistoryLimit: 0
   # While OpenCloud runs, nothing else must change files in its posix storage.
   # To import or repair files on disk, commit 0 here first.
-  replicas: 0
+  replicas: 1
   selector:
     matchLabels:
       app: opencloud

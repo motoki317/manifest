@@ -1,0 +1,65 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: opencloud
+
+spec:
+  serviceName: opencloud
+  podManagementPolicy: Parallel
+  revisionHistoryLimit: 0
+  # While OpenCloud runs, nothing else must change files in its posix storage.
+  # To import or repair files on disk, commit 0 here first.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opencloud
+  template:
+    metadata:
+      labels:
+        app: opencloud
+    spec:
+      enableServiceLinks: false
+      nodeSelector:
+        kubernetes.io/hostname: moto-a1-3
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+
+      volumes:
+        # With type: Directory, the pod does not start if a dir is missing. Otherwise kubelet
+        # creates the dir owned by root, and uid 1000 cannot write to it.
+        - name: config
+          hostPath:
+            path: /srv/opencloud/config
+            type: Directory
+        - name: data
+          hostPath:
+            path: /srv/opencloud/data
+            type: Directory
+
+      containers:
+        - name: opencloud
+          image: opencloud
+          # Same as the official compose: init writes /etc/opencloud/opencloud.yaml (secrets, generated admin
+          # password) on the first start. On later starts init exits with an error because the file exists,
+          # and `|| true` ignores that error.
+          command: ["/bin/sh", "-c", "opencloud init || true; exec opencloud server"]
+          ports:
+            - containerPort: 9200
+              name: http
+          env:
+            - name: OC_URL
+              value: https://cloud.toki317.dev
+            # Traefik terminates TLS.
+            - name: PROXY_TLS
+              value: "false"
+            - name: PROXY_HTTP_ADDR
+              value: 0.0.0.0:9200
+            # Verify TLS when OpenCloud calls OC_URL for OIDC. This also keeps init from prompting.
+            - name: OC_INSECURE
+              value: "false"
+          volumeMounts:
+            - mountPath: /etc/opencloud
+              name: config
+            - mountPath: /var/lib/opencloud
+              name: data

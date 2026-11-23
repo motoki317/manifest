@@ -46,6 +46,8 @@ entryPoints:
     http:
       middlewares:
         - compress@file
+      # Routes without a tls section get TLS here, served from TLSStore "default" (tls-store.yaml).
+      tls: {}
     http3: {}
   traefik:
     address: :8080/tcp

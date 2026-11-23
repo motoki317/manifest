@@ -11,6 +11,8 @@ resources:
   - metrics-service.yaml
   - service.yaml
   - service-account.yaml
+  - tls-store.yaml
+  - wildcard-certificate.yaml
 
 configMapGenerator:
   - name: config

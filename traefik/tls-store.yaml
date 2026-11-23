@@ -1,0 +1,9 @@
+apiVersion: traefik.io/v1alpha1
+kind: TLSStore
+metadata:
+  # Traefik reads only the store named "default", for routes in every namespace.
+  name: default
+
+spec:
+  defaultCertificate:
+    secretName: wildcard-tls

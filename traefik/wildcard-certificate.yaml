@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wildcard
+
+# Covers every host one label under toki317.dev, so no route needs a per-host certificate.
+# Each issued certificate publishes its hostnames in public CT logs.
+spec:
+  issuerRef:
+    kind: ClusterIssuer
+    name: cluster-issuer
+  secretName: wildcard-tls
+  duration: 2160h0m0s # 90d
+  renewBefore: 720h0m0s # 30d
+  dnsNames:
+    - toki317.dev
+    - "*.toki317.dev"
